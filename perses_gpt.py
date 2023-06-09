@@ -67,6 +67,8 @@ def countToken(program_path):
 
 def main():
     os.makedirs(output_folder, exist_ok=True)
+    shutil.copy(original_program_path, output_folder)
+    shutil.copy(original_script_path, output_folder)
 
     iteration = 0
 
