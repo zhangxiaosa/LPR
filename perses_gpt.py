@@ -10,6 +10,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 program_name = "small.c"
 script_name = "r.sh"
+root_dir = os.getcwd()
 
 original_folder = './benchmark/clang-23309'
 original_program_path = os.path.join(original_folder, program_name)
@@ -21,7 +22,7 @@ output_script_path = os.path.join(output_folder, script_name)
 
 def call_perses(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
-    os.makedirs(tmpdir, exist_ok=True)
+    os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
     tmp_script_path = os.path.join(tmp_dir, script_name)
     shutil.copy(output_program_path, tmp_program_path)
@@ -34,7 +35,7 @@ def call_perses(iteration: int):
 
 def call_gpt(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_gpt')
-    os.makedirs(tmpdir, exist_ok=True)
+    os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
     tmp_script_path = os.path.join(tmp_dir, script_name)
     shutil.copy(output_program_path, tmp_program_path)
@@ -58,6 +59,18 @@ def call_gpt(iteration: int):
     with open(tmp_program_path, 'w') as f:
         f.write(response)
 
+    # property test
+    os.chdir(tmp_dir)
+    process = subprocess.run(['./r.sh'], shell=True)
+
+    if process.returncode == 0:
+        print("property test passed")
+        shutil.copy(tmp_program_path, output_program_path)
+    else:
+        print("property test failed")
+
+    os.chdir(root_dir)
+
 
 def countToken(program_path):
     output = subprocess.check_output(['java', '-jar', 'token_counter_deploy.jar', '--', program_path])
@@ -79,11 +92,13 @@ def main():
         last_program_size = current_program_size
 
         # call gpt
+        print(f"Iteration {iteration}, starting gpt")
         call_gpt(iteration)
         program_size = countToken(output_program_path)
         print(f"Iteration {iteration}, after gpt: {program_size} tokens")
 
         # call perses
+        print(f"Iteration {iteration}, starting perses")
         call_perses(iteration)
         program_size = countToken(output_program_path)
         print(f"Iteration {iteration}, after perses: {program_size} tokens")
