@@ -42,7 +42,7 @@ def call_gpt(iteration: int):
     shutil.copy(output_script_path, tmp_script_path)
 
     # load the program
-    with open(program_path, 'r') as f:
+    with open(tmp_program_path, 'r') as f:
         program = f.read()
 
     completion = openai.ChatCompletion.create(
