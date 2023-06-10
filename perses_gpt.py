@@ -22,7 +22,7 @@ output_script_path = os.path.join(output_folder, script_name)
 
 #cmd = "inline the functions as much as possible"
 #cmd = "inline the function at the end of call chain"
-cmd = "inline the typedef"
+cmd = "select what you think is the simplest function, inline it, and completely eliminate this function."
 
 
 def call_perses(iteration: int):
@@ -36,6 +36,7 @@ def call_perses(iteration: int):
     subprocess.run(['java', '-jar', 'perses_deploy.jar', \
      '--input', tmp_program_path, '--test', tmp_script_path, '--output-dir', tmp_dir], check=True)
 
+    format_program(tmp_program_path)
     shutil.copy(tmp_program_path, output_folder)
 
 def call_gpt(iteration: int):
@@ -53,16 +54,18 @@ def call_gpt(iteration: int):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
         messages=[
-            {"role": "system", "content": "You are an assistant for program transformation and generation. You only need to give the final program."},
-            {"role": "user", "content": f"Given the following program, please {cmd}. {program}"}
+            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any explanation."},
+            {"role": "user", "content": f"Given the following program, {cmd}. {program}"}
         ]
     )
 
     response = completion.choices[0].message
+    print("gpt returned")
 
     # write back the inlined program
     with open(tmp_program_path, 'w') as f:
         f.write(response.content)
+    format_program(tmp_program_path)
 
     # property test
     os.chdir(tmp_dir)
@@ -74,9 +77,13 @@ def call_gpt(iteration: int):
         shutil.copy(tmp_program_path, output_program_path)
     else:
         print("property test failed")
+        exit(1)
 
     os.chdir(root_dir)
 
+def format_program(path):
+    subprocess.run(f'clang-format {path} > tmp.c', shell=True)
+    shutil.copy(path, 'tmp.c')
 
 def countToken(program_path):
     output = subprocess.check_output(['java', '-jar', 'token_counter_deploy.jar', '--', program_path])
