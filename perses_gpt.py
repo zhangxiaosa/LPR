@@ -20,6 +20,11 @@ output_folder = './benchmark_result/clang-23309'
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
 
+#cmd = "inline the functions as much as possible"
+#cmd = "inline the function at the end of call chain"
+cmd = "inline the typedef"
+
+
 def call_perses(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
     os.makedirs(tmp_dir, exist_ok=True)
@@ -28,7 +33,7 @@ def call_perses(iteration: int):
     shutil.copy(output_program_path, tmp_program_path)
     shutil.copy(output_script_path, tmp_script_path)
     
-    subprocess.run(['java', '-jar', 'perses_deploy.jar', '--', \
+    subprocess.run(['java', '-jar', 'perses_deploy.jar', \
      '--input', tmp_program_path, '--test', tmp_script_path, '--output-dir', tmp_dir], check=True)
 
     shutil.copy(tmp_program_path, output_folder)
@@ -48,8 +53,8 @@ def call_gpt(iteration: int):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
         messages=[
-            {"role": "system", "content": "You are an assistant for program transformation. You only need to give the final program."},
-            {"role": "user", "content": "Given the following program, please inline the functions as much as possible. %s" % program}
+            {"role": "system", "content": "You are an assistant for program transformation and generation. You only need to give the final program."},
+            {"role": "user", "content": f"Given the following program, please {cmd}. {program}"}
         ]
     )
 
@@ -57,12 +62,13 @@ def call_gpt(iteration: int):
 
     # write back the inlined program
     with open(tmp_program_path, 'w') as f:
-        f.write(response)
+        f.write(response.content)
 
     # property test
     os.chdir(tmp_dir)
     process = subprocess.run(['./r.sh'], shell=True)
-
+    
+    os.chdir(root_dir)
     if process.returncode == 0:
         print("property test passed")
         shutil.copy(tmp_program_path, output_program_path)
