@@ -3,6 +3,7 @@ import sys
 import openai
 import subprocess
 import shutil
+import time
 
 # you need to add OPENAI_API_KEY to the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -11,19 +12,23 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 program_name = "small.c"
 script_name = "r.sh"
 root_dir = os.getcwd()
+case = "clang-23309"
 
-original_folder = './benchmark/clang-23309'
+original_folder = os.path.join('./benchmark/', case)
 original_program_path = os.path.join(original_folder, program_name)
 original_script_path = os.path.join(original_folder, script_name)
 
-output_folder = './benchmark_result/clang-23309'
+output_folder = os.path.join('./benchmark_result/', case)
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
 
-#cmd = "inline the functions as much as possible"
+cmd = "inline the functions as much as possible"
 #cmd = "inline the function at the end of call chain"
-cmd = "select what you think is the simplest function, inline it, and completely eliminate this function."
-
+#cmd = "select what you think is the simplest function, inline it, and completely eliminate this function."
+#cmd = "apply function inlining to fn1, and do not change anything else"
+#cmd = "remove fn1"
+#cmd = "select what you think is the simplest function, inline it, and completely eliminate this function. Note that the transformed program must be semantically equivalent to the original one"
+cmd = "inline fn4. Note that the transformed program must be semantically equivalent to the original one"
 
 def call_perses(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
@@ -51,16 +56,19 @@ def call_gpt(iteration: int):
     with open(tmp_program_path, 'r') as f:
         program = f.read()
 
+    start_time = time.time()
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
+        temperature=0.4,
         messages=[
-            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any explanation."},
+            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any other textual description and explanation."},
             {"role": "user", "content": f"Given the following program, {cmd}. {program}"}
         ]
     )
 
     response = completion.choices[0].message
-    print("gpt returned")
+    end_time = time.time()
+    print(f"gpt returned in {end_time-start_time} seconds")
 
     # write back the inlined program
     with open(tmp_program_path, 'w') as f:
@@ -116,6 +124,7 @@ def main():
         program_size = countToken(output_program_path)
         print(f"Iteration {iteration}, after perses: {program_size} tokens")
 
+        current_program_size = program_size
         # Increase the iteration count
         iteration += 1
 
