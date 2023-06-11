@@ -12,7 +12,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 program_name = "small.c"
 script_name = "r.sh"
 root_dir = os.getcwd()
-case = "clang-23309"
+case = "clang-27137"
 
 original_folder = os.path.join('./benchmark/', case)
 original_program_path = os.path.join(original_folder, program_name)
@@ -28,7 +28,10 @@ cmd = "inline the functions as much as possible"
 #cmd = "apply function inlining to fn1, and do not change anything else"
 #cmd = "remove fn1"
 #cmd = "select what you think is the simplest function, inline it, and completely eliminate this function. Note that the transformed program must be semantically equivalent to the original one"
-cmd = "inline fn4. Note that the transformed program must be semantically equivalent to the original one"
+cmd = "only inline fn1 and do not change anything else. Note that the transformed program must be semantically equivalent to the original one"
+#cmd = "inline one function. Note that the transformed program must be semantically equivalent to the original one"
+#cmd = "replace int8_t with char to remove that typedef. Note that the transformed program must be semantically equivalent to the original one"
+#cmd = "inline the function at the end of the call chain. Note that the transformed program must be semantically equivalent to the original one"
 
 def call_perses(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
@@ -61,7 +64,8 @@ def call_gpt(iteration: int):
         model="gpt-3.5-turbo-0301",
         temperature=0.4,
         messages=[
-            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any other textual description and explanation."},
+            #{"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any other textual description and explanation."},
+            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Please think step by step."},
             {"role": "user", "content": f"Given the following program, {cmd}. {program}"}
         ]
     )
