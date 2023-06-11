@@ -13,6 +13,8 @@ program_name = "small.c"
 script_name = "r.sh"
 root_dir = os.getcwd()
 case = "clang-27137"
+skip_gpt = False
+#skip_gpt = True
 
 original_folder = os.path.join('./benchmark/', case)
 original_program_path = os.path.join(original_folder, program_name)
@@ -22,16 +24,18 @@ output_folder = os.path.join('./benchmark_result/', case)
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
 
-cmd = "inline the functions as much as possible"
+#cmd = "inline the functions as much as possible"
 #cmd = "inline the function at the end of call chain"
 #cmd = "select what you think is the simplest function, inline it, and completely eliminate this function."
 #cmd = "apply function inlining to fn1, and do not change anything else"
 #cmd = "remove fn1"
 #cmd = "select what you think is the simplest function, inline it, and completely eliminate this function. Note that the transformed program must be semantically equivalent to the original one"
-cmd = "only inline fn1 and do not change anything else. Note that the transformed program must be semantically equivalent to the original one"
+#cmd = "inline fn5 to simplify the program and do not change anything else. Note that the transformed program must be semantically equivalent to the original one"
 #cmd = "inline one function. Note that the transformed program must be semantically equivalent to the original one"
 #cmd = "replace int8_t with char to remove that typedef. Note that the transformed program must be semantically equivalent to the original one"
 #cmd = "inline the function at the end of the call chain. Note that the transformed program must be semantically equivalent to the original one"
+cmd = "find out the first typedef, remove it and replace it with the original data type"
+cmd = "use constant propagation to remove it. only optimize out one variable and do not touch the others"
 
 def call_perses(iteration: int):
     tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
@@ -62,10 +66,10 @@ def call_gpt(iteration: int):
     start_time = time.time()
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
-        temperature=0.4,
+        temperature=0.7,
         messages=[
             #{"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any other textual description and explanation."},
-            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Please think step by step."},
+            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Please firstly give your step by step analysis and explanation, and finally give the program."},
             {"role": "user", "content": f"Given the following program, {cmd}. {program}"}
         ]
     )
@@ -115,12 +119,12 @@ def main():
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
-
-        # call gpt
-        print(f"Iteration {iteration}, starting gpt")
-        call_gpt(iteration)
-        program_size = countToken(output_program_path)
-        print(f"Iteration {iteration}, after gpt: {program_size} tokens")
+        if (not skip_gpt):
+            # call gpt
+            print(f"Iteration {iteration}, starting gpt")
+            call_gpt(iteration)
+            program_size = countToken(output_program_path)
+            print(f"Iteration {iteration}, after gpt: {program_size} tokens")
 
         # call perses
         print(f"Iteration {iteration}, starting perses")
