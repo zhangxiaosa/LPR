@@ -15,15 +15,16 @@ root_dir = os.getcwd()
 program_name = "small.c"
 script_name = "r.sh"
 case = "clang-27137"
+trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 original_folder = os.path.normpath(
-    os.path.join(root_dir, "./benchmark/", case)
+    os.path.join(root_dir, "./benchmark/", case, trail_id)
     )
 original_program_path = os.path.join(original_folder, program_name)
 original_script_path = os.path.join(original_folder, script_name)
 
 output_folder = os.path.normpath(
-    os.path.join(root_dir, "./benchmark_result/", case)
+    os.path.join(root_dir, "./benchmark_result/", case, )
     )
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
@@ -124,25 +125,25 @@ def call_renamer(iteration, program_path, script_path):
     print(f"Iteration {iteration}, start renamer")
     print_timestamp()
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
+    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_renamer")
+    os.makedirs(tmp_dir, exist_ok=True)
+    tmp_program_path = os.path.join(tmp_dir, program_name)
+    tmp_script_path = os.path.join(tmp_dir, script_name)
+    shutil.copy(output_program_path, tmp_program_path)
+    shutil.copy(output_script_path, tmp_script_path)
 
-        shutil.copy(program_path, os.path.join(tmp_dir, program_name))
-        shutil.copy(script_path, os.path.join(tmp_dir, script_name))
+    os.chdir(tmp_dir)
 
-        os.chdir(tmp_dir)
-
-        execute_cmd(
-            f"creduce --no-default-passes \
-            --add-pass pass_clex rename-toks 1 \
-            --add-pass pass_clang rename-fun 1 \
-            --add-pass pass_clang rename-param 1 \
-            --add-pass pass_clang rename-var 1 \
-            --add-pass pass_clang rename-class 1 \
-            --add-pass pass_clang rename-cxx-method 1 \
-            {script_name} {program_name}"
-        )
-
-        shutil.copy(program_name, program_path)
+    execute_cmd(
+        f"creduce --no-default-passes \
+        --add-pass pass_clex rename-toks 1 \
+        --add-pass pass_clang rename-fun 1 \
+        --add-pass pass_clang rename-param 1 \
+        --add-pass pass_clang rename-var 1 \
+        --add-pass pass_clang rename-class 1 \
+        --add-pass pass_clang rename-cxx-method 1 \
+        {script_name} {program_name}"
+    )
 
     os.chdir(root_dir)
     program_size = countToken(output_program_path)
