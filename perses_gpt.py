@@ -4,73 +4,84 @@ import openai
 import subprocess
 import shutil
 import time
+import tempfile
+import datetime
 
 # you need to add OPENAI_API_KEY to the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+root_dir = os.getcwd()
 
 program_name = "small.c"
 script_name = "r.sh"
-root_dir = os.getcwd()
 case = "clang-27137"
-skip_gpt = False
-#skip_gpt = True
 
-original_folder = os.path.join('./benchmark/', case)
+original_folder = os.path.join("./benchmark/", case)
 original_program_path = os.path.join(original_folder, program_name)
 original_script_path = os.path.join(original_folder, script_name)
 
-output_folder = os.path.join('./benchmark_result/', case)
+output_folder = os.path.join("./benchmark_result/", case)
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
 
-#cmd = "inline the functions as much as possible"
-#cmd = "inline the function at the end of call chain"
-#cmd = "select what you think is the simplest function, inline it, and completely eliminate this function."
-#cmd = "apply function inlining to fn1, and do not change anything else"
-#cmd = "remove fn1"
-#cmd = "select what you think is the simplest function, inline it, and completely eliminate this function. Note that the transformed program must be semantically equivalent to the original one"
-#cmd = "inline fn5 to simplify the program and do not change anything else. Note that the transformed program must be semantically equivalent to the original one"
-#cmd = "inline one function. Note that the transformed program must be semantically equivalent to the original one"
-#cmd = "replace int8_t with char to remove that typedef. Note that the transformed program must be semantically equivalent to the original one"
-#cmd = "inline the function at the end of the call chain. Note that the transformed program must be semantically equivalent to the original one"
-cmd = "find out the first typedef, remove it and replace it with the original data type"
-cmd = "use constant propagation to remove it. only optimize out one variable and do not touch the others"
+
+prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
+Please make the specific changes on the program as instructed, without altering anything else. \
+Please firstly give your step by step analysis and explanation, and finally give the whole output program wrapped by ```."
+
+operation_list = {
+    "typedef": "Given the following program, select any typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
+    "function_inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
+    "constant_propagation": "Given the following program, select any variable that you think redundant, optimize it."
+}
+
+def execute_cmd(cmd):
+    process = subprocess.run(f"{cmd}", shell=True)
+    return process.returncode
 
 def call_perses(iteration: int):
-    tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_perses')
+    print(f"Iteration {iteration}, start perses")
+    print_timestamp()
+
+    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_perses")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
     tmp_script_path = os.path.join(tmp_dir, script_name)
     shutil.copy(output_program_path, tmp_program_path)
     shutil.copy(output_script_path, tmp_script_path)
     
-    subprocess.run(['java', '-jar', 'perses_deploy.jar', \
-     '--input', tmp_program_path, '--test', tmp_script_path, '--output-dir', tmp_dir], check=True)
+    execute_cmd(f"java -jar perses_deploy.jar --input {tmp_program_path} --test {tmp_script_path} --output-dir {tmp_dir}")
 
-    format_program(tmp_program_path)
+    call_formatter(tmp_program_path)
     shutil.copy(tmp_program_path, output_folder)
 
-def call_gpt(iteration: int):
-    tmp_dir = os.path.join(output_folder, f'iteration_{iteration}_gpt')
+    program_size = countToken(output_program_path)
+    print(f"Iteration {iteration}, finish perses: {program_size} tokens")
+    print_timestamp()
+
+def call_gpt(iteration, operation):
+    print(f"Iteration {iteration}, start gpt")
+    print_timestamp()
+
+    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
     tmp_script_path = os.path.join(tmp_dir, script_name)
     shutil.copy(output_program_path, tmp_program_path)
     shutil.copy(output_script_path, tmp_script_path)
 
+    prompt_from_user = operation_list[operation]
+
     # load the program
-    with open(tmp_program_path, 'r') as f:
+    with open(tmp_program_path, "r") as f:
         program = f.read()
 
     start_time = time.time()
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
-        temperature=0.7,
         messages=[
-            #{"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Just give the final program, do not give any other textual description and explanation."},
-            {"role": "system", "content": "You are an assistant for program transformation and generation. Please make the specific modifications as instructed, without altering anything else. Please firstly give your step by step analysis and explanation, and finally give the program."},
-            {"role": "user", "content": f"Given the following program, {cmd}. {program}"}
+            {"role": "system", "content": f"{prompt_from_system}"},
+            {"role": "user", "content": f"{prompt_from_user}. {program}"}
         ]
     )
 
@@ -79,16 +90,16 @@ def call_gpt(iteration: int):
     print(f"gpt returned in {end_time-start_time} seconds")
 
     # write back the inlined program
-    with open(tmp_program_path, 'w') as f:
+    with open(tmp_program_path, "w") as f:
         f.write(response.content)
-    format_program(tmp_program_path)
+    call_formatter(tmp_program_path)
 
     # property test
     os.chdir(tmp_dir)
-    process = subprocess.run(['./r.sh'], shell=True)
+    ret = execute_cmd("./r.sh")
     
     os.chdir(root_dir)
-    if process.returncode == 0:
+    if ret == 0:
         print("property test passed")
         shutil.copy(tmp_program_path, output_program_path)
     else:
@@ -97,12 +108,50 @@ def call_gpt(iteration: int):
 
     os.chdir(root_dir)
 
-def format_program(path):
-    subprocess.run(f'clang-format {path} > tmp.c', shell=True)
-    shutil.copy(path, 'tmp.c')
+    program_size = countToken(output_program_path)
+    print(f"Iteration {iteration}, finish gpt ({operation}): {program_size} tokens")
+    print_timestamp()
+
+def call_formatter(path):
+    execute_cmd(f"clang-format {path} > tmp.c")
+    shutil.copy("tmp.c", path)
+
+def call_renamer(program_path, script_path):
+    print(f"Iteration {iteration}, start renamer")
+    print_timestamp()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+
+        shutil.copy(program_path, os.path.join(tmp_dir, program_name))
+        shutil.copy(script_path, os.path.join(tmp_dir, script_name))
+
+        os.chdir(tmp_dir)
+
+        execute_cmd(
+            f"creduce --no-default-passes \
+            --add-pass pass_clex rename-toks 1 \
+            --add-pass pass_clang rename-fun 1 \
+            --add-pass pass_clang rename-param 1 \
+            --add-pass pass_clang rename-var 1 \
+            --add-pass pass_clang rename-class 1 \
+            --add-pass pass_clang rename-cxx-method 1 \
+            {script_name} {program_name}"
+        )
+
+        shutil.copy(program_name, program_path)
+
+    program_size = countToken(output_program_path)
+    print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
+    print_timestamp()
+
+def print_timestamp():
+    now = datetime.datetime.now()
+    time_string = now.strftime("%Y-%m-%d %H:%M:%S")
+    print(time_string)
+
 
 def countToken(program_path):
-    output = subprocess.check_output(['java', '-jar', 'token_counter_deploy.jar', '--', program_path])
+    output = subprocess.check_output("java -jar token_counter_deploy.jar -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
     return int(size_str)
 
@@ -119,18 +168,15 @@ def main():
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
-        if (not skip_gpt):
-            # call gpt
-            print(f"Iteration {iteration}, starting gpt")
-            call_gpt(iteration)
-            program_size = countToken(output_program_path)
-            print(f"Iteration {iteration}, after gpt: {program_size} tokens")
+
+        # call renamer
+        call_renamer(output_program_path, output_script_path)
+
+        # call gpt
+        call_gpt(iteration, "typedef")
 
         # call perses
-        print(f"Iteration {iteration}, starting perses")
         call_perses(iteration)
-        program_size = countToken(output_program_path)
-        print(f"Iteration {iteration}, after perses: {program_size} tokens")
 
         current_program_size = program_size
         # Increase the iteration count
