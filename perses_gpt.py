@@ -32,20 +32,23 @@ output_script_path = os.path.join(output_folder, script_name)
 
 prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
 Please make the specific changes on the program as instructed, without altering anything else. \
-Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
-Please stick to the exact output format below, and do not add any text after program. Analysis: xxx. Program: program"
+Please only give the text of final program."
+
+#Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
+#Please stick to the exact output format below, use markdown code block syntax to wrap the program, and do not add any text after program. \
+#Format: Analysis: xxx. Program: program"
 
 operation_list = {
-    "typedef": "Given the following program, select any typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
-    "function_inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
-    "constant_propagation": "Given the following program, select any variable that you think redundant, optimize it."
+    "typedef": "Given the following program, select one typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
+    "function inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
+    "constant propagation": "Given the following program, select one variable that you think redundant, optimize it."
 }
 
 def execute_cmd(cmd):
-    process = subprocess.run(f"{cmd}", shell=True)
+    process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return process.returncode
 
-def call_perses(iteration: int):
+def call_perses(iteration):
     print(f"Iteration {iteration}, start perses")
     print_timestamp()
 
@@ -66,14 +69,16 @@ def call_perses(iteration: int):
     print_timestamp()
 
 def call_gpt(iteration, operation):
-    print(f"Iteration {iteration}, start gpt")
+    print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
 
     tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
+    tmp_program_orig_path = os.path.join(tmp_dir, program_name + ".orig")
     tmp_script_path = os.path.join(tmp_dir, script_name)
     shutil.copy(output_program_path, tmp_program_path)
+    shutil.copy(output_program_path, tmp_program_orig_path)
     shutil.copy(output_script_path, tmp_script_path)
 
     prompt_from_user = operation_list[operation]
@@ -93,7 +98,7 @@ def call_gpt(iteration, operation):
 
     response = completion.choices[0].message
     end_time = time.time()
-    print(f"gpt returned in {end_time-start_time} seconds")
+    print(f"gpt returned in {end_time-start_time:.2f} seconds")
 
     # write back the inlined program
     with open(tmp_program_path, "w") as f:
@@ -110,7 +115,6 @@ def call_gpt(iteration, operation):
         shutil.copy(tmp_program_path, output_program_path)
     else:
         print("property test failed")
-        exit(1)
 
     os.chdir(root_dir)
 
@@ -147,6 +151,7 @@ def call_renamer(iteration, program_path, script_path):
     )
 
     os.chdir(root_dir)
+    shutil.copy(tmp_program_path, output_program_path)
     program_size = countToken(output_program_path)
     print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
     print_timestamp()
@@ -176,18 +181,21 @@ def main():
     while current_program_size < last_program_size:
         last_program_size = current_program_size
 
-#        # call renamer
-#        call_renamer(iteration, output_program_path, output_script_path)
+        # call renamer
+        call_renamer(iteration, output_program_path, output_script_path)
 
-        # call gpt
+        # typedef
         call_gpt(iteration, "typedef")
+
+        # function inlining
+        call_gpt(iteration, "function inlining")
 
         # call perses
         call_perses(iteration)
 
-        current_program_size = program_size
+        current_program_size = countToken(output_program_path)
         # Increase the iteration count
-        iteration += 1
+        iteration = iteration + 1
 
     print("Final program size: ", current_program_size)
     
