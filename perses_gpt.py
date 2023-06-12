@@ -116,7 +116,7 @@ def call_formatter(path):
     execute_cmd(f"clang-format {path} > tmp.c")
     shutil.copy("tmp.c", path)
 
-def call_renamer(program_path, script_path):
+def call_renamer(iteration, program_path, script_path):
     print(f"Iteration {iteration}, start renamer")
     print_timestamp()
 
@@ -170,7 +170,7 @@ def main():
         last_program_size = current_program_size
 
         # call renamer
-        call_renamer(output_program_path, output_script_path)
+        call_renamer(iteration, output_program_path, output_script_path)
 
         # call gpt
         call_gpt(iteration, "typedef")
