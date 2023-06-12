@@ -6,6 +6,7 @@ import shutil
 import time
 import tempfile
 import datetime
+import re
 
 # you need to add OPENAI_API_KEY to the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -32,12 +33,11 @@ output_script_path = os.path.join(output_folder, script_name)
 
 
 prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
-Please make the specific changes on the program as instructed, without altering anything else. \
-Please only give the text of final program."
-
-#Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
-#Please stick to the exact output format below, use markdown code block syntax to wrap the program, and do not add any text after program. \
-#Format: Analysis: xxx. Program: program"
+Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
+Please stick to the exact output format below, use markdown code block syntax to wrap the program, and do not add any text after program. \
+Format: Analysis: xxx. Program: program"
+# Please make the specific changes on the program as instructed, without altering anything else. \
+# Please only give the text of final program.
 
 operation_list = {
     "typedef": "Given the following program, select one typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
@@ -107,7 +107,8 @@ def call_gpt(iteration, operation):
         candidate_program_path = os.path.join(tmp_dir, f"candidate_{id}_" + program_name)
         response = completion.choices[id].message
         with open(candidate_program_path, "w") as f:
-            f.write(response.content)
+            extracted_program = extract_code(response.content)
+            f.write(extracted_program)
         call_formatter(candidate_program_path)
         program_size = countToken(candidate_program_path)
         print(f"program size: {program_size} tokens")
@@ -124,11 +125,12 @@ def call_gpt(iteration, operation):
         os.chdir(root_dir)
         if ret == 0:
             print("property test passed")
-            shutil.copy(tmp_program_path, output_program_path)
         else:
             print("property test failed")
         os.chdir(root_dir)
 
+    exit(1)
+    shutil.copy(tmp_program_path, output_program_path)
     print(f"Iteration {iteration}, finish gpt ({operation}): {program_size} tokens")
     print_timestamp()
 
@@ -177,6 +179,13 @@ def countToken(program_path):
     size_str = output.decode().splitlines()[-1]
     return int(size_str)
 
+def extract_code(text):
+    pattern = r'```[\S]*(.*?)```'
+    result = re.findall(pattern, text, re.DOTALL)
+    if result:
+        return result[-1]
+    else:
+        return text
 
 def main():
     os.makedirs(output_folder, exist_ok=True)
