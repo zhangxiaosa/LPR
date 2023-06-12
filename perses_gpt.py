@@ -144,6 +144,7 @@ def call_renamer(iteration, program_path, script_path):
 
         shutil.copy(program_name, program_path)
 
+    os.chdir(root_dir)
     program_size = countToken(output_program_path)
     print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
     print_timestamp()
