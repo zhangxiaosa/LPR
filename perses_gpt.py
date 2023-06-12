@@ -18,7 +18,7 @@ case = "clang-27137"
 trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 original_folder = os.path.normpath(
-    os.path.join(root_dir, "./benchmark/", case, trail_id)
+    os.path.join(root_dir, "./benchmark/", case)
     )
 original_program_path = os.path.join(original_folder, program_name)
 original_script_path = os.path.join(original_folder, script_name)
