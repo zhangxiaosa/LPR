@@ -16,6 +16,7 @@ program_name = "small.c"
 script_name = "r.sh"
 case = "clang-27137"
 trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+candidate_number = 3
 
 original_folder = os.path.normpath(
     os.path.join(root_dir, "./benchmark/", case)
@@ -90,35 +91,44 @@ def call_gpt(iteration, operation):
     start_time = time.time()
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0301",
+        n=candidate_number,
         messages=[
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}. {program}"}
         ]
     )
 
-    response = completion.choices[0].message
     end_time = time.time()
     print(f"gpt returned in {end_time-start_time:.2f} seconds")
 
-    # write back the inlined program
-    with open(tmp_program_path, "w") as f:
-        f.write(response.content)
-    call_formatter(tmp_program_path)
+    for id in range(candidate_number):
+        print(f"candidate {id}")
+        # write the output program
+        candidate_program_path = os.path.join(tmp_dir, f"candidate_{id}_" + program_name)
+        response = completion.choices[id].message
+        with open(candidate_program_path, "w") as f:
+            f.write(response.content)
+        call_formatter(candidate_program_path)
+        program_size = countToken(candidate_program_path)
+        print(f"program size: {program_size} tokens")
 
-    # property test
-    os.chdir(tmp_dir)
-    ret = execute_cmd("./r.sh")
+        # property test
+        os.chdir(tmp_dir)
+        property_test_dir = tempfile.mkdtemp()
+        os.chdir(property_test_dir)
+        shutil.copy(candidate_program_path, program_name)
+        shutil.copy(tmp_script_path, script_name)
+        print(f"start property test")
+        ret = execute_cmd("./r.sh")
     
-    os.chdir(root_dir)
-    if ret == 0:
-        print("property test passed")
-        shutil.copy(tmp_program_path, output_program_path)
-    else:
-        print("property test failed")
+        os.chdir(root_dir)
+        if ret == 0:
+            print("property test passed")
+            shutil.copy(tmp_program_path, output_program_path)
+        else:
+            print("property test failed")
+        os.chdir(root_dir)
 
-    os.chdir(root_dir)
-
-    program_size = countToken(output_program_path)
     print(f"Iteration {iteration}, finish gpt ({operation}): {program_size} tokens")
     print_timestamp()
 
