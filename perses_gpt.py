@@ -16,11 +16,15 @@ program_name = "small.c"
 script_name = "r.sh"
 case = "clang-27137"
 
-original_folder = os.path.join(root_dir, "./benchmark/", case)
+original_folder = os.path.normpath(
+    os.path.join(root_dir, "./benchmark/", case)
+    )
 original_program_path = os.path.join(original_folder, program_name)
 original_script_path = os.path.join(original_folder, script_name)
 
-output_folder = os.path.join(root_dir, "./benchmark_result/", case)
+output_folder = os.path.normpath(
+    os.path.join(root_dir, "./benchmark_result/", case)
+    )
 output_program_path = os.path.join(output_folder, program_name)
 output_script_path = os.path.join(output_folder, script_name)
 
