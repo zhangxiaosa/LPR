@@ -151,7 +151,7 @@ def print_timestamp():
 
 
 def countToken(program_path):
-    output = subprocess.check_output("java -jar token_counter_deploy.jar -- {program_path}", shell=True)
+    output = subprocess.check_output(f"java -jar token_counter_deploy.jar -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
     return int(size_str)
 
