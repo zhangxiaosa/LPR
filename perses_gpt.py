@@ -32,7 +32,8 @@ output_script_path = os.path.join(output_folder, script_name)
 
 prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
 Please make the specific changes on the program as instructed, without altering anything else. \
-Please firstly give your step by step analysis and explanation, and finally give the whole output program wrapped by ```."
+Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
+Please stick to the exact output format below, and do not add any text after program. Analysis: xxx. Program: program"
 
 operation_list = {
     "typedef": "Given the following program, select any typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
@@ -175,8 +176,8 @@ def main():
     while current_program_size < last_program_size:
         last_program_size = current_program_size
 
-        # call renamer
-        call_renamer(iteration, output_program_path, output_script_path)
+#        # call renamer
+#        call_renamer(iteration, output_program_path, output_script_path)
 
         # call gpt
         call_gpt(iteration, "typedef")
