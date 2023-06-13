@@ -41,8 +41,8 @@ Format: Analysis: xxx. Program: program"
 
 operation_list = {
     "typedef": "Given the following program, select one typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
-    "function inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
-    "constant propagation": "Given the following program, select one variable that you think redundant, optimize it."
+    "function_inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
+    "constant_propagation": "Given the following program, select one variable that you think redundant, optimize it."
 }
 
 def execute_cmd(cmd):
@@ -101,16 +101,21 @@ def call_gpt(iteration, operation):
     end_time = time.time()
     print(f"gpt returned in {end_time-start_time:.2f} seconds")
 
+    property_test_record = []
+    program_size_record = []
+    program_path_record = []
     for id in range(candidate_number):
         print(f"candidate {id}")
         # write the output program
         candidate_program_path = os.path.join(tmp_dir, f"candidate_{id}_" + program_name)
+        program_path_record.append(candidate_program_path)
         response = completion.choices[id].message
         with open(candidate_program_path, "w") as f:
             extracted_program = extract_code(response.content)
             f.write(extracted_program)
         call_formatter(candidate_program_path)
         program_size = countToken(candidate_program_path)
+        program_size_record.append(program_size)
         print(f"program size: {program_size} tokens")
 
         # property test
@@ -125,13 +130,24 @@ def call_gpt(iteration, operation):
         os.chdir(root_dir)
         if ret == 0:
             print("property test passed")
+            property_test_record.append("pass")
+            break
         else:
             print("property test failed")
+            property_test_record.append("fail")
         os.chdir(root_dir)
 
-    exit(1)
-    shutil.copy(tmp_program_path, output_program_path)
-    print(f"Iteration {iteration}, finish gpt ({operation}): {program_size} tokens")
+    # find the smallest passing program
+    smallest_passing_candidate_id = -1
+    smallest_passing_program_size = sys.maxsize
+    for i in range(candidate_number):
+        if (property_test_record[i] == "pass" and program_size_record[i] < smallest_passing_program_size):
+            smallest_passing_candidate_id = i
+            smallest_passing_program_size = program_size_record[i]
+    if (smallest_passing_candidate_id is not -1):
+        shutil.copy(program_path_record[smallest_passing_candidate_id], output_program_path)
+    final_program_size = countToken(output_program_path)
+    print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
 
 def call_formatter(path):
@@ -207,7 +223,10 @@ def main():
         call_gpt(iteration, "typedef")
 
         # function inlining
-        call_gpt(iteration, "function inlining")
+        call_gpt(iteration, "function_inlining")
+
+        # constant propagation
+        call_gpt(iteration, "constant_propagation")
 
         # call perses
         call_perses(iteration)
