@@ -15,7 +15,7 @@ root_dir = os.getcwd()
 
 program_name = "small.c"
 script_name = "r.sh"
-case = "clang-27137"
+case = "clang-22382"
 trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 candidate_number = 3
 
@@ -203,6 +203,7 @@ def extract_code(text):
         return text
 
 def main():
+    start_time = time.time()
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
@@ -234,7 +235,8 @@ def main():
         # Increase the iteration count
         iteration = iteration + 1
 
-    print("Final program size: ", current_program_size)
+    end_time = time.time()
+    print(f"Final program size: {current_program_size}, time used: {end_time-start_time:.3f}")
     
 
 
