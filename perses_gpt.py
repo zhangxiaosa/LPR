@@ -131,7 +131,6 @@ def call_gpt(iteration, operation):
         if ret == 0:
             print("property test passed")
             property_test_record.append("pass")
-            break
         else:
             print("property test failed")
             property_test_record.append("fail")
