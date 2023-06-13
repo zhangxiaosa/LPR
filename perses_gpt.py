@@ -15,21 +15,7 @@ root_dir = os.getcwd()
 
 program_name = "small.c"
 script_name = "r.sh"
-case = "clang-22382"
-trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-candidate_number = 3
-
-original_folder = os.path.normpath(
-    os.path.join(root_dir, "./benchmark/", case)
-    )
-original_program_path = os.path.join(original_folder, program_name)
-original_script_path = os.path.join(original_folder, script_name)
-
-output_folder = os.path.normpath(
-    os.path.join(root_dir, "./benchmark_result/", case, trail_id)
-    )
-output_program_path = os.path.join(output_folder, program_name)
-output_script_path = os.path.join(output_folder, script_name)
+case = "clang-23353"
 
 
 prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
@@ -49,10 +35,12 @@ def execute_cmd(cmd):
     process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return process.returncode
 
-def call_perses(iteration):
+def call_perses(iteration, output_folder):
     print(f"Iteration {iteration}, start perses")
     print_timestamp()
 
+    output_program_path = os.path.join(output_folder, program_name)
+    output_script_path = os.path.join(output_folder, script_name)
     tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_perses")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
@@ -69,10 +57,12 @@ def call_perses(iteration):
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
-def call_gpt(iteration, operation):
+def call_gpt(iteration, operation, output_folder, candidate_number):
     print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
 
+    output_program_path = os.path.join(output_folder, program_name)
+    output_script_path = os.path.join(output_folder, script_name)
     tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
@@ -153,10 +143,12 @@ def call_formatter(path):
     execute_cmd(f"clang-format {path} > tmp.c")
     shutil.copy("tmp.c", path)
 
-def call_renamer(iteration, program_path, script_path):
+def call_renamer(iteration, output_folder):
     print(f"Iteration {iteration}, start renamer")
     print_timestamp()
 
+    output_program_path = os.path.join(output_folder, program_name)
+    output_script_path = os.path.join(output_folder, script_name)
     tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_renamer")
     os.makedirs(tmp_dir, exist_ok=True)
     tmp_program_path = os.path.join(tmp_dir, program_name)
@@ -195,7 +187,7 @@ def countToken(program_path):
     return int(size_str)
 
 def extract_code(text):
-    pattern = r'```[\S]*(.*?)```'
+    pattern = r"```[\S]*(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         return result[-1]
@@ -204,32 +196,54 @@ def extract_code(text):
 
 def main():
     start_time = time.time()
+    
+    # get current code version
+    result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True)
+    version = result.stdout.strip()
+
+    # generate trail id
+    trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    candidate_number = 3
+
+    # get original folder
+    original_folder = os.path.normpath(
+        os.path.join(root_dir, "./benchmark/", case)
+    )
+    original_program_path = os.path.join(original_folder, program_name)
+    original_script_path = os.path.join(original_folder, script_name)
+
+    # get output folder
+    output_folder = os.path.normpath(
+        os.path.join(root_dir, "./result/", version, case, trail_id)
+    )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
-
+    
+    # start
     iteration = 0
 
     last_program_size = sys.maxsize
+    output_program_path = os.path.join(output_folder, program_name)
     current_program_size = countToken(output_program_path)
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
 
         # call renamer
-        call_renamer(iteration, output_program_path, output_script_path)
+        call_renamer(iteration, output_folder)
 
         # typedef
-        call_gpt(iteration, "typedef")
+        call_gpt(iteration, "typedef", output_folder, candidate_number)
 
         # function inlining
-        call_gpt(iteration, "function_inlining")
+        call_gpt(iteration, "function_inlining", output_folder, candidate_number)
 
         # constant propagation
-        call_gpt(iteration, "constant_propagation")
+        call_gpt(iteration, "constant_propagation", output_folder, candidate_number)
 
         # call perses
-        call_perses(iteration)
+        call_perses(iteration, output_folder)
 
         current_program_size = countToken(output_program_path)
         # Increase the iteration count
