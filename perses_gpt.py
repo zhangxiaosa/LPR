@@ -1,3 +1,4 @@
+import enum
 import os
 import sys
 import openai
@@ -18,6 +19,7 @@ program_name = "small.c"
 script_name = "r.sh"
 case = "clang-27747"
 configuration_file = "configuration.json"
+gpt_version = "gpt-3.5-turbo-0613"
 
 def execute_cmd(cmd):
     process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -45,7 +47,7 @@ def call_perses(iteration, output_folder):
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
-def call_gpt(configuration, iteration, operation, output_folder, candidate_number):
+def call_gpt_based_reducer(configuration, iteration, operation, output_folder, trail_number):
     print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
     prompt_from_system = configuration['prompt_from_system']
@@ -62,72 +64,117 @@ def call_gpt(configuration, iteration, operation, output_folder, candidate_numbe
     shutil.copy(output_program_path, tmp_program_orig_path)
     shutil.copy(output_script_path, tmp_script_path)
 
-    prompt_from_user = operation_list[operation]
+    primary_question = operation_list[operation]["primary_question"]
+    followup_question = operation_list[operation]["followup_question"]
+
+    # ask the primary question
+    start_time = time.time()
 
     # load the program
     with open(tmp_program_path, "r") as f:
         program = f.read()
+    
+    # call gpt
+    prompt_from_user = f"{primary_question}. The program is {program}."
+    completion = call_gpt(prompt_from_system, prompt_from_user, trail_number=1)
 
-    start_time = time.time()
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0613",
-        n=candidate_number,
+    response_text = completion.choices[0].message.content
+    response_json = extract_json(response)
+    target_list = response_json["target_list"]
+    end_time = time.time()
+    print(f"Primary question finished in {end_time-start_time:.2f} seconds")
+    print(f"Identified target list: {target_list}")
+
+    # ask the followup question
+    for target_id, target in enum(target_list):
+        
+        # load the program
+        program = load_program_file(tmp_program_path)
+
+        start_time = time.time()
+        
+        # call gpt
         messages=[
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}. {program}"}
+            {"role": "user", "content": f"{followup_question}. The program is {program}. The target to be optimized is {target}."}
         ]
-    )
+        completion = call_gpt(messages, trail_number=trail_number)
+        end_time = time.time()
+        print(f"Followup question for target {target_id} finished in {end_time-start_time:.2f} seconds")
 
-    end_time = time.time()
-    print(f"gpt returned in {end_time-start_time:.2f} seconds")
+        target_path = os.path.join(tmp_dir, f"target_{target_id}")
 
-    property_test_record = []
-    program_size_record = []
-    program_path_record = []
-    for id in range(candidate_number):
-        print(f"candidate {id}")
-        # write the output program
-        candidate_program_path = os.path.join(tmp_dir, f"candidate_{id}_" + program_name)
-        program_path_record.append(candidate_program_path)
-        response = completion.choices[id].message
-        with open(candidate_program_path, "w") as f:
-            extracted_program = extract_code(response.content)
-            f.write(extracted_program)
-        call_formatter(candidate_program_path)
-        program_size = countToken(candidate_program_path)
-        program_size_record.append(program_size)
-        print(f"program size: {program_size} tokens")
+        # save program
+        for trail in range(trail_number):
+            response_text = completion.choices[trail].message.content
+            response_json = extract_json(response_text)
+            program = response_json["program"]
 
-        # property test
-        os.chdir(tmp_dir)
-        property_test_dir = tempfile.mkdtemp()
-        os.chdir(property_test_dir)
-        shutil.copy(candidate_program_path, program_name)
-        shutil.copy(tmp_script_path, script_name)
-        print(f"start property test")
-        ret = execute_cmd("./r.sh")
-    
-        os.chdir(root_dir)
-        if ret == 0:
-            print("property test passed")
-            property_test_record.append("pass")
+            trail_path = os.path.join(target_path, f"trail_{trail}")
+            save_program_file(trail_path, program)
+            shutil.copy(tmp_script_path, trail_path)
+        
+        # save prompt
+        save_json_file(target_path, "prompt.json", messages)
+
+        # save response
+        save_json_file(target_path, "response.json", completion)
+
+    # test all programs and return the smallest one
+    smallest_program = ""
+    smallest_size = sys.maxsize
+    for trail in range(trail_number):
+        trail_path = os.path.join(target_path, f"trail_{trail}")
+        program_path = os.path.join(trail_path, program_name)
+
+        size = countToken(program_path)
+        program = load_program_file(program_path)
+
+        os.chdir(trail_path)
+        if (property_test()):
+            print(f"trail {trail}: program size {size}, passed")
+            if (size < smallest_size):
+                smallest_size = size
+                smallest_program = program
         else:
-            print("property test failed")
-            property_test_record.append("fail")
-        os.chdir(root_dir)
+            print(f"trail {trail}: program size {size}, failed")
 
-    # find the smallest passing program
-    smallest_passing_candidate_id = -1
-    smallest_passing_program_size = sys.maxsize
-    for i in range(candidate_number):
-        if (property_test_record[i] == "pass" and program_size_record[i] < smallest_passing_program_size):
-            smallest_passing_candidate_id = i
-            smallest_passing_program_size = program_size_record[i]
-    if (smallest_passing_candidate_id is not -1):
-        shutil.copy(program_path_record[smallest_passing_candidate_id], output_program_path)
-    final_program_size = countToken(output_program_path)
+    if (smallest_program is not ""):
+        save_program_file(tmp_program_path, smallest_program)
+
+    final_program_size = countToken(tmp_program_path)
     print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
+
+def load_program_file(tmp_program_path):
+    with open(tmp_program_path, "r") as f:
+        program = f.read()
+    return program
+
+def property_test():
+    ret = execute_cmd("./r.sh")
+    return ret == 0
+
+def save_program_file(dir_path, program):
+    os.makedirs(dir_path, exist_ok=True)
+    file_path = os.path.join(dir_path, program_name)
+    with open(file_path, "w") as f:
+        f.write(program)
+
+def save_json_file(dir_path, file_name, json_object):
+    os.makedirs(dir_path, exist_ok=True)
+    file_path = os.path.join(dir_path, file_name)
+    with open(file_path, "w") as f:
+        json.dump(json_object, f)
+
+def call_gpt(message, trail_number=1):
+    completion = openai.ChatCompletion.create(
+        model=gpt_version,
+        n=trail_number,
+        messages=message
+    )
+    
+    return completion
 
 def call_formatter(path):
     execute_cmd(f"clang-format {path} > tmp.c")
@@ -170,7 +217,6 @@ def print_timestamp():
     time_string = now.strftime("%Y-%m-%d %H:%M:%S")
     print(time_string)
 
-
 def countToken(program_path):
     output = subprocess.check_output(f"java -jar token_counter_deploy.jar -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
@@ -183,6 +229,12 @@ def extract_code(text):
         return result[-1]
     else:
         return text
+    
+def extract_json(text):
+    pattern = r"```json(.*?)```"
+    result = re.findall(pattern, text, re.DOTALL)
+    json_string = result[-1]
+    return json.loads(json_string)
 
 def main():
     start_time = time.time()
@@ -199,8 +251,8 @@ def main():
     version = result.stdout.strip()
 
     # generate trail id
-    trail_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    candidate_number = 3
+    run_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    trail_number = 3
 
     # get original folder
     original_folder = os.path.normpath(
@@ -211,7 +263,7 @@ def main():
 
     # get output folder
     output_folder = os.path.normpath(
-        os.path.join(root_dir, "./result/", version, case, trail_id)
+        os.path.join(root_dir, "./result/", version, case, run_id)
     )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
@@ -232,13 +284,13 @@ def main():
         call_renamer(iteration, output_folder)
 
         # typedef
-        call_gpt(configuration, iteration, "typedef", output_folder, candidate_number)
+        call_gpt_based_reducer(configuration, iteration, "typedef", output_folder, trail_number)
 
         # function inlining
-        call_gpt(configuration, iteration, "function_inlining", output_folder, candidate_number)
+        call_gpt_based_reducer(configuration, iteration, "function_inlining", output_folder, trail_number)
 
         # constant propagation
-        call_gpt(configuration, iteration, "constant_propagation", output_folder, candidate_number)
+        call_gpt_based_reducer(configuration, iteration, "constant_propagation", output_folder, trail_number)
 
         # call perses
         call_perses(iteration, output_folder)
