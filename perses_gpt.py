@@ -172,7 +172,7 @@ def load_program_file(path):
     return program
 
 def load_json_file(path):
-    with open(path, 'r') as f:
+    with open(path, "r") as f:
         json_object = json.load(f)
     return json_object
 
@@ -288,9 +288,9 @@ def main():
         call_renamer(iteration, output_folder)
 
         # call gpt reducers
-        prompt_from_system = configuration['prompt_from_system']
-        operation_list = configuration['operation_list']
-        for operation, questions in operation_list:
+        prompt_from_system = configuration["prompt_from_system"]
+        operations = configuration["operations"]
+        for operation, questions in operations:
             call_gpt_based_reducer(prompt_from_system, questions, iteration=iteration, output_folder=output_folder, trail_number=trail_number)
 
         # call perses
