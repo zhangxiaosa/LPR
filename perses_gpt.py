@@ -1,4 +1,3 @@
-import enum
 import os
 import sys
 import openai
@@ -94,7 +93,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
     print(f"Identified target list: {target_list}")
 
     # ask the followup question
-    for target_id, target in enum(target_list):
+    for target_id, target in enumerate(target_list):
         
         # load the program
         program = load_program_file(main_program_path)
