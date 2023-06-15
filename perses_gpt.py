@@ -290,7 +290,7 @@ def main():
         # call gpt reducers
         prompt_from_system = configuration["prompt_from_system"]
         operations = configuration["operations"]
-        for operation, questions in operations:
+        for operation, questions in operations.items():
             call_gpt_based_reducer(prompt_from_system, questions, iteration=iteration, output_folder=output_folder, trail_number=trail_number)
 
         # call perses
