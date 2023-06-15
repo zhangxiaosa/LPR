@@ -81,17 +81,17 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
     ]
     completion = call_gpt(messages, trail_number=1)
 
+    # save prompt
+    save_json_file(working_dir, "primary_question_prompt.json", messages)
+    # save response
+    save_json_file(working_dir, "primary_question_response.json", completion)
+
     response_text = completion.choices[0].message.content
     response_json = extract_json(response_text)
     target_list = response_json["target_list"]
     end_time = time.time()
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
-
-    # save prompt
-    save_json_file(working_dir, "primary_question_prompt.json", messages)
-    # save response
-    save_json_file(working_dir, "primary_question_response.json", completion)
 
     # ask the followup question
     for target_id, target in enum(target_list):
@@ -109,6 +109,10 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         completion = call_gpt(messages, trail_number=trail_number)
         end_time = time.time()
         print(f"Followup question for target {target_id} finished in {end_time-start_time:.2f} seconds")
+        # save prompt
+        save_json_file(target_path, "followup_question_prompt.json", messages)
+        # save response
+        save_json_file(target_path, "followup_question_response.json", completion)
 
         target_path = os.path.join(working_dir, f"target_{target_id}")
 
@@ -121,11 +125,6 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             trail_path = os.path.join(target_path, f"trail_{trail}")
             save_program_file(trail_path, program)
             shutil.copy(main_script_path, trail_path)
-        
-        # save prompt
-        save_json_file(target_path, "followup_question_prompt.json", messages)
-        # save response
-        save_json_file(target_path, "followup_question_response.json", completion)
 
     # test all programs and return the smallest one
     smallest_program = ""
