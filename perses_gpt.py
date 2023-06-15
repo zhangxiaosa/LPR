@@ -5,7 +5,6 @@ import openai
 import subprocess
 import shutil
 import time
-import tempfile
 import datetime
 import re
 import json
@@ -47,49 +46,55 @@ def call_perses(iteration, output_folder):
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
-def call_gpt_based_reducer(configuration, iteration, operation, output_folder, trail_number):
+def call_gpt_based_reducer(prompt_from_system, questions, iteration, operation, output_folder, trail_number):
     print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
-    prompt_from_system = configuration['prompt_from_system']
-    operation_list = configuration['operation_list']
     
     output_program_path = os.path.join(output_folder, program_name)
     output_script_path = os.path.join(output_folder, script_name)
-    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
-    os.makedirs(tmp_dir, exist_ok=True)
-    tmp_program_path = os.path.join(tmp_dir, program_name)
-    tmp_program_orig_path = os.path.join(tmp_dir, program_name + ".orig")
-    tmp_script_path = os.path.join(tmp_dir, script_name)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_program_path, tmp_program_orig_path)
-    shutil.copy(output_script_path, tmp_script_path)
+    working_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
+    os.makedirs(working_dir, exist_ok=True)
+    main_program_path = os.path.join(working_dir, program_name)
+    orig_program_path = os.path.join(working_dir, program_name + ".orig")
+    main_script_path = os.path.join(working_dir, script_name)
+    shutil.copy(output_program_path, main_program_path)
+    shutil.copy(output_program_path, orig_program_path)
+    shutil.copy(output_script_path, main_script_path)
 
-    primary_question = operation_list[operation]["primary_question"]
-    followup_question = operation_list[operation]["followup_question"]
+    primary_question = questions["primary_question"]
+    followup_question = questions["followup_question"]
 
     # ask the primary question
     start_time = time.time()
 
     # load the program
-    with open(tmp_program_path, "r") as f:
-        program = f.read()
+    program = load_program_file(main_program_path)
     
     # call gpt
     prompt_from_user = f"{primary_question}. The program is {program}."
-    completion = call_gpt(prompt_from_system, prompt_from_user, trail_number=1)
+    messages=[
+        {"role": "system", "content": f"{prompt_from_system}"},
+        {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+    ]
+    completion = call_gpt(messages, trail_number=1)
 
     response_text = completion.choices[0].message.content
-    response_json = extract_json(response)
+    response_json = extract_json(response_text)
     target_list = response_json["target_list"]
     end_time = time.time()
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
 
+    # save prompt
+    save_json_file(working_dir, "primary_question_prompt.json", messages)
+    # save response
+    save_json_file(working_dir, "primary_question_response.json", completion)
+
     # ask the followup question
     for target_id, target in enum(target_list):
         
         # load the program
-        program = load_program_file(tmp_program_path)
+        program = load_program_file(main_program_path)
 
         start_time = time.time()
         
@@ -102,7 +107,7 @@ def call_gpt_based_reducer(configuration, iteration, operation, output_folder, t
         end_time = time.time()
         print(f"Followup question for target {target_id} finished in {end_time-start_time:.2f} seconds")
 
-        target_path = os.path.join(tmp_dir, f"target_{target_id}")
+        target_path = os.path.join(working_dir, f"target_{target_id}")
 
         # save program
         for trail in range(trail_number):
@@ -112,13 +117,12 @@ def call_gpt_based_reducer(configuration, iteration, operation, output_folder, t
 
             trail_path = os.path.join(target_path, f"trail_{trail}")
             save_program_file(trail_path, program)
-            shutil.copy(tmp_script_path, trail_path)
+            shutil.copy(main_script_path, trail_path)
         
         # save prompt
-        save_json_file(target_path, "prompt.json", messages)
-
+        save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
-        save_json_file(target_path, "response.json", completion)
+        save_json_file(target_path, "followup_question_response.json", completion)
 
     # test all programs and return the smallest one
     smallest_program = ""
@@ -140,20 +144,15 @@ def call_gpt_based_reducer(configuration, iteration, operation, output_folder, t
             print(f"trail {trail}: program size {size}, failed")
 
     if (smallest_program is not ""):
-        save_program_file(tmp_program_path, smallest_program)
+        save_program_file(main_program_path, smallest_program)
 
-    final_program_size = countToken(tmp_program_path)
+    final_program_size = countToken(main_program_path)
     print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
 
-def load_program_file(tmp_program_path):
-    with open(tmp_program_path, "r") as f:
-        program = f.read()
-    return program
-
 def property_test():
     ret = execute_cmd("./r.sh")
-    return ret == 0
+    return (ret is 0)
 
 def save_program_file(dir_path, program):
     os.makedirs(dir_path, exist_ok=True)
@@ -166,6 +165,16 @@ def save_json_file(dir_path, file_name, json_object):
     file_path = os.path.join(dir_path, file_name)
     with open(file_path, "w") as f:
         json.dump(json_object, f)
+
+def load_program_file(path):
+    with open(path, "r") as f:
+        program = f.read()
+    return program
+
+def load_json_file(path):
+    with open(path, 'r') as f:
+        json_object = json.load(f)
+    return json_object
 
 def call_gpt(message, trail_number=1):
     completion = openai.ChatCompletion.create(
@@ -240,8 +249,7 @@ def main():
     start_time = time.time()
     
     # get configuration
-    with open(configuration_file, 'r') as file:
-        configuration = json.load(file)
+    configuration = load_json_file()
     
     prompt_from_system = configuration['prompt_from_system']
     operation_list = configuration['operation_list']
@@ -283,14 +291,11 @@ def main():
         # call renamer
         call_renamer(iteration, output_folder)
 
-        # typedef
-        call_gpt_based_reducer(configuration, iteration, "typedef", output_folder, trail_number)
-
-        # function inlining
-        call_gpt_based_reducer(configuration, iteration, "function_inlining", output_folder, trail_number)
-
-        # constant propagation
-        call_gpt_based_reducer(configuration, iteration, "constant_propagation", output_folder, trail_number)
+        # call gpt reducers
+        prompt_from_system = configuration['prompt_from_system']
+        operation_list = configuration['operation_list']
+        for operation, questions in operation_list:
+            call_gpt_based_reducer(prompt_from_system, questions, iteration=iteration, output_folder=output_folder, trail_number=trail_number)
 
         # call perses
         call_perses(iteration, output_folder)
@@ -302,7 +307,6 @@ def main():
     end_time = time.time()
     print(f"Final program size: {current_program_size}, time used: {end_time-start_time:.3f}")
     
-
 
 if __name__ == "__main__":
     main()
