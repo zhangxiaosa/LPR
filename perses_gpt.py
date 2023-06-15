@@ -7,6 +7,7 @@ import time
 import tempfile
 import datetime
 import re
+import json
 
 # you need to add OPENAI_API_KEY to the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -15,21 +16,8 @@ root_dir = os.getcwd()
 
 program_name = "small.c"
 script_name = "r.sh"
-case = "gcc-61383"
-
-
-prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
-Please firstly give your step by step analysis and explanation, and finally give the whole output program. \
-Please stick to the exact output format below, use markdown code block syntax to wrap the program, and do not add any text after program. \
-Format: Analysis: xxx. Program: program"
-# Please make the specific changes on the program as instructed, without altering anything else. \
-# Please only give the text of final program.
-
-operation_list = {
-    "typedef": "Given the following program, select one typedef, eliminate it, and substitute every instance of this alias with its associated original data type.",
-    "function_inlining": "Given the following program, select the simplest function (except main), inline it and remove the original declaration and definition.",
-    "constant_propagation": "Given the following program, select one variable that you think redundant, optimize it."
-}
+case = "clang-27747"
+configuration_file = "configuration.json"
 
 def execute_cmd(cmd):
     process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -57,10 +45,12 @@ def call_perses(iteration, output_folder):
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
-def call_gpt(iteration, operation, output_folder, candidate_number):
+def call_gpt(configuration, iteration, operation, output_folder, candidate_number):
     print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
-
+    prompt_from_system = configuration['prompt_from_system']
+    operation_list = configuration['operation_list']
+    
     output_program_path = os.path.join(output_folder, program_name)
     output_script_path = os.path.join(output_folder, script_name)
     tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_gpt_{operation}")
@@ -197,6 +187,13 @@ def extract_code(text):
 def main():
     start_time = time.time()
     
+    # get configuration
+    with open(configuration_file, 'r') as file:
+        configuration = json.load(file)
+    
+    prompt_from_system = configuration['prompt_from_system']
+    operation_list = configuration['operation_list']
+
     # get current code version
     result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True)
     version = result.stdout.strip()
@@ -226,6 +223,7 @@ def main():
     last_program_size = sys.maxsize
     output_program_path = os.path.join(output_folder, program_name)
     current_program_size = countToken(output_program_path)
+    
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
@@ -234,13 +232,13 @@ def main():
         call_renamer(iteration, output_folder)
 
         # typedef
-        call_gpt(iteration, "typedef", output_folder, candidate_number)
+        call_gpt(configuration, iteration, "typedef", output_folder, candidate_number)
 
         # function inlining
-        call_gpt(iteration, "function_inlining", output_folder, candidate_number)
+        call_gpt(configuration, iteration, "function_inlining", output_folder, candidate_number)
 
         # constant propagation
-        call_gpt(iteration, "constant_propagation", output_folder, candidate_number)
+        call_gpt(configuration, iteration, "constant_propagation", output_folder, candidate_number)
 
         # call perses
         call_perses(iteration, output_folder)
