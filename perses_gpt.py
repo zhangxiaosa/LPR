@@ -15,7 +15,7 @@ root_dir = os.getcwd()
 
 program_name = "small.c"
 script_name = "r.sh"
-case = "clang-23353"
+case = "gcc-61383"
 
 
 prompt_from_system = "You are an assistant for source-to-source program transformations and modifications. \
@@ -80,7 +80,7 @@ def call_gpt(iteration, operation, output_folder, candidate_number):
 
     start_time = time.time()
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0301",
+        model="gpt-3.5-turbo-0613",
         n=candidate_number,
         messages=[
             {"role": "system", "content": f"{prompt_from_system}"},
