@@ -250,13 +250,9 @@ def main():
     
     # get configuration
     configuration = load_json_file()
-    
-    prompt_from_system = configuration['prompt_from_system']
-    operation_list = configuration['operation_list']
 
     # get current code version
-    result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True)
-    version = result.stdout.strip()
+    version = get_current_version()
 
     # generate trail id
     run_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -306,6 +302,11 @@ def main():
 
     end_time = time.time()
     print(f"Final program size: {current_program_size}, time used: {end_time-start_time:.3f}")
+
+def get_current_version():
+    result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True)
+    version = result.stdout.strip()
+    return version
     
 
 if __name__ == "__main__":
