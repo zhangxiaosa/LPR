@@ -46,7 +46,7 @@ def call_perses(iteration, output_folder):
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
-def call_gpt_based_reducer(prompt_from_system, questions, iteration, operation, output_folder, trail_number):
+def call_gpt_based_reducer(configuration, operation, iteration, output_folder, trail_number):
     print(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
     
@@ -61,6 +61,9 @@ def call_gpt_based_reducer(prompt_from_system, questions, iteration, operation, 
     shutil.copy(output_program_path, orig_program_path)
     shutil.copy(output_script_path, main_script_path)
 
+    prompt_from_system = configuration["prompt_from_system"]
+    operations = configuration["operations"]
+    questions = operations[operation]
     primary_question = questions["primary_question"]
     followup_question = questions["followup_question"]
 
@@ -288,10 +291,9 @@ def main():
         call_renamer(iteration, output_folder)
 
         # call gpt reducers
-        prompt_from_system = configuration["prompt_from_system"]
         operations = configuration["operations"]
-        for operation, questions in operations.items():
-            call_gpt_based_reducer(prompt_from_system, questions, iteration=iteration, output_folder=output_folder, trail_number=trail_number)
+        for operation in operations.keys():
+            call_gpt_based_reducer(configuration=configuration, operation=operation, iteration=iteration, output_folder=output_folder, trail_number=trail_number)
 
         # call perses
         call_perses(iteration, output_folder)
