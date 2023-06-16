@@ -84,19 +84,29 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         {"role": "system", "content": f"{prompt_from_system}"},
         {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
     ]
-    completion = call_gpt(messages, trail_number=1)
+    completion = call_gpt(messages, trail_number=trail_number)
+    end_time = time.time()
 
     # save prompt
     save_json_file(working_dir, "primary_question_prompt.json", messages)
     # save response
     save_json_file(working_dir, "primary_question_response.json", completion)
 
-    response_text = completion.choices[0].message.content
-    response_json = extract_json(response_text)
-    target_list = response_json["target_list"]
-    end_time = time.time()
+    # try multiple times to ensure the quality of target_list
+    target_list = []
+    for trail in range(trail_number):
+        response_text = completion.choices[trail].message.content
+        response_json = extract_json(response_text)
+        if "target_list" in response_json:
+            target_list = response_json["target_list"]
+            break
+    
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
+    
+    # if no target identified, return
+    if len(target_list) == 0:
+        return
 
     # ask the followup question
     for target_id, target in enumerate(target_list):
@@ -127,7 +137,11 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         for trail in range(trail_number):
             response_text = completion.choices[trail].message.content
             response_json = extract_json(response_text)
-            program = response_json["program"]
+            if response_json and "program" in response_json:
+                program = response_json["program"]
+            else:
+                print(f"invalid result for trail {trail}")
+                program = ""
 
             trail_path = os.path.join(target_path, f"trail_{trail}")
             save_program_file(trail_path, program)
@@ -265,8 +279,12 @@ def extract_code(text):
 def extract_json(text):
     pattern = r"```json(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
-    json_string = result[-1]
-    return json.loads(json_string)
+    if len(result) != 0:
+        json_string = result[-1]
+        return json.loads(json_string)
+    else:
+        return {}
+    
 
 
 def main():
