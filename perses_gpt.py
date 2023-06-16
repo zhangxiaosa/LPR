@@ -18,6 +18,8 @@ SCRIPT_NAME = "r.sh"
 CASE = "clang-27747"
 CONFIGURATION_FILE = "configuration.json"
 GPT_VERSION = "gpt-3.5-turbo-0613"
+TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
+PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
 
 
 def execute_cmd(cmd):
@@ -40,7 +42,7 @@ def call_perses(iteration, output_folder):
     shutil.copy(output_script_path, tmp_script_path)
 
     execute_cmd(
-        f"java -jar perses_deploy.jar --input {tmp_program_path} --test {tmp_script_path} --output-dir {tmp_dir}")
+        f"java -jar {PERSES} --input {tmp_program_path} --test {tmp_script_path} --output-dir {tmp_dir}")
 
     call_formatter(tmp_program_path)
     shutil.copy(tmp_program_path, output_folder)
@@ -264,7 +266,7 @@ def print_timestamp():
 
 def count_token(program_path):
     output = subprocess.check_output(
-        f"java -jar token_counter_deploy.jar -- {program_path}", shell=True)
+        f"java -jar {TOKEN_COUNTER} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
     return int(size_str)
 
