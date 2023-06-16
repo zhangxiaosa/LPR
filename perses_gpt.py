@@ -333,7 +333,7 @@ def main():
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
-        smallest_program = load_program_file(current_program_size)
+        smallest_program = load_program_file(output_program_path)
 
         # call renamer
         call_renamer(iteration, output_folder)
