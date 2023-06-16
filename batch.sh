@@ -4,5 +4,6 @@ cases=(clang-22382 clang-22704 clang-23309 clang-23353 clang-25900 clang-26350 c
 
 for case in "${cases[@]}"
 do
-    python3 perses_gpt.py $case &> "$case.log"
+    echo "start $case"
+    stdbuf -o0 python3 perses_gpt.py $case &> "$case.log"
 done
