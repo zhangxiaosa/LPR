@@ -100,10 +100,10 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         if "target_list" in response_json:
             target_list = response_json["target_list"]
             break
-    
+
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
-    
+
     # if no target identified, return
     if len(target_list) == 0:
         return
@@ -125,13 +125,11 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         ]
         completion = call_gpt(messages, trail_number=trail_number)
         end_time = time.time()
-        print(
-            f"Followup question for target {target_id} finished in {end_time-start_time:.2f} seconds")
+        print(f"Followup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
         # save prompt
         save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
-        save_json_file(
-            target_path, "followup_question_response.json", completion)
+        save_json_file(target_path, "followup_question_response.json", completion)
 
         # save program
         for trail in range(trail_number):
@@ -147,32 +145,35 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             save_program_file(trail_path, program)
             shutil.copy(main_script_path, trail_path)
 
-    # test all programs and return the smallest one
-    smallest_program = ""
-    smallest_size = sys.maxsize
-    for trail in range(trail_number):
-        trail_path = os.path.join(target_path, f"trail_{trail}")
-        program_path = os.path.join(trail_path, PROGRAM_NAME)
+        # test all programs and return the smallest one
+        smallest_program = ""
+        smallest_size = sys.maxsize
+        for trail in range(trail_number):
+            trail_path = os.path.join(target_path, f"trail_{trail}")
+            program_path = os.path.join(trail_path, PROGRAM_NAME)
 
-        size = count_token(program_path)
-        program = load_program_file(program_path)
+            size = count_token(program_path)
+            program = load_program_file(program_path)
 
-        os.chdir(trail_path)
-        if property_test():
-            print(f"trail {trail}: program size {size}, passed")
-            if size < smallest_size:
-                smallest_size = size
-                smallest_program = program
-        else:
-            print(f"trail {trail}: program size {size}, failed")
+            os.chdir(trail_path)
+            if property_test():
+                print(f"trail {trail}: program size {size}, passed")
+                if size < smallest_size:
+                    smallest_size = size
+                    smallest_program = program
+            else:
+                print(f"trail {trail}: program size {size}, failed")
+
+        if smallest_program != "":
+            save_program_file(main_program_path, smallest_program)
+
+        final_program_size = count_token(main_program_path)
+        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}). \
+              Current size: {final_program_size} tokens")
 
     os.chdir(ROOT_DIR)
-    if smallest_program != "":
-        save_program_file(main_program_path, smallest_program)
-
     final_program_size = count_token(main_program_path)
-    print(
-        f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
+    print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
 
 
@@ -273,8 +274,7 @@ def extract_code(text):
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         return result[-1]
-    else:
-        return text
+    return text
 
 
 def extract_json(text):
@@ -282,10 +282,12 @@ def extract_json(text):
     result = re.findall(pattern, text, re.DOTALL)
     if len(result) != 0:
         json_string = result[-1]
-        return json.loads(json_string)
+        try:
+            return json.loads(json_string)
+        except json.JSONDecodeError:
+            return {}
     else:
         return {}
-    
 
 
 def main():
