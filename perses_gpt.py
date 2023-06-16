@@ -166,6 +166,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         else:
             print(f"trail {trail}: program size {size}, failed")
 
+    os.chdir(ROOT_DIR)
     if smallest_program != "":
         save_program_file(main_program_path, smallest_program)
 
