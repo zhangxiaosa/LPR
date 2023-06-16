@@ -58,12 +58,12 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
 
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
-    working_dir = os.path.join(
+    main_dir = os.path.join(
         output_folder, f"iteration_{iteration}_gpt_{operation}")
-    os.makedirs(working_dir, exist_ok=True)
-    main_program_path = os.path.join(working_dir, PROGRAM_NAME)
-    orig_program_path = os.path.join(working_dir, PROGRAM_NAME + ".orig")
-    main_script_path = os.path.join(working_dir, SCRIPT_NAME)
+    os.makedirs(main_dir, exist_ok=True)
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
+    orig_program_path = os.path.join(main_dir, PROGRAM_NAME + ".orig")
+    main_script_path = os.path.join(main_dir, SCRIPT_NAME)
     shutil.copy(output_program_path, main_program_path)
     shutil.copy(output_program_path, orig_program_path)
     shutil.copy(output_script_path, main_script_path)
@@ -90,9 +90,9 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
     end_time = time.time()
 
     # save prompt
-    save_json_file(working_dir, "primary_question_prompt.json", messages)
+    save_json_file(main_dir, "primary_question_prompt.json", messages)
     # save response
-    save_json_file(working_dir, "primary_question_response.json", completion)
+    save_json_file(main_dir, "primary_question_response.json", completion)
 
     # try multiple times to ensure the quality of target_list
     target_list = []
@@ -112,7 +112,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
 
     # ask the followup question
     for target_id, target in enumerate(target_list):
-        target_path = os.path.join(working_dir, f"target_{target_id}")
+        target_path = os.path.join(main_dir, f"target_{target_id}")
 
         # load the program
         program = load_program_file(main_program_path)
@@ -167,7 +167,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
                 print(f"trail {trail}: program size {size}, failed")
 
         if smallest_program != "":
-            save_program_file(main_program_path, smallest_program)
+            save_program_file(main_dir, smallest_program)
 
         final_program_size = count_token(main_program_path)
         print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}). \
