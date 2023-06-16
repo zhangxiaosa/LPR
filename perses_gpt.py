@@ -101,7 +101,8 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         response_json = extract_json(response_text)
         if "target_list" in response_json:
             target_list = response_json["target_list"]
-            break
+            if isinstance(target_list, list) and all(isinstance(item, str) for item in target_list):
+                break
 
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
@@ -137,7 +138,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         for trail in range(trail_number):
             response_text = completion.choices[trail].message.content
             response_json = extract_json(response_text)
-            if response_json and "program" in response_json:
+            if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
             else:
                 print(f"invalid result for trail {trail}")
