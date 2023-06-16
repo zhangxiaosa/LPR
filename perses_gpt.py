@@ -171,8 +171,9 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             save_program_file(main_dir, smallest_program)
 
         final_program_size = count_token(main_program_path)
-        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}). \
-              Current size: {final_program_size} tokens")
+        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}).") 
+        print(f"Current size: {final_program_size} tokens")
+              
 
     os.chdir(ROOT_DIR)
     final_program_size = count_token(main_program_path)
