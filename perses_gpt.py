@@ -15,7 +15,7 @@ ROOT_DIR = os.getcwd()
 
 PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
-CASE = "clang-27747"
+CASE = ""
 CONFIGURATION_FILE = "configuration.json"
 GPT_VERSION = "gpt-3.5-turbo-0613"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
@@ -173,7 +173,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         final_program_size = count_token(main_program_path)
         print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}).") 
         print(f"Current size: {final_program_size} tokens")
-              
+
 
     os.chdir(ROOT_DIR)
     final_program_size = count_token(main_program_path)
@@ -328,10 +328,12 @@ def main():
 
     last_program_size = sys.maxsize
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
+
     current_program_size = count_token(output_program_path)
 
     while current_program_size < last_program_size:
         last_program_size = current_program_size
+        smallest_program = load_program_file(current_program_size)
 
         # call renamer
         call_renamer(iteration, output_folder)
@@ -346,20 +348,21 @@ def main():
         call_perses(iteration, output_folder)
 
         current_program_size = count_token(output_program_path)
+
         # Increase the iteration count
         iteration = iteration + 1
 
     end_time = time.time()
-    print(
-        f"Final program size: {current_program_size}, time used: {end_time-start_time:.3f}")
+    save_program_file(output_folder, smallest_program)
+    print(f"Final program size: {last_program_size}, time used: {end_time-start_time:.3f}")
 
 
 def get_current_version():
-    result = subprocess.run("git rev-parse --short HEAD",
-                            stdout=subprocess.PIPE, shell=True, text=True, check=False)
+    result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True, check=False)
     version = result.stdout.strip()
     return version
 
 
 if __name__ == "__main__":
+    CASE = sys.argv[1]
     main()
