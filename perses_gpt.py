@@ -34,18 +34,18 @@ def call_perses(iteration, output_folder):
 
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
-    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_perses")
-    os.makedirs(tmp_dir, exist_ok=True)
-    tmp_program_path = os.path.join(tmp_dir, PROGRAM_NAME)
-    tmp_script_path = os.path.join(tmp_dir, SCRIPT_NAME)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_script_path, tmp_script_path)
+    main_dir = os.path.join(output_folder, f"iteration_{iteration}_perses")
+    os.makedirs(main_dir, exist_ok=True)
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
+    main_script_path = os.path.join(main_dir, SCRIPT_NAME)
+    shutil.copy(output_program_path, main_program_path)
+    shutil.copy(output_script_path, main_script_path)
 
     execute_cmd(
-        f"java -jar {PERSES} --input {tmp_program_path} --test {tmp_script_path} --output-dir {tmp_dir}")
+        f"java -jar {PERSES} --input {main_program_path} --test {main_script_path} --output-dir {main_dir}")
 
-    call_formatter(tmp_program_path)
-    shutil.copy(tmp_program_path, output_folder)
+    call_formatter(main_program_path)
+    shutil.copy(main_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print(f"Iteration {iteration}, finish perses: {program_size} tokens")
@@ -175,7 +175,41 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
 
     os.chdir(ROOT_DIR)
     final_program_size = count_token(main_program_path)
+    shutil.copy(main_program_path, output_program_path)
     print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
+    print_timestamp()
+
+
+def call_renamer(iteration, output_folder):
+    print(f"Iteration {iteration}, start renamer")
+    print_timestamp()
+
+    output_program_path = os.path.join(output_folder, PROGRAM_NAME)
+    output_script_path = os.path.join(output_folder, SCRIPT_NAME)
+    main_dir = os.path.join(output_folder, f"iteration_{iteration}_renamer")
+    os.makedirs(main_dir, exist_ok=True)
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
+    main_script_path = os.path.join(main_dir, SCRIPT_NAME)
+    shutil.copy(output_program_path, main_program_path)
+    shutil.copy(output_script_path, main_script_path)
+
+    os.chdir(main_dir)
+
+    execute_cmd(
+        f"creduce --no-default-passes \
+        --add-pass pass_clex rename-toks 1 \
+        --add-pass pass_clang rename-fun 1 \
+        --add-pass pass_clang rename-param 1 \
+        --add-pass pass_clang rename-var 1 \
+        --add-pass pass_clang rename-class 1 \
+        --add-pass pass_clang rename-cxx-method 1 \
+        {SCRIPT_NAME} {PROGRAM_NAME}"
+    )
+
+    os.chdir(ROOT_DIR)
+    shutil.copy(main_program_path, output_program_path)
+    program_size = count_token(output_program_path)
+    print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
     print_timestamp()
 
 
@@ -223,39 +257,6 @@ def call_gpt(message, trail_number=1):
 def call_formatter(path):
     execute_cmd(f"clang-format {path} > tmp.c")
     shutil.copy("tmp.c", path)
-
-
-def call_renamer(iteration, output_folder):
-    print(f"Iteration {iteration}, start renamer")
-    print_timestamp()
-
-    output_program_path = os.path.join(output_folder, PROGRAM_NAME)
-    output_script_path = os.path.join(output_folder, SCRIPT_NAME)
-    tmp_dir = os.path.join(output_folder, f"iteration_{iteration}_renamer")
-    os.makedirs(tmp_dir, exist_ok=True)
-    tmp_program_path = os.path.join(tmp_dir, PROGRAM_NAME)
-    tmp_script_path = os.path.join(tmp_dir, SCRIPT_NAME)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_script_path, tmp_script_path)
-
-    os.chdir(tmp_dir)
-
-    execute_cmd(
-        f"creduce --no-default-passes \
-        --add-pass pass_clex rename-toks 1 \
-        --add-pass pass_clang rename-fun 1 \
-        --add-pass pass_clang rename-param 1 \
-        --add-pass pass_clang rename-var 1 \
-        --add-pass pass_clang rename-class 1 \
-        --add-pass pass_clang rename-cxx-method 1 \
-        {SCRIPT_NAME} {PROGRAM_NAME}"
-    )
-
-    os.chdir(ROOT_DIR)
-    shutil.copy(tmp_program_path, output_program_path)
-    program_size = count_token(output_program_path)
-    print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
-    print_timestamp()
 
 
 def print_timestamp():
