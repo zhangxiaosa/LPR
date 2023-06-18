@@ -299,7 +299,7 @@ def main():
     start_time = time.time()
 
     # get configuration
-    configuration = load_json_file("configuration.json")
+    configuration = load_json_file(CONFIGURATION_FILE)
 
     # get current code version
     version = get_current_version()
