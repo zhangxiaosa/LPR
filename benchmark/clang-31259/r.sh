@@ -1,8 +1,8 @@
 #!/bin/bash
-BADCC1=("clang-3.6.0 -O1")
+BADCC1=()
 BADCC2=()
-BADCC3=()
-MODE=("-m32" "-m64")
+BADCC3=("clang-3.8.0 -Os")
+MODE=("-m32")
 
 # need to configure this part
 #BADCC1=("clang-7.1.0 -O3")  # compilation failures
@@ -10,12 +10,12 @@ MODE=("-m32" "-m64")
 #BADCC3=() # wrong results
 #MODE=-m64
 
-readonly GOODCC=("clang-3.5.0 -m32 -O1")
+readonly GOODCC=("gcc-4.8.0 -O0" "clang-7.1.0 -m32 -O1")
 readonly TIMEOUTCC=20
-readonly TIMEOUTEXE=5
-readonly TIMEOUTCCOMP=20
+readonly TIMEOUTEXE=2
+readonly TIMEOUTCCOMP=10
 # flag to control whether to use CompCert to validate the test program.
-readonly USE_COMPCERT=false
+readonly USE_COMPCERT=true
 readonly CFILE=small.c
 readonly CFLAG="-o t"
 readonly CLANGFC="clang-7.1.0 -w -m64 -O0 -Wall -fwrapv -ftrapv -fsanitize=undefined,address"
@@ -28,7 +28,7 @@ readonly CLANG_MEM_SANITIZER="clang-7.1.0 -w -O0 -m64 -fsanitize=memory"
 rm -f out*.txt
 
 if
-clang-7.1.0 -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
+clang-7.1.0 -Wfatal-errors -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
 ! grep -q 'conversions than data arguments' out.txt &&\
 ! grep -q 'incompatible redeclaration' out.txt &&\
 ! grep -q 'ordered comparison between pointer' out.txt &&\
@@ -41,7 +41,7 @@ clang-7.1.0 -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
 ! grep -q 'incompatible pointer to' out.txt &&\
 ! grep -q 'incompatible integer to' out.txt &&\
 ! grep -q 'type specifier missing' out.txt &&\
-gcc-7.1.0 -Wall -Wextra -Wsystem-headers -O0 $CFILE >outa.txt 2>&1 &&\
+gcc-7.1.0 -Wfatal-errors -Wall -Wextra -Wsystem-headers -O0 $CFILE >outa.txt 2>&1 &&\
 #  ! grep -q uninitialized outa.txt &&\
 ! grep -q 'division by zero' outa.txt &&\
 ! grep -q 'without a cast' outa.txt &&\
@@ -135,13 +135,13 @@ fi
 for ((i=0; i < ${#GOODCC[@]} ; ++i )) ; do
   cc=${GOODCC[$i]}
   rm -f ./t ./out1.txt
-
+  
   timeout -s 9 $TIMEOUTCC $cc $CFLAG $CFILE >& /dev/null
   ret=$?
   if [ $ret != 0 ] ; then
     exit 1
   fi
-
+  
   # execute
   (timeout -s 9 $TIMEOUTEXE ./t >out1.txt 2>&1) >&/dev/null
   ret=$?
@@ -149,11 +149,11 @@ for ((i=0; i < ${#GOODCC[@]} ; ++i )) ; do
     exit 1
   fi
 
-  if [[ "$i" == 0 ]] ; then
+  if [[ "$i" == 0 ]] ; then 
     mv out1.txt out0.txt
     continue
   fi
-
+  
   # compare with reference: out0.txt
   if ! diff -q out0.txt out1.txt >/dev/null ; then
     exit 1
@@ -167,12 +167,12 @@ done
 for cc in "${BADCC1[@]}" ; do
   for mode in "${MODE[@]}" ; do
     rm -f ./t ./out2.txt
-
+    
     # compile
     (timeout -s 9 $TIMEOUTCC $cc $CFLAG $mode $CFILE >out2.txt 2>&1) >& /dev/null
     if ! grep -q 'internal compiler error' out2.txt && \
     ! grep -q 'PLEASE ATTACH THE FOLLOWING FILES TO THE BUG REPORT' out2.txt && \
-    ! grep -q 'X86 DAG->DAG Instruction Selection' out2.txt
+    ! grep -q 'clang: error: linker command failed with exit code 1 (use -v to see invocation)' out2.txt 
     then
       exit 1
     fi
@@ -182,14 +182,14 @@ done
 for cc in "${BADCC2[@]}" ; do
   for mode in "${MODE[@]}" ; do
     rm -f ./t ./out2.txt
-
+    
     # compile
     timeout -s 9 $TIMEOUTCC $cc $CFLAG $mode $CFILE >& /dev/null
     ret=$?
     if [ $ret -ne 0 ] ; then
       exit 1
     fi
-
+    
     # execute
     (timeout -s 9 $TIMEOUTEXE ./t >out2.txt 2>&1) >&/dev/null
     ret=$?
@@ -202,21 +202,21 @@ done
 for cc in "${BADCC3[@]}" ; do
   for mode in "${MODE[@]}" ; do
     rm -f ./t ./out2.txt
-
+    
     # compile
     timeout -s 9 $TIMEOUTCC $cc $CFLAG $mode $CFILE >& /dev/null
     ret=$?
     if [ $ret != 0 ] ; then
       exit 1
     fi
-
+    
     # execute
     (timeout -s 9 $TIMEOUTEXE ./t >out2.txt 2>&1) >&/dev/null
     ret=$?
     if [ $ret != 0 ] ; then
       exit 1
     fi
-
+    
     # compare with reference: out0.txt
     if diff -q out0.txt out2.txt >/dev/null ; then
       exit 1
