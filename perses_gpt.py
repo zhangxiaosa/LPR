@@ -16,7 +16,7 @@ ROOT_DIR = os.getcwd()
 PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
 CASE = ""
-CONFIGURATION_FILE = "configuration.json"
+CONFIGURATION_FILE = "configuration_output_only.json"
 GPT_VERSION = "gpt-3.5-turbo-0613"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
@@ -171,7 +171,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             save_program_file(main_dir, smallest_program)
 
         final_program_size = count_token(main_program_path)
-        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}).") 
+        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}).")
         print(f"Current size: {final_program_size} tokens")
 
 
