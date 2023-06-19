@@ -18,7 +18,7 @@ PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
-LOG_FILE_NAME = None
+LOG_FILE_NAME = "log.txt"
 
 
 def execute_cmd(cmd):
