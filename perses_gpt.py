@@ -216,7 +216,7 @@ def call_renamer(iteration, output_folder):
 
 
 def property_test():
-    for i in range(5):
+    for _ in range(5):
         ret = execute_cmd("./r.sh")
         if ret == 1:
             return False
