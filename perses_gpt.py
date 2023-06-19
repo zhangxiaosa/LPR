@@ -18,7 +18,7 @@ PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
-LOG_FILE = None
+LOG_FILE_NAME = None
 
 
 def execute_cmd(cmd):
@@ -301,7 +301,7 @@ def extract_json(text):
 
 def print_and_log(message):
     print(message)
-    with open(LOG_FILE, 'a') as file:
+    with open(LOG_FILE_NAME, 'a') as file:
         file.write(message + '\n')
 
 
@@ -347,7 +347,7 @@ def main():
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
 
-    log_file_name = os.path.join(output_folder, "log.txt")
+    LOG_FILE_NAME = os.path.join(output_folder, "log.txt")
 
     # start
     iteration = 0
