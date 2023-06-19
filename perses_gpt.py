@@ -216,8 +216,11 @@ def call_renamer(iteration, output_folder):
 
 
 def property_test():
-    ret = execute_cmd("./r.sh")
-    return ret == 0
+    for i in range(5):
+        ret = execute_cmd("./r.sh")
+        if ret == 1:
+            return False
+    return True
 
 
 def save_program_file(dir_path, program):
