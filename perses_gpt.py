@@ -6,6 +6,7 @@ import shutil
 import time
 import datetime
 import re
+import argparse
 import openai
 
 # you need to add OPENAI_API_KEY to the environment variable
@@ -15,9 +16,6 @@ ROOT_DIR = os.getcwd()
 
 PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
-CASE = ""
-CONFIGURATION_FILE = "configuration_output_only.json"
-GPT_VERSION = "gpt-3.5-turbo-0613"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
 LOG_FILE = "log.txt"
@@ -53,7 +51,7 @@ def call_perses(iteration, output_folder):
     print_timestamp()
 
 
-def call_gpt_based_reducer(configuration, operation, iteration, output_folder, trail_number):
+def call_gpt_based_reducer(prompts, operation, iteration, output_folder, gpt_version, trail_number):
     print_and_log(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
 
@@ -69,8 +67,8 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
     shutil.copy(output_program_path, orig_program_path)
     shutil.copy(output_script_path, main_script_path)
 
-    prompt_from_system = configuration["prompt_from_system"]
-    operations = configuration["operations"]
+    prompt_from_system = prompts["prompt_from_system"]
+    operations = prompts["operations"]
     questions = operations[operation]
     primary_question = questions["primary_question"]
     followup_question = questions["followup_question"]
@@ -87,7 +85,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         {"role": "system", "content": f"{prompt_from_system}"},
         {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
     ]
-    completion = call_gpt(messages, trail_number=trail_number)
+    completion = call_gpt(messages, gpt_version=gpt_version, trail_number=trail_number)
     end_time = time.time()
 
     # save prompt
@@ -130,7 +128,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             {"role": "user", "content": f"{followup_question}. \
              The program is {program}. The target to be optimized is {target}."}
         ]
-        completion = call_gpt(messages, trail_number=trail_number)
+        completion = call_gpt(messages, gpt_version=gpt_version, trail_number=trail_number)
         end_time = time.time()
         print_and_log(f"\tFollowup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
         # save prompt
@@ -253,9 +251,9 @@ def load_json_file(path):
     return json_object
 
 
-def call_gpt(message, trail_number=1):
+def call_gpt(message, gpt_version, trail_number=1):
     completion = openai.ChatCompletion.create(
-        model=GPT_VERSION,
+        model=gpt_version,
         n=trail_number,
         messages=message
     )
@@ -308,28 +306,42 @@ def print_and_log(message):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Process some inputs.")
+
+    # add arguments
+    parser.add_argument("--prompts", type=str, required=True, help="Configuration file about prompts")
+    parser.add_argument("--case", type=str, required=True, help="benchmark ID")
+    parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
+    parser.add_argument("--version", type=str, required=True, help="GPT version")
+
+    # parse arguments
+    args = parser.parse_args()
+
+    prompt_file = args.prompts
+    gpt_version = args.version
+    case = args.case
+    trail_number = args.trail
     start_time = time.time()
 
-    # get configuration
-    configuration = load_json_file(CONFIGURATION_FILE)
+    # get prompts
+    prompts = load_json_file(prompt_file)
 
     # get current code version
     version = get_current_version()
 
     # generate trail id
     run_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    trail_number = 3
 
     # get original folder
     original_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./benchmark/", CASE)
+        os.path.join(ROOT_DIR, "./benchmark/", case)
     )
     original_program_path = os.path.join(original_folder, PROGRAM_NAME)
     original_script_path = os.path.join(original_folder, SCRIPT_NAME)
 
     # get output folder
     output_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./result/", version, CASE, run_id)
+        os.path.join(ROOT_DIR, "./result/", version, case, run_id)
     )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
@@ -353,10 +365,11 @@ def main():
         call_renamer(iteration, output_folder)
 
         # call gpt reducers
-        operations = configuration["operations"]
+        operations = prompts["operations"]
         for operation in operations.keys():
-            call_gpt_based_reducer(configuration=configuration, operation=operation,
-                                   iteration=iteration, output_folder=output_folder, trail_number=trail_number)
+            call_gpt_based_reducer(prompts=prompts, operation=operation,
+                                   iteration=iteration, output_folder=output_folder, 
+                                   gpt_version=gpt_version, trail_number=trail_number)
 
         # call perses
         call_perses(iteration, output_folder)
@@ -378,5 +391,4 @@ def get_current_version():
 
 
 if __name__ == "__main__":
-    CASE = sys.argv[1]
     main()
