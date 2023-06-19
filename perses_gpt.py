@@ -131,7 +131,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         ]
         completion = call_gpt(messages, trail_number=trail_number)
         end_time = time.time()
-        print(f"Followup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
+        print(f"\tFollowup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
         # save prompt
         save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
@@ -144,7 +144,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
             else:
-                print(f"invalid result for trail {trail}")
+                print(f"\tinvalid result for trail {trail}")
                 program = ""
 
             trail_path = os.path.join(target_path, f"trail_{trail}")
@@ -163,25 +163,25 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
 
             os.chdir(trail_path)
             if property_test():
-                print(f"trail {trail}: program size {size}, passed")
+                print(f"\ttrail {trail}: program size {size}, passed")
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                print(f"trail {trail}: program size {size}, failed")
+                print(f"\ttrail {trail}: program size {size}, failed")
 
         if smallest_program != "":
             save_program_file(main_dir, smallest_program)
 
         final_program_size = count_token(main_program_path)
-        print(f"Iteration {iteration}, finished gpt ({operation}), target ({target}).")
-        print(f"Current size: {final_program_size} tokens")
+        print(f"\tIteration {iteration}, finished gpt ({operation}), target ({target}).")
+        print(f"\tCurrent size: {final_program_size} tokens")
 
 
     os.chdir(ROOT_DIR)
     final_program_size = count_token(main_program_path)
     shutil.copy(main_program_path, output_program_path)
-    print(f"Iteration {iteration}, finish gpt ({operation}): {final_program_size} tokens")
+    print(f"Iteration {iteration}, finished gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
 
 
