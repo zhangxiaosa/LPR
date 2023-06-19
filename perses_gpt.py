@@ -316,6 +316,9 @@ def main():
 
     # parse arguments
     args = parser.parse_args()
+    args_string = '_'.join(f'{key}_{value}' for key, value in vars(args).items())
+    pattern = re.compile(r'\W+')
+    args_string = pattern.sub('_', args_string)
 
     prompt_file = args.prompts
     gpt_version = args.version
@@ -327,7 +330,7 @@ def main():
     prompts = load_json_file(prompt_file)
 
     # get current code version
-    version = get_current_version()
+    code_version = get_current_version()
 
     # generate trail id
     run_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -341,7 +344,7 @@ def main():
 
     # get output folder
     output_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./result/", version, case, run_id)
+        os.path.join(ROOT_DIR, "./result/", code_version, args_string, run_id)
     )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
