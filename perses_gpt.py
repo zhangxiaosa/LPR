@@ -316,7 +316,11 @@ def main():
 
     # parse arguments
     args = parser.parse_args()
-    args_string = '_'.join(f'{key}_{value}' for key, value in vars(args).items())
+
+    # concat arguments into string for a unique id
+    args_dict = vars(args)
+    args_dict.pop("case")
+    args_string = '_'.join(f'{key}_{value}' for key, value in args_dict.items())
     pattern = re.compile(r'\W+')
     args_string = pattern.sub('_', args_string)
 
@@ -344,7 +348,7 @@ def main():
 
     # get output folder
     output_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./result/", code_version, args_string, run_id)
+        os.path.join(ROOT_DIR, "./result/", code_version, args_string, case, run_id)
     )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
