@@ -104,6 +104,9 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             if isinstance(target_list, list) and all(isinstance(item, str) for item in target_list):
                 break
 
+    # deduplicate
+    target_list = list(set(target_list))
+
     print(f"Primary question finished in {end_time-start_time:.2f} seconds")
     print(f"Identified target list: {target_list}")
 
