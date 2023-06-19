@@ -7,6 +7,7 @@ import time
 import datetime
 import re
 import argparse
+import copy
 import openai
 
 # you need to add OPENAI_API_KEY to the environment variable
@@ -318,7 +319,7 @@ def main():
     args = parser.parse_args()
 
     # concat arguments into string for a unique id
-    args_dict = vars(args)
+    args_dict = copy.deepcopy(vars(args))
     args_dict.pop("case")
     args_string = '_'.join(f'{key}_{value}' for key, value in args_dict.items())
     pattern = re.compile(r'\W+')
