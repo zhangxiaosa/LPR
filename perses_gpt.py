@@ -20,6 +20,7 @@ CONFIGURATION_FILE = "configuration_output_only.json"
 GPT_VERSION = "gpt-3.5-turbo-0613"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
+LOG_FILE = "log.txt"
 
 
 def execute_cmd(cmd):
@@ -29,7 +30,7 @@ def execute_cmd(cmd):
 
 
 def call_perses(iteration, output_folder):
-    print(f"Iteration {iteration}, start perses")
+    print_and_log(f"Iteration {iteration}, start perses")
     print_timestamp()
 
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
@@ -48,12 +49,12 @@ def call_perses(iteration, output_folder):
     shutil.copy(main_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
-    print(f"Iteration {iteration}, finish perses: {program_size} tokens")
+    print_and_log(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
 
 def call_gpt_based_reducer(configuration, operation, iteration, output_folder, trail_number):
-    print(f"Iteration {iteration}, start gpt ({operation})")
+    print_and_log(f"Iteration {iteration}, start gpt ({operation})")
     print_timestamp()
 
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
@@ -107,8 +108,8 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
     # deduplicate
     target_list = list(set(target_list))
 
-    print(f"Primary question finished in {end_time-start_time:.2f} seconds")
-    print(f"Identified target list: {target_list}")
+    print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds")
+    print_and_log(f"Identified target list: {target_list}")
 
     # if no target identified, return
     if len(target_list) == 0:
@@ -131,7 +132,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
         ]
         completion = call_gpt(messages, trail_number=trail_number)
         end_time = time.time()
-        print(f"\tFollowup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
+        print_and_log(f"\tFollowup question for target ({target}) finished in {end_time-start_time:.2f} seconds")
         # save prompt
         save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
@@ -144,7 +145,7 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
             if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
             else:
-                print(f"\tinvalid result for trail {trail}")
+                print_and_log(f"\tinvalid result for trail {trail}")
                 program = ""
 
             trail_path = os.path.join(target_path, f"trail_{trail}")
@@ -163,30 +164,30 @@ def call_gpt_based_reducer(configuration, operation, iteration, output_folder, t
 
             os.chdir(trail_path)
             if property_test():
-                print(f"\ttrail {trail}: program size {size}, passed")
+                print_and_log(f"\ttrail {trail}: program size {size}, passed")
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                print(f"\ttrail {trail}: program size {size}, failed")
+                print_and_log(f"\ttrail {trail}: program size {size}, failed")
 
         if smallest_program != "":
             save_program_file(main_dir, smallest_program)
 
         final_program_size = count_token(main_program_path)
-        print(f"\tIteration {iteration}, finished gpt ({operation}), target ({target}).")
-        print(f"\tCurrent size: {final_program_size} tokens")
+        print_and_log(f"\tIteration {iteration}, finished gpt ({operation}), target ({target}).")
+        print_and_log(f"\tCurrent size: {final_program_size} tokens")
 
 
     os.chdir(ROOT_DIR)
     final_program_size = count_token(main_program_path)
     shutil.copy(main_program_path, output_program_path)
-    print(f"Iteration {iteration}, finished gpt ({operation}): {final_program_size} tokens")
+    print_and_log(f"Iteration {iteration}, finished gpt ({operation}): {final_program_size} tokens")
     print_timestamp()
 
 
 def call_renamer(iteration, output_folder):
-    print(f"Iteration {iteration}, start renamer")
+    print_and_log(f"Iteration {iteration}, start renamer")
     print_timestamp()
 
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
@@ -214,7 +215,7 @@ def call_renamer(iteration, output_folder):
     os.chdir(ROOT_DIR)
     shutil.copy(main_program_path, output_program_path)
     program_size = count_token(output_program_path)
-    print(f"Iteration {iteration}, finish renamer: {program_size} tokens")
+    print_and_log(f"Iteration {iteration}, finish renamer: {program_size} tokens")
     print_timestamp()
 
 
@@ -270,7 +271,7 @@ def call_formatter(path):
 def print_timestamp():
     now = datetime.datetime.now()
     time_string = now.strftime("%Y-%m-%d %H:%M:%S")
-    print(time_string)
+    print_and_log(time_string)
 
 
 def count_token(program_path):
@@ -300,6 +301,11 @@ def extract_json(text):
     else:
         return {}
 
+def print_and_log(message):
+    print(message)
+    print(message, file=LOG_FILE, flush=True)
+
+
 
 def main():
     start_time = time.time()
@@ -328,6 +334,8 @@ def main():
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
+
+    LOG_FILE = os.path.join(output_folder, "log.txt")
 
     # start
     iteration = 0
@@ -360,7 +368,7 @@ def main():
 
     end_time = time.time()
     save_program_file(output_folder, smallest_program)
-    print(f"Final program size: {last_program_size}, time used: {end_time-start_time:.3f}")
+    print_and_log(f"Final program size: {last_program_size}, time used: {end_time-start_time:.3f}")
 
 
 def get_current_version():
