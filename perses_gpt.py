@@ -347,6 +347,7 @@ def main():
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
 
+    global LOG_FILE_NAME
     LOG_FILE_NAME = os.path.join(output_folder, "log.txt")
 
     # start
