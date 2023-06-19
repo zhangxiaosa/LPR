@@ -301,8 +301,8 @@ def extract_json(text):
 
 def print_and_log(message):
     print(message)
-    print(message, file=LOG_FILE, flush=True)
-
+    with open(LOG_FILE, 'a') as file:
+        file.write(message + '\n')
 
 
 def main():
@@ -348,7 +348,6 @@ def main():
     shutil.copy(original_script_path, output_folder)
 
     log_file_name = os.path.join(output_folder, "log.txt")
-    LOG_FILE = open(log_file_name, "w")
 
     # start
     iteration = 0
@@ -383,8 +382,6 @@ def main():
     end_time = time.time()
     save_program_file(output_folder, smallest_program)
     print_and_log(f"Final program size: {last_program_size}, time used: {end_time-start_time:.3f}")
-
-    LOG_FILE.close()
 
 
 def get_current_version():
