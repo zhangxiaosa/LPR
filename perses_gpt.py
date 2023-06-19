@@ -349,7 +349,7 @@ def main():
 
     # get output folder
     output_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./result/", code_version, args_string, case, run_id)
+        os.path.join(ROOT_DIR, "./result/", code_version + "_" + args_string, case, run_id)
     )
     os.makedirs(output_folder, exist_ok=True)
     shutil.copy(original_program_path, output_folder)
