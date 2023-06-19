@@ -18,7 +18,7 @@ PROGRAM_NAME = "small.c"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
-LOG_FILE = "log.txt"
+LOG_FILE = None
 
 
 def execute_cmd(cmd):
@@ -347,7 +347,8 @@ def main():
     shutil.copy(original_program_path, output_folder)
     shutil.copy(original_script_path, output_folder)
 
-    LOG_FILE = os.path.join(output_folder, "log.txt")
+    log_file_name = os.path.join(output_folder, "log.txt")
+    LOG_FILE = open(log_file_name, "w")
 
     # start
     iteration = 0
@@ -382,6 +383,8 @@ def main():
     end_time = time.time()
     save_program_file(output_folder, smallest_program)
     print_and_log(f"Final program size: {last_program_size}, time used: {end_time-start_time:.3f}")
+
+    LOG_FILE.close()
 
 
 def get_current_version():
