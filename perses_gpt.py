@@ -51,29 +51,20 @@ def call_perses(iteration, output_folder):
     print_and_log(f"Iteration {iteration}, finish perses: {program_size} tokens")
     print_timestamp()
 
+def call_gpt_with_multi_level_prompt(prompts, operation, iteration, output_folder, gpt_version, trail_number):
 
-def call_gpt_based_reducer(prompts, operation, iteration, output_folder, gpt_version, trail_number):
-    print_and_log(f"Iteration {iteration}, start gpt ({operation})")
-    print_timestamp()
-
-    output_program_path = os.path.join(output_folder, PROGRAM_NAME)
-    output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     main_dir = os.path.join(
         output_folder, f"iteration_{iteration}_gpt_{operation}")
     os.makedirs(main_dir, exist_ok=True)
+
     main_program_path = os.path.join(main_dir, PROGRAM_NAME)
-    orig_program_path = os.path.join(main_dir, PROGRAM_NAME + ".orig")
     main_script_path = os.path.join(main_dir, SCRIPT_NAME)
-    shutil.copy(output_program_path, main_program_path)
-    shutil.copy(output_program_path, orig_program_path)
-    shutil.copy(output_script_path, main_script_path)
 
     prompt_from_system = prompts["prompt_from_system"]
     operations = prompts["operations"]
-    questions = operations[operation]
+    questions = operations[operation]["multi_level_question"]
     primary_question = questions["primary_question"]
     followup_question = questions["followup_question"]
-
     # ask the primary question
     start_time = time.time()
 
@@ -176,9 +167,105 @@ def call_gpt_based_reducer(prompts, operation, iteration, output_folder, gpt_ver
         final_program_size = count_token(main_program_path)
         print_and_log(f"\tIteration {iteration}, finished gpt ({operation}), target ({target}).")
         print_and_log(f"\tCurrent size: {final_program_size} tokens")
-
-
     os.chdir(ROOT_DIR)
+
+def call_gpt_with_single_level_prompt(prompts, operation, iteration, output_folder, gpt_version, trail_number):
+
+    main_dir = os.path.join(
+        output_folder, f"iteration_{iteration}_gpt_{operation}")
+    os.makedirs(main_dir, exist_ok=True)
+
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
+    main_script_path = os.path.join(main_dir, SCRIPT_NAME)
+
+    prompt_from_system = prompts["prompt_from_system"]
+    operations = prompts["operations"]
+    question = operations[operation]["single_level_question"]
+
+    # ask the single level question
+    start_time = time.time()
+
+    # load the program
+    program = load_program_file(main_program_path)
+
+    # call gpt
+    prompt_from_user = f"{question}. The program is {program}."
+    messages = [
+        {"role": "system", "content": f"{prompt_from_system}"},
+        {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+    ]
+    completion = call_gpt(messages, gpt_version=gpt_version, trail_number=trail_number)
+    end_time = time.time()
+    print_and_log(f"Question finished in {end_time-start_time:.2f} seconds")
+
+    # save prompt
+    save_json_file(main_dir, "question_prompt.json", messages)
+    # save response
+    save_json_file(main_dir, "question_response.json", completion)
+
+    # save program
+    for trail in range(trail_number):
+        response_text = completion.choices[trail].message.content
+        response_json = extract_json(response_text)
+        if "program" in response_json and isinstance(response_json["program"], str):
+            program = response_json["program"]
+        else:
+            print_and_log(f"\tinvalid result for trail {trail}")
+            program = ""
+
+        trail_path = f"trail_{trail}"
+        save_program_file(trail_path, program)
+        shutil.copy(main_script_path, trail_path)
+
+    # test all programs and return the smallest one
+    smallest_program = ""
+    smallest_size = sys.maxsize
+    for trail in range(trail_number):
+        trail_path = f"trail_{trail}"
+        program_path = os.path.join(trail_path, PROGRAM_NAME)
+
+        size = count_token(program_path)
+        program = load_program_file(program_path)
+
+        os.chdir(trail_path)
+        if property_test():
+            print_and_log(f"\ttrail {trail}: program size {size}, passed")
+            if size < smallest_size:
+                smallest_size = size
+                smallest_program = program
+        else:
+            print_and_log(f"\ttrail {trail}: program size {size}, failed")
+
+    if smallest_program != "":
+        save_program_file(main_dir, smallest_program)
+
+    final_program_size = count_token(main_program_path)
+    print_and_log(f"\tIteration {iteration}, finished gpt ({operation})).")
+    print_and_log(f"\tCurrent size: {final_program_size} tokens")
+
+def call_gpt_based_reducer(prompts, operation, iteration, output_folder, gpt_version, trail_number, multi_level):
+    print_and_log(f"Iteration {iteration}, start gpt ({operation})")
+    print_timestamp()
+
+    output_program_path = os.path.join(output_folder, PROGRAM_NAME)
+    output_script_path = os.path.join(output_folder, SCRIPT_NAME)
+    main_dir = os.path.join(
+        output_folder, f"iteration_{iteration}_gpt_{operation}")
+    os.makedirs(main_dir, exist_ok=True)
+
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
+    orig_program_path = os.path.join(main_dir, PROGRAM_NAME + ".orig")
+    main_script_path = os.path.join(main_dir, SCRIPT_NAME)
+    shutil.copy(output_program_path, main_program_path)
+    shutil.copy(output_program_path, orig_program_path)
+    shutil.copy(output_script_path, main_script_path)
+
+    if multi_level:
+        call_gpt_with_multi_level_prompt(prompts, operation, iteration, output_folder, gpt_version, trail_number)
+    else:
+        call_gpt_with_single_level_prompt(prompts, operation, iteration, output_folder, gpt_version, trail_number)
+
+    main_program_path = os.path.join(main_dir, PROGRAM_NAME)
     final_program_size = count_token(main_program_path)
     shutil.copy(main_program_path, output_program_path)
     print_and_log(f"Iteration {iteration}, finished gpt ({operation}): {final_program_size} tokens")
@@ -307,6 +394,8 @@ def print_and_log(message):
 
 
 def main():
+    start_time = time.time()
+
     parser = argparse.ArgumentParser(description="Process some inputs.")
 
     # add arguments
@@ -314,6 +403,7 @@ def main():
     parser.add_argument("--case", type=str, required=True, help="benchmark ID")
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
     parser.add_argument("--version", type=str, default="gpt-3.5-turbo-0613", help="GPT version")
+    parser.add_argument("--multi_level", action="store_true", default=False, help="Enable multi-level prompt")
 
     # parse arguments
     args = parser.parse_args()
@@ -329,7 +419,7 @@ def main():
     gpt_version = args.version
     case = args.case
     trail_number = args.trail
-    start_time = time.time()
+    multi_level = args.multi_level
 
     # get prompts
     prompts = load_json_file(prompt_file)
@@ -378,7 +468,7 @@ def main():
         for operation in operations.keys():
             call_gpt_based_reducer(prompts=prompts, operation=operation,
                                    iteration=iteration, output_folder=output_folder, 
-                                   gpt_version=gpt_version, trail_number=trail_number)
+                                   gpt_version=gpt_version, trail_number=trail_number, multi_level=multi_level)
 
         # call perses
         call_perses(iteration, output_folder)
