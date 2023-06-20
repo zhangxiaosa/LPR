@@ -164,6 +164,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, iteration, output_folde
         if smallest_program != "":
             save_program_file(main_dir, smallest_program)
 
+        call_formatter(main_program_path)
         final_program_size = count_token(main_program_path)
         print_and_log(f"\tIteration {iteration}, finished gpt ({operation}), target ({target}).")
         print_and_log(f"\tCurrent size: {final_program_size} tokens")
@@ -239,6 +240,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, iteration, output_fold
     if smallest_program != "":
         save_program_file(main_dir, smallest_program)
 
+    call_formatter(main_program_path)
     final_program_size = count_token(main_program_path)
     print_and_log(f"\tIteration {iteration}, finished gpt ({operation})).")
     print_and_log(f"\tCurrent size: {final_program_size} tokens")
