@@ -213,7 +213,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, iteration, output_fold
             print_and_log(f"\tinvalid result for trail {trail}")
             program = ""
 
-        trail_path = f"trail_{trail}"
+        trail_path = os.path.join(main_dir, f"trail_{trail}")
         save_program_file(trail_path, program)
         shutil.copy(main_script_path, trail_path)
 
@@ -221,7 +221,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, iteration, output_fold
     smallest_program = ""
     smallest_size = sys.maxsize
     for trail in range(trail_number):
-        trail_path = f"trail_{trail}"
+        trail_path = os.path.join(main_dir, f"trail_{trail}")
         program_path = os.path.join(trail_path, PROGRAM_NAME)
 
         size = count_token(program_path)
