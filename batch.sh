@@ -5,5 +5,5 @@ cases=(clang-22382 clang-22704 clang-23309 clang-23353 clang-25900 clang-26350 c
 for case in "${cases[@]}"
 do
     echo "start $case"
-    python3 perses_gpt.py --prompts configuration.json --trail 5 --case $case
+    python3 perses_gpt.py --prompts configuration.json --trail 3 --case $case
 done
