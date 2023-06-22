@@ -27,7 +27,7 @@ def execute_cmd(cmd, output=False):
     if output:
         process = subprocess.run(f"{cmd}", shell=True, check=False)
     else:
-        process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL, 
+        process = subprocess.run(f"{cmd}", shell=True, stdout=subprocess.DEVNULL,
                                  stderr=subprocess.DEVNULL, check=False)
     return process.returncode
 
@@ -381,7 +381,7 @@ def extract_json(text):
 def print_and_log(message, level):
     # make indentation
     indent = ""
-    for i in range(level):
+    for _ in range(level):
         indent = indent + "\t"
 
     # make time stamp
@@ -460,7 +460,7 @@ def main():
     program_size_after_iteration = count_token(main_program_path)
 
     while program_size_after_iteration < program_size_before_iteration:
-        print_and_log(f"Start iteration {iteration}, current size: {program_after_operation}", level=1)
+        print_and_log(f"Start iteration {iteration}, current size: {program_size_after_iteration}", level=1)
         iteration_folder = os.path.join(main_folder, f"iteration_{iteration}")
         os.makedirs(iteration_folder, exist_ok=True)
         shutil.copy(main_program_path, iteration_folder)
