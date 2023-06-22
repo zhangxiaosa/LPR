@@ -23,8 +23,12 @@ LOG_FILE_NAME = "log.txt"
 FORMATTER = "clang-format"
 
 
-def execute_cmd(cmd):
-    process = subprocess.run(
+def execute_cmd(cmd, output=False):
+    if output:
+        process = subprocess.run(
+        f"{cmd}", shell=True, check=False)
+    else:
+        process = subprocess.run(
         f"{cmd}", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
     return process.returncode
 
@@ -354,7 +358,7 @@ def call_gpt(message, gpt_version, trail_number=1):
 
 def call_formatter(path):
     tmp_file = "tmp"
-    execute_cmd(f"{FORMATTER} {path} > {tmp_file}")
+    execute_cmd(f"{FORMATTER} {path} > {tmp_file}", output=True)
     shutil.copy(tmp_file, path)
 
 
