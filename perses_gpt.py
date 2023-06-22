@@ -460,7 +460,7 @@ def main():
 
     while program_size_after_iteration < program_size_before_iteration:
         print_and_log(f"Start iteration {iteration}", level=1)
-        iteration_folder = os.path.join(main_folder, f"{iteration}")
+        iteration_folder = os.path.join(main_folder, f"iteration_{iteration}")
         iteration_program_path = os.path.join(iteration_folder, PROGRAM_NAME)
         os.makedirs(iteration_folder, exist_ok=True)
 
@@ -471,7 +471,7 @@ def main():
         operations = prompts["operations"]
         for operation in operations.keys():
             print_and_log(f"Start operation {operation}", level=2)
-            operation_folder = os.path.join(iteration_folder, f"{operation}")
+            operation_folder = os.path.join(iteration_folder, f"operation_{operation}")
             operation_program_path = os.path.join(operation_folder, PROGRAM_NAME)
             os.makedirs(operation_folder, exist_ok=True)
 
