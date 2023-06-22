@@ -118,13 +118,11 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
         # call gpt
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{followup_question}. \
-             The program is {program}. The target to be optimized is {target}."}
+            {"role": "user", "content": f"{followup_question}. The program is {program}. The target to be optimized is {target}."}
         ]
         completion = call_gpt(messages, gpt_version=gpt_version, trail_number=trail_number)
         end_time = time.time()
-        print_and_log(f"Followup question for target ({target}) \
-                      finished in {end_time-start_time:.2f} seconds", level=level)
+        print_and_log(f"Followup question for target ({target}) finished in {end_time-start_time:.2f} seconds", level=level+1)
         # save prompt
         save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
@@ -137,7 +135,6 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
             if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
             else:
-                print_and_log(f"invalid result for trail {trail}", level=level)
                 program = ""
 
             trail_path = os.path.join(target_path, f"trail_{trail}")
@@ -156,12 +153,12 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
 
             os.chdir(trail_path)
             if property_test():
-                print_and_log(f"trail {trail}: program size {size}, passed", level=level)
+                print_and_log(f"trail {trail}: program size {size}, passed", level=level+2)
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                print_and_log(f"trail {trail}: program size {size}, failed", level=level)
+                print_and_log(f"trail {trail}: program size {size}, failed", level=level+2)
 
         if smallest_program != "":
             save_program_file(tmp_folder, smallest_program)
@@ -382,7 +379,7 @@ def print_and_log(message, level):
     # make indentation
     indent = ""
     for _ in range(level):
-        indent = indent + "\t"
+        indent = indent + "  "
 
     # make time stamp
     now = datetime.datetime.now()
@@ -482,8 +479,7 @@ def main():
             shutil.copy(iteration_script_path, operation_folder)
             operation_program_path = os.path.join(operation_folder, PROGRAM_NAME)
 
-            print_and_log(f"Start operation {operation}, \
-                          current size: {count_token(operation_program_path)}", level=2)
+            print_and_log(f"Start operation {operation}, current size: {count_token(operation_program_path)}", level=2)
 
             # call renamer
             call_renamer(operation_folder, level=2)
@@ -502,8 +498,7 @@ def main():
 
             program_size_after_operation = count_token(operation_program_path)
             shutil.copy(operation_program_path, iteration_folder)
-            print_and_log(f"Finished iteration {iteration}, operation {operation}, \
-                          current size {program_size_after_operation}", level=2)
+            print_and_log(f"Finished iteration {iteration}, operation {operation}, current size {program_size_after_operation}", level=2)
 
         program_size_after_iteration = count_token(iteration_folder)
         shutil.copy(iteration_program_path, main_folder)
@@ -512,8 +507,7 @@ def main():
 
     end_time = time.time()
     save_program_file(main_folder, smallest_program)
-    print_and_log(f"Finished reduction, reduction ratio: {program_size_before_iteration}/{original_program_size}\
-                   time used: {end_time-start_time:.3f}", level=0)
+    print_and_log(f"Finished reduction, reduction ratio: {program_size_before_iteration}/{original_program_size} time used: {end_time-start_time:.3f}", level=0)
 
 
 def get_current_version():
