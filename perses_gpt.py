@@ -471,7 +471,7 @@ def main():
         program_size_before_iteration = program_size_after_iteration
         smallest_program = load_program_file(main_program_path)
 
-        print_and_log(f"Start iteration {iteration}, current size: {program_size_before_iteration}", level=1)
+        print_and_log(f"Start iteration {iteration}, current size: {count_token(main_program_path)}", level=1)
 
         # call gpt reducers
         operations = prompts["operations"]
@@ -483,7 +483,7 @@ def main():
             operation_program_path = os.path.join(operation_folder, PROGRAM_NAME)
 
             print_and_log(f"Start operation {operation}, \
-                          current size: {load_program_file(operation_program_path)}", level=2)
+                          current size: {count_token(operation_program_path)}", level=2)
 
             # call renamer
             call_renamer(operation_folder, level=2)
