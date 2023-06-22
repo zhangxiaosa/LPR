@@ -353,8 +353,9 @@ def call_gpt(message, gpt_version, trail_number=1):
 
 
 def call_formatter(path):
-    execute_cmd(f"{FORMATTER} {path} > tmp")
-    shutil.copy("tmp.c", path)
+    tmp_file = "tmp"
+    execute_cmd(f"{FORMATTER} {path} > {tmp_file}")
+    shutil.copy(tmp_file, path)
 
 
 def print_timestamp():
