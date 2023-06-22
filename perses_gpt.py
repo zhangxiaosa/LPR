@@ -455,14 +455,19 @@ def main():
 
     program_size_before_iteration = sys.maxsize
     main_program_path = os.path.join(main_folder, PROGRAM_NAME)
+    main_script_path = os.path.join(main_folder, SCRIPT_NAME)
 
     program_size_after_iteration = count_token(main_program_path)
 
     while program_size_after_iteration < program_size_before_iteration:
         print_and_log(f"Start iteration {iteration}", level=1)
         iteration_folder = os.path.join(main_folder, f"iteration_{iteration}")
-        iteration_program_path = os.path.join(iteration_folder, PROGRAM_NAME)
         os.makedirs(iteration_folder, exist_ok=True)
+        shutil.copy(main_program_path, iteration_folder)
+        shutil.copy(main_script_path, iteration_folder)
+
+        iteration_program_path = os.path.join(iteration_folder, PROGRAM_NAME)
+        iteration_script_path = os.path.join(iteration_folder, SCRIPT_NAME)
 
         program_size_before_iteration = program_size_after_iteration
         smallest_program = load_program_file(main_program_path)
@@ -472,8 +477,10 @@ def main():
         for operation in operations.keys():
             print_and_log(f"Start operation {operation}", level=2)
             operation_folder = os.path.join(iteration_folder, f"operation_{operation}")
-            operation_program_path = os.path.join(operation_folder, PROGRAM_NAME)
             os.makedirs(operation_folder, exist_ok=True)
+            shutil.copy(iteration_program_path, operation_folder)
+            shutil.copy(iteration_script_path, operation_folder)
+            operation_program_path = os.path.join(iteration_folder, PROGRAM_NAME)
 
             # call renamer
             call_renamer(operation_folder, level=2)
