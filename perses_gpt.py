@@ -20,6 +20,7 @@ SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
 LOG_FILE_NAME = "log.txt"
+FORMATTER = "clang-format"
 
 
 def execute_cmd(cmd):
@@ -352,7 +353,7 @@ def call_gpt(message, gpt_version, trail_number=1):
 
 
 def call_formatter(path):
-    execute_cmd(f"clang-format {path} > tmp.c")
+    execute_cmd(f"{FORMATTER} {path} > tmp")
     shutil.copy("tmp.c", path)
 
 
