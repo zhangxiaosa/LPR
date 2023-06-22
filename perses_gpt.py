@@ -460,7 +460,7 @@ def main():
     program_size_after_iteration = count_token(main_program_path)
 
     while program_size_after_iteration < program_size_before_iteration:
-        print_and_log(f"Start iteration {iteration}", level=1)
+        print_and_log(f"Start iteration {iteration}, current size: {program_after_operation}", level=1)
         iteration_folder = os.path.join(main_folder, f"iteration_{iteration}")
         os.makedirs(iteration_folder, exist_ok=True)
         shutil.copy(main_program_path, iteration_folder)
@@ -475,12 +475,13 @@ def main():
         # call gpt reducers
         operations = prompts["operations"]
         for operation in operations.keys():
-            print_and_log(f"Start operation {operation}", level=2)
+            print_and_log(f"Start operation {operation}, \
+                          current size: {load_program_file(operation_program_path)}", level=2)
             operation_folder = os.path.join(iteration_folder, f"operation_{operation}")
             os.makedirs(operation_folder, exist_ok=True)
             shutil.copy(iteration_program_path, operation_folder)
             shutil.copy(iteration_script_path, operation_folder)
-            operation_program_path = os.path.join(iteration_folder, PROGRAM_NAME)
+            operation_program_path = os.path.join(operation_folder, PROGRAM_NAME)
 
             # call renamer
             call_renamer(operation_folder, level=2)
