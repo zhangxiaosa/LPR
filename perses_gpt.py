@@ -498,9 +498,9 @@ def main():
 
             program_size_after_operation = count_token(operation_program_path)
             shutil.copy(operation_program_path, iteration_folder)
-            print_and_log(f"Finished iteration {iteration}, operation {operation}, current size {program_size_after_operation}", level=2)
+            print_and_log(f"Finished iteration {iteration}, operation {operation}, current size: {program_size_after_operation} tokens", level=2)
 
-        program_size_after_iteration = count_token(iteration_folder)
+        program_size_after_iteration = count_token(iteration_program_path)
         shutil.copy(iteration_program_path, main_folder)
         # Increase the iteration count
         iteration = iteration + 1
