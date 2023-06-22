@@ -165,8 +165,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
 
         call_formatter(tmp_program_path)
         final_program_size = count_token(tmp_program_path)
-        print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level)
-        print_and_log(f"Current size: {final_program_size} tokens", level=level)
+        print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
+        print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
     os.chdir(ROOT_FOLDER)
 
 def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_version, trail_number, level):
