@@ -15,7 +15,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 ROOT_DIR = os.getcwd()
 
-PROGRAM_NAME = "small.c"
+PROGRAM_NAME = "small.rs"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_DIR, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_DIR, "perses_deploy.jar")
