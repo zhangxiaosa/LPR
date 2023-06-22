@@ -435,7 +435,7 @@ def main():
 
     # get original folder
     original_folder = os.path.normpath(
-        os.path.join(ROOT_DIR, "./benchmark/", case, "creduce_result")
+        os.path.join(ROOT_DIR, "./benchmark/", case)
     )
     original_program_path = os.path.join(original_folder, PROGRAM_NAME)
     original_script_path = os.path.join(original_folder, SCRIPT_NAME)
