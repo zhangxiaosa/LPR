@@ -6,4 +6,5 @@ for case in "${cases[@]}"
 do
     echo "start $case"
     python3 perses_gpt.py --case $case $1
+    echo -e "\n\n\n"
 done
