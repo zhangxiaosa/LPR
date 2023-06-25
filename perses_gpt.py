@@ -428,7 +428,7 @@ def main():
 
     # add arguments
     parser.add_argument("--prompts", type=str, required=True, help="Configuration file about prompts")
-    parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
+    parser.add_argument("--benchmark_suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=True, help="Benchmark ID")
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
     parser.add_argument("--version", type=str, default="gpt-3.5-turbo-0613", help="GPT version")
