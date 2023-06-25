@@ -118,11 +118,13 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
         # call gpt
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{followup_question}. The program is {program}. The target to be optimized is {target}."}
+            {"role": "user", "content": f"{followup_question}. The program is {program}. \
+             The target to be optimized is {target}."}
         ]
         completion = call_gpt(messages, gpt_version=gpt_version, trail_number=trail_number)
         end_time = time.time()
-        print_and_log(f"Followup question for target ({target}) finished in {end_time-start_time:.2f} seconds", level=level+1)
+        print_and_log(f"Followup question for target ({target}) \
+                      finished in {end_time-start_time:.2f} seconds", level=level+1)
         # save prompt
         save_json_file(target_path, "followup_question_prompt.json", messages)
         # save response
@@ -153,12 +155,14 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
 
             os.chdir(trail_path)
             if property_test():
-                print_and_log(f"trail {trail}: program size {size}, passed", level=level+2)
+                save_file(trail_path, "property_test_result", "pass")
+                print_and_log(f"trail {trail}: program size {size}, pass", level=level+2)
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                print_and_log(f"trail {trail}: program size {size}, failed", level=level+2)
+                save_file(trail_path, "property_test_result", "fail")
+                print_and_log(f"trail {trail}: program size {size}, fail", level=level+2)
 
         if smallest_program != "":
             save_program_file(tmp_folder, smallest_program)
@@ -228,12 +232,14 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_ver
 
         os.chdir(trail_path)
         if property_test():
-            print_and_log(f"trail {trail}: program size {size}, passed", level=level)
+            save_file(trail_path, "property_test_result", "pass")
+            print_and_log(f"trail {trail}: program size {size}, pass", level=level)
             if size < smallest_size:
                 smallest_size = size
                 smallest_program = program
         else:
-            print_and_log(f"trail {trail}: program size {size}, failed", level=level)
+            save_file(trail_path, "property_test_result", "fail")
+            print_and_log(f"trail {trail}: program size {size}, fail", level=level)
 
     if smallest_program != "":
         save_program_file(tmp_folder, smallest_program)
@@ -305,6 +311,11 @@ def property_test():
             return False
     return True
 
+def save_file(folder_path, file_name, content):
+    os.makedirs(folder_path, exist_ok=True)
+    file_path = os.path.join(folder_path, file_name)
+    with open(file_path, "w") as file_writer:
+        file_writer.write(content)
 
 def save_program_file(folder_path, program):
     os.makedirs(folder_path, exist_ok=True)
@@ -496,7 +507,8 @@ def main():
 
             program_size_after_operation = count_token(operation_program_path)
             shutil.copy(operation_program_path, iteration_folder)
-            print_and_log(f"Finished iteration {iteration}, operation {operation}, current size: {program_size_after_operation} tokens", level=2)
+            print_and_log(f"Finished iteration {iteration}, operation {operation}, \
+                          current size: {program_size_after_operation} tokens", level=2)
 
         program_size_after_iteration = count_token(iteration_program_path)
         shutil.copy(iteration_program_path, main_folder)
@@ -505,7 +517,8 @@ def main():
 
     end_time = time.time()
     save_program_file(main_folder, smallest_program)
-    print_and_log(f"Finished reduction, reduction ratio: {program_size_before_iteration}/{original_program_size} time used: {end_time-start_time:.3f}", level=0)
+    print_and_log(f"Finished reduction, reduction ratio: {program_size_before_iteration}/{original_program_size}, \
+                   time used: {end_time-start_time:.3f}", level=0)
 
 
 def get_current_version():
