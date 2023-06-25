@@ -15,12 +15,12 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 ROOT_FOLDER = os.getcwd()
 
-PROGRAM_NAME = "small.c"
+PROGRAM_NAME = "small.rs"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_FOLDER, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_FOLDER, "perses_deploy.jar")
 LOG_FILE_NAME = "log.txt"
-FORMATTER = "clang-format"
+FORMATTER = "rustfmt"
 
 
 def execute_cmd(cmd, output=False):
