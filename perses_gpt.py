@@ -37,11 +37,12 @@ def call_perses(output_folder, level):
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     working_folder = os.path.join(output_folder, "perses")
+    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
     os.makedirs(working_folder, exist_ok=True)
+
     if not check_finish(working_folder):
         start_time = time.time()
-        tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
-        tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
         shutil.copy(output_program_path, tmp_program_path)
         shutil.copy(output_script_path, tmp_script_path)
 
@@ -259,13 +260,13 @@ def call_gpt_based_reducer(prompts, operation, output_folder, gpt_version, trail
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     tmp_folder = os.path.join(output_folder, f"{operation}")
+    tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
+    orig_program_path = os.path.join(tmp_folder, PROGRAM_NAME + ".orig")
+    tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
     os.makedirs(tmp_folder, exist_ok=True)
 
     if not check_finish(tmp_folder):
         start_time = time.time()
-        tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
-        orig_program_path = os.path.join(tmp_folder, PROGRAM_NAME + ".orig")
-        tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
         shutil.copy(output_program_path, tmp_program_path)
         shutil.copy(output_program_path, orig_program_path)
         shutil.copy(output_script_path, tmp_script_path)
@@ -288,11 +289,12 @@ def call_renamer(output_folder, level):
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     tmp_folder = os.path.join(output_folder, "rename")
+    tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
+    tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
     os.makedirs(tmp_folder, exist_ok=True)
+
     if not check_finish(tmp_folder):
         start_time = time.time()
-        tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
-        tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
         shutil.copy(output_program_path, tmp_program_path)
         shutil.copy(output_script_path, tmp_script_path)
 
