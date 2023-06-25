@@ -396,10 +396,11 @@ def main():
 
     # add arguments
     parser.add_argument("--prompts", type=str, required=True, help="Configuration file about prompts")
-    parser.add_argument("--case", type=str, required=True, help="benchmark ID")
+    parser.add_argument("--case", type=str, required=True, help="Benchmark ID")
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
     parser.add_argument("--version", type=str, default="gpt-3.5-turbo-0613", help="GPT version")
     parser.add_argument("--multi_level", action="store_true", default=False, help="Enable multi-level prompt")
+    parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each result")
 
     # parse arguments
     args = parser.parse_args()
@@ -423,9 +424,6 @@ def main():
     # get current code version
     code_version = get_current_version()
 
-    # generate trail id
-    run_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-
     # get original folder
     original_folder = os.path.normpath(
         os.path.join(ROOT_FOLDER, "./benchmark/", case)
@@ -435,7 +433,7 @@ def main():
 
     # get output folder
     main_folder = os.path.normpath(
-        os.path.join(ROOT_FOLDER, "./result/", code_version + "_" + args_string, case, run_id)
+        os.path.join(ROOT_FOLDER, "./result/", code_version + "_" + args_string, case)
     )
     os.makedirs(main_folder, exist_ok=True)
     shutil.copy(original_program_path, main_folder)
