@@ -38,15 +38,19 @@ def call_perses(output_folder, level):
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     working_folder = os.path.join(output_folder, "perses")
     os.makedirs(working_folder, exist_ok=True)
-    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
-    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_script_path, tmp_script_path)
+    if not check_finish(working_folder):
+        start_time = time.time()
+        tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
+        tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
+        shutil.copy(output_program_path, tmp_program_path)
+        shutil.copy(output_script_path, tmp_script_path)
 
-    execute_cmd(
-        f"java -jar {PERSES} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder}")
+        execute_cmd(
+            f"java -jar {PERSES} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder}")
 
-    call_formatter(tmp_program_path)
+        call_formatter(tmp_program_path)
+        end_time = time.time()
+        save_file(working_folder, "finish", f"{end_time-start_time}")
     shutil.copy(tmp_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
@@ -70,7 +74,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
     start_time = time.time()
 
     # load the program
-    program = load_program_file(tmp_program_path)
+    program = load_file(tmp_program_path)
 
     # call gpt
     prompt_from_user = f"{primary_question}. The program is {program}."
@@ -111,7 +115,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
         target_path = os.path.join(tmp_folder, f"target_{target_id}")
 
         # load the program
-        program = load_program_file(tmp_program_path)
+        program = load_file(tmp_program_path)
 
         start_time = time.time()
 
@@ -151,7 +155,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
             program_path = os.path.join(trail_path, PROGRAM_NAME)
 
             size = count_token(program_path)
-            program = load_program_file(program_path)
+            program = load_file(program_path)
 
             os.chdir(trail_path)
             if property_test():
@@ -189,7 +193,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_ver
     start_time = time.time()
 
     # load the program
-    program = load_program_file(tmp_program_path)
+    program = load_file(tmp_program_path)
 
     # call gpt
     prompt_from_user = f"{question}. The program is {program}."
@@ -228,7 +232,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_ver
         program_path = os.path.join(trail_path, PROGRAM_NAME)
 
         size = count_token(program_path)
-        program = load_program_file(program_path)
+        program = load_file(program_path)
 
         os.chdir(trail_path)
         if property_test():
@@ -257,17 +261,21 @@ def call_gpt_based_reducer(prompts, operation, output_folder, gpt_version, trail
     tmp_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(tmp_folder, exist_ok=True)
 
-    tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
-    orig_program_path = os.path.join(tmp_folder, PROGRAM_NAME + ".orig")
-    tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_program_path, orig_program_path)
-    shutil.copy(output_script_path, tmp_script_path)
+    if not check_finish(tmp_folder):
+        start_time = time.time()
+        tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
+        orig_program_path = os.path.join(tmp_folder, PROGRAM_NAME + ".orig")
+        tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
+        shutil.copy(output_program_path, tmp_program_path)
+        shutil.copy(output_program_path, orig_program_path)
+        shutil.copy(output_script_path, tmp_script_path)
 
-    if multi_level:
-        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_version, trail_number, level)
-    else:
-        call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_version, trail_number, level)
+        if multi_level:
+            call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_version, trail_number, level)
+        else:
+            call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_version, trail_number, level)
+        end_time = time.time()
+        save_file(tmp_folder, "finish", f"{end_time-start_time}")
 
     tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
     final_program_size = count_token(tmp_program_path)
@@ -281,25 +289,30 @@ def call_renamer(output_folder, level):
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     tmp_folder = os.path.join(output_folder, "rename")
     os.makedirs(tmp_folder, exist_ok=True)
-    tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
-    tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
-    shutil.copy(output_program_path, tmp_program_path)
-    shutil.copy(output_script_path, tmp_script_path)
+    if not check_finish(tmp_folder):
+        start_time = time.time()
+        tmp_program_path = os.path.join(tmp_folder, PROGRAM_NAME)
+        tmp_script_path = os.path.join(tmp_folder, SCRIPT_NAME)
+        shutil.copy(output_program_path, tmp_program_path)
+        shutil.copy(output_script_path, tmp_script_path)
 
-    os.chdir(tmp_folder)
+        os.chdir(tmp_folder)
 
-    execute_cmd(
-        f"creduce --no-default-passes \
-        --add-pass pass_clex rename-toks 1 \
-        --add-pass pass_clang rename-fun 1 \
-        --add-pass pass_clang rename-param 1 \
-        --add-pass pass_clang rename-var 1 \
-        --add-pass pass_clang rename-class 1 \
-        --add-pass pass_clang rename-cxx-method 1 \
-        {SCRIPT_NAME} {PROGRAM_NAME}"
-    )
+        execute_cmd(
+            f"creduce --no-default-passes \
+            --add-pass pass_clex rename-toks 1 \
+            --add-pass pass_clang rename-fun 1 \
+            --add-pass pass_clang rename-param 1 \
+            --add-pass pass_clang rename-var 1 \
+            --add-pass pass_clang rename-class 1 \
+            --add-pass pass_clang rename-cxx-method 1 \
+            {SCRIPT_NAME} {PROGRAM_NAME}"
+        )
 
-    os.chdir(ROOT_FOLDER)
+        os.chdir(ROOT_FOLDER)
+        end_time = time.time()
+        save_file(tmp_folder, "finish", f"{end_time-start_time}")
+
     shutil.copy(tmp_program_path, output_program_path)
     print_and_log(f"Finished renamer", level=level)
 
@@ -331,7 +344,7 @@ def save_json_file(folder_path, file_name, json_object):
         json.dump(json_object, file_writer)
 
 
-def load_program_file(path):
+def load_file(path):
     with open(path, "r") as file_reader:
         program = file_reader.read()
     return program
@@ -341,6 +354,12 @@ def load_json_file(path):
     with open(path, "r") as file_reader:
         json_object = json.load(file_reader)
     return json_object
+
+def check_finish(folder):
+    status_file = os.path.join(folder, "finish")
+    if os.path.exists(status_file):
+        return True
+    return False
 
 
 def call_gpt(message, gpt_version, trail_number=1):
@@ -475,7 +494,7 @@ def main():
         iteration_script_path = os.path.join(iteration_folder, SCRIPT_NAME)
 
         program_size_before_iteration = program_size_after_iteration
-        smallest_program = load_program_file(main_program_path)
+        smallest_program = load_file(main_program_path)
 
         print_and_log(f"Start iteration {iteration}, current size: {count_token(main_program_path)}", level=1)
 
@@ -494,11 +513,11 @@ def main():
             call_renamer(operation_folder, level=2)
 
             # call gpt
-            program_before_operation = load_program_file(operation_program_path)
+            program_before_operation = load_file(operation_program_path)
             call_gpt_based_reducer(prompts=prompts, operation=operation,
                                    output_folder=operation_folder, gpt_version=gpt_version,
                                    trail_number=trail_number, multi_level=multi_level, level=2)
-            program_after_operation = load_program_file(operation_program_path)
+            program_after_operation = load_file(operation_program_path)
 
             # call perses
             if program_before_operation != program_after_operation:
