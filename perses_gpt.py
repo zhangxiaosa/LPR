@@ -428,6 +428,7 @@ def main():
 
     # add arguments
     parser.add_argument("--prompts", type=str, required=True, help="Configuration file about prompts")
+    parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=True, help="Benchmark ID")
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
     parser.add_argument("--version", type=str, default="gpt-3.5-turbo-0613", help="GPT version")
@@ -447,6 +448,7 @@ def main():
     prompt_file = args.prompts
     gpt_version = args.version
     case = args.case
+    benchmark_suite = args.benchmark_suite
     trail_number = args.trail
     multi_level = args.multi_level
 
@@ -458,7 +460,7 @@ def main():
 
     # get original folder
     original_folder = os.path.normpath(
-        os.path.join(ROOT_FOLDER, "./benchmark/", case)
+        os.path.join(ROOT_FOLDER, benchmark_suite, case)
     )
     original_program_path = os.path.join(original_folder, PROGRAM_NAME)
     original_script_path = os.path.join(original_folder, SCRIPT_NAME)

@@ -5,6 +5,6 @@ cases=(clang-22382 clang-22704 clang-23309 clang-23353 clang-25900 clang-26760 c
 for case in "${cases[@]}"
 do
     echo "start $case"
-    python3 perses_gpt.py --case $case $1
+    python3 perses_gpt.py --benchmark_suite ./benchmark_suites/c/perses_result --case $case $1
     echo -e "\n\n\n"
 done
