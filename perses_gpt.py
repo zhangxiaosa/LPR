@@ -386,7 +386,7 @@ def call_formatter(path):
         tmp_file = "tmp"
         execute_cmd(f"clang-format {path} > {tmp_file}", output=True)
         shutil.copy(tmp_file, path)
-    elif LANGUAGE in ("rs"):
+    elif LANGUAGE in ("rs",):
         execute_cmd(f"clang-format {path}", output=True)
     else:
         pass
@@ -435,7 +435,7 @@ def print_and_log(message, level):
 def get_file_extensions_from_folder_with_prefix(folder, prefix):
     files_with_prefix = glob.glob(os.path.join(folder, prefix+'*'))
     _, ext = os.path.splitext(files_with_prefix[0])
-    return ext
+    return ext.split(".")[-1]
 
 def main():
 
