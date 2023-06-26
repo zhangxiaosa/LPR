@@ -8,6 +8,7 @@ import datetime
 import re
 import argparse
 import copy
+import glob
 import openai
 
 # you need to add OPENAI_API_KEY to the environment variable
@@ -15,12 +16,18 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 ROOT_FOLDER = os.getcwd()
 
-PROGRAM_NAME = "small.rs"
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER = os.path.join(ROOT_FOLDER, "token_counter_deploy.jar")
 PERSES = os.path.join(ROOT_FOLDER, "perses_deploy.jar")
 LOG_FILE_NAME = "log.txt"
-FORMATTER = "rustfmt"
+LANGUAGE = None
+PROGRAM_NAME_DICT = {
+    "c": "small.c",
+    "cpp": "small.cpp",
+    "rs": "small.rs"
+}
+PROGRAM_NAME = None
+
 
 
 def execute_cmd(cmd, output=False):
@@ -375,10 +382,14 @@ def call_gpt(message, gpt_version, trail_number=1):
 
 
 def call_formatter(path):
-    tmp_file = "tmp"
-    execute_cmd(f"{FORMATTER} {path} > {tmp_file}", output=True)
-    shutil.copy(tmp_file, path)
-
+    if LANGUAGE in ("c", "cpp"):
+        tmp_file = "tmp"
+        execute_cmd(f"clang-format {path} > {tmp_file}", output=True)
+        shutil.copy(tmp_file, path)
+    elif LANGUAGE in ("rs"):
+        execute_cmd(f"clang-format {path}", output=True)
+    else:
+        pass
 
 def count_token(program_path):
     output = subprocess.check_output(
@@ -421,6 +432,10 @@ def print_and_log(message, level):
     with open(LOG_FILE_NAME, 'a') as file:
         file.write(message + '\n')
 
+def get_file_extensions_from_folder_with_prefix(folder, prefix):
+    files_with_prefix = glob.glob(os.path.join(folder, prefix+'*'))
+    _, ext = os.path.splitext(files_with_prefix[0])
+    return ext
 
 def main():
 
@@ -462,6 +477,9 @@ def main():
     original_folder = os.path.normpath(
         os.path.join(ROOT_FOLDER, benchmark_suite, case)
     )
+    global LANGUAGE, PROGRAM_NAME
+    LANGUAGE = get_file_extensions_from_folder_with_prefix(original_folder, "small")
+    PROGRAM_NAME = PROGRAM_NAME_DICT[LANGUAGE]
     original_program_path = os.path.join(original_folder, PROGRAM_NAME)
     original_script_path = os.path.join(original_folder, SCRIPT_NAME)
 
