@@ -387,7 +387,7 @@ def call_formatter(path):
         execute_cmd(f"clang-format {path} > {tmp_file}", output=True)
         shutil.copy(tmp_file, path)
     elif LANGUAGE in ("rs",):
-        execute_cmd(f"clang-format {path}", output=True)
+        execute_cmd(f"rustfmt {path}", output=True)
     else:
         pass
 
