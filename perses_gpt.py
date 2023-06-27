@@ -24,7 +24,8 @@ LANGUAGE = None
 PROGRAM_NAME_DICT = {
     "c": "small.c",
     "cpp": "small.cpp",
-    "rs": "small.rs"
+    "rs": "small.rs",
+    "go": "small.go"
 }
 PROGRAM_NAME = None
 
@@ -388,6 +389,10 @@ def call_formatter(path):
         shutil.copy(tmp_file, path)
     elif LANGUAGE in ("rs",):
         execute_cmd(f"rustfmt {path}", output=True)
+    elif LANGUAGE in ("go",):
+        tmp_file = "tmp"
+        execute_cmd(f"gofmt {path} > {tmp_file}", output=True)
+        shutil.copy(tmp_file, path)
     else:
         pass
 
