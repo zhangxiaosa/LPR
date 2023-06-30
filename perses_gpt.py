@@ -57,7 +57,7 @@ def call_perses(output_folder, level):
         execute_cmd(
             f"java -jar {PERSES} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder}")
 
-        call_formatter(tmp_program_path)
+        call_formatter(working_folder)
         end_time = time.time()
         save_file(working_folder, "finish", f"{end_time-start_time}")
     shutil.copy(tmp_program_path, output_program_path)
@@ -380,19 +380,35 @@ def call_gpt(message, gpt_version, trail_number=1):
     return completion
 
 
-def call_formatter(path):
+def call_formatter(working_folder):
+    working_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    working_script_path = os.path.join(working_folder, SCRIPT_NAME)
+
+    tmp_folder = os.path.join(working_folder, "format")
+    os.makedirs(tmp_folder, exist_ok=True)
+    
+    shutil.copy(working_program_path, tmp_folder)
+    shutil.copy(working_script_path, tmp_folder)
+
+    current_path = os.getcwd()
+    os.chdir(tmp_folder)
     if LANGUAGE in ("c", "cpp"):
         tmp_file = "tmp"
-        execute_cmd(f"clang-format {path} > {tmp_file}", output=True)
-        shutil.copy(tmp_file, path)
+        execute_cmd(f"clang-format {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
     elif LANGUAGE in ("rs",):
-        execute_cmd(f"rustfmt {path}", output=True)
+        execute_cmd(f"rustfmt {PROGRAM_NAME}", output=True)
+        if property_test():
+            shutil.copy(PROGRAM_NAME, working_folder)
     elif LANGUAGE in ("go",):
         tmp_file = "tmp"
-        execute_cmd(f"gofmt {path} > {tmp_file}", output=True)
-        shutil.copy(tmp_file, path)
+        execute_cmd(f"gofmt {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
     else:
         pass
+    os.chdir(current_path)
 
 def count_token(program_path):
     output = subprocess.check_output(
