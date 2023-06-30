@@ -168,13 +168,11 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
 
             os.chdir(trail_path)
             if property_test():
-                save_file(trail_path, "property_test_result", "pass")
                 print_and_log(f"trail {trail}: program size {size}, pass", level=level+2)
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                save_file(trail_path, "property_test_result", "fail")
                 print_and_log(f"trail {trail}: program size {size}, fail", level=level+2)
 
         if smallest_program != "":
@@ -245,13 +243,11 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_ver
 
         os.chdir(trail_path)
         if property_test():
-            save_file(trail_path, "property_test_result", "pass")
             print_and_log(f"trail {trail}: program size {size}, pass", level=level)
             if size < smallest_size:
                 smallest_size = size
                 smallest_program = program
         else:
-            save_file(trail_path, "property_test_result", "fail")
             print_and_log(f"trail {trail}: program size {size}, fail", level=level)
 
     if smallest_program != "":
@@ -331,7 +327,9 @@ def property_test():
     for _ in range(5):
         ret = execute_cmd("./r.sh")
         if ret == 1:
+            save_file("./", "property_test_result", "fail")
             return False
+    save_file("./", "property_test_result", "pass")
     return True
 
 def save_file(folder_path, file_name, content):
