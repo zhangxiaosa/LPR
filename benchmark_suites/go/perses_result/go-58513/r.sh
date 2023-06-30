@@ -4,6 +4,8 @@ GO=/tmp/perses/reduction_via_gpt/compilers/go-261fe25c83/bin/go
 LOG_FILE=log.txt
 TIMEOUT=3
 
+$GO version | grep "+261fe25c83"
+
 # Run the command with a timeout of 3 seconds
 timeout -s 9 $TIMEOUT $GO run small.go >$LOG_FILE 2>&1
 
