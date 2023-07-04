@@ -10,11 +10,7 @@ var v16 = [174.41419381524133];
 var v17 = [1000000000000.0,1.0,0.876710241335159,-675.9012073016188,-4.181723349225293e+307,1000.0];
 function F18(a20, a21, a22, a23) {
     if (!new.target) { throw 'must be called with new'; }
-    // Splicing instruction 23 (Construct) from C09844A8-B6DB-47AD-8BB2-5B40E5728953
     new F18(-1, -864738909, -256);
-    // Splicing done
-    // Splicing instruction 14 (Compare) from A5778AC4-E8D4-4042-A18E-419703B39B17
-    // Splicing done
     1 < ("string").__proto__;
     this.b = v2;
     v1.h = v7;
@@ -57,13 +53,8 @@ function f71(a72, a73) {
         "f": a72,
         "c": -65537,
         "a": a72,
-        // Splicing instruction 6 (ObjectLiteralAddElement) from B266BC83-AEB7-415D-BA37-C68F2C6EC06E
         9: a72,
-        // Splicing done
-        // Splicing instruction 39 (ObjectLiteralAddElement) from 04A02BE4-ACC4-4BCA-92F6-FAC0852A0530
         256: a73,
-        // Splicing done
-        // Splicing instruction 249 (BeginObjectLiteralMethod) from 0063F624-6091-4965-AEC1-087EFED75AA1
         next() {
             v65--;
             var v77 = v65 == 0;
@@ -73,7 +64,6 @@ function f71(a72, a73) {
             };
             return o78;
         },
-        // Splicing done
         ...v67,
         [a73]: v64,
         __proto__: a72,
@@ -81,13 +71,11 @@ function f71(a72, a73) {
         [v47]: v65,
         268435439: a73,
         [a73]: -65537,
-        // Splicing instruction 10 (EndObjectLiteralMethod) from 45B8A844-08E4-470B-A152-F0F150B931EB
         valueOf(a80) {
             a80.__proto__ = a80;
             this.__proto__;
             return this;
         },
-        // Splicing done
         257: 255,
         258: -1073741824,
     };
@@ -97,13 +85,9 @@ var v84 = f71(-65537, -65537);
 var v85 = f71(255, 255);
 for (var v86 in v43) {
     Object.defineProperty(v84, 263962628, { set: f71 });
-    // Splicing instruction 59 (CallMethod) from D065AC1E-29FE-40C3-B5E0-D63E76CBDAE4
     var v89 = new Date(-1073741824, Date);
     try { v89.setHours(Date, Date); } catch (e) {}
-    // Splicing done
-    // Splicing instruction 11 (CreateArray) from 56E700E6-95D2-4B13-895A-36C17E315C77
     var v92 = [1.3269093844499257e+308,0.8629590805456279,-1.3953773123641876e+308,3.0,-387636.69218580937,1000000.0];
-    // Splicing done
     [45897n,[-15,-15,[-1.0,1.4134052977522853e+307,0.7111624149870746,-1000000000.0,NaN,872.1302216945105,-9.25460366541089,0.3169973169205347,-639123.1712451857],v92],45897n];
     Math.asinh(-541143895);
     Math.random();
@@ -130,17 +114,13 @@ class C130 {
     static 6 = "object";
     13;
     static 3012;
-    // Splicing instruction 32 (ClassAddInstanceElement) from 3348E44A-E29E-401E-BDBB-73D24F19F703
     4;
-    // Splicing done
-    // Splicing instruction 25 (EndClassStaticMethod) from 7E70D6A1-9C83-4697-8D67-5539A3B53C12
     static p(a132, a133, a134, a135) {
         new BigUint64Array(10);
         new Float32Array(128);
         new Uint8Array(305);
         return "Nka4";
     }
-    // Splicing done
     f = 4294967297;
     constructor(a146) {
         a146 <<= 4294967297;
@@ -163,11 +143,7 @@ function f163() {
 var v166 = 0.8860425308090022;
 v166 -= -3.0;
 for (let i179 = (() => {
-        // Splicing instruction 42 (CallMethod) from AC964F27-2B72-4CA9-8ED6-12D9D1F87C67
         var v171 = 1287877345;
-        // Splicing done
-        // Splicing instruction 14 (UnaryOperation) from 0E081C7E-F99E-4056-9FB6-DB5028CEF80F
-        // Splicing done
         Math.ceil(++v171);
         -(-2.0 * -974372451);
         return 0;

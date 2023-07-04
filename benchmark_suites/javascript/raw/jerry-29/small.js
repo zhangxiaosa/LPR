@@ -17,17 +17,12 @@ var t17 = "-536870912";
 t17[3746] = v14;
 v28[512] = v28;
 function f29(a30, a31, a32, a33) {
-    // Replacing input 1 (v19) with v26
-    // Replacing input 0 (v33) with v30
     a32 = v26;
     var v34 = ("function").length;
     try { a30.repeat(a30); } catch (e) {}
-    // Replacing input 1 (v35) with v19
-    // Replacing input 0 (v37) with v29
     v14 = v19;
     new f29(9);
     new Uint16Array(129);
-    // Replacing input 1 (v42) with v34
     new Int8Array(v34);
     return Int8Array;
 }

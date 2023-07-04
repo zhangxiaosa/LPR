@@ -49,26 +49,16 @@ if (v53 >= v47) {
 }
 function F57() {
     if (!new.target) { throw 'must be called with new'; }
-    // Splicing instruction 16 (Construct) from EBAEFD78-3486-4014-B9C3-77A68F733768
     new F57();
-    // Splicing done
-    // Splicing instruction 10 (Construct) from FFBEC385-08C8-45B2-8D8F-5E8DD2EDE6D8
     new Float32Array(145);
-    // Splicing done
-    // Splicing instruction 0 (BeginConstructor) from 3194FB4A-041A-4A7E-8086-E518460354C9
     function F63() {
         if (!new.target) { throw 'must be called with new'; }
         this.g = 4096;
         this.e = 4096;
         this.h = 4096;
     }
-    // Splicing done
-    // Splicing instruction 4 (Construct) from 74635BAF-ECF7-4931-80F5-4C81FBEAE241
     new WeakSet();
-    // Splicing done
-    // Splicing instruction 60 (CreateArray) from 1FD4EC38-6D18-4D2E-B1A5-59BA5536705F
     var v73 = new WeakSet();
-    // Splicing done
     [WeakSet,[3573,["p","p"],4],4,v73];
     Math.cosh(-11);
     !536870889;

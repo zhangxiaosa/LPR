@@ -19,16 +19,8 @@ class C5 {
         }
         var v13 = new C12();
         v13["1073741824"] = this;
-        // Executing code generator ComputedPropertyRetrievalGenerator
-        // Code generator finished
-        // Executing code generator IntegerGenerator
         ("maxByteLength")[f3];
         var v16 = -14;
-        // Code generator finished
-        // Executing code generator PrivatePropertyUpdateGenerator
-        // Code generator finished
-        // Executing code generator ReassignmentGenerator
-        // Code generator finished
         v16 = -128;
     }
 }
@@ -36,12 +28,8 @@ new C5("1073741824");
 var v19 = new C5(v1);
 var v20 = new C5(v19);
 switch (v20) {
-    // Executing code generator SwitchCaseGenerator
     case v19:
-        // Executing code generator BooleanGenerator
-        // Code generator finished
         break;
-    // Code generator finished
 }
 new WeakMap();
 [-15,1702973534,1307302874,8,-4294967295,1073741823,1,2212];

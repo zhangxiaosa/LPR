@@ -31,7 +31,6 @@ class C23 {
                         return Infinity;
                     }
                     constructor(a52, a53, a54) {
-                        // Replacing input 2 (v44) with v44
                         a52 > v44 ? a52 : v44;
                         try { a31.some(f43); } catch (e) {}
                     }
@@ -223,7 +222,6 @@ function f261() {
     new Date();
     new Uint16Array(64);
     new Float64Array(163);
-    // Replacing input 0 (v274) with v261
     new f261(2464);
     var t228 = "some";
     t228.length = 2464;

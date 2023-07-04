@@ -6,21 +6,11 @@ var v4 = [-2,185860726,9,-64982,1073741824,-268435456,44427,-2,129];
 var v5 = [-9223372036854775808,-2147483648];
 function f9(a10, a11, a12) {
     var o29 = {
-        // Splicing instruction 75 (ObjectLiteralAddElement) from 50E2BEEA-6BE6-476B-AAE2-527706BA4D58
         1086189215: a12,
-        // Splicing done
-        // Splicing instruction 12 (ObjectLiteralAddProperty) from 2B912817-9A0E-4A1A-85D4-67494A1F4185
         "g": a11,
-        // Splicing done
-        // Splicing instruction 31 (ObjectLiteralAddProperty) from 3816C9A9-F2CD-40F8-B933-9DCA326477AB
         "f": v1,
-        // Splicing done
-        // Splicing instruction 25 (ObjectLiteralAddProperty) from 7AB7B7F3-16B2-4606-A7ED-6546D7D31272
         "done": a10,
-        // Splicing done
-        // Splicing instruction 40 (ObjectLiteralCopyProperties) from 080D7E6D-D4E2-46B9-89D6-0510EBF7A919
         ...v4,
-        // Splicing done
         [v4]: a11,
         [a11]: a11,
         "h": -2147483648,
@@ -89,13 +79,8 @@ function f60() {
                             this || a80;
                         },
                         "h": "g",
-                        // Splicing instruction 769 (ObjectLiteralAddComputedProperty) from D1E0DD24-AEEC-46CB-AFB2-9270046B57F7
                         [v73]: e,
-                        // Splicing done
-                        // Splicing instruction 31 (ObjectLiteralSetPrototype) from CCCFD27F-671C-454E-BC67-2215CE2DA8DE
                         __proto__: a78,
-                        // Splicing done
-                        // Splicing instruction 14 (EndObjectLiteralGetter) from 9388A5A2-B208-4F46-B802-7EE6CECE5017
                         get c() {
                             this.d = 536870887;
                             var v84;
@@ -109,7 +94,6 @@ function f60() {
                             super.c;
                             return 536870887;
                         },
-                        // Splicing done
                         40: a78,
                         o(a88, a89) {
                             var v90 = 0;
@@ -173,10 +157,7 @@ function f60() {
     o134.g = -268435456;
     var t174 = [64513,-9007199254740992,919891872,-41882,268435441,-764341315,47757,1640];
     t174.length = 2;
-    // Splicing instruction 11 (Construct) from E75060FA-BDF3-49FE-97CD-272B9E1D13A6
     new f60(42);
-    // Splicing done
-    // Splicing instruction 26 (Return) from E5FB5CAE-8D44-4632-9FE9-4D122D30A2CB
     var v140 = 10;
     var o146 = {
         next() {
@@ -190,7 +171,6 @@ function f60() {
         },
     };
     return o146;
-    // Splicing done
     return o134;
 }
 var v147 = f60();

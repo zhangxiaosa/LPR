@@ -1,9 +1,6 @@
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
-    // Splicing instruction 11 (Construct) from 3C278EAE-5BA2-4A4D-9AAE-313F0B51ED7D
     new F0(2);
-    // Splicing done
-    // Splicing instruction 25 (CallFunctionWithSpread) from E6FE10E4-7890-4B19-B0C8-A37EB159DE57
     var v8 = new Int32Array(1079);
     var v11 = new F0(156);
     var v15 = 2545 == (128 === v11);
@@ -11,7 +8,6 @@ function F0() {
     var t0 = 1073741825;
     t0(273, Float64Array, ...v15, ...v8, ...F0);
     } catch (e) {}
-    // Splicing done
     this.f = 1073741825;
     this.a = 1073741825;
     this.e = 1073741825;

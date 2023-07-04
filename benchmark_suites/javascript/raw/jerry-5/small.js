@@ -2,7 +2,6 @@ new Float64Array();
 function F2(a4) {
     if (!new.target) { throw 'must be called with new'; }
     this.h = a4;
-    // Replacing input 1 (v0) with v4
     this.c = a4;
 }
 var v5 = new F2(Float64Array);
@@ -25,26 +24,19 @@ var v17 = [-4294967297,13572,6,9,64771,30608,1,9070,-1186482673];
 [128,-15913,-9223372036854775807,-22479,50839,1000];
 function f19() {
     var o23 = {
-        // Replacing input 1 (v21) with v21
         ["o"]: "o",
         "h": 5.566795687069813,
         "e": 5.566795687069813,
         3: "o",
         "c": "1537867226",
-        // Replacing input 0 (v21) with v20
         "a": "1537867226",
         "b": "o",
         ..."1537867226",
-        // Replacing input 0 (v21) with v20
         ..."1537867226",
-        // Replacing input 0 (v20) with v20
         "f": "1537867226",
-        // Replacing input 0 (v22) with v22
         "g": 5.566795687069813,
     };
-    // Replacing input 1 (v24) with v24
     new Uint16Array(7);
-    // Replacing input 0 (v28) with v19
     var v29 = new f19(2968);
     function f30() {
         return v29;

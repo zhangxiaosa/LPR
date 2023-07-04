@@ -53,19 +53,13 @@ var v54;
 try { v54 = v53.splice(13); } catch (e) {}
 v54[v54] = v54;
 function f55(a56, a57) {
-    // Executing code generator ClassDefinitionGenerator
     class C58 extends f55 {
-        // Executing code generator ClassStaticElementGenerator
         static 3;
-        // Code generator finished
-        // Executing code generator ClassStaticElementGenerator
         static 65536;
-        // Code generator finished
     }
     new C58();
     var v60 = new C58();
     new C58();
-    // Code generator finished
     d = a56;
     var o75 = {
         [v54](a64, a65, a66) {
@@ -79,21 +73,11 @@ function f55(a56, a57) {
             v16[10];
             return a65;
         },
-        // Executing code generator ObjectLiteralPropertyGenerator
         "c": v60,
-        // Code generator finished
-        // Executing code generator ObjectLiteralElementGenerator
         64: v17,
-        // Code generator finished
-        // Executing code generator ObjectLiteralPropertyGenerator
         "f": isFinite,
-        // Code generator finished
-        // Executing code generator ObjectLiteralElementGenerator
         268435441: 1000,
-        // Code generator finished
-        // Executing code generator ObjectLiteralPropertyGenerator
         "g": isFinite,
-        // Code generator finished
         "getPrototypeOf": f23,
         "preventExtensions": f23,
         "setPrototypeOf": v8,

@@ -1,11 +1,7 @@
 function f0() {
-    // Splicing instruction 11 (Construct) from 3B1D313A-4F77-45F3-866C-A9AB7E15DA78
     var v3 = [-21112,268435440,-56601,504714277,1893546951];
     new f0(v3, v3);
-    // Splicing done
-    // Splicing instruction 12 (Construct) from 41A231C3-80CF-4021-B468-53754EB93CD5
     new Uint8Array(3);
-    // Splicing done
     var o14 = {
         "f": 273547.2789733652,
         set g(a10) {

@@ -31,19 +31,13 @@ var v32 = [512,-65537,-9223372036854775807,27646,4294967295,4294967296,59618,-20
 var v33 = [1,-12,128,11,1039581114,-647350052,-11];
 function F34(a36, a37, a38, a39) {
     if (!new.target) { throw 'must be called with new'; }
-    // Executing code generator ClassDefinitionGenerator
     class C40 extends F34 {
-        // Executing code generator ClassStaticPropertyGenerator
         static a;
-        // Code generator finished
-        // Executing code generator ClassInstancePropertyGenerator
         b = v30;
-        // Code generator finished
     }
     new C40();
     new C40();
     new C40();
-    // Code generator finished
     this.h = a36;
 }
 var v44 = new F34(v30, v33, v32, v31);
@@ -60,12 +54,6 @@ function f47(a48, a49, a50) {
             }
             new F56(a50, a49, v31, v32);
             new F56(v28, a53, a53, a53);
-            // Executing code generator SuperPropertyRetrievalGenerator
-            // Code generator finished
-            // Executing code generator IntegerGenerator
-            // Code generator finished
-            // Executing code generator BinaryOperationGenerator
-            // Code generator finished
             super.a;
             a50 / f17;
             new F56(v30, a53, v44, a52);
@@ -83,17 +71,9 @@ v45[7] = v46;
 for (var v74 = 0; v74 < 12; v74++) {
     var v77 = new Uint8ClampedArray(5);
     new Float64Array(2);
-    // Executing code generator ForInLoopGenerator
     for (var v81 in v33) {
-        // Executing code generator DestructArrayAndReassignGenerator
         [v2,,f17] = v77;
-        // Code generator finished
     }
-    // Code generator finished
-    // Executing code generator PropertyRetrievalGenerator
-    // Code generator finished
-    // Executing code generator IntegerGenerator
-    // Code generator finished
     v30.e;
     new Int32Array(64);
 }

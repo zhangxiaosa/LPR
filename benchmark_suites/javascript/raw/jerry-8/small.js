@@ -8,10 +8,8 @@ new Uint16Array(255);
 function F17(a19) {
     if (!new.target) { throw 'must be called with new'; }
     this.f = -6n;
-    // Splicing instruction 14 (GetProperty) from 0443F3D5-227B-4186-8826-D60CF92FD498
     var v23 = new Int32Array(3);
     try { v23.lastIndexOf(Int32Array, 65536); } catch (e) {}
-    // Splicing done
     v23.byteOffset;
     this.e = Float64Array;
 }
@@ -45,16 +43,9 @@ class C60 {
         return "undefined";
     }
     static [9.2695175804015e+307];
-    // Splicing instruction 28 (ClassAddStaticComputedProperty) from 5795A10B-EFEA-46E6-81F8-3C1CA1048D7B
     static [Uint16Array] = Uint16Array;
-    // Splicing done
-    // Splicing instruction 84 (ClassAddInstanceProperty) from EE06D991-AF93-401F-8EFF-79364FC4C178
     h = v47;
-    // Splicing done
-    // Splicing instruction 51 (ClassAddInstanceElement) from 4BCFB6EE-CF3A-4F1B-927C-DBCB2F7723F7
     [-1];
-    // Splicing done
-    // Splicing instruction 316 (EndClassStaticGetter) from 61084655-3097-4467-85BA-BBC40006BD76
     static get h() {
         var v72 = this % 215;
         for (var v73 = 0; v73 < 32; v73++) {
@@ -62,7 +53,6 @@ class C60 {
         }
         return v72;
     }
-    // Splicing done
     f = 0.8111781785560439;
     static b = -1000000000.0;
     static [-1000000000.0];
@@ -103,7 +93,6 @@ for (var v117 = 0; v117 < 64; v117++) {
     var v127 = new F124(0.0);
     var v129 = new Set();
     function f132(a133, a134, a135) {
-        // Splicing instruction 14 (CallFunction) from 3B199AA8-BEF2-4902-ADB7-90C0D766FA00
         var v136 = [1000000000000.0];
         var v138;
         try { v138 = new f132(v40, Set); } catch (e) {}
@@ -113,7 +102,6 @@ for (var v117 = 0; v117 < 64; v117++) {
         var t0 = -7010;
         t0(v139, v138, v136, v139);
         } catch (e) {}
-        // Splicing done
         new WeakSet();
         return a134;
         try { v129.values(); } catch (e) {}

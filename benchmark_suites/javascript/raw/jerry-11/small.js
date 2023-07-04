@@ -1,8 +1,6 @@
 function F3(a5) {
     if (!new.target) { throw 'must be called with new'; }
-    // Splicing instruction 51 (CallMethod) from ECE4BF4B-09BE-4488-9FF9-1AB36019ECF4
     var v7 = new F3(2);
-    // Splicing done
     Math.round(2147483648);
     Math.sign(v7);
     this.h = -9223372036854775808;

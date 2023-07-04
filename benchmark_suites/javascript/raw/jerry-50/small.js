@@ -1,9 +1,7 @@
 function F3(a5, a6) {
     if (!new.target) { throw 'must be called with new'; }
-    // Replacing input 0 (v10) with v3
     a6 < 2;
     var v11 = new F3(209);
-    // Replacing input 1 (v6) with v11
     this.a = v11;
     this.h = a6;
     this.b = a6;

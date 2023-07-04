@@ -9,23 +9,17 @@ var v17 = Uint16Array << (366505028 <= 3693);
 new F7(v5, 1258193244, v6, 1258193244);
 new F7(v5, 786671981, 1258193244, 786671981);
 var o21 = {
-    // Executing code generator ObjectLiteralComputedPropertyGenerator
     [v17]: 786671981,
-    // Code generator finished
 };
 786671981 !== 366505028;
 function F27(a29, a30, a31, a32) {
     if (!new.target) { throw 'must be called with new'; }
-    // Executing code generator ClassDefinitionGenerator
     class C33 extends F27 {
-        // Executing code generator ClassInstancePropertyGenerator
         c = o21;
-        // Code generator finished
     }
     new C33();
     new C33();
     new C33();
-    // Code generator finished
     this.d = a31;
     this.b = a32;
     this.g = Int16Array;

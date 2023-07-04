@@ -31,12 +31,8 @@ for (let i45 = 0, i46 = v42; i45 < i46, i45; i45++, v39--) {
 }
 var v54 = new Set();
 function f55(a56) {
-    // Splicing instruction 11 (Construct) from 54539DD1-BBB7-4540-B5F5-2274F49B14E9
     new BigUint64Array(36);
-    // Splicing done
-    // Splicing instruction 48 (Construct) from 3B199AA8-BEF2-4902-ADB7-90C0D766FA00
     new f55(1437);
-    // Splicing done
     var o68 = {
         [v54](a63, a64) {
             this[v54] = a63;
@@ -74,24 +70,18 @@ v87 = new t0(v86, v84, v80);
 var v93 = new Int8Array(324, BigInt64Array, -1024, Uint16Array);
 v93[v87 + v87] = v87;
 for (; v83--;) {
-    // Splicing instruction 38 (Compare) from B305709D-EB85-4E93-99BC-CC779A6CE396
-    // Splicing done
-    // Splicing instruction 11 (Compare) from 6C4BE2DE-CD94-464F-B4E4-53BF956C050A
     58947 < 1024;
     var v101 = new Float64Array(32);
-    // Splicing done
     Float64Array == v101;
     new Uint8Array(9);
     new BigInt64Array(2436);
     var v114 = new Int32Array(250);
     var v126 = new Uint16Array(65536);
     new Float32Array(4024);
-    // Splicing instruction 59 (CallMethodWithSpread) from 3072F24C-C8EA-47EF-93E8-ABC2F3457B57
     var v133 = new v87(2);
     var v135 = [-0.0,-0.0,3.2857890492195837e+307,3.110542207215386e+307,5.0,1e-15];
     var v136 = [-1.244836180011601e+308,-705834.9824179617,-3.0,9.261893458495173,-733366.228953332];
     try { v133.join(...BigUint64Array, ...v135, v87, ...v135, ...v136); } catch (e) {}
-    // Splicing done
     var v138 = new BigInt64Array(129);
     v138.__proto__ = v126;
     var v139 = v126[536870888];
@@ -106,7 +96,6 @@ for (; v83--;) {
     var v146 = 0;
     do {
         try { v34.some(v31, v77); } catch (e) {}
-        // Splicing instruction 199 (EndForLoop) from 848E6AEE-F2C8-4FF6-9BB2-F51629510011
         var v149 = [0.1472349460618826,-7.9908113218890815,NaN,-4.0,0.3338672914180091,-0.8959636814601026,-Infinity,471817.67549482314];
         var v150 = [2038317073,-6,1073741824,4294967295];
         var v151 = [-802493575,127,-16,1571,256,-58134];
@@ -171,7 +160,6 @@ for (; v83--;) {
             var v208 = new ArrayBuffer(3686, o206);
             new DataView(v208);
         }
-        // Splicing done
         var g = v145;
         v146++;
     } while (v146 < 4)

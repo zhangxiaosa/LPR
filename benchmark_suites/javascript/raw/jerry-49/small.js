@@ -27,11 +27,9 @@ function f35() {
 }
 class C36 {
     constructor(a38, a39, a40) {
-        // Splicing instruction 7 (CreateArray) from 0FE15541-9485-46F6-B007-87527775AE54
         var v42 = new C36();
         var v44 = [a39,a39,[-32746785,-536870912,8,512,536870912,-2147483648],v42];
         var v45 = [v44,v42,v44,v30];
-        // Splicing done
         [a39,v45,C36,v45];
         var v47 = 1;
         -6.221934520340612e+307 >> -128;

@@ -4,12 +4,8 @@ class C3 {
     b;
     m(a5) {
         Object.defineProperty(this, "d", { writable: true, enumerable: true, value: this });
-        // Splicing instruction 30 (Construct) from 3ACD626E-D9DC-4778-AD9D-32E896209C67
         new BigUint64Array(3277);
-        // Splicing done
-        // Splicing instruction 72 (CallMethod) from 7CAE72DA-F31A-4A5A-AD1E-9978B3E0E20D
         try { C3.lastIndexOf("o", -9007199254740990); } catch (e) {}
-        // Splicing done
         v1--;
         return this;
     }
@@ -122,13 +118,9 @@ var v143 = Symbol.toPrimitive;
 var o151 = {
     [v143]() {
         b = this;
-        // Splicing instruction 4 (Return) from 8C16B24D-99E7-4917-9FE4-BFB069815BC2
         return [Infinity,-372303.72536159283];
-        // Splicing done
-        // Splicing instruction 15 (DestructObjectAndReassign) from BDDA336B-96CC-47C9-9A02-DBBDC3F4A10A
         var v147 = -Infinity;
         ({"g":v147,} = -536870912n);
-        // Splicing done
         return v141;
     },
 };

@@ -3,9 +3,7 @@ new BigUint64Array(257);
 new Float64Array(3);
 var v14 = new Float64Array(3);
 function f15() {
-    // Replacing input 0 (v17) with v15
     var v18 = new f15(16);
-    // Replacing input 0 (v20) with v15
     var v21 = new f15(8);
     new Uint8Array(66);
     var v25 = [-1.0,-3.0,4.06260044186579,-0.0,1.431882971327682e+307,0.021615066800569682,-846031.2858569428,0.9022943533262645,-7.536386895360831];
@@ -20,7 +18,6 @@ function f15() {
             a43 >> a42;
             return 1848580222;
         },
-        // Replacing input 0 (v40) with v37
         2908657034: "boolean",
         "f": 127,
         [127]: 127,
@@ -54,7 +51,6 @@ var v65 = new C52();
 [v49,[v49,v64,v63,v49,v51],f15,v61,v49];
 switch (729048830) {
     case v2:
-        // Replacing input 0 (v11) with v14
         v14.buffer;
         break;
 }

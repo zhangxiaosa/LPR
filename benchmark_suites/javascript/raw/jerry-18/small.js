@@ -1,21 +1,16 @@
 class C3 {
     static set b(a5) {
-        // Replacing input 4 (v1) with v4
         try { a5("lZW", "lZW", this, this); } catch (e) {}
-        // Replacing input 0 (v1) with v2
         "lZW" >= this;
         var t6 = "lZW";
         t6.valueOf = a5;
-        // Replacing input 0 (v7) with v7
         var {"b":v9,"c":v10,"h":v11,} = this;
     }
     constructor(a13, a14) {
         try {
-            // Replacing input 1 (v12) with v3
             super.setInt8("lZW", C3, a14, a14);
         } catch(e16) {
         }
-        // Replacing input 0 (v20) with v3
         new C3();
     }
 }

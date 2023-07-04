@@ -24,14 +24,10 @@ function f24(a25, a26) {
         get e() {
             var v40 = this.__proto__;
             try { a25(a25, v40, this); } catch (e) {}
-            // Splicing instruction 24 (CreateArray) from D86C3886-350E-4038-ADCA-973A7EB95464
-            // Splicing done
-            // Splicing instruction 31 (BeginPlainFunction) from 833EFA0C-ADB9-48FF-9133-258B52BD93E7
             [[-713917.5813299996,0.9455108086161589,-1.7976931348623157e+308,0.7193144944074116,-308.1912224220023]];
             function f48() {
                 return 2650;
             }
-            // Splicing done
             return f23;
         },
         "b": a25,
@@ -82,7 +78,6 @@ class C66 extends f23 {
     constructor(a86, a87) {
         super();
         v56.toString = this[-1];
-        // Splicing instruction 24 (Construct) from 8ED7F6A1-BDBA-4975-A5A8-2093E907AA3A
         [65536,59507789,-15,459358645,256,-268435456,46805];
         [-9007199254740991,-2147483648,536870889];
         [1073741824,38451,4294967297,268435441,9007199254740991,7];
@@ -91,7 +86,6 @@ class C66 extends f23 {
         };
         var v98 = new C66(1000, o96);
         new Int32Array(v98);
-        // Splicing done
         this.valueOf = v57[7];
     }
     [null] = v64;
@@ -104,12 +98,8 @@ var v106 = 10;
 for (; v106--;) {
     var v111 = new Uint32Array(1);
     try { v111.forEach(BigUint64Array, this); } catch (e) {}
-    // Splicing instruction 64 (Construct) from 53FCDA16-C4B1-4744-A32E-2603F4D5D5DE
     new Float32Array(7);
-    // Splicing done
-    // Splicing instruction 45 (Construct) from 4176295F-B65B-41B6-A4B7-7D459B9E2A85
     new BigInt64Array(7);
-    // Splicing done
     var v120 = new f24(C66, null);
     v120[1] = v63;
     switch (1073741824) {

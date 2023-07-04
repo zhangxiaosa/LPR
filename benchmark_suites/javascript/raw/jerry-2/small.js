@@ -54,7 +54,6 @@ class C37 {
             this.a = 7;
             this.c = 7;
         }
-        // Splicing instruction 120 (Construct) from BB007D51-9159-4ADE-844A-57988C0EFC47
         function F48(a50, a51, a52) {
             if (!new.target) { throw 'must be called with new'; }
             this.h = a51;
@@ -134,7 +133,6 @@ class C37 {
             Object.defineProperty(v64, "a", { writable: true, configurable: true, value: -13 });
         }
         new F48(-5n, -16n, -5n);
-        // Splicing done
         for (let i133 = 0, i134 = 10;
             (() => {
                 var v135 = i133 < i134;
@@ -159,10 +157,7 @@ new C37();
 new C37();
 new C37();
 function f156() {
-    // Splicing instruction 1 (Construct) from D748F1E3-1568-4231-B986-301FEB51B74D
     var v157 = new f156();
-    // Splicing done
-    // Splicing instruction 49 (Construct) from CC434E7C-2C35-4602-A272-E911BA73D171
     function f159() {
         return null;
     }
@@ -193,7 +188,6 @@ function f156() {
     }
     var v183 = new F178(v175, v176, v175);
     new v157(v175, v183);
-    // Splicing done
     var v185 = 4;
     var o212 = {
         "f": -6,
@@ -249,10 +243,7 @@ class C234 {
         }
         return a237;
     }
-    // Splicing instruction 17 (ClassAddStaticProperty) from FB03CBBD-7E03-4F54-A5AA-6AD6B1D61040
     static c;
-    // Splicing done
-    // Splicing instruction 149 (EndClassStaticSetter) from B0B6573E-52AD-48F9-9144-C752C9DB0E76
     static set e(a243) {
         C234[a243];
         this in this;
@@ -261,7 +252,6 @@ class C234 {
         [507652.1956939511,2.0,2.0,1000000000000.0,1.6455261447909916e+308,-589.2545468737604,4.0,-1.7976931348623157e+308];
         [-3.0,-1.0,1000000.0,892.4858451415673,-173.15465252157594,-0.0];
     }
-    // Splicing done
     e;
     p(a250, a251, a252, a253) {
         super.a = a253;
@@ -297,10 +287,7 @@ function* f274(a275, a276, a277) {
     var o295 = {
         "done": v289,
         "value": v287,
-        // Splicing instruction 59 (ObjectLiteralAddProperty) from E9F39C36-556A-4E4C-BF88-86A2D5CAE468
         "f": a276,
-        // Splicing done
-        // Splicing instruction 32 (EndObjectLiteralMethod) from CD1AA889-C24B-4D61-B20A-197442391520
         next() {
             f5--;
             var v293 = f5 == 0;
@@ -310,7 +297,6 @@ function* f274(a275, a276, a277) {
             };
             return o294;
         },
-        // Splicing done
     };
     return o295;
     var v296 = 806.5718926821917 >> -4294967295;

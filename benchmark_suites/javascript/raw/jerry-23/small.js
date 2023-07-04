@@ -95,40 +95,20 @@ var v82 = f63(v81);
 var v83 = f63(v81);
 function F84(a86, a87) {
     if (!new.target) { throw 'must be called with new'; }
-    // Executing code generator ConstructorCallGenerator
     var v88 = new F84(a86, this);
-    // Code generator finished
-    // Executing code generator BuiltinGenerator
-    // Code generator finished
-    // Executing code generator ComputedPropertyAssignmentGenerator
     Symbol[a87] = Symbol;
-    // Code generator finished
-    // Executing code generator PropertyRetrievalGenerator
-    // Code generator finished
-    // Executing code generator DestructArrayAndReassignGenerator
     v88.b;
     [] = v3;
-    // Code generator finished
     this.c = a86;
     this.h = "g";
     var o103 = {
         o(a92, a93, a94, a95) {
             var o98 = {
-                // Executing code generator ObjectLiteralPropertyGenerator
                 "h": a93,
-                // Code generator finished
-                // Executing code generator ObjectLiteralCopyPropertiesGenerator
                 ...v16,
-                // Code generator finished
-                // Executing code generator ObjectLiteralPropertyGenerator
                 "a": v83,
-                // Code generator finished
-                // Executing code generator ObjectLiteralPropertyGenerator
                 "c": -2147483648n,
-                // Code generator finished
-                // Executing code generator ObjectLiteralPropertyGenerator
                 "e": this,
-                // Code generator finished
                 "maxByteLength": 4294967295,
             };
             var v100 = new ArrayBuffer(73, o98);

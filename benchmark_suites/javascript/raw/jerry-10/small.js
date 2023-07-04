@@ -3,7 +3,6 @@ new Uint16Array(204);
 new BigUint64Array(6);
 class C16 {
     constructor(a18) {
-        // Splicing instruction 57 (CreateArray) from 4BCFB6EE-CF3A-4F1B-927C-DBCB2F7723F7
         var v21 = new C16(512);
         function F22(a24, a25, a26, a27) {
             if (!new.target) { throw 'must be called with new'; }
@@ -11,7 +10,6 @@ class C16 {
             this.b = a24;
         }
         var v28 = new F22(512, 512, 512, 512);
-        // Splicing done
         [v21,v28];
         Math.log1p(536870888);
         Math.tanh(2147483647);
@@ -46,7 +44,6 @@ function f71() {
     var o116 = {
         ..."split",
         set a(a76) {
-            // Splicing instruction 69 (Compare) from 79D5AC2F-8772-4683-BFD9-28DE4D595CDA
             [0,-2,-9007199254740990,129,15,-642244868];
             [-1678695335,1024,1073741824];
             for (let i81 = 0, i82 = 10;
@@ -72,7 +69,6 @@ function f71() {
                 })();
                 i81++, i82--) {
             }
-            // Splicing done
             [3,129,4294967295,1024,-536870912,49977,50020,40881,10702,1291156262];
         },
         get f() {
@@ -119,10 +115,7 @@ if (v143) {
     Math.acos(126);
     Math.cos(v163);
     var o176 = {
-        // Splicing instruction 5 (ObjectLiteralSetPrototype) from 9388A5A2-B208-4F46-B802-7EE6CECE5017
         __proto__: v164,
-        // Splicing done
-        // Splicing instruction 18 (BeginObjectLiteralMethod) from 453633E0-E3FB-4212-910A-A0CBBBD08319
         o(a169, a170) {
             v160.buffer;
             try {
@@ -131,21 +124,18 @@ if (v143) {
             }
             return v160;
         },
-        // Splicing done
         /*
         __proto__: v160,
         */
         ...2,
         6: 2,
         "c": 9,
-        // Splicing instruction 22 (BeginObjectLiteralMethod) from 7CEC08B1-1EBD-480E-A085-77E183DEDB4D
         valueOf() {
             v160.toString = v160;
             v36 = this;
             try { v126.lastIndexOf(this, v165); } catch (e) {}
             return v160;
         },
-        // Splicing done
     };
 } else {
     var t155 = "c";

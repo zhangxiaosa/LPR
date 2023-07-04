@@ -1,16 +1,12 @@
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.b = -2079893588;
-    // Executing code generator ClassDefinitionGenerator
     class C3 extends F0 {
-        // Executing code generator ClassInstanceComputedPropertyGenerator
         [-2079893588];
-        // Code generator finished
     }
     new C3();
     new C3();
     new C3();
-    // Code generator finished
 }
 new F0();
 new F0();

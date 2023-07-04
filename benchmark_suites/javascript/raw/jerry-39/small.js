@@ -5,17 +5,11 @@ class C3 {
         return "boolean";
     }
     constructor(a10, a11) {
-        // Executing code generator TypeTestGenerator
-        // Code generator finished
-        // Executing code generator ConstructorCallGenerator
         super.a;
         typeof a10 === "function";
         var v16;
         try { v16 = new C3(); } catch (e) {}
-        // Code generator finished
-        // Executing code generator ComputedPropertyAssignmentGenerator
         this[this] = v16;
-        // Code generator finished
     }
     static get e() {
         this.__proto__ = "boolean";

@@ -1,15 +1,9 @@
 function f0() {
-    // Splicing instruction 45 (Update) from 180CB5D6-B23E-4A43-8595-F3024B3D387B
     var v4 = -536870912n;
     v4 |= v4;
-    // Splicing done
-    // Splicing instruction 28 (DeleteComputedProperty) from 1AAB6E2E-6C2C-4E3C-9481-6B94443D234B
     var v5 = new f0();
-    // Splicing done
-    // Splicing instruction 1 (Construct) from 277A6E99-8B93-4D36-AABE-5D461D2F0665
     var v6 = delete v5[f0];
     new WeakSet();
-    // Splicing done
     var o26 = {
         "g": -485.92064409108286,
         __proto__: "setFloat64",
@@ -22,26 +16,16 @@ function f0() {
             [1.6927001827061794,NaN];
         },
         "a": -485.92064409108286,
-        // Splicing instruction 51 (ObjectLiteralAddProperty) from 7DE54C25-72A6-4A79-A7F6-C1B16AF5E317
         "value": -485.92064409108286,
-        // Splicing done
-        // Splicing instruction 6 (ObjectLiteralCopyProperties) from DF296B7A-6CC5-4CDD-A5DC-51CF4F2FABC9
         ...-485.92064409108286,
-        // Splicing done
-        // Splicing instruction 10 (ObjectLiteralCopyProperties) from FEFFF3F8-943A-43A7-A45E-1D603E8E7D5E
         ...v5,
-        // Splicing done
-        // Splicing instruction 52 (ObjectLiteralAddProperty) from DFDDEEE1-9039-4CB4-B840-075B6A7BC25A
         "done": v6,
-        // Splicing done
-        // Splicing instruction 5 (BeginObjectLiteralMethod) from B9A6A6AD-F3DE-482D-84BF-348DF9546114
         valueOf(a16) {
             new Float64Array(8);
             new Int32Array(1398);
             new Int16Array(3726);
             return 8;
         },
-        // Splicing done
     };
     return o26;
 }
@@ -60,7 +44,6 @@ function f46() {
 function f47(a48, a49) {
     new Uint8Array(0);
     var v55 = new Uint32Array(191);
-    // Splicing instruction 37 (BinaryOperation) from 6B3242C6-9B93-4748-80D9-5C69A3A1C099
     function f58() {
     }
     function f59() {
@@ -76,21 +59,15 @@ function f47(a48, a49) {
         };
         return o64;
     }
-    // Splicing done
     ([f59()])[212580945] % a49;
     new Uint32Array(64);
     for (var v73 in v55) {
         `p${64}5v`;
     }
-    // Splicing instruction 63 (BinaryOperation) from F99AC752-B8F4-4E7B-9511-9FFB99AE901B
-    // Splicing done
-    // Splicing instruction 56 (BeginPlainFunction) from 10CBCCBE-E34F-4DF3-83E6-46B97E8F2540
     var v75 = 10000 >> 10000;
     function f76(a77) {
         return a77;
     }
-    // Splicing done
-    // Splicing instruction 49 (BinaryOperation) from 75D64CA5-73C3-4521-AB16-023750B9CA25
     var v79 = [-128,-9007199254740990];
     function f81() {
         return v75;
@@ -102,7 +79,6 @@ function f47(a48, a49) {
         t101[6] = v87;
         return a83;
     };
-    // Splicing done
     for (let i91 = 0; i91 < 2; i91++) {
         var o99 = {
             "maxByteLength": 139,
@@ -114,7 +90,6 @@ function f47(a48, a49) {
         p(a105, a106, a107) {
             for (let [i126, i127] = (() => {
                     var v108 = 0;
-                    // Splicing instruction 56 (BeginObjectLiteral) from 812FE8C7-766C-42DD-876C-8522EE1BF97D
                     var v111 = [9,-2,2147483649,128,-1067,9];
                     var v112 = [11,4,129,4096,268435456,-15,-62310,59443];
                     var o125 = {
@@ -133,7 +108,6 @@ function f47(a48, a49) {
                             super.d = a124;
                         },
                     };
-                    // Splicing done
                     return [v108, 10];
                 })();
                 5 < i127;
@@ -149,12 +123,9 @@ f47(v44, v45);
 v43[f47(v44, v45)] += 0;
 for (var v145 = 0; v145 < 26; v145++) {
     var v146 = [-1044969985,-1008376301,1271674867,65537,268435440,1135904084];
-    // Splicing instruction 73 (Construct) from 1599114A-2457-42F6-8B54-D4B56CCFFDD8
     var v149;
     try { v149 = v139(v27, v139); } catch (e) {}
     try { new v139(v149, 1073741824, v139, v149, -2147483649); } catch (e) {}
-    // Splicing done
-    // Splicing instruction 72 (EndPlainFunction) from 1B27A776-71FE-41AF-8A16-3370B2FD8768
     function f151() {
         var o163 = {
             n(a156, a157) {
@@ -199,7 +170,6 @@ for (var v145 = 0; v145 < 26; v145++) {
         };
         return o194;
     }
-    // Splicing done
     [1928047820,-268435456,32902,-65535,4];
     [9];
     try { v146.fill(v146, -65537, v145); } catch (e) {}

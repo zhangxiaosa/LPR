@@ -6,10 +6,8 @@ new Uint32Array(5);
 new Uint8Array(10);
 new BigInt64Array(1543);
 function f14() {
-    // Splicing instruction 18 (CreateArray) from 9B32D1F5-DE5B-4303-8AD6-A4F1002FBBA7
     var v22 = new f14("F", 7, 4, f14);
     var v23 = new f14(ArrayBuffer, 4, 4, v22);
-    // Splicing done
     [[f14,v23,[v4,v4,v23,"Ep"],v4,4294967296],"Ep"];
     var o27 = {
         "maxByteLength": 216,

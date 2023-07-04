@@ -15,7 +15,6 @@ function F22() {
     function f28(a29, a30) {
         v27 / --v25;
     }
-    // Replacing input 0 (v33) with v22
     new F22(f28);
 }
 var v35 = new F22();
@@ -66,12 +65,10 @@ function f73() {
             `string`;
             var v117 = 0;
             while (v117 < 5) {
-                // Replacing input 0 (v115) with v2
                 v115 = v99;
                 var v120 = v2[0];
                 var v121 = v120.__proto__;
                 try { v83.get(v120); } catch (e) {}
-                // Replacing input 1 (v117) with v106
                 v121 = 673;
                 v117++;
             }
@@ -148,7 +145,6 @@ for (; v176--;) {
                                 new t0(v209, v202, this);
                                 } catch (e) {}
                             }
-                            // Replacing input 1 (v202) with v203
                             static [v201] = C203;
                             h = v200;
                             1073741824;
@@ -159,7 +155,6 @@ for (; v176--;) {
                         var v216 = new Uint16Array(-9007199254740990);
                         v216[92] = Uint8Array;
                         for (var v218 = 0; v218 < 32; v218++) {
-                            // Replacing input 1 (v218) with v148
                             v216["p" + v148] = v218;
                         }
                         return v212;
@@ -200,7 +195,6 @@ for (; v176--;) {
                         __proto__: a188,
                         "d": Symbol,
                         "e": a266,
-                        // Replacing input 0 (v260) with v5
                         ...v5,
                         ...v257,
                         get g() {
@@ -219,10 +213,8 @@ for (; v176--;) {
                             return this;
                         },
                     };
-                    // Replacing input 0 (v278) with v278
                     return o278;
                 }
-                // Replacing input 0 (v257) with v188
                 var v279 = f264(1024, 934);
                 a188.a = f264;
                 try { v257.delete(v279); } catch (e) {}
@@ -241,12 +233,10 @@ for (; v176--;) {
         var v295 = (v291 = v287)[0];
         var v296 = v295.__proto__;
         try { v284.get(v295); } catch (e) {}
-        // Replacing input 0 (v296) with v148
         v148 = 0;
         v176 ? v296 : "0M6o";
         var t246 = "reverse";
         t246["reverse"] = 2;
-        // Replacing input 0 (v292) with v295
         v295++;
     }
     var v303 = f187(0.2422277660590586);
@@ -274,6 +264,5 @@ for (; v176--;) {
         this.__proto__;
         v329++;
     } while (v329 < 0)
-    // Replacing input 0 (v179) with v186
     e = 0.2422277660590586;
 }

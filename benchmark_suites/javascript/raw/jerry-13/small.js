@@ -11,7 +11,6 @@ function f15(a16, a17) {
         "g": a16,
         "e": a16,
         "h": -65537,
-        // Replacing input 0 (v17) with v10
         "b": v10,
         "f": a16,
         "c": 127,
@@ -34,7 +33,6 @@ function F22(a24, a25, a26) {
         this.c = -1073741824;
     }
     var v30 = new F27();
-    // Replacing input 0 (v27) with v22
     var v31 = new F22();
     var v32 = new F27();
     var v33 = [v31,v30,v31];
@@ -54,9 +52,7 @@ function F22(a24, a25, a26) {
             ...a40,
             ...a40,
             get h() {
-                // Replacing input 0 (v34) with v41
                 var v46 = a41--;
-                // Replacing input 0 (v30) with v43
                 this * v34;
                 var v48 = v46--;
                 try { v32.m(v48, a41, this, v48); } catch (e) {}
@@ -93,12 +89,10 @@ function f72(a73, a74, a75) {
         3: a73,
         [f71](a77, a78, a79) {
             a75.__proto__ = v70;
-            // Replacing input 0 (v5) with v74
             return a74;
         },
         ...v20,
     };
-    // Replacing input 0 (v83) with v83
     return o83;
 }
 var v84 = f72(255, -1073741824, v21);

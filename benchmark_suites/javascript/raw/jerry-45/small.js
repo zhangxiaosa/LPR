@@ -8,24 +8,17 @@ function f4(a5, a6) {
         "h": v1,
         "e": a5,
         6: v1,
-        // Splicing instruction 24 (ObjectLiteralAddProperty) from 6E16C321-165F-4F85-9846-7469976797B5
         "construct": f0,
-        // Splicing done
-        // Splicing instruction 30 (BeginObjectLiteralComputedMethod) from 8BA5E4A7-76FC-486B-8082-E2903D6221C3
         [a5]() {
             this.c = a5;
             try { new a5(this, a5, this); } catch (e) {}
             return a5;
         },
-        // Splicing done
         __proto__: a6,
         "g": v1,
         "a": v2,
         ...a5,
-        // Splicing instruction 77 (ObjectLiteralAddProperty) from FDD10C8E-C06C-4BE3-8810-27E2B9433440
         "value": a6,
-        // Splicing done
-        // Splicing instruction 13 (BeginObjectLiteralMethod) from FEFFF3F8-943A-43A7-A45E-1D603E8E7D5E
         toString(a10, a11, a12) {
             function f13(a14, a15) {
                 for (var v16 = 0; v16 < 32; v16++) {
@@ -36,7 +29,6 @@ function f4(a5, a6) {
             f13(a6, a6);
             return this;
         },
-        // Splicing done
         ...a5,
         ...v2,
         "f": a5,
@@ -52,13 +44,9 @@ f4(v2, v2);
 [268435456,-31634,1827572619,4];
 function F27() {
     if (!new.target) { throw 'must be called with new'; }
-    // Splicing instruction 17 (Construct) from BF2AFB90-AC35-4E15-B536-FA37890D8BD4
     new F27(409);
-    // Splicing done
-    // Splicing instruction 24 (Reassign) from 80AA29F6-F3DB-4710-9AF2-72361207ADB8
     var v37 = new Int8Array(252);
     var v39 = ["object",20304];
-    // Splicing done
     v37 = Reflect.apply(("string").split, "object", v39);
     this.c = 64;
     this.b = 64;

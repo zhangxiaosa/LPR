@@ -55,20 +55,14 @@ function f63(a64) {
         [a64]: a64,
         "e": "p",
     };
-    // Splicing instruction 28 (Construct) from 0C9D53EC-F1CD-4F4D-9A1A-65C8F3C831B0
     new f63(v45);
-    // Splicing done
-    // Splicing instruction 5 (Construct) from A22EF2E5-90C3-4D2D-B073-EC1A27A2E620
     new Float64Array(1);
-    // Splicing done
-    // Splicing instruction 20 (Construct) from 0426F911-1E6C-4E2F-A626-CDC81B9AEC02
     function F77(a79, a80, a81) {
         if (!new.target) { throw 'must be called with new'; }
         this.d = a81;
         this.h = 65537n;
     }
     new F77(127, 31094n, 127);
-    // Splicing done
     return o69;
 }
 var v83 = f63(10);
@@ -100,10 +94,7 @@ function F85(a87, a88) {
                 new a88();
                 return this;
             },
-            // Splicing instruction 187 (ObjectLiteralAddProperty) from 5795A10B-EFEA-46E6-81F8-3C1CA1048D7B
             "e": -536870912,
-            // Splicing done
-            // Splicing instruction 301 (EndObjectLiteralMethod) from C328E3F4-A6BF-4E56-83CA-886BCCFD462C
             toString(a113, a114, a115) {
                 class C117 {
                     toString(a119, a120) {
@@ -129,7 +120,6 @@ function F85(a87, a88) {
                 f123(-536870912, -536870912);
                 return this;
             },
-            // Splicing done
         };
         return o130;
     }
@@ -142,7 +132,6 @@ function F85(a87, a88) {
             new Uint8Array(-30123);
             var v139 = new Set(v42);
             for (var v140 = 0; v140 < 32; v140++) {
-                // Splicing instruction 46 (EndPlainFunction) from 2E2081F1-B7EC-481B-894E-B983D8B5D89A
                 var v142 = "p" + v140;
                 var v143 = 40413;
                 var v144 = -Infinity;
@@ -185,7 +174,6 @@ function F85(a87, a88) {
                     };
                     return o171;
                 }
-                // Splicing done
                 v139[v142] = v140;
             }
             new a134(8);

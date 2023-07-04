@@ -1,11 +1,6 @@
 class C3 {
-    // Splicing instruction 20 (ClassAddStaticProperty) from 8A36688E-AA4D-4A31-81E1-758712B18266
     static e = C3;
-    // Splicing done
-    // Splicing instruction 32 (ClassAddInstanceComputedProperty) from E04F44C8-17F2-41C9-A287-799371EBDED7
     [-9223372036854775807] = C3;
-    // Splicing done
-    // Splicing instruction 62 (EndClassStaticMethod) from 22E392AF-4644-4BFB-865F-E0244802A560
     static n(a5, a6) {
         var v8 = Symbol.iterator;
         var o17 = {
@@ -27,24 +22,19 @@ class C3 {
         };
         return o17;
     }
-    // Splicing done
     n(a19) {
         a19[a19] = "C";
-        // Splicing instruction 15 (BeginRepeatLoop) from A8B253D8-9C5F-4CCD-8729-43E35997FC82
         var v21 = [5.0,1000.0,82996.90358478599,0.5312329754301782,1.0,-0.0,3.0,-5.083591466170817e+307,-5.0,-2.0];
         for (var v22 = 0; v22 < 32; v22++) {
             v21["p" + v22] = v22;
         }
-        // Splicing done
         new Float32Array(129);
-        // Splicing instruction 22 (BeginWhileLoopHeader) from 555BD978-CAF9-4E96-9874-90A500892292
         var v28 = new Int16Array(129);
         var v29 = 0;
         while (v29 < 6) {
             v28[a19] *= v29;
             v29++;
         }
-        // Splicing done
         new Uint16Array(6);
         new BigUint64Array(0);
         return "C";
@@ -62,13 +52,8 @@ var v45 = v44 - v44;
 [2.2250738585072014e-308,-1000000000.0,691695.2136238609,987031.6285262613];
 class C56 {
     constructor(a58) {
-        // Splicing instruction 27 (Construct) from 1EB66DC6-629F-4B2A-9776-0580D10FB40F
         new C56(4096);
-        // Splicing done
-        // Splicing instruction 13 (Construct) from DA301CBE-8715-4BAE-8F6D-91E077FC7843
         new a58(2898);
-        // Splicing done
-        // Splicing instruction 16 (BeginSwitch) from F26A6E5B-B46D-4644-B265-994DBF12B22F
         var v68 = new Uint8Array(3401);
         switch (1073741824) {
             case 0:
@@ -85,7 +70,6 @@ class C56 {
                 new F73(1073741824, 1156380912, v80, v79);
                 break;
         }
-        // Splicing done
         Math.log1p(536870888);
         Math.tanh(2147483647);
         +-426707873;
@@ -104,16 +88,12 @@ var v95 = v92.constructor;
 class C96 extends v95 {
     d = v91;
     f;
-    // Splicing instruction 9 (ClassAddInstanceComputedProperty) from E64AEB07-F394-4B4A-BA50-4C9AAA376278
     [v95];
-    // Splicing done
-    // Splicing instruction 100 (BeginClassInstanceMethod) from 93158D40-9676-4AC0-8505-F6D8DECE3576
     n(a98, a99) {
         var v100 = C96();
         v100 = C96;
         return C96;
     }
-    // Splicing done
     a;
 }
 var v104 = new C96();

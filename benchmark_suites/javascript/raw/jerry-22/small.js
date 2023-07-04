@@ -7,10 +7,7 @@ class C3 {
         this[257] = a5;
         return a5;
     }
-    // Splicing instruction 15 (ClassAddInstanceElement) from DCEDDE4B-F52C-4950-84A8-2DA0E92274C6
     6 = C3;
-    // Splicing done
-    // Splicing instruction 12 (BeginClassConstructor) from AAE6E9B9-F386-4933-890A-3F9D320F826C
     constructor(a8, a9) {
         var v10 = 0;
         while (v10 < 10) {
@@ -27,7 +24,6 @@ class C3 {
             v10++;
         }
     }
-    // Splicing done
     /*
     constructor(a26, a27) {
         var o34 = {
@@ -40,7 +36,6 @@ class C3 {
                 return a29;
             },
         };
-        // Splicing instruction 20 (Construct) from 603AB7C6-E659-4249-82A2-4D68B9063C4F
         function F37(a39) {
             if (!new.target) { throw 'must be called with new'; }
             this.d = a39;
@@ -49,7 +44,6 @@ class C3 {
         }
         var v40 = new F37("trim");
         new Int16Array(v40);
-        // Splicing done
         new Proxy(this, o34);
     }
     */
@@ -73,13 +67,8 @@ if (Float64Array == v59) {
     try { v62.copyWithin(32, 1245, 6); } catch (e) {}
 }
 function f69() {
-    // Splicing instruction 16 (Compare) from FA28A5E8-CD93-4DE5-B045-2A8C8A0AE91D
-    // Splicing done
-    // Splicing instruction 14 (Construct) from 658AB3E0-C7D1-4574-B7D7-00F6E5D25E8D
     -65536 < 5;
     new BigInt64Array(-907488707);
-    // Splicing done
-    // Splicing instruction 34 (CallMethod) from B825D5CC-886A-4761-9655-8A11CB1AF5A3
     class C79 {
         get g() {
             this[6] %= 516212954;
@@ -96,7 +85,6 @@ function f69() {
     }
     var v83 = new C79();
     try { v83.p(-23960); } catch (e) {}
-    // Splicing done
     var o88 = {
         "h": "p",
         get f() {
@@ -149,7 +137,6 @@ function f128(a129, a130, a131) {
                 1606;
                 static [a129] = 1073741824n;
                 f;
-                // Splicing instruction 10 (BeginClassInstanceGetter) from 180CB5D6-B23E-4A43-8595-F3024B3D387B
                 get a() {
                     this.h;
                     function f142(a143) {
@@ -163,7 +150,6 @@ function f128(a129, a130, a131) {
                     f142(6);
                     return 257;
                 }
-                // Splicing done
             }
             return a130;
         },

@@ -10,19 +10,13 @@ function F4(a6) {
 function F7(a9, a10) {
     if (!new.target) { throw 'must be called with new'; }
     this.f = v0;
-    // Executing code generator ClassDefinitionGenerator
     class C11 extends F7 {
-        // Executing code generator ClassInstancePropertyGenerator
         f;
-        // Code generator finished
-        // Executing code generator ClassStaticElementGenerator
         static 332;
-        // Code generator finished
     }
     new C11();
     new C11();
     new C11();
-    // Code generator finished
 }
 var v15 = new F7(v0, F7);
 new F7(v2, v1);
@@ -60,23 +54,13 @@ var v66 = new F60(v55, v65);
 var v67 = [13,-48246,-9007199254740990,-25190824,4294967297,255,268435439,-5,64,2147483647];
 var v68 = [-9223372036854775807,-2147483649];
 for (let [i86, i87] = (() => {
-        // Executing code generator ReassignmentGenerator
-        // Code generator finished
-        // Executing code generator BinaryOperationGenerator
         v35 = 0;
         var v71 = 268435439n / v66;
-        // Code generator finished
-        // Executing code generator MethodCallGenerator
         var v72;
         try { v72 = v67.lastIndexOf(v71, v71); } catch (e) {}
-        // Code generator finished
-        // Executing code generator BinaryOperationGenerator
-        // Code generator finished
-        // Executing code generator NumberComputationGenerator
         0 >> v72;
         var v79 = (3.0 << 3.0) * 257;
         var v81 = ~(v71 << 3.0);
-        // Code generator finished
         v79 / (v81 / v81);
         Math.acos(3.0);
         return [0, 10];
@@ -96,14 +80,8 @@ var v100 = [2147483649,4,-2147483649,-35584,322119976,-413972777,1255752966,2147
 function f101(a102, a103, a104) {
     var v105 = v54.length;
     try { v58.splice(v105, v105, a102, v66, a103, v105); } catch (e) {}
-    // Executing code generator BigIntGenerator
-    // Code generator finished
-    // Executing code generator SubroutineReturnGenerator
     return 0n;
-    // Code generator finished
-    // Executing code generator UpdateGenerator
     v105 += v105;
-    // Code generator finished
     var v111 = new WeakMap();
     class C112 extends WeakMap {
         toString(a114) {

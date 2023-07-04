@@ -11,15 +11,9 @@ var v15 = [6.825153057690937,-2.0];
 var v16 = [-8.780309397007481e+307,-2.0,-2.0,-8.780309397007481e+307,-2.0];
 function F24(a26, a27, a28, a29) {
     if (!new.target) { throw 'must be called with new'; }
-    // Executing code generator ConstructorCallGenerator
     new F24(this, v16, v10, v15);
-    // Code generator finished
-    // Executing code generator WellKnownPropertyLoadGenerator
-    // Code generator finished
-    // Executing code generator ComputedPropertyAssignmentGenerator
     this[Symbol.isConcatSpreadable];
     v10[F24] = v1;
-    // Code generator finished
     this.d = -15766;
     this.a = a27;
     this.f = undefined;
@@ -27,9 +21,7 @@ function F24(a26, a27, a28, a29) {
 var v34 = new F24(536870912, -2, -9223372036854775808, 1073741824);
 var v35 = new F24(-9223372036854775808, 1073741824, -1506674662, -9223372036854775808);
 for (var v36 = 0; v36 < 79; v36++) {
-    // Executing code generator BuiltinObjectInstanceGenerator
     new Array(5);
-    // Code generator finished
 }
 var v40 = new F24(-9223372036854775808, 536870912, 1073741824, -2);
 v34.d *= 536870912;

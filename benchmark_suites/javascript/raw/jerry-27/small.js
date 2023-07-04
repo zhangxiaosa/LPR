@@ -1,27 +1,15 @@
 class C3 {
-    // Executing code generator ClassInstanceSetterGenerator
     set e(a5) {
-        // Executing code generator MethodCallGenerator
         var v6;
         try { v6 = this.n(10n); } catch (e) {}
-        // Code generator finished
-        // Executing code generator ComparisonGenerator
-        // Code generator finished
         v6 < -1528519756n;
     }
-    // Code generator finished
-    // Executing code generator ClassConstructorGenerator
     constructor(a9, a10) {
-        // Executing code generator ConstructorCallGenerator
         try { new a10(-1528519756n, a10); } catch (e) {}
-        // Code generator finished
-        // Executing code generator TypedArrayGenerator
         new Int8Array(128);
         new BigUint64Array(14);
         new Uint8Array(3463);
-        // Code generator finished
     }
-    // Code generator finished
 }
 var v21 = new C3(10n, C3);
 new C3(-1528519756n, -1528519756n);
@@ -37,15 +25,7 @@ var v33;
 try { v33 = v31["m"](F24); } catch (e) {}
 v29[v33] = v31;
 if (+v31) {
-    // Executing code generator MethodCallWithDifferentThisGenerator
-    // Code generator finished
-    // Executing code generator PrototypeOverwriteGenerator
     v31.__proto__ = v21;
-    // Code generator finished
-    // Executing code generator ComputedPropertyUpdateGenerator
     v31[v21] ^= v33;
-    // Code generator finished
 } else {
-    // Executing code generator BigIntGenerator
-    // Code generator finished
 }

@@ -35,23 +35,13 @@ function f19() {
                     } catch(e52) {
                     }
                     var v56 = 65537 % 1503664391;
-                    // Executing code generator SuperPropertyAssignmentGenerator
                     var v57 = v56 << this;
                     1503664391 | 65537;
                     super.d = v29;
-                    // Code generator finished
-                    // Executing code generator BinaryOperationGenerator
-                    // Code generator finished
-                    // Executing code generator ComputedPropertyUpdateGenerator
                     Math[v25] |= Reflect | v57;
-                    // Code generator finished
-                    // Executing code generator MethodCallGenerator
                     var v60;
                     try { v60 = v15.join(a50); } catch (e) {}
-                    // Code generator finished
-                    // Executing code generator PropertyAssignmentGenerator
                     Math.d = v60;
-                    // Code generator finished
                     -65537;
                     !(this - v56);
                 }
@@ -76,20 +66,12 @@ var v80 = new F74(-9223372036854775807n, v68, 1073741825n, v68);
 var v81 = new F74(-9223372036854775807n, v68, 10000n, v70);
 var v82 = new F74(-9223372036854775807n, v68, 1073741825n, v70, F74, v68, v80);
 function f83(a84, a85, a86) {
-    // Executing code generator ElementAssignmentGenerator
     v81[512] = Int8Array;
-    // Code generator finished
-    // Executing code generator ConstructorCallGenerator
     new Uint16Array(v68);
-    // Code generator finished
-    // Executing code generator ConstructorCallGenerator
     new f83(a84, v18, -1024);
-    // Code generator finished
-    // Executing code generator TrivialFunctionGenerator
     function f89() {
         return Int8Array;
     }
-    // Code generator finished
     var o98 = {
         [a85]: a86,
         "c": a84,

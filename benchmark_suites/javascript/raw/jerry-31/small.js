@@ -1,13 +1,8 @@
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.a = 10;
-    // Splicing instruction 52 (Construct) from F0176B47-10A7-44A5-9F44-4E8189404F69
     var v4 = new WeakSet();
-    // Splicing done
-    // Splicing instruction 14 (Construct) from F489E23F-6DD6-4C2F-A702-A38A46B64D51
     new F0(2233);
-    // Splicing done
-    // Splicing instruction 170 (EndObjectLiteral) from 64EDF978-CBC5-46D0-9336-3833E31F3099
     var v7 = [-4096];
     v7--;
     function f9() {
@@ -29,7 +24,6 @@ function F0() {
             return v7;
         },
     };
-    // Splicing done
     this.c = 10;
 }
 new F0();
@@ -42,9 +36,7 @@ new Uint16Array(2303);
 new Uint16Array(1);
 class C54 {
     static ["function"];
-    // Splicing instruction 96 (ClassAddInstanceComputedProperty) from 5884E036-2652-4C96-BF92-9BBC4EDEB961
     [C54];
-    // Splicing done
     6 = "DD";
     static set g(a56) {
         this.h = this;
@@ -125,28 +117,22 @@ function f130(a131, a132) {
                     return i139 < i140;
                 })();
                 (() => {
-                    // Splicing instruction 775 (EndPlainFunction) from D1E0DD24-AEEC-46CB-AFB2-9270046B57F7
                     i139++;
                     function f161() {
                         return 8;
                     }
-                    // Splicing done
-                    // Splicing instruction 30 (Reassign) from 6F2D5598-48D9-430D-BD22-E176E6A4543A
-                    // Splicing done
                     v63 = 127;
                     i140--;
                 })()) {
             }
             return -65537;
         },
-        // Splicing instruction 30 (BeginObjectLiteralSetter) from A67E6D65-9881-4DA2-B0F6-741D951794A1
         set f(a170) {
             this.__proto__ = 4072;
             a170.toString = 4072;
             try { a132.delete(a131); } catch (e) {}
             ~a131;
         },
-        // Splicing done
     };
     return o176;
 }

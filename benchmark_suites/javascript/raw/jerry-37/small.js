@@ -47,7 +47,6 @@ for (let [i63, i64] = (() => {
         var v55 = 2 >> v31;
         Math.floor(2);
         var v57 = ~v55;
-        // Mutating next operation
         v31 + ++v57;
         v31--;
         v57 % v31;

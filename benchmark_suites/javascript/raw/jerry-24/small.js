@@ -1,12 +1,10 @@
 function f0() {
     function F4() {
         if (!new.target) { throw 'must be called with new'; }
-        // Replacing input 1 (v0) with v4
         this.b = F4;
         this.f = f0;
         this.d = f0;
     }
-    // Replacing input 0 (v4) with v0
     new f0();
     var v7 = [-8];
     var v8 = [3,-14,5587];
@@ -18,13 +16,11 @@ function f0() {
                 [-634701.3485965286,1.0,1000000.0,-4.0,-699.0441507339675,1.7976931348623157e+308,-295532.57760445087];
                 function F19(a21, a22) {
                     if (!new.target) { throw 'must be called with new'; }
-                    // Replacing input 0 (v20) with v21
                     a21.b = v7;
                 }
                 var v23 = new F19(a10, v8);
                 new F19(v23, a10);
                 var v25 = new F19(a10, a12);
-                // Replacing input 0 (v6) with v25
                 return v25;
             },
         };
@@ -69,13 +65,11 @@ function f71() {
 }
 function f72(a73, a74, a75) {
     var o116 = {
-        // Replacing input 1 (v64) with v75
         [NaN]: a75,
         [a74](a77) {
             new Uint32Array(2);
             new BigInt64Array(1);
             new Float64Array(255);
-            // Replacing input 0 (v85) with v85
             return Float64Array;
         },
         o(a88, a89) {
@@ -84,7 +78,6 @@ function f72(a73, a74, a75) {
                 for (var v91 = 0; v91 < 32; v91++) {
                     a88["p" + v91] = v91;
                 }
-                // Replacing input 0 (v90) with v74
                 a74++;
             } while (0 < 3)
             return a88;
@@ -98,7 +91,6 @@ function f72(a73, a74, a75) {
             var v100 = a73 == 0;
             var o101 = {
                 "done": v100,
-                // Replacing input 0 (v73) with v98
                 "value": v98,
             };
             return o101;
@@ -106,7 +98,6 @@ function f72(a73, a74, a75) {
         ...v62,
         __proto__: v70,
         [a73]: "xO",
-        // Replacing input 0 (v60) with v75
         ...a75,
         7: NaN,
         n(a103, a104, a105, a106) {
@@ -124,7 +115,6 @@ function f72(a73, a74, a75) {
         "d": v70,
         ["vM83L"]: v62,
         "b": WeakSet,
-        // Replacing input 0 (v75) with v63
         "a": "xO",
         "h": a73,
         "value": 536870887,
@@ -132,7 +122,6 @@ function f72(a73, a74, a75) {
         "getPrototypeOf": f0,
         "c": "vM83L",
     };
-    // Replacing input 0 (v116) with v116
     return o116;
 }
 var v119 = new Array(185);

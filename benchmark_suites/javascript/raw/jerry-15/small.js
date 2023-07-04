@@ -2,34 +2,16 @@ function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.a = -1;
     this.b = -1;
-    // Executing code generator ArrayGenerator
     var v3 = [this];
     [F0,F0];
     var v5 = [F0];
-    // Code generator finished
-    // Executing code generator DestructObjectAndReassignGenerator
     ({"length":v5,} = v5);
-    // Code generator finished
-    // Executing code generator ElementUpdateGenerator
     v3[3] |= v5;
-    // Code generator finished
     this.f = -1;
-    // Executing code generator ConstructorCallGenerator
     new F0();
-    // Code generator finished
-    // Executing code generator ComputedPropertyConfigurationGenerator
-    // Code generator finished
-    // Executing code generator ComputedPropertyAssignmentGenerator
     this[F0] = this;
-    // Code generator finished
-    // Executing code generator NamedVariableLoadGenerator
-    // Code generator finished
-    // Executing code generator ReassignmentGenerator
     v5 = a;
-    // Code generator finished
-    // Executing code generator DestructArrayGenerator
     var [,v8] = a;
-    // Code generator finished
 }
 new F0();
 new F0();
@@ -58,11 +40,9 @@ var o58 = {
             super.getUTCDay(v37, -35810, v43, v43, this);
         } catch(e48) {
         }
-        // Executing code generator NumberComputationGenerator
         Math.pow(v23, -17453);
         var v52 = -17453 % v23;
         var v53 = --v23;
-        // Code generator finished
         Math.atanh(-17453);
         Math.pow(v23, v52);
         Math.sign(v53);

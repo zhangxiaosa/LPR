@@ -4,7 +4,6 @@ function f2() {
 }
 function F3(a5) {
     if (!new.target) { throw 'must be called with new'; }
-    // Replacing input 0 (v4) with v4
     this.a = Map;
     this.d = a5;
     this.f = v1;
@@ -19,14 +18,11 @@ function F9(a11, a12, a13) {
     var v16 = [-16717,5,4294967297,52814];
     function F17(a19) {
         if (!new.target) { throw 'must be called with new'; }
-        // Replacing input 0 (v18) with v18
         this.d = a19;
-        // Replacing input 0 (v18) with v18
         this.e = a19;
     }
     new F17(v16);
     new F17(v16);
-    // Replacing input 0 (v17) with v9
     new F9(v14);
     var v25 = new Uint16Array(148);
     new Int16Array(87);

@@ -2,16 +2,9 @@ var v0 = [268435456,8,33351,1073741825];
 var v1 = [9007199254740990,-1795983897,-9007199254740992,2147483649,-1095541337,-25871,512];
 var v2 = [5,512,-9007199254740991,1231481310,1865619023,-60850,-28129];
 class C3 {
-    // Splicing instruction 64 (ClassAddStaticElement) from A8AE9BA9-47A4-46D7-8EC5-4FAB46697BFF
     static 8;
-    // Splicing done
-    // Splicing instruction 22 (ClassAddInstanceProperty) from 404E9AB6-A8E1-4FA6-B894-AD01A713F635
     d = v1;
-    // Splicing done
-    // Splicing instruction 51 (ClassAddStaticComputedProperty) from 5F9B8C3F-4A46-4415-923C-CAF59FA76317
     static [v1] = C3;
-    // Splicing done
-    // Splicing instruction 170 (EndClassConstructor) from 94702E89-A5A0-470A-A4B0-7C247876D9E8
     constructor(a5, a6) {
         var v7 = 0;
         while (v7 < 10) {
@@ -28,25 +21,18 @@ class C3 {
             v7++;
         }
     }
-    // Splicing done
     set e(a23) {
         this[128] = this;
         this[v1] = v0;
-        // Splicing instruction 35 (Compare) from C930E29A-48BF-41B2-9570-10A011F4E7C5
-        // Splicing done
-        // Splicing instruction 209 (BeginConstructor) from 42EE11D1-D7D0-4640-8628-1DFCDD934E02
         typeof a23 === "string";
         function F27() {
             if (!new.target) { throw 'must be called with new'; }
             this.e = -9007199254740992;
             this.h = -9007199254740992;
         }
-        // Splicing done
         v2[1] = v2;
-        // Splicing instruction 11 (CreateArray) from 453434F2-DA91-4696-91B2-B6CF1B9D1189
         v0[5];
         var v34 = new Array(8);
-        // Splicing done
         [[536870888,-5,2,1073741824,536870912,1952684027],v34,v1];
         this.length = 899;
     }
@@ -58,17 +44,12 @@ class C3 {
         try { v41 = new v2(this, v1, a38); } catch (e) {}
         this.e >>= v41;
         new BigUint64Array(4);
-        // Splicing instruction 53 (CallFunction) from CA526EE3-6514-43AE-BD79-5A2EBFB79684
-        // Splicing done
-        // Splicing instruction 8 (EndConstructor) from 9B32D1F5-DE5B-4303-8AD6-A4F1002FBBA7
         var v47 = C3(-2147483649n, C3, "SQeJ");
         function F48(a50, a51, a52, a53) {
             if (!new.target) { throw 'must be called with new'; }
             this.e = v47;
         }
-        // Splicing done
         new Uint16Array(103);
-        // Splicing instruction 294 (EndIf) from 94702E89-A5A0-470A-A4B0-7C247876D9E8
         if (a38 != Uint8ClampedArray) {
             [12,94328023,-1507298073,9,9007199254740990,4096,-4294967297,255,7];
             function f62(a63) {
@@ -80,7 +61,6 @@ class C3 {
         } else {
             a = 4;
         }
-        // Splicing done
         new Int8Array(4);
     }
     */

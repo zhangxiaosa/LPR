@@ -40,7 +40,6 @@ var v45 = Symbol.toPrimitive;
 var o50 = {
     [v45]() {
         b = this;
-        // Replacing input 0 (v43) with v46
         return this;
     },
 };

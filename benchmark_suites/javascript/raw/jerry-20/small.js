@@ -95,14 +95,12 @@ function f115() {
 function f116() {
     v60[257];
     var v120 = 13240;
-    // Splicing instruction 22 (CallMethod) from 04C051C3-7C06-4B04-8336-058B72756A46
     7 || 7;
     var v123 = new f116(7);
     var v126 = new BigUint64Array(127);
     var v129 = new Uint32Array(422);
     var v133 = new Uint16Array(5);
     try { v123.concat(v129, 75, v126, v133, 75); } catch (e) {}
-    // Splicing done
     var v135 = v120 % v120;
     ++v120 || v135;
     var v138 = !512;
@@ -158,13 +156,11 @@ do {
     var v185 = --F169;
     !v172;
     Math.cosh(7);
-    // Splicing instruction 16 (TestInstanceOf) from F30F4448-A80C-43CC-8356-85E14B303226
     7 << v184;
     v185 & F169;
     function f191() {
         return null;
     }
-    // Splicing done
     0.13065559446316366 instanceof f191;
     v175++;
 } while (v175 < 7)
@@ -174,10 +170,7 @@ new F162(5.0, -10, 4294967295);
 [595926.853799131,5.0,1e-15,0.8210870585206469,-1000000.0,-346024.9933047617,3.781409698373885,2.220446049250313e-16];
 var v201 = 0;
 while ((() => {
-        // Splicing instruction 166 (Construct) from 7A3CE49C-614E-40AA-8396-F2F4EBE51F02
         new Int32Array(v157);
-        // Splicing done
-        // Splicing instruction 100 (Construct) from 32384DD6-A74F-4381-8276-C759E3E24DE3
         function f204() {
             var o216 = {
                 valueOf(a209) {
@@ -226,7 +219,6 @@ while ((() => {
             this.g = v221;
         }
         new F223(v222, f204, v217);
-        // Splicing done
         return v201 < 7;
     })()) {
     var v248;
@@ -236,7 +228,6 @@ while ((() => {
     } catch (e) {}
     v168.a = v248;
     for (let [i268, i269] = (() => {
-            // Splicing instruction 18 (Construct) from 6ABD93DB-82B6-4D5F-8AC8-70FCC5523D79
             class C255 {
                 e = -3.0;
                 toString(a257) {
@@ -248,7 +239,6 @@ while ((() => {
                 5 = 6.77100235129538;
             }
             new C255();
-            // Splicing done
             return [0, 10];
         })();
         (() => {
@@ -258,10 +248,7 @@ while ((() => {
             var v275 = [3.794187802686021e+307,-957.2745563413922,0.09979313363103137,2.220446049250313e-16];
             class C276 {
                 constructor(a278) {
-                    // Splicing instruction 25 (Construct) from 925D2637-82D6-46D2-97F2-E5AF1DE76E3F
                     new Uint8ClampedArray(256);
-                    // Splicing done
-                    // Splicing instruction 20 (Construct) from 63B119D9-FB68-4D72-9FAE-3F271B80F445
                     var v286 = new Array(10);
                     class C287 extends Array {
                         o(a289) {
@@ -275,7 +262,6 @@ while ((() => {
                         h;
                     }
                     new C287();
-                    // Splicing done
                     var v300 = -1024n ^ -1073741824n;
                     try {
                     var t0 = -1073741824n;

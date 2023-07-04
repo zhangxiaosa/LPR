@@ -17,11 +17,8 @@ function f4(a5) {
         "a": a5,
         "f": v2,
     };
-    // Splicing instruction 19 (SetProperty) from 593F3A6F-8539-4271-AE7B-A4CC9A627890
     var v16 = new f4(1723);
     v16.byteLength = 0;
-    // Splicing done
-    // Splicing instruction 27 (BeginForLoopCondition) from A3468A44-10C6-4EDD-B995-B1F2F43AC90B
     var v21 = new Int8Array(4);
     class C22 extends Int32Array {
         n(a24, a25, a26, a27) {
@@ -37,7 +34,6 @@ function f4(a5) {
         try { v38 = v21.sort(C22); } catch (e) {}
         e = +v38;
     }
-    // Splicing done
     return a5;
 }
 var v40 = f4(v0);
@@ -62,7 +58,6 @@ function F56(a58) {
     for (let i67 = 0, i68 = 10; i67 < i68; i67++, v53--) {
         continue;
     }
-    // Splicing instruction 368 (CreateArray) from 52D5051E-CD06-4D87-8C1E-3C339FA4CE54
     var v80 = [5.0,-1e-15,0.9190232884690178,1.0,1000000000000.0,0.31087677998235586,-1e-15];
     var v83 = new Int8Array(11);
     Math.asinh(512, Int8Array);
@@ -71,16 +66,12 @@ function F56(a58) {
     var v90;
     try { v90 = v89("1OV"); } catch (e) {}
     var v91 = ["undefined"];
-    // Splicing done
     [v91,[v80,v91,v90,"undefined",v83],Int8Array,v89];
     var v96 = new Uint8ClampedArray(59);
-    // Splicing instruction 24 (Construct) from C252BD78-5576-4B76-96EC-CF5272AE4D8F
     class C97 {
         [-1];
     }
     new C97();
-    // Splicing done
-    // Splicing instruction 53 (BeginForLoopCondition) from CC434E7C-2C35-4602-A272-E911BA73D171
     function f100() {
         return null;
     }
@@ -109,7 +100,6 @@ function F56(a58) {
         var v122 = new a58(C111, null);
         v122[1] = v109;
     }
-    // Splicing done
     for (let [i140, i141] = (() => {
             var v127 = 0;
             [,,v63,v127] = v96;
@@ -138,14 +128,11 @@ function F56(a58) {
         var v172 = v165[5];
         try { v172(); } catch (e) {}
         new Int8Array(2);
-        // Splicing instruction 3 (BeginConstructor) from 5FCCE476-1234-4C7E-96E8-552E393D37B6
         function F178(a180) {
             if (!new.target) { throw 'must be called with new'; }
             this.d = a180;
             this.e = a180;
         }
-        // Splicing done
-        // Splicing instruction 158 (UnaryOperation) from 0E5BE6AE-F185-4815-91C6-84B5F689B263
         for (let i183 = 0, i184 = 10;
             i183 < i184;
             (() => {
@@ -216,7 +203,6 @@ function F56(a58) {
             })()) {
             i183 **= i183;
         }
-        // Splicing done
         new Int32Array(9);
         new Uint16Array(6);
         async function f233(a234, a235, a236, a237) {
@@ -296,13 +282,8 @@ function F56(a58) {
         this.g = Int16Array;
     }
     var v332 = new F326(3, 3, 18, 4);
-    // Splicing instruction 117 (Return) from 4F295100-D468-4B90-8E9C-88541E30CE58
     return Date;
-    // Splicing done
-    // Splicing instruction 4 (Construct) from BE96A7C6-5CF7-4C34-9A67-DFB59499DCC2
     new Map();
-    // Splicing done
-    // Splicing instruction 22 (BinaryOperation) from DAB41889-8DD2-4AD7-A6D5-0EAA76A1C89C
     function F339(a341, a342) {
         if (!new.target) { throw 'must be called with new'; }
         this.b = a341;
@@ -312,7 +293,6 @@ function F56(a58) {
     var v346 = !"flags";
     Math.log1p(v343);
     Math.min(-608483179);
-    // Splicing done
     (v346 / -608483179) | "flags";
     v324[v332];
     [C275,1000000000.0,-198145845,[-5.0,1000000000.0,[3]]];

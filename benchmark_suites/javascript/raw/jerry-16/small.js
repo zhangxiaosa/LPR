@@ -6,13 +6,9 @@ var v3 = new F0();
 var v4 = new F0();
 var v5 = v4 !== v3;
 if (v5) {
-    // Executing code generator ComputedPropertyRemovalGenerator
-    // Code generator finished
     delete v4[v3];
 } else {
-    // Executing code generator MethodCallGenerator
     try { v3.toString(v4, v5, v5, v3); } catch (e) {}
-    // Code generator finished
 }
 var v8 = new F0();
 var v9 = [2.2250738585072014e-308,619.7894730564356,0.0,1.8968716211018606,-1000.0,0.8798083059061798,0.6728894021271001,3.0,0.6210071925847735,-1.6347526523330358e+308];

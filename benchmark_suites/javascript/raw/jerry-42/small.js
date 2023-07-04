@@ -12,18 +12,12 @@ function F12() {
     if (!new.target) { throw 'must be called with new'; }
     this.d = 5;
     this.e = 5;
-    // Splicing instruction 8 (Construct) from D938619F-9C56-48C3-9800-3CA260CE41B4
     new F12(1860);
-    // Splicing done
-    // Splicing instruction 21 (Construct) from EF2EC967-E581-455E-8BA2-613458FB8B13
     new Date();
-    // Splicing done
-    // Splicing instruction 29 (Construct) from 10692D9A-2B08-4CFB-A5BD-43EB56207490
     var o21 = {
         "maxByteLength": 2939,
     };
     new ArrayBuffer(170, o21);
-    // Splicing done
     this.h = 5;
 }
 var v24 = new F12();
@@ -46,7 +40,6 @@ function f36(a37, a38, a39, a40) {
         [4033](a47, a48, a49) {
             var v50 = 0;
             do {
-                // Splicing instruction 22 (BeginForLoopAfterthought) from EE6591D4-9989-451E-A33F-A5E049C6CBAC
                 var v53 = new WeakMap();
                 for (let i57 = 0; i57 < 4; i57++) {
                     var v63;
@@ -56,7 +49,6 @@ function f36(a37, a38, a39, a40) {
                     try { v53.get("hasInstance"); } catch (e) {}
                     new WeakSet();
                 }
-                // Splicing done
                 v32.c = [7.184920118710121e+307,0.13061913854204465];
                 var v70 = -12291;
                 ++v70;

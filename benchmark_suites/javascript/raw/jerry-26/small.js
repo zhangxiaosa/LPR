@@ -1,11 +1,9 @@
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
-    // Replacing input 0 (v1) with v0
     F0.a = 6;
     9 !== [-1.7976931348623157e+308];
     class C10 {
         constructor(a12, a13) {
-            // Replacing input 0 (v12) with v1
             var v14 = "byteOffset" && "byteOffset";
             try { new this(..."random", v14, a12, ..."byteOffset"); } catch (e) {}
             try { ("random").normalize(); } catch (e) {}
@@ -16,9 +14,7 @@ function F0() {
         ["byteOffset"];
         static a = "random";
     }
-    // Replacing input 0 (v10) with v0
     new F0(C10, "byteOffset");
-    // Replacing input 1 (v2) with v10
     this.h = C10;
     this.e = 6;
 }
@@ -53,7 +49,6 @@ function f29(a30) {
         "a": v28,
         ...v28,
     };
-    // Replacing input 0 (v37) with v30
     return a30;
 }
 f29(v28);
