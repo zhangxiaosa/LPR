@@ -68,10 +68,6 @@ function F56(a58) {
     var v91 = ["undefined"];
     [v91,[v80,v91,v90,"undefined",v83],Int8Array,v89];
     var v96 = new Uint8ClampedArray(59);
-    class C97 {
-        [-1];
-    }
-    new C97();
     function f100() {
         return null;
     }
@@ -87,13 +83,11 @@ function F56(a58) {
     var v109 = new F104(v101, v102, v101);
     var v110 = new F104(v102, v101, v103);
     class C111 extends f100 {
-        static b;
         constructor(a113, a114) {
             super();
             this.valueOf = v103[7];
         }
         [null] = v110;
-        static [null];
     }
     var v120 = 10;
     for (; v120--;) {
@@ -220,8 +214,6 @@ function F56(a58) {
         var v250 = [false];
         class C251 {
             a = false;
-            static a;
-            static 4;
             constructor(a253, a254) {
                 async function f255(a256, a257, a258, a259) {
                     v63[6];
@@ -239,7 +231,6 @@ function F56(a58) {
     }
     new Date();
     class C275 {
-        static ["o"];
         6 = "c";
         static set g(a277) {
             this.h = this;
