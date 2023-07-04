@@ -1,9 +1,6 @@
-// Mutating DADAC6B6-7474-4484-B616-94373E04484B with InputMutator (type aware)
-// Replacing input 1 (v1) with v1
 var v2 = new Array(156);
 new BigUint64Array(257);
 new Float64Array(3);
-// Replacing input 1 (v12) with v9
 var v14 = new Float64Array(3);
 function f15() {
     // Replacing input 0 (v17) with v15
@@ -31,7 +28,6 @@ function f15() {
     };
     return o48;
 }
-// Replacing input 0 (v15) with v15
 var v49 = f15();
 var v50 = f15();
 var v51 = f15();
@@ -62,19 +58,7 @@ switch (729048830) {
         v14.buffer;
         break;
 }
-// Replacing input 3 (v49) with v51
 var v69 = [v51,v65,f15,v51,v64];
 for (var v70 in v50) {
 }
 Object.defineProperty(v63, "g", { writable: true, configurable: true, value: v69 });
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: CombineMutator, SwitchCaseGenerator, PropertyRetrievalGenerator, IntegerGenerator, TypedArrayGenerator, InputMutator (type aware), CodeGenMutator, BuiltinObjectInstanceGenerator, SwitchBlockGenerator
-// EXECUTION TIME: 2ms

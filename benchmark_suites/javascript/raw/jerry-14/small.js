@@ -1,4 +1,3 @@
-// Mutating B6E2FDDD-E9B8-43F7-9617-F6FF691EEA23 with SpliceMutator
 var v0 = [3.0,-449.39783679185916,-1000.0,25043.579001223086,2.0,-1e-15];
 var v1 = [-Infinity,-775.1846105212172,5.0,-Infinity,1000000000.0,Infinity,374207.67054981086,-1000.0];
 var v2 = [0.5009811061241012];
@@ -223,14 +222,3 @@ function F175(a177, a178, a179, a180) {
 new F175(536870912, -2, -9223372036854775808, 1073741824);
 new F161(v156, Map, v147);
 new F161(v150, v158, v147);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: DestructObjectAndReassignGenerator, ObjectBuilderFunctionGenerator, CombineMutator, IntArrayGenerator, FloatGenerator, ComputedPropertyAssignmentGenerator, SpliceMutator, ObjectLiteralMethodGenerator, ComputedPropertyRemovalGenerator, ObjectLiteralPrototypeGenerator, ObjectLiteralComputedPropertyGenerator, ObjectLiteralPropertyGenerator, IntegerGenerator, FloatArrayGenerator
-// EXECUTION TIME: 19ms

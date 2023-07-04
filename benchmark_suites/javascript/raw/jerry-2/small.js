@@ -1,8 +1,6 @@
-// Mutating 25780C7B-01F6-4538-B4B0-5A955AB78DAD with SpliceMutator
 var v0 = [129,1001397897,-55063,-2147483648,-2,1073741825];
 var v1 = [-819495092,-19967,2147483648];
 var v2 = [1897306089,10,5,255];
-// Splicing instruction 36 (CallFunction) from 94C53B50-3BB3-4DAA-A153-D5617F3BCEE4
 var v3 = [3,2120455288,-9007199254740992,-227970818,-11];
 var v4 = [-12,2,7,719287113,-128,255,-42145,938923432,139794874];
 function f5() {
@@ -35,15 +33,11 @@ function f10(a11, a12, a13, a14) {
     };
     return o26;
 }
-// Splicing done
 f10(v7, f5, f8, f9);
 [15,2147483648,-2147483648];
 var v29 = [1235603416,-2044016615,6,512];
 [4294967295,-1];
 var v31 = [-4.0,-7.79039348816598,0.6588589254046053,1000000000.0];
-// Splicing instruction 104 (UnaryOperation) from EBB042AF-CEF5-4B0B-82D5-841377268A9A
-// Splicing done
-// Splicing instruction 61 (EndObjectLiteral) from 76D769EA-53E8-4A3F-9A47-8E06BA657D16
 f5++;
 var v33 = [1.7976931348623157e+308,-1000000000000.0,-1000.0,291.45331045807757,-423269.63471935585,-7.9521271511208464,0.160342365084153,9.911889876836668,-3.0,0.6655267797621789];
 var o34 = {
@@ -51,7 +45,6 @@ var o34 = {
     1073741824: v2,
     [v33]: v6,
 };
-// Splicing done
 var v35 = [110606.09781806753,-1000000.0,-71.62372262251915,914741.2082186446,288409.84187400807,-4.0,1.2198553323884724e+308,0.24712037846050927,2.2250738585072014e-308,-3.0];
 [-369908.181806204,1000000.0,Infinity,-5.0,-8.789576704839658e+307,-0.0,-1000000000000.0];
 class C37 {
@@ -328,14 +321,3 @@ function* f274(a275, a276, a277) {
     return -4294967296;
 }
 f274(58219, v218, v213);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: CallbackPropertyGenerator, ClassDefinitionGenerator, SpliceMutator, ComputedPropertyRetrievalGenerator, NumberComputationGenerator, IntArrayGenerator, ComplexForLoopGenerator, CodeGenMutator, FloatArrayGenerator, PrototypeOverwriteGenerator, FunctionCallGenerator, ReassignmentGenerator, StringNormalizeGenerator, ClassInstanceMethodGenerator, TypeTestGenerator
-// EXECUTION TIME: 12ms

@@ -1,4 +1,3 @@
-// Mutating 8C6F8761-10FC-4908-B48C-7691CF77A364 with CodeGenMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.a = -1;
@@ -71,14 +70,3 @@ var o58 = {
         return 26388;
     },
 };
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: IntArrayGenerator, ComputedMethodCallGenerator, DestructArrayGenerator, DestructObjectAndReassignGenerator, NumberComputationGenerator, NamedVariableLoadGenerator, ConstructorCallGenerator, TypedArrayGenerator, ArrayGenerator, ReassignmentGenerator, CodeGenMutator, ObjectConstructorGenerator, ElementUpdateGenerator, ComputedPropertyAssignmentGenerator, InputMutator (type aware)
-// EXECUTION TIME: 8ms

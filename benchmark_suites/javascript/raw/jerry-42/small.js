@@ -1,4 +1,3 @@
-// Mutating F3637376-D892-44B9-953B-356ECF4BDB6A with SpliceMutator
 var v4 = new WeakMap();
 var v5 = [WeakMap,WeakMap,v4,WeakMap,WeakMap];
 [WeakMap,v4,v5,WeakMap,v5];
@@ -70,10 +69,7 @@ function f36(a37, a38, a39, a40) {
     };
     return o77;
 }
-// Splicing instruction 5 (Construct) from 0871261D-F8E3-4AD0-A3B5-A109880A1DA5
 new Float64Array(10);
-// Splicing done
-// Splicing instruction 10 (Construct) from F40EC909-DAFF-4B29-9ACE-48E357B90BEE
 function F82(a84, a85) {
     if (!new.target) { throw 'must be called with new'; }
     this.a = a84;
@@ -81,7 +77,6 @@ function F82(a84, a85) {
     this.c = a85;
 }
 new F82(F82, "czyM4");
-// Splicing done
 var v87 = f36(64, 1024, 1024, 64);
 Float32Array + f36;
 var v90 = new WeakSet();
@@ -91,7 +86,6 @@ function f93() {
 }
 var v96 = new Uint32Array(5);
 var v97 = 16;
-// Splicing instruction 112 (EndAsyncArrowFunction) from 8D292343-1F39-420A-8275-910609F3E9D2
 class C100 {
     constructor(a102, a103, a104) {
         var v105 = async (a106, a107, a108) => {
@@ -116,7 +110,6 @@ class C100 {
         };
     }
 }
-// Splicing done
 var v133 = new BigInt64Array(v97);
 new Int16Array(2486);
 var v137 = [-1000000000.0,327.80472045335773];
@@ -134,13 +127,10 @@ try { v148 = v145(); } catch (e) {}
 var v150 = v148 != BigInt64Array ? v148 : BigInt64Array;
 var o151 = {
 };
-// Splicing instruction 55 (Construct) from 4544A131-36AF-4A76-A12E-37D48289A079
 o151 = v7;
 [Map,v96];
 var v153 = [v148,v137,v90,v133,v90];
 new Int8Array(56);
-// Splicing done
-// Splicing instruction 53 (CallFunction) from 24D3F7F6-3D0A-40D7-A072-943823830DAC
 function f160(a161, a162) {
     var o163 = {
         "d": a161,
@@ -183,7 +173,6 @@ function f171(a172, a173, a174) {
     };
     return o182;
 }
-// Splicing done
 f171(255, -1073741824, v4);
 f171(-65537, -1073741824, v169);
 [WeakSet,v137,Int16Array,v153];
@@ -194,10 +183,6 @@ new WeakSet();
 var t192 = [-8.9674677072483,-1000000000000.0,-1000000000.0];
 delete t192[4];
 new Int16Array(3726);
-// Splicing instruction 22 (BinaryOperation) from 57ED7B4D-F8D6-4776-AB70-684869186096
-// Splicing done
-// Splicing instruction 118 (Compare) from 479C2210-004C-4BDB-9930-63CDB807106A
-// Splicing done
 "b" ** -9;
 -2147483649 < 646;
 [-5.0,NaN,NaN,-1.0];
@@ -215,13 +200,11 @@ for (let i230 = 0; i230 < 5; i230++) {
     new BigUint64Array(8);
 }
 new Int32Array(512);
-// Splicing instruction 94 (Construct) from AED0EB50-B087-4C87-9B25-5F767DD0286C
 function F254(a256, a257) {
     if (!new.target) { throw 'must be called with new'; }
     this.c = -49247n;
 }
 new F254(1528952465, 3);
-// Splicing done
 var v259 = -1e-15 ^ 1000000.0;
 v259 = 512;
 var t225 = "valueOf";
@@ -231,14 +214,3 @@ new Map();
 var v264 = ("resizable")["concat"]();
 try { v264(Int8Array); } catch (e) {}
 v264[v228] = "resizable";
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: TypedArrayGenerator, IntegerGenerator, FloatArrayGenerator, SpliceMutator, CombineMutator, BuiltinObjectInstanceGenerator
-// EXECUTION TIME: 8ms

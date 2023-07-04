@@ -1,4 +1,3 @@
-// Mutating 75F7CEDB-4FB9-4F9F-B7CE-89724C24D5BD with SpliceMutator
 class C3 {
     // Splicing instruction 20 (ClassAddStaticProperty) from 8A36688E-AA4D-4A31-81E1-758712B18266
     static e = C3;
@@ -54,12 +53,10 @@ class C3 {
 new C3();
 new C3();
 new C3();
-// Splicing instruction 30 (BinaryOperation) from 4A73C760-AA54-4AC2-ABF5-5913CFA7FFA3
 [621.3017638980332,9.554659300675215,-2.2250738585072014e-308,2.2250738585072014e-308,-1.6536454778481927e+308,1000000.0];
 var v43 = -2;
 var v44 = ++v43;
 var v45 = v44 - v44;
-// Splicing done
 (v45 ** v45) && v43;
 [2.220446049250313e-16,1.6675071988833618e+308,-0.0];
 [2.2250738585072014e-308,-1000000000.0,691695.2136238609,987031.6285262613];
@@ -123,14 +120,3 @@ var v104 = new C96();
 C96[v104];
 v87 instanceof C56;
 Date.prototype;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ComputedPropertyAssignmentGenerator, SpliceMutator, ClassDefinitionGenerator, FloatArrayGenerator, ClassInstanceMethodGenerator, IntegerGenerator, TypedArrayGenerator
-// EXECUTION TIME: 6ms

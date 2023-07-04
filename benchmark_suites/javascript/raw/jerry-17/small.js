@@ -1,11 +1,8 @@
-// Mutating 29182E21-F699-48FE-B2AE-30DF9F93973F with SpliceMutator
 var v1 = new WeakMap();
 var v2 = [8.203471372862924e+307,4.0,0.5476595006314399,-2.220446049250313e-16,0.6706759161852232];
-// Splicing instruction 68 (BeginRepeatLoop) from DFE41D73-408D-4E26-A5FC-81190B0C8028
 for (var v4 = 0; v4 < 32; v4++) {
     v1["Nka4" + v4] = v4;
 }
-// Splicing done
 var v7 = [-1e-15,1.0,1000000000.0,0.0,3.0,0.49377370268155396,-874.1955475589521,1000.0,5.0];
 var v8 = [875.0311981059936,2.0,-137.3399451568913,0.20883248700939883];
 var v15 = [-1.3004384427026437e+307,-208183.34858216776,1.3089112972765842e+308,-3.0,2.0,-3.0,-452.6467287668314,43907.55219840584,-3.6113594303896583,445.91499845381804];
@@ -198,14 +195,3 @@ function* f192(a193, a194, a195) {
     return v113;
 }
 f192(16292n, 16292n, 4294967297);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: InputMutator (type aware), BuiltinObjectInstanceGenerator, IntegerGenerator, FloatArrayGenerator, FloatGenerator, SpliceMutator, ObjectConstructorGenerator
-// EXECUTION TIME: 5ms

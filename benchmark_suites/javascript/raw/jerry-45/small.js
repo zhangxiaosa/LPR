@@ -1,4 +1,3 @@
-// Mutating 9E0DF6CB-46C7-4EDF-A97B-C401C26C6027 with SpliceMutator
 function f0() {
 }
 var v1 = [3.013591765941289,0.28404392453094296,-1.7976931348623157e+308,0.0];
@@ -68,7 +67,6 @@ function F27() {
 new F27();
 var v43 = new F27();
 new F27();
-// Splicing instruction 6 (BeginPlainFunction) from 3FDF1A64-F2F5-495A-ACC2-257D533C5647
 var v52 = v43 - -5.0;
 function f58() {
     return -65536n;
@@ -90,13 +88,8 @@ function f59(a60) {
     };
     return o66;
 }
-// Splicing done
 var v67;
 try { v67 = ("boolean").charAt(v52); } catch (e) {}
-// Splicing instruction 19 (Compare) from CD32F847-75D0-4CE6-BC2F-E0F14A72B4D6
-// Splicing done
-// Splicing instruction 49 (UnaryOperation) from 1FD4EC38-6D18-4D2E-B1A5-59BA5536705F
-// Splicing done
 var v68 = [-24407847,-1629176532,-33905,-9223372036854775807,-1388822986,1610245979,-1,4294967297];
 [9007199254740992,1,46666,39392,44590,-43386,129,2147483647,-13];
 typeof -25440 === "undefined";
@@ -105,14 +98,3 @@ typeof -25440 === "undefined";
 v68.toString = v67;
 var t105 = "-34894";
 delete t105[v67];
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SpliceMutator, ObjectBuilderFunctionGenerator, ObjectLiteralCopyPropertiesGenerator, ObjectLiteralPropertyGenerator, ObjectLiteralElementGenerator, IntArrayGenerator, ObjectLiteralPrototypeGenerator, FloatArrayGenerator, TrivialFunctionGenerator
-// EXECUTION TIME: 2ms

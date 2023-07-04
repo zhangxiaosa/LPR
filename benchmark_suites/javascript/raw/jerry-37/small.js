@@ -1,4 +1,3 @@
-// Mutating 0D706673-E18D-4B03-B32E-855122CE4DE2 with OperationMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.h = 2;
@@ -70,7 +69,6 @@ new Date();
 new Map();
 new Uint8Array(2844);
 var v99 = 0;
-// Mutating next operation
 v99++;
 var v104 = new F19(43120, F19, -4);
 var v105 = new F19(2147483648, v104, -4);
@@ -119,19 +117,7 @@ function F157(a159, a160, a161, a162) {
     this.g = Int16Array;
 }
 var v163 = new F157(3, 3, 18, 4);
-// Mutating next operation
 v155[v163];
 [C107,1000000000.0,-198145845,[-5.0,1000000000.0,[3]]];
 "function" - 1000000000.0;
 C107.length = 3;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SpliceMutator, OperationMutator, ObjectConstructorGenerator, BigIntGenerator
-// EXECUTION TIME: 63ms

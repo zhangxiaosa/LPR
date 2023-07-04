@@ -1,6 +1,4 @@
-// Mutating E2FB6010-3975-4FCA-A21A-3A16E57527C5 with SpliceMutator
 new Int8Array(215);
-// Splicing instruction 163 (Construct) from 66BBE150-23C9-4CE4-A966-0AEDBEDA350B
 function f7() {
 }
 var v8 = [f7,f7,f7,f7];
@@ -20,22 +18,17 @@ function F24(a26, a27) {
 }
 var v28 = new F24(v23, F24);
 new F24(v22, v28);
-// Splicing done
 var v31 = new BigUint64Array(1925);
 var v34 = new Uint16Array(4);
 function f35() {
 }
-// Splicing instruction 32 (UnaryOperation) from D9CA4E46-D759-4A43-B5D2-687882BD4393
 var v37 = 1707015786;
-// Splicing done
-// Splicing instruction 57 (BeginForLoopCondition) from C998847E-0C65-4FCC-AA99-18C68075B084
 --v37;
 var v39 = [-4096];
 var v42 = new Uint32Array(6);
 for (let i45 = 0, i46 = v42; i45 < i46, i45; i45++, v39--) {
     i45 **= i45;
 }
-// Splicing done
 var v54 = new Set();
 function f55(a56) {
     // Splicing instruction 11 (Construct) from 54539DD1-BBB7-4540-B5F5-2274F49B14E9
@@ -71,7 +64,6 @@ var v80 = new Uint8Array(f35);
 v70 = v69;
 v77.buffer = f35;
 var v83 = 10;
-// Splicing instruction 62 (Construct) from 79D5AC2F-8772-4683-BFD9-28DE4D595CDA
 var v84 = [3.794187802686021e+307,-957.2745563413922,0.09979313363103137,2.220446049250313e-16];
 var v86 = 1676970057n ^ -1073741824n;
 var v87;
@@ -79,11 +71,8 @@ try {
 var t0 = -1073741824n;
 v87 = new t0(v86, v84, v80);
 } catch (e) {}
-// Splicing done
-// Splicing instruction 113 (SetComputedProperty) from B169DD45-FA74-4016-A06F-071E1AEF1945
 var v93 = new Int8Array(324, BigInt64Array, -1024, Uint16Array);
 v93[v87 + v87] = v87;
-// Splicing done
 for (; v83--;) {
     // Splicing instruction 38 (Compare) from B305709D-EB85-4E93-99BC-CC779A6CE396
     // Splicing done
@@ -189,14 +178,3 @@ for (; v83--;) {
     v145 || (Set >> v145);
     Math.log2(58947);
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: CombineMutator, DoWhileLoopGenerator, TypedArrayGenerator, InputMutator, NamedVariableDefinitionGenerator, MethodCallGenerator, CodeGenMutator, StringGenerator, SpliceMutator
-// EXECUTION TIME: 8ms

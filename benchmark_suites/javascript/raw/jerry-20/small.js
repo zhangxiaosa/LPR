@@ -1,4 +1,3 @@
-// Mutating F8DE7210-94D3-46DB-A713-5B6D22D1C1C7 with SpliceMutator
 function f0() {
 }
 var v1 = [-648.1724292901141,0.34005715391090363,-1000000000.0];
@@ -54,7 +53,6 @@ function F64() {
 }
 var v67 = new F64();
 new F64();
-// Splicing instruction 24 (SetElement) from D49E3613-F692-4C83-95D5-F52B79907A3E
 function F69() {
     if (!new.target) { throw 'must be called with new'; }
     this.h = -742635278;
@@ -63,7 +61,6 @@ function F69() {
 }
 var v72 = new F69();
 v72[37] = -1024;
-// Splicing done
 var v74 = new F64(v54);
 var v76 = new Set();
 var v77 = [v74,v76];
@@ -305,14 +302,3 @@ while ((() => {
     v319 >> v108;
     v201++;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: FastToSlowPropertiesGenerator, FloatArrayGenerator, NumberComputationGenerator, ElementRetrievalGenerator, ObjectConstructorGenerator, SpliceMutator, CodeGenMutator, IntArrayGenerator, ComputedMethodCallGenerator, TrivialFunctionGenerator
-// EXECUTION TIME: 10ms

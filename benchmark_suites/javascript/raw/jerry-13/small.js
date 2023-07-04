@@ -1,4 +1,3 @@
-// Mutating 70D662D1-414F-4121-8CAF-497A7895EF37 with InputMutator (type aware)
 new Float32Array(1000);
 new Float32Array(129);
 new BigInt64Array(127);
@@ -24,9 +23,7 @@ function f15(a16, a17) {
     };
     return o18;
 }
-// Replacing input 0 (v15) with v15
 var v19 = f15(-65537, -65537);
-// Replacing input 0 (v15) with v15
 var v20 = f15(255, 255);
 var v21 = f15(1000, 255);
 function F22(a24, a25, a26) {
@@ -81,7 +78,6 @@ function F22(a24, a25, a26) {
     Math.log1p(-43515);
     new F27();
 }
-// Replacing input 1 (v22) with v15
 var v68 = new F22(f15, v19, -65537);
 var v69 = new F22(v19, v20, -1073741824);
 var v70 = new F22(v19, v20, -1073741824);
@@ -106,7 +102,6 @@ function f72(a73, a74, a75) {
     return o83;
 }
 var v84 = f72(255, -1073741824, v21);
-// Replacing input 2 (v21) with v20
 f72(255, -1073741824, v84);
 Object.defineProperty(v68, f72(-65537, -1073741824, v70), { writable: true, value: v20 });
 var o87 = {
@@ -115,17 +110,5 @@ var o87 = {
     "getOwnPropertyDescriptor": f72,
     "isExtensible": f72,
 };
-// Replacing input 1 (v85) with v84
 var v89 = new Proxy(v84, o87);
 255 % v89;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: FloatArrayGenerator, CombineMutator, InputMutator (type aware), TypedArrayGenerator
-// EXECUTION TIME: 18ms

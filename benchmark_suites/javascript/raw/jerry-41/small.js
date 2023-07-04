@@ -1,4 +1,3 @@
-// Mutating 871EAF90-6123-4FCC-88A1-ADF13E579DF4 with SpliceMutator
 [-1e-15,1000000000.0,-1.7976931348623157e+308,-1.33358480082404e+308];
 var v1 = [-1000.0];
 [1.0039843883800257e+308];
@@ -6,7 +5,6 @@ var v1 = [-1000.0];
 var v4 = [1024,268435440,-2002885291,12,-65537];
 [10,65536,-256,-116868924,23345,-4294967297,-688575150,-11];
 new Array(4096);
-// Splicing instruction 30 (SetProperty) from AD085560-2C13-450E-B051-DB1E072A3A70
 var v11 = [0.19717549776273757,-2.9760555945172333e+307,2.187996114100475,8.287578358512144e+307,-1e-15,Infinity,-1.7976931348623157e+308,7.299230148534836,-5.4505827058037815];
 function F12(a14, a15, a16) {
     if (!new.target) { throw 'must be called with new'; }
@@ -14,7 +12,6 @@ function F12(a14, a15, a16) {
     this.c = a16;
     this.f = v11;
 }
-// Splicing done
 new BigUint64Array(1024);
 new Uint8ClampedArray(2);
 var v25 = [129,9007199254740991,9007199254740991];
@@ -200,14 +197,3 @@ var v236 = -(-9007199254740991);
 Math.ceil(-150859.83153368998);
 Math.sign(v234);
 v176["splice"](v236, -9007199254740991);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: CodeGenMutator, FunctionWithArgumentsAccessGenerator, IntegerGenerator, IntArrayGenerator, CombineMutator, NumberComputationGenerator, FloatArrayGenerator, InputMutator, TypedArrayGenerator, SpliceMutator, BuiltinObjectInstanceGenerator
-// EXECUTION TIME: 13ms

@@ -1,7 +1,5 @@
-// Mutating 6FBE6060-3227-48FD-BE99-A17D8AB3AD0A with SpliceMutator
 var v3 = [-9.056347608680207e+307,6.499667332968031,0.38495625035501235,419804.9480868627];
 var v4 = [0.5796910455979978,-2.220446049250313e-16,0.09807242114854497,45233.90346565528,117.25202682168356,-2.2250738585072014e-308,-1000000.0];
-// Splicing instruction 24 (Construct) from DCEDDE4B-F52C-4950-84A8-2DA0E92274C6
 var v5 = 3969;
 var v7 = new BigInt64Array(v5);
 var v10 = new Uint8Array(88);
@@ -17,7 +15,6 @@ class C11 {
     }
 }
 new C11();
-// Splicing done
 var v25 = [-8.170974094736083,313.22737759536494];
 class C26 {
     get f() {
@@ -37,14 +34,9 @@ new C26();
 var v41 = new C26();
 var v42 = new C26(C26, v41, v41);
 var v43 = [v42,0,v42,v4,0];
-// Splicing instruction 26 (UnaryOperation) from 0BC148B0-DC86-4DDD-815D-1D317A0B67A3
 [v42,v25,536870889,v43,v4];
 [v25,536870889,v43,0,v42];
 var v46 = 10;
-// Splicing done
-// Splicing instruction 17 (UnaryOperation) from 0E081C7E-F99E-4056-9FB6-DB5028CEF80F
-// Splicing done
-// Splicing instruction 21 (EndIf) from A7E897AD-A8A3-402B-B172-04F4483FC077
 var v47 = v46--;
 v5++;
 var v49 = [];
@@ -55,7 +47,6 @@ if (v53 >= v47) {
 } else {
     Date.prototype;
 }
-// Splicing done
 function F57() {
     if (!new.target) { throw 'must be called with new'; }
     // Splicing instruction 16 (Construct) from EBAEFD78-3486-4014-B9C3-77A68F733768
@@ -105,14 +96,3 @@ for (var v102 = 0; v102 < 83; v102++) {
     v106 >>> -2.220446049250313e-16;
     -v102;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ClassDefinitionGenerator, OperationMutator, ObjectConstructorGenerator, FloatArrayGenerator, IntegerGenerator, StringGenerator, ClassInstanceGetterGenerator, ArrayGenerator, CodeGenMutator, NumberComputationGenerator, SpliceMutator
-// EXECUTION TIME: 3ms

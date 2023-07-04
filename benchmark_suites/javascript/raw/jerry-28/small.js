@@ -1,5 +1,3 @@
-// Mutating 3698226D-40C8-48C0-B97E-5CE927B18B2C with InputMutator (type aware)
-// Replacing input 0 (v0) with v0
 var v1 = new Map();
 function f2() {
     return Map;
@@ -48,7 +46,6 @@ function F9(a11, a12, a13) {
 new F9(v8, v1, v1);
 var v44 = new F9(v6, Map, v7);
 new F9(v8, v1, v44);
-// Replacing input 1 (v55) with v55
 [9,1773867819,-9,-4,-6];
 [1765605443];
 var v54 = [1962636471,-15768,-128,45318];
@@ -66,14 +63,3 @@ do {
     new Int16Array(v72);
     v67++;
 } while (v67 < 4)
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ObjectConstructorGenerator, CombineMutator, BuiltinObjectInstanceGenerator, BigIntGenerator, InputMutator (type aware), TrivialFunctionGenerator
-// EXECUTION TIME: 18ms

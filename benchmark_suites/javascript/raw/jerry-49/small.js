@@ -1,10 +1,6 @@
-// Mutating 2DA894A5-09D8-42CE-AD07-2289FA1C673A with SpliceMutator
 new Array(4);
 new Set();
-// Splicing instruction 21 (UnaryOperation) from F1758078-F332-4A34-9CF8-051573F5ADF3
 var v8 = Int32Array;
-// Splicing done
-// Splicing instruction 23 (EndClassDefinition) from DE56AF0A-02F3-4EF6-9DF2-38FA7A606B97
 --v8;
 var v10 = [];
 var v11 = [-1.0,-1e-15];
@@ -14,13 +10,8 @@ class C13 extends v12 {
     2 = v12;
     g;
 }
-// Splicing done
-// Splicing instruction 17 (Construct) from CFDAB306-059A-4651-BEFC-8C8A892BD3CC
 new Int16Array(234);
-// Splicing done
-// Splicing instruction 34 (UnaryOperation) from 0D13A562-D05F-42BA-8C79-B21F5ECF9EEA
 var v20 = ~-65537;
-// Splicing done
 v20--;
 [682686176,16,-10,969275984];
 [-16,3,-14,1643529076,9];
@@ -60,14 +51,3 @@ for (var v60 of v31) {
     v55 & 895169687;
     +895169687;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: IntArrayGenerator, SpliceMutator, IntegerGenerator, InputMutator, BuiltinObjectInstanceGenerator, OperationMutator
-// EXECUTION TIME: 3ms

@@ -1,4 +1,3 @@
-// Mutating 07A11ED6-8E00-4B51-95EA-5F9EB7B785CD with CodeGenMutator
 [Infinity,1.0,1e-15,-5.875092414820889e+307,302942.0405400903];
 var v1 = [Infinity,6.019144287173702,-1000000000000.0,NaN,-1000000000.0,-379.22125391787347,190.07103733850545,-3.7873565321706764,0.20479969081427418,-1.0];
 [593.510221653567,-5.0,-401.79508490535557,-1.7976931348623157e+308,2.220446049250313e-16];
@@ -27,13 +26,11 @@ function F24(a26, a27, a28, a29) {
 }
 var v34 = new F24(536870912, -2, -9223372036854775808, 1073741824);
 var v35 = new F24(-9223372036854775808, 1073741824, -1506674662, -9223372036854775808);
-// Executing code generator RepeatLoopGenerator
 for (var v36 = 0; v36 < 79; v36++) {
     // Executing code generator BuiltinObjectInstanceGenerator
     new Array(5);
     // Code generator finished
 }
-// Code generator finished
 var v40 = new F24(-9223372036854775808, 536870912, 1073741824, -2);
 v34.d *= 536870912;
 var v47 = 10;
@@ -52,14 +49,3 @@ for (let i67 = 0, i68 = 10; i67 < i68, undefined; i67++, i68--) {
     v64.__proto__ = v15;
     try { v64.lastIndexOf(i67, i67); } catch (e) {}
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: CombineMutator, StringGenerator, InputMutator, FloatArrayGenerator, BuiltinObjectInstanceGenerator, CodeGenMutator, WellKnownPropertyLoadGenerator, RepeatLoopGenerator, ComputedPropertyAssignmentGenerator, ConstructorCallGenerator
-// EXECUTION TIME: 3ms

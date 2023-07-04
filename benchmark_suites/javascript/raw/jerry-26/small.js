@@ -1,4 +1,3 @@
-// Mutating D12C77D2-4110-45D3-AB01-9584DC6B88F6 with InputMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     // Replacing input 0 (v1) with v0
@@ -25,7 +24,6 @@ function F0() {
 }
 new F0();
 new F0();
-// Replacing input 0 (v0) with v0
 var v21 = new F0();
 function f22() {
 }
@@ -35,7 +33,6 @@ function F23() {
     this.e = -10688;
     this.f = -10688;
 }
-// Replacing input 0 (v23) with v21
 var v26 = new v21();
 var v27 = new F23();
 var v28 = new F23();
@@ -115,14 +112,3 @@ t111.a = v84;
 var v93 = new WeakSet();
 v93[WeakSet] = v85;
 v77 || v75;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ObjectConstructorGenerator, IntArrayGenerator, InputMutator, TrivialFunctionGenerator, SpliceMutator
-// EXECUTION TIME: 16ms

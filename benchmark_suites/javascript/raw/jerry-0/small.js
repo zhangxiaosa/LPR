@@ -1,4 +1,3 @@
-// Mutating 360EBF4C-A8A9-4E5F-BC3E-2861CD8CDF34 with SpliceMutator
 var v0 = [];
 [1899469103,1290227532,-9007199254740991,10000,-15,1073741823,-65536];
 var v2 = [-256,-50212,-676446051,7360,-13711,255,4294967296];
@@ -342,7 +341,6 @@ v374.g = 11;
 v383 = v380;
 var t341 = "1OV";
 t341[7] = Int8Array;
-// Splicing instruction 22 (EndPlainFunction) from CC434E7C-2C35-4602-A272-E911BA73D171
 Math.hypot(v359);
 Math.asinh(512);
 +4096;
@@ -366,7 +364,6 @@ function f392(a393, a394) {
     };
     return o406;
 }
-// Splicing done
 var v407 = v359 >>> 512;
 -v358;
 -1340860923 + v407;
@@ -409,14 +406,3 @@ Math.imul(v445, v377);
 v372--;
 Math.cbrt(v373);
 ~v373;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: BigIntGenerator, ObjectLiteralComputedPropertyGenerator, InputMutator (type aware), ObjectLiteralCopyPropertiesGenerator, CodeGenMutator, SpliceMutator, ArrayGenerator, SuperPropertyAssignmentGenerator, ObjectLiteralMethodGenerator, IntArrayGenerator, UnaryOperationGenerator, ObjectConstructorGenerator, ObjectLiteralPropertyGenerator, CombineMutator, WhileLoopGenerator, InstanceOfGenerator, ObjectBuilderFunctionGenerator
-// EXECUTION TIME: 12ms

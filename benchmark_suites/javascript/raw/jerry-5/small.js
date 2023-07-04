@@ -1,4 +1,3 @@
-// Mutating 708F5A49-2C85-4D03-9B07-301C43C7CEB7 with InputMutator (type aware)
 new Float64Array();
 function F2(a4) {
     if (!new.target) { throw 'must be called with new'; }
@@ -6,7 +5,6 @@ function F2(a4) {
     // Replacing input 1 (v0) with v4
     this.c = a4;
 }
-// Replacing input 1 (v0) with v0
 var v5 = new F2(Float64Array);
 new F2(F2);
 new F2(v5);
@@ -53,8 +51,6 @@ function f19() {
     }
     return o23;
 }
-// Replacing input 0 (v19) with v8
-// Replacing input 0 (v19) with v2
 f8();
 f19();
 F2();
@@ -62,17 +58,5 @@ var [v43] = "then";
 for (var v44 = 0; v44 < 32; v44++) {
     v43["p" + v44] = v44;
 }
-// Replacing input 0 (v38) with v39
 var v48 = [v43];
 Reflect.apply(("xh").matchAll, "o6BI", v48, v17, 7n, v13);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SpliceMutator, ObjectConstructorGenerator, FloatArrayGenerator, IntArrayGenerator, TrivialFunctionGenerator, OperationMutator, InputMutator (type aware), BuiltinObjectInstanceGenerator
-// EXECUTION TIME: 27ms

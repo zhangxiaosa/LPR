@@ -1,12 +1,7 @@
-// Mutating 8C6F8B1F-E35D-4ED6-B374-C366E75A79A3 with SpliceMutator
 var v5 = new Uint16Array(13);
-// Splicing instruction 26 (GetElement) from 2A7A9CC3-AF77-40AE-B5FA-F8F22C676364
 var v10 = new Uint8ClampedArray(7);
-// Splicing done
-// Splicing instruction 5 (Construct) from 4F13602F-6036-4E1A-968D-BA8E1BD55001
 var v11 = v10[9];
 new BigInt64Array(1000);
-// Splicing done
 new Uint8ClampedArray(3002);
 new BigInt64Array(255);
 var v20 = 536870889;
@@ -133,17 +128,5 @@ for (; v106--;) {
             break;
     }
 }
-// Splicing instruction 139 (CallMethod) from 1599114A-2457-42F6-8B54-D4B56CCFFDD8
 Math.acos(--v103);
 Math.log10(v11 ** -9223372036854775807);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ResizableArrayBufferGenerator, TypedArrayGenerator, IntegerGenerator, PrototypeAccessGenerator, ForInLoopGenerator, ElementRetrievalGenerator, SpliceMutator, IntArrayGenerator, CallbackPropertyGenerator, PropertyUpdateGenerator, CodeGenMutator, InputMutator, InGenerator
-// EXECUTION TIME: 20ms

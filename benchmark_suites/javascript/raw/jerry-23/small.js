@@ -1,4 +1,3 @@
-// Mutating 3E91B20F-1369-4C7F-8EDE-645C10317513 with CodeGenMutator
 var v3 = [-1000000.0,5.0,5.0,5.0];
 [v3,5.0,v3,0.9634584137749886];
 var v5 = [-1000000.0];
@@ -253,14 +252,3 @@ function F219(a221) {
 var v222 = new F219(v217);
 v216[10] = v222;
 f165(v83, v105);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: DestructArrayAndReassignGenerator, ComputedPropertyAssignmentGenerator, FloatGenerator, CodeGenMutator, BuiltinGenerator, ObjectConstructorGenerator, ArrayGenerator, ObjectLiteralCopyPropertiesGenerator, SpliceMutator, PropertyRetrievalGenerator, ObjectLiteralPropertyGenerator, BuiltinObjectInstanceGenerator, OperationMutator, ConstructorCallGenerator
-// EXECUTION TIME: 6ms

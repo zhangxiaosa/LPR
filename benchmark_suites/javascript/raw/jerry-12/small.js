@@ -1,4 +1,3 @@
-// Mutating BD99E5A6-06A4-4757-8584-8A0DDF2CD0D3 with CodeGenMutator
 var v0 = [1000000000000.0,0.717656338051017,-4.0];
 var v1 = [883497.9493725812,1000.0,1.0,-956.1215794981166,2.0,-1e-15,-1.3778692308591856e+308,1.3852155254311595e+308];
 var v2 = [-1000000.0];
@@ -127,14 +126,3 @@ v64[1073741824] = v55;
 function f124() {
     return f101;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ClassInstancePropertyGenerator, MethodCallGenerator, ClassDefinitionGenerator, ClassStaticElementGenerator, BinaryOperationGenerator, FloatArrayGenerator, SpliceMutator, BigIntGenerator, NumberComputationGenerator, TypedArrayGenerator, CodeGenMutator, ReassignmentGenerator, SubroutineReturnGenerator, ArrayGenerator, ObjectConstructorGenerator, UpdateGenerator
-// EXECUTION TIME: 15ms

@@ -1,4 +1,3 @@
-// Mutating FD749993-C3B5-4992-BCE6-8F447BD5CD30 with SpliceMutator
 new Uint16Array(16);
 function F6() {
     if (!new.target) { throw 'must be called with new'; }
@@ -17,15 +16,11 @@ function F17(a19) {
     this.e = Float64Array;
 }
 var v27 = new F17(Float64Array);
-// Splicing instruction 5 (Construct) from 252A66C7-CFDE-4DA2-9D26-F22435997C29
 new Int8Array(215);
-// Splicing done
-// Splicing instruction 22 (BeginForOfLoop) from 2F9881A6-7F95-457A-BEC9-D892839C04FA
 var v32 = new Int16Array(16);
 for (var v33 of v32) {
     /CK[\cA]/ms;
 }
-// Splicing done
 var v36 = new F17(Float64Array);
 var v38 = new WeakSet();
 var v39 = [v36,v38];
@@ -79,9 +74,7 @@ var v80 = Int16Array;
 var v81 = new v80(4);
 var v84 = new Int32Array(16);
 var v88 = new Int32Array(10);
-// Splicing instruction 21 (CallComputedMethod) from 6E1A965A-15DC-4155-B15F-6956E1969DF8
 var {"d":v93,"g":v94,"length":v95,} = [-1272864678,v40];
-// Splicing done
 ("number")["search"](v93);
 var v99 = new Int8Array(1096);
 var v102 = new Float64Array(512);
@@ -135,14 +128,3 @@ for (var v117 = 0; v117 < 64; v117++) {
     new Int8Array(512);
     new Uint16Array(129);
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: InputMutator, TypedArrayGenerator, StringGenerator, ArrayGenerator, SpliceMutator
-// EXECUTION TIME: 15ms

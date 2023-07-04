@@ -1,4 +1,3 @@
-// Mutating 72EC0655-AB44-4A34-9ABC-D67E075E9FB8 with CodeGenMutator
 function f6() {
     return 5.0;
 }
@@ -189,14 +188,3 @@ Array.prototype = v174;
 Array.a = v108;
 [v111,v174,F102];
 [v111,[v107]];
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: FloatGenerator, TypedArrayGenerator, ComputedPropertyUpdateGenerator, SuperPropertyAssignmentGenerator, PropertyAssignmentGenerator, IntegerGenerator, MethodCallGenerator, TrivialFunctionGenerator, CodeGenMutator, ElementAssignmentGenerator, BinaryOperationGenerator, SpliceMutator, ConstructorCallGenerator
-// EXECUTION TIME: 6ms

@@ -1,4 +1,3 @@
-// Mutating C1CC6FAD-BC3B-49EC-B671-60814D560A73 with SpliceMutator
 new Map();
 [0.5642444537520803,-1e-15,-1.46511658555872e+308,-0.0,-Infinity];
 var v3 = [-4.0,-Infinity,2.0454977025319578e+307,0.6516872675914394,1.7976931348623157e+308,Infinity,-4.771058246410904,-2.593351615535293e+307,-428794.56086175784,0.7469320531400364];
@@ -44,7 +43,6 @@ f14();
 f14();
 new Float32Array(3);
 var v70 = new Int32Array(2829);
-// Splicing instruction 139 (BeginTry) from E281CCA5-D351-4168-BEE5-34F48073B7BB
 var v71 = [v3,v3,v3];
 var v72 = [v3];
 var v73 = [v71,v72,v72,v71,v72];
@@ -63,10 +61,8 @@ try {
 } finally {
     v73.length = 0;
 }
-// Splicing done
 var v81 = new Uint8Array(16);
 var v82 = "valueOf";
-// Splicing instruction 29 (GetComputedProperty) from 8F910919-ED59-47AA-B7F3-710DD6E54AF1
 var v83 = -39511;
 class C84 {
     o(a86, a87) {
@@ -83,19 +79,7 @@ var v98 = new C84();
 var v99 = new C84();
 var v100 = new C84();
 var v101 = [v98,v100,v100];
-// Splicing done
 v99[[v100,v101,v101,v83,C84]];
 try { v81.keys(); } catch (e) {}
 v82 %= "concat";
 /Ea+?/g;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: TypedArrayGenerator, BuiltinObjectInstanceGenerator, SpliceMutator, FloatArrayGenerator
-// EXECUTION TIME: 2ms

@@ -1,4 +1,3 @@
-// Mutating 34344668-D576-4F6B-A793-EB816DD176D6 with SpliceMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.h = -1434806372;
@@ -393,14 +392,3 @@ function f362(a363, a364, a365) {
 }
 f362(v339, -7010, 6);
 v284 === "undefined";
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: BigIntGenerator, SpliceMutator, CombineMutator, ArrayGenerator, ObjectConstructorGenerator, FastToSlowPropertiesGenerator, CodeGenMutator, ConstructorCallGenerator, FloatArrayGenerator
-// EXECUTION TIME: 14ms

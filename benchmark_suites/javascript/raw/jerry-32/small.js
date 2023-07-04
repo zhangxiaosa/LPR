@@ -1,4 +1,3 @@
-// Mutating DA40E521-E9D7-4A96-A38C-2A8AB4889385 with InputMutator (type aware)
 var v2 = new Float32Array(1995);
 var v5 = new Float32Array(7);
 var v8 = new Uint32Array(127);
@@ -38,7 +37,6 @@ var v58 = new F52("F", 7, 1995, F52);
 var v59 = new F52("-4096", 1995, 1995, v58);
 v59[1] = 1995;
 var v66 = new Uint16Array(255);
-// Replacing input 0 (v68) with v68
 new BigInt64Array(193);
 new BigInt64Array(9);
 function f73() {
@@ -279,14 +277,3 @@ for (; v176--;) {
     // Replacing input 0 (v179) with v186
     e = 0.2422277660590586;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SpliceMutator, TypedArrayGenerator, InputMutator, IntegerGenerator, IntArrayGenerator, InputMutator (type aware)
-// EXECUTION TIME: 8ms

@@ -1,4 +1,3 @@
-// Mutating 65978011-5D6A-4278-9423-9B76665CD4EB with SpliceMutator
 var v0 = [268435456,8,33351,1073741825];
 var v1 = [9007199254740990,-1795983897,-9007199254740992,2147483649,-1095541337,-25871,512];
 var v2 = [5,512,-9007199254740991,1231481310,1865619023,-60850,-28129];
@@ -92,7 +91,6 @@ new C3(v2);
 new Uint8ClampedArray(119);
 new Uint8ClampedArray(127);
 new Float64Array(2708);
-// Splicing instruction 31 (Construct) from 7FA7E3AA-8497-430C-AFD8-9B50A18D34A8
 function f91(a92, a93, a94) {
     var o100 = {
         [-1000.0]: 0.8240928063486583,
@@ -115,7 +113,6 @@ var v102 = f91(5.876764963743087e+307, 1073741824n, 1073741824n);
 var v103 = f91(0.8240928063486583, -9223372036854775807n, 0.8240928063486583);
 var v104 = v103[Float64Array](-1000.0, v103, v102, -1000.0);
 try { new v104(1073741824n, f91, f91, v102); } catch (e) {}
-// Splicing done
 var v106 = 9.407385205519113;
 function F107(a109) {
     if (!new.target) { throw 'must be called with new'; }
@@ -140,21 +137,9 @@ Math.expm1(512);
 var v131 = v129 - v129;
 var v132 = v131 ** v131;
 --v106;
-// Splicing instruction 13 (Construct) from 72FBE08D-9EDF-4ED7-99ED-294A8454E907
 v132 && v126;
 function F137(a139, a140, a141, a142) {
     if (!new.target) { throw 'must be called with new'; }
     this.h = 673;
 }
 new F137(673, 1964, 673, 1964);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ComputedPropertyAssignmentGenerator, ElementKindChangeGenerator, ConstructorCallGenerator, TypedArrayGenerator, ClassDefinitionGenerator, ElementAssignmentGenerator, ElementRetrievalGenerator, PropertyUpdateGenerator, DestructObjectGenerator, ClassInstanceSetterGenerator, IntegerGenerator, SpliceMutator, LengthChangeGenerator, ClassConstructorGenerator, IntArrayGenerator
-// EXECUTION TIME: 7ms

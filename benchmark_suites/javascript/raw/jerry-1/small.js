@@ -1,4 +1,3 @@
-// Mutating B5658CA9-68DA-4F88-9910-A8F682687154 with CodeGenMutator
 class C3 {
     valueOf(a5) {
         a5[536870888] = a5;
@@ -14,20 +13,12 @@ class C3 {
 var v8 = new C3();
 var v9 = new C3();
 var v10 = new C3();
-// Executing code generator ImitationGenerator
-// Code generator finished
-// Executing code generator ArrayGenerator
 [193,536870888,4294967296,-38830];
 [-15583,16,-65536,128];
 var v16 = [2];
 var v17 = [1388350447,46724n,1000];
-// Code generator finished
-// Executing code generator PropertyAssignmentGenerator
 [[46724n,41599890n,1000,v17],v9,v8];
 v10.h = v9;
-// Code generator finished
-// Executing code generator FloatArrayGenerator
-// Code generator finished
 [3.197888395455619,1000.0,-5.0,Infinity,-1.0,-4.825263041104932,0.029867520262010006,-4.0,-2.0];
 [4.0,-Infinity,1.0,212157.54339749878,4.338372874157155];
 [0.4786496369407338,0.6255592005111306];
@@ -123,14 +114,3 @@ do {
     v89++;
 } while (v89 < 0)
 new Promise(f55);
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: PropertyAssignmentGenerator, IntArrayGenerator, ArrayGenerator, InputMutator, CodeGenMutator, PrototypeOverwriteGenerator, ObjectLiteralElementGenerator, IntegerGenerator, ClassDefinitionGenerator, ClassInstanceMethodGenerator, ObjectLiteralPropertyGenerator, ClassStaticPropertyGenerator, ClassInstanceElementGenerator, ElementAssignmentGenerator, SpliceMutator, BuiltinGenerator, OperationMutator, FloatArrayGenerator, ClassStaticElementGenerator, SuperPropertyAssignmentGenerator, BigIntGenerator, ConstructorCallGenerator
-// EXECUTION TIME: 18ms

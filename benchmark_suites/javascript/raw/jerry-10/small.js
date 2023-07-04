@@ -1,4 +1,3 @@
-// Mutating BB725DC2-0D64-4EDD-8956-5BE35ED431A7 with SpliceMutator
 new Uint8ClampedArray(9);
 new Uint16Array(204);
 new BigUint64Array(6);
@@ -24,17 +23,13 @@ class C16 {
 }
 var v35 = new C16(-1000.0);
 var v36 = new C16(-2);
-// Splicing instruction 5 (Construct) from B6C0B82F-8B34-4748-8B3E-B01CADB232F7
 [C16,-2,v36,C16,v35];
 new Uint16Array(2999);
-// Splicing done
-// Splicing instruction 21 (Update) from 22FA06AD-E3B3-4B79-A2C3-1765B0FAF5CC
 class C43 extends Float32Array {
     f = "undefined";
 }
 var v44 = new C43();
 var v45 = new C43();
-// Splicing done
 v44 %= v45;
 -(+2000505999);
 ((-1073741824) ** -1073741824) & !-1073741824;
@@ -180,7 +175,6 @@ v202[8] = v192 >= v195;
 var v206 = delete v204[2];
 var v208 = v195 == v206 ? v195 : v206;
 try { v208(v192, v206, v208); } catch (e) {}
-// Splicing instruction 34 (GetProperty) from F21DED75-3175-46DA-9572-3F5EF8C0C5B7
 class C212 {
     static get c() {
         this.h = 9.2695175804015e+307;
@@ -193,7 +187,6 @@ class C212 {
     static [-6.512399975820635e+307];
 }
 var v217 = new C212();
-// Splicing done
 v217.__proto__;
 [-59682,-1024];
 [9007199254740991,129,-9223372036854775808,9007199254740991,-52259,64];
@@ -201,14 +194,3 @@ v217.__proto__;
 Math.pow(Uint8Array, 1561923570);
 Math.log10(Uint8Array);
 -11 % v187;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SpliceMutator, TypedArrayGenerator, BigIntGenerator
-// EXECUTION TIME: 14ms

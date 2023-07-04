@@ -1,4 +1,3 @@
-// Mutating 4C0C5698-C8A0-4C5A-A17A-9B94EAE8B031 with SpliceMutator
 function f0() {
     // Splicing instruction 11 (Construct) from 3B1D313A-4F77-45F3-866C-A9AB7E15DA78
     var v3 = [-21112,268435440,-56601,504714277,1893546951];
@@ -36,14 +35,3 @@ var v45 = `
 eval(v45);
 /a\wa\Bb/ugimy;
 var [] = "10";
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: FastToSlowPropertiesGenerator, ObjectLiteralSetterGenerator, ObjectLiteralCopyPropertiesGenerator, ObjectLiteralPropertyGenerator, BigIntGenerator, ObjectBuilderFunctionGenerator, SpliceMutator, IntegerGenerator
-// EXECUTION TIME: 4ms

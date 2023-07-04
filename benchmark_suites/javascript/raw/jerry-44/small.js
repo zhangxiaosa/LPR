@@ -1,16 +1,9 @@
-// Mutating FD58C4E0-6464-49CD-A9BB-071D30C665EC with CodeGenMutator
 var v1 = 10;
-// Executing code generator TrivialFunctionGenerator
 function f3() {
     return "1073741824";
 }
-// Code generator finished
-// Executing code generator PropertyAssignmentGenerator
 var t8 = "1073741824";
 t8.g = v1;
-// Code generator finished
-// Executing code generator ComparisonGenerator
-// Code generator finished
 v1 == "maxByteLength";
 class C5 {
     8 = "maxByteLength";
@@ -42,7 +35,6 @@ class C5 {
 new C5("1073741824");
 var v19 = new C5(v1);
 var v20 = new C5(v19);
-// Executing code generator SwitchBlockGenerator
 switch (v20) {
     // Executing code generator SwitchCaseGenerator
     case v19:
@@ -51,7 +43,6 @@ switch (v20) {
         break;
     // Code generator finished
 }
-// Code generator finished
 new WeakMap();
 [-15,1702973534,1307302874,8,-4294967295,1073741823,1,2212];
 [583150713,-536870912,-153441155,-2,1,-39427,-65536,52892083,-11];
@@ -77,14 +68,3 @@ var o57 = {
         return v50;
     },
 };
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: SwitchCaseGenerator, ClassInstanceComputedPropertyGenerator, ClassInstanceElementGenerator, ImitationGenerator, ClassDefinitionGenerator, SwitchBlockGenerator, ComputedPropertyAssignmentGenerator, ClassConstructorGenerator, BuiltinObjectInstanceGenerator, ReassignmentGenerator, IntegerGenerator, CodeGenMutator, ClassInstancePropertyGenerator, ComputedPropertyRetrievalGenerator, TrivialFunctionGenerator, PropertyConfigurationGenerator, ComparisonGenerator, ClassInstanceMethodGenerator, BooleanGenerator, IntArrayGenerator, UnaryOperationGenerator, PropertyAssignmentGenerator
-// EXECUTION TIME: 50ms

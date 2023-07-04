@@ -1,11 +1,9 @@
-// Mutating 80E1B16F-E67C-40A6-9B99-EBE360400E5B with CodeGenMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.f = 268435456;
 }
 var v3 = new F0();
 var v4 = new F0();
-// Executing code generator CompareWithIfElseGenerator
 var v5 = v4 !== v3;
 if (v5) {
     // Executing code generator ComputedPropertyRemovalGenerator
@@ -16,7 +14,6 @@ if (v5) {
     try { v3.toString(v4, v5, v5, v3); } catch (e) {}
     // Code generator finished
 }
-// Code generator finished
 var v8 = new F0();
 var v9 = [2.2250738585072014e-308,619.7894730564356,0.0,1.8968716211018606,-1000.0,0.8798083059061798,0.6728894021271001,3.0,0.6210071925847735,-1.6347526523330358e+308];
 var v10 = [0.10596670755753179,5.176633926520548,0.09966071986921698,-2.034919930997914,2.2250738585072014e-308,-2.220446049250313e-16,769504.2815862116,0.6289696168640844,-1.760881149643446e+307,-2.0];
@@ -43,26 +40,17 @@ new Uint32Array(0);
 var v47 = new Uint8ClampedArray(952);
 v47 instanceof Uint32Array;
 new Float64Array(255);
-// Executing code generator ComparisonGenerator
-// Code generator finished
-// Executing code generator PropertyRetrievalGenerator
-// Code generator finished
-// Executing code generator TrivialFunctionGenerator
 Float64Array > Float64Array;
 v3.f;
 function f57() {
     return v38;
 }
-// Code generator finished
 var v58 = new Float64Array(879);
 new Uint16Array(64);
 var v63 = new BigUint64Array(6);
-// Executing code generator ImitationGenerator
 var o65 = {
 };
 var v67 = new Proxy(Array, o65);
-// Code generator finished
-// Executing code generator ProxyGenerator
 var o68 = {
     "defineProperty": f57,
     "getOwnPropertyDescriptor": f57,
@@ -70,7 +58,6 @@ var o68 = {
     "has": v67,
 };
 new Proxy(v8, o68);
-// Code generator finished
 v47.__proto__ = v58 = v38;
 v63[127] = 6;
 delete v41[-2];
@@ -90,14 +77,3 @@ v92.length = 2;
 v92[v86] *= 536870887;
 v93 instanceof Float32Array;
 v83[3551] <<= 255;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: PropertyRetrievalGenerator, ClassStaticComputedPropertyGenerator, ComputedPropertyRemovalGenerator, ConstructorCallGenerator, TrivialFunctionGenerator, BuiltinObjectInstanceGenerator, ProxyGenerator, ComparisonGenerator, ImitationGenerator, FloatArrayGenerator, CompareWithIfElseGenerator, ClassDefinitionGenerator, MethodCallGenerator, ClassConstructorGenerator, NumberComputationGenerator, ObjectConstructorGenerator, CodeGenMutator
-// EXECUTION TIME: 2ms

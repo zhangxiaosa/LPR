@@ -1,4 +1,3 @@
-// Mutating 1DBD4B95-749D-451F-8C3A-ED1779436BAB with SpliceMutator
 function F0() {
     if (!new.target) { throw 'must be called with new'; }
     this.a = 10;
@@ -91,15 +90,11 @@ var v109 = [v98];
 var v110 = ("cosh").indexOf;
 var v111 = Reflect.apply(v110, v107, v109);
 v109[v96] = v110;
-// Splicing instruction 55 (SetElement) from 7EDE6D29-1539-458B-99BC-3E8366301B84
 var v112 = [-62416,-1440175155,-1431147902,-1504287442,536870887,-256,-1691243509,256563044];
 var t95 = [4,10,-2147483648,56832,-9007199254740990,4294967296,-63153,-41896];
 t95[65536] = v112;
-// Splicing done
-// Splicing instruction 50 (CreateTemplateString) from 593F3A6F-8539-4271-AE7B-A4CC9A627890
 var v116 = new BigUint64Array(4072);
 var v118 = new v111(2505);
-// Splicing done
 `f${v118}boolean${v111}f${v116}Lc`;
 new BigInt64Array(127);
 var v127 = [-65537,0];
@@ -180,13 +175,11 @@ f194(3565, 10);
 new BigUint64Array(0);
 new Uint16Array(9);
 var v206 = -16268;
-// Splicing instruction 62 (BeginForLoopBody) from C998847E-0C65-4FCC-AA99-18C68075B084
 var v208 = [-4096];
 var v211 = new Uint32Array(6);
 for (let i214 = 0, i215 = v211; i214 < i215, i214; i214++, v208--) {
     i214 **= i214;
 }
-// Splicing done
 var v224 = [1];
 var v225 = [v206,-12,v224];
 [v206,v206,v224,1,v206];
@@ -207,14 +200,3 @@ switch (v224) {
         ++v244;
         break;
 }
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: TypedArrayGenerator, ObjectConstructorGenerator, CombineMutator, IntegerGenerator, SpliceMutator
-// EXECUTION TIME: 16ms

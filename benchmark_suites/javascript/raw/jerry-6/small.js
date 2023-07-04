@@ -1,4 +1,3 @@
-// Mutating A8D88BE1-90C9-40B6-8C97-A77EAA524473 with InputMutator (type aware)
 new Uint8Array(128);
 new Uint8ClampedArray(461);
 new SyntaxError(1520);
@@ -261,14 +260,3 @@ eval(v304);
 Object.defineProperty(v147, "a", { writable: true, configurable: true, value: -13 });
 new Float64Array(1121);
 -1597349076n & -41430n;
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: TypedArrayGenerator, InputMutator, OperationMutator, ArrayGenerator, SpliceMutator, BigIntGenerator, CombineMutator, InputMutator (type aware)
-// EXECUTION TIME: 16ms

@@ -1,4 +1,3 @@
-// Mutating DD22368D-FAC3-429E-BF7D-E0DFFC019060 with SpliceMutator
 class C3 {
     [-0.0];
     static 2;
@@ -64,10 +63,7 @@ var v48 = [16,11,256,-21344,-2147483648];
 [14,268435439,2147483649,9007199254740991];
 [16,52205,-49173,5,-65535,65536];
 var v55 = -10193;
-// Splicing instruction 4 (SetProperty) from 86BA686F-FE72-4314-A736-FDFF93011FAD
 v48.a = -65536;
-// Splicing done
-// Splicing instruction 17 (EndIf) from 6C4BE2DE-CD94-464F-B4E4-53BF956C050A
 var v59 = new Float64Array(32);
 var v62 = new Float64Array(6);
 if (Float64Array == v59) {
@@ -76,7 +72,6 @@ if (Float64Array == v59) {
 } else {
     try { v62.copyWithin(32, 1245, 6); } catch (e) {}
 }
-// Splicing done
 function f69() {
     // Splicing instruction 16 (Compare) from FA28A5E8-CD93-4DE5-B045-2A8C8A0AE91D
     // Splicing done
@@ -133,7 +128,6 @@ Object.defineProperty(v100, "b", { enumerable: true, set: f102 });
 var v103 = 64;
 v103 += "seal";
 var v104 = [];
-// Splicing instruction 24 (CallMethod) from 3FA6D5E4-FFDF-4463-8B65-D1606B4CE5DA
 var v110 = [7.294898884656903e+307,-1e-15,-1e-15,-1e-15,-5.0];
 var v115 = new Uint16Array(10);
 var v116 = [1073741824,1073741824,536870887];
@@ -141,7 +135,6 @@ var v117 = [4294967297,-1,308418502,-4294967295];
 var v118;
 try { v118 = v117(Float32Array, v115, v117, v116, -1e-15); } catch (e) {}
 try { v110.indexOf("string", v118); } catch (e) {}
-// Splicing done
 var v125 = [406019640n,1073741824n,"bigint",1073741824n];
 var v126 = [v125,"boolean"];
 var v127 = [1073741824n,406019640n];
@@ -180,13 +173,7 @@ function f128(a129, a130, a131) {
     };
     return o148;
 }
-// Splicing instruction 5 (Construct) from F26A6E5B-B46D-4644-B265-994DBF12B22F
 new Uint8Array(3401);
-// Splicing done
-// Splicing instruction 16 (CreateArray) from A137C8C6-BB6F-4209-AAF1-68C58B26B7C0
-// Splicing done
-// Splicing instruction 28 (UnaryOperation) from 26E9C4C3-6232-46BF-993A-54E4704212F5
-// Splicing done
 [v97];
 v55++;
 f128("3", v104, 406019640n);
@@ -213,14 +200,3 @@ new Int16Array(8);
 new WeakMap();
 var v178 = new BigInt64Array(129);
 v178[Float64Array];
-// CRASH INFO
-// ==========
-// TERMSIG: 6
-// STDERR:
-// 
-// STDOUT:
-// 
-// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=jerryscript --inspect=all --storagePath=./output --minimizationLimit=1.0 /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry
-// TARGET ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/jerryscript/jerryscript-8ba0d1b6ee/build/bin/jerry --reprl-fuzzilli
-// CONTRIBUTORS: ClassDefinitionGenerator, UndefinedGenerator, ProxyGenerator, ClassStaticElementGenerator, ClassStaticPropertyGenerator, SpliceMutator, IntArrayGenerator, ClassConstructorGenerator, InputMutator, ClassInstanceComputedPropertyGenerator
-// EXECUTION TIME: 8ms
