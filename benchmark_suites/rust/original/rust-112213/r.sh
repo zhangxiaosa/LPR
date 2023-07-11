@@ -8,17 +8,17 @@ readonly FLAGS_BUGGY="-Zmir-opt-level=3 -Copt-level=2"
 readonly FLAGS_CORRECT1="-Zmir-opt-level=3 -Copt-level=1"
 readonly FLAGS_CORRECT2="-Zmir-opt-level=2 -Copt-level=1"
 
-readonly BIN_BUGGY="./buggy"
+readonly BIN_BUGGY="./buggy.out"
 if ! timeout -s 9 60 rustup run "${VERSION}" rustc ${FLAGS_BUGGY} -o "${BIN_BUGGY}" "${FILE}" ; then
   exit 1
 fi
 
-readonly BIN_CORRECT1="./correct1"
+readonly BIN_CORRECT1="./correct1.out"
 if ! timeout -s 9 60 rustup run "${VERSION}" rustc ${FLAGS_CORRECT1} -o "${BIN_CORRECT1}" "${FILE}" ; then
   exit 1
 fi
 
-readonly BIN_CORRECT2="./correct2"
+readonly BIN_CORRECT2="./correct2.out"
 if ! timeout -s 9 60 rustup run "${VERSION}" rustc ${FLAGS_CORRECT2} -o "${BIN_CORRECT2}" "${FILE}" ; then
   exit 1
 fi
