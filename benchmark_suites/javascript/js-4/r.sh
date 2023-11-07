@@ -70,19 +70,13 @@ if (gflag && jit_a0_0===jit_a0 && !deepEquals(jit_a0, jit_a4)) {\n
 fuzzilli('FUZZILLI_CRASH', 0);\n
 }\n
 }\n
-// CRASH INFO\n
-// ==========\n
-// TERMSIG: 11\n
-// STDERR:\n
-// STDOUT:\n
-// ARGS: /tmp/perses/reduction_via_gpt/compilers/javascript/webkit/webkit-c6a5bcca33/FuzzBuild/Debug/bin/jsc --validateOptions=true --thresholdForJITSoon=10 --thresholdForJITAfterWarmUp=10 --thresholdForOptimizeAfterWarmUp=50 --thresholdForOptimizeAfterLongWarmUp=50 --thresholdForOptimizeSoon=50 --thresholdForFTLOptimizeAfterWarmUp=100 --thresholdForFTLOptimizeSoon=100 --validateBCE=true --reprl\n
 "
 
 cat small.js > whole_program.js
 echo -e "$template" >> whole_program.js
 
 rm -f log.txt
-timeout -s 9 30 /tmp/perses/reduction_via_gpt/compilers/javascript/webkit/webkit-c6a5bcca33/FuzzBuild/Debug/bin/jsc whole_program.js > log.txt 2>&1
+timeout -s 9 30 /tmp/gpt_reduction/compilers/javascript/webkit-c6a5bcca33/FuzzBuild/Debug/bin/jsc whole_program.js > log.txt 2>&1
 
 if grep -q "ERROR: UndefinedBehaviorSanitizer: SEGV on unknown address" log.txt; then
     exit 0
