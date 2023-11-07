@@ -11,8 +11,6 @@ import copy
 import glob
 import openai
 
-# you need to add OPENAI_API_KEY to the environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 ROOT_FOLDER = os.getcwd()
 
@@ -25,7 +23,8 @@ PROGRAM_NAME_DICT = {
     "c": "small.c",
     "cpp": "small.cpp",
     "rs": "small.rs",
-    "go": "small.go"
+    "go": "small.go",
+    "js": "small.js"
 }
 PROGRAM_NAME = None
 
@@ -406,6 +405,11 @@ def call_formatter(working_folder):
         execute_cmd(f"gofmt {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
             shutil.copy(tmp_file, working_folder)
+    elif LANGUAGE in ("js",):
+        tmp_file = "tmp"
+        execute_cmd(f"js-beautify {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
     else:
         pass
     os.chdir(current_path)
@@ -467,6 +471,7 @@ def main():
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
     parser.add_argument("--version", type=str, default="gpt-3.5-turbo-0613", help="GPT version")
     parser.add_argument("--multi_level", action="store_true", default=False, help="Enable multi-level prompt")
+    parser.add_argument("--key", type=str, required=True, help="openai api key")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each result")
 
     # parse arguments
@@ -479,6 +484,8 @@ def main():
     pattern = re.compile(r'\W+')
     args_string = pattern.sub('_', args_string)
 
+    # you need to add OPENAI_API_KEY to the environment variable
+    openai.api_key = args.key
     prompt_file = args.prompts
     gpt_version = args.version
     case = args.case
