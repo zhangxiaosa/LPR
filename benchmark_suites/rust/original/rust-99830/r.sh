@@ -36,8 +36,8 @@ opt-level = 1'
 
 readonly OUTPUT_BUGGY="output_buggy.txt"
 readonly OUTPUT_CORRECT1="output_correct1.txt"
-cp /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/Cargo.lock .
-cp -r /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/target/ .
+#cp /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/Cargo.lock .
+#cp -r /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/target/ .
 echo "$CONFIG_BUGGY" > Cargo.toml
 timeout -s 9 60 rustup run "${VERSION}" cargo run --release > ${OUTPUT_BUGGY} 2>&1
 if ! grep "panicked" "${OUTPUT_BUGGY}" >& /dev/null ; then
@@ -45,7 +45,7 @@ if ! grep "panicked" "${OUTPUT_BUGGY}" >& /dev/null ; then
 fi
 
 echo "$CONFIG_CORRECT1" > Cargo.toml
-timeout -s 9 60 rustup run "${VERSION}" cargo run --release > ${OUTPUT_CORRECT1} 2>&1
+timeout -s 9 300 rustup run "${VERSION}" cargo run --release > ${OUTPUT_CORRECT1} 2>&1
 if grep "panicked" "${OUTPUT_CORRECT1}" >& /dev/null ; then
   exit 1
 fi

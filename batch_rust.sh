@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cases=(rust-44800 rust-69039 rust-77002 rust-77320 rust-77323 rust-77910 rust-77919 rust-78005 rust-78325 rust-78651 rust-78652 rust-78655 rust-78720)
+cases=(rust-44800 rust-66851 rust-69039 rust-77002 rust-77320 rust-77323 rust-77910 rust-77919 rust-78005 rust-78325 rust-78651 rust-78652 rust-78655 rust-78720 rust-91725 rust-99830 rust-111502 rust-112061 rust-112213 rust-112526)
 
 for case in "${cases[@]}"
 do
