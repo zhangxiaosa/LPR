@@ -409,9 +409,6 @@ def main():
 
                 print_and_log(f"Start operation {operation}, current size: {utils.count_token(operation_program_path)}", level=2)
 
-                # call renamer
-                utils.call_renamer(operation_folder, level=2)
-
                 # call gpt
                 program_before_operation = utils.load_file(operation_program_path)
                 call_gpt_based_reducer(prompts=prompts, operation=operation,
