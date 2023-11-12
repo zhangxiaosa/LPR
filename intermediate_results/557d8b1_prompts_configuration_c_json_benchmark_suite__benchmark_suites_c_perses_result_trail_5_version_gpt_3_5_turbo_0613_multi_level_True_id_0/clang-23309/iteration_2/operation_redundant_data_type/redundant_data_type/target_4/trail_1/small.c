@@ -1,0 +1,21 @@
+long fn1(long p1, long p2) { return p1 - p2; }
+
+unsigned fn2(unsigned p1, unsigned p2) { return p1; }
+
+long f;
+unsigned g;
+short a = 1;
+
+int main() {
+  int c;
+  for (g = 3; g; g -= 1) {
+    if (c = 250) {
+      a || (c = g);
+      short d = -16975;
+      if (fn1(d, fn2(0 - c, 236)) - a & 1)
+        f = 1;
+    }
+  }
+  printf("checksum = %X\n", f);
+  return 0;
+}
