@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cases=(clang-22382 clang-22704 clang-23309 clang-23353 clang-25900 clang-26760 clang-27137 clang-27747 clang-31259 gcc-59903 gcc-60116 gcc-61383 gcc-61917 gcc-64990 gcc-65383 gcc-66186 gcc-66375 gcc-70127 gcc-70586 gcc-71626)
+
+for case in "${cases[@]}"
+do
+    echo "start $case"
+    python3 /tmp/gpt_reduction/perses_gpt.py --prompts /tmp/gpt_reduction/configuration/configuration.json --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_result --case $case $1
+    echo -e "\n\n\n"
+done
