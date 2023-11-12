@@ -13,6 +13,7 @@ def call_perses(output_folder, level):
     working_folder = os.path.join(output_folder, "perses")
     tmp_program_path = os.path.join(working_folder, utils.PROGRAM_NAME)
     tmp_script_path = os.path.join(working_folder, utils.SCRIPT_NAME)
+    tmp_log_path = os.path.join(working_folder, "perses_log.txt")
     os.makedirs(working_folder, exist_ok=True)
 
     if not check_finish(working_folder):
@@ -21,7 +22,7 @@ def call_perses(output_folder, level):
         shutil.copy(output_script_path, tmp_script_path)
 
         utils.execute_cmd(
-            f"java -jar {utils.PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder}")
+            f"java -jar {utils.PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder} > {tmp_log_path} 2>&1")
 
         call_formatter(working_folder)
         end_time = time.time()
