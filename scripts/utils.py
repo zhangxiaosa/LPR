@@ -1,10 +1,6 @@
 import os
-import sys
 import json
 import subprocess
-import shutil
-import time
-import datetime
 import re
 import argparse
 import copy
@@ -16,7 +12,7 @@ SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER_PATH = "/tmp/gpt_reduction/tools/token_counter_deploy.jar"
 PERSES_PATH = "/tmp/gpt_reduction/tools/perses_deploy.jar"
 VULCAN_PATH = "/tmp/gpt_reduction/tools/vulcan_deploy.jar"
-LOG_FILE_NAME = "log.txt"
+LOG_FILE_NAME = None
 LANGUAGE = None
 PROGRAM_NAME = None
 
@@ -77,7 +73,7 @@ def check_finish(folder):
 
 def count_token(program_path):
     output = subprocess.check_output(
-        f"java -jar {TOKEN_COUNTER} -- {program_path}", shell=True)
+        f"java -jar {TOKEN_COUNTER_PATH} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
     return int(size_str)
 
@@ -112,24 +108,17 @@ def get_args_string(args):
     args_dict = copy.deepcopy(vars(args))
     args_dict.pop("case")
     args_string = '_'.join(f'{key}_{value}' for key, value in args_dict.items())
-    pattern = re.compile(r'\W+')
+    pattern = re.compile(r'[^a-zA-Z0-9]+')
     return pattern.sub('_', args_string)
-
-def get_language(folder):
-    """Determine the programming language by searching for small.* files."""
-    for ext in PROGRAM_NAME_DICT.keys():
-        if glob.glob(os.path.join(folder, f"small.{ext}")):
-            return ext
-    return None
 
 def initialize_args():
     parser = argparse.ArgumentParser(description="Process some inputs.")
-    parser.add_argument("--prompts", type=str, default="/tmp/gpt_reduction/prompts/", help="Configuration file about prompts")
+    parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json", help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
-    parser.add_argument("--case", type=str, required=True, help="Benchmark ID")
-    parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
-    parser.add_argument("--llm-version", type=str, default="gpt-3.5-turbo-0613", help="LLM version")
-    parser.add_argument("--multi-level", action="store_false", default=True, help="Enable multi-level prompt")
+    parser.add_argument("--case", type=str, required=False, default=None, help="Benchmark ID")
+    parser.add_argument("--trail", type=int, required=False, default=5, help="Number of trials in GPT")
+    parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
+    parser.add_argument("--multi-level", action="store_false", required=False, default=True, help="Enable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
     args = parser.parse_args()
     return args
