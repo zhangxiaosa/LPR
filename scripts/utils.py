@@ -124,7 +124,7 @@ def get_language(folder):
 
 def initialize_args():
     parser = argparse.ArgumentParser(description="Process some inputs.")
-    parser.add_argument("--prompts", type=str, required=True, help="Configuration file about prompts")
+    parser.add_argument("--prompts", type=str, default="/tmp/gpt_reduction/prompts/", help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=True, help="Benchmark ID")
     parser.add_argument("--trail", type=int, required=True, help="Number of trials in GPT")
