@@ -17,6 +17,7 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
 
     shutil.copy(original_program_path, main_program_path)
     shutil.copy(original_script_path, main_script_path)
+    print(main_folder)
     
     utils.print_and_log(f"Start reduction on benchmark {case}", level=0)
     utils.call_perses(main_folder, level=0)
