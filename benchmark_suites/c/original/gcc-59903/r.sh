@@ -2,7 +2,7 @@
 
 # need to configure this part 
 BADCC=("gcc-4.8.2 -m32 -O3")
-GOODCC=("gcc-4.8.2 -m32 -O0")
+GOODCC=("ccomp -fall")
 TIMEOUT=30
 CFILE=small.c
 CFLAG="-o t"
@@ -82,6 +82,14 @@ for cc in "${GOODCC[@]}" ; do
     rm -f ./t ./out1.txt 
 
     # compile 
+    if [[ $cc == ccomp* ]] ; then 
+    	timeout -s 9 $TIMEOUT $cc -interp $CFLAG $CFILE >& /dev/null
+    	ret=$? 
+    	if [ $ret != 0 ] ; then 
+    	    exit 1 
+    	fi
+    fi
+    
     timeout -s 9 $TIMEOUT $cc $CFLAG $CFILE >& /dev/null
     ret=$? 
     if [ $ret != 0 ] ; then 
