@@ -6,6 +6,9 @@ import argparse
 import copy
 import glob
 import openai
+import datetime
+import shutil
+import time
 
 
 SCRIPT_NAME = "r.sh"
@@ -117,6 +120,7 @@ def initialize_args():
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=False, default=None, help="Benchmark ID")
     parser.add_argument("--trail", type=int, required=False, default=5, help="Number of trials in GPT")
+    parser.add_argument("--max-jobs", type=int, required=False, default=1, help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
     parser.add_argument("--multi-level", action="store_false", required=False, default=True, help="Enable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
@@ -146,3 +150,89 @@ def init_language(folder):
             PROGRAM_NAME = file_name
             return
     raise ValueError("Could not determine the programming language.")
+
+def get_benchmarks(benchmark_suite_folder, case):
+    case_list = []
+    if (case is None):
+        for item in os.listdir(benchmark_suite_folder):
+            if os.path.isdir(item):
+                case_list.append(item)
+    else:
+        case_list.append(case)
+    
+    return case_list
+
+def print_and_log(message, level):
+    # make indentation
+    indent = ""
+    for _ in range(level):
+        indent = indent + "  "
+
+    # make time stamp
+    now = datetime.datetime.now()
+    time_string = now.strftime("%Y-%m-%d %H:%M:%S")
+    message = f"{indent}[{time_string}] {message}"
+    print(message)
+    with open(LOG_FILE_NAME, 'a') as file:
+        file.write(message + '\n')
+
+def call_perses(output_folder, level):
+    print_and_log(f"start perses", level=level)
+    output_program_path = os.path.join(output_folder, PROGRAM_NAME)
+    output_script_path = os.path.join(output_folder, SCRIPT_NAME)
+    working_folder = os.path.join(output_folder, "perses")
+    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
+    tmp_log_path = os.path.join(working_folder, "perses_log.txt")
+    os.makedirs(working_folder, exist_ok=True)
+
+    if not check_finish(working_folder):
+        start_time = time.time()
+        shutil.copy(output_program_path, tmp_program_path)
+        shutil.copy(output_script_path, tmp_script_path)
+
+        execute_cmd(
+            f"java -jar {PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder} > {tmp_log_path} 2>&1")
+
+        call_formatter(working_folder)
+        end_time = time.time()
+        save_file(working_folder, "finish", f"{end_time-start_time}")
+    shutil.copy(tmp_program_path, output_program_path)
+
+    program_size = count_token(output_program_path)
+    print_and_log(f"Finish perses: {program_size} tokens", level=level)
+
+def call_formatter(working_folder):
+    working_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    working_script_path = os.path.join(working_folder, SCRIPT_NAME)
+
+    tmp_folder = os.path.join(working_folder, "format")
+    os.makedirs(tmp_folder, exist_ok=True)
+    
+    shutil.copy(working_program_path, tmp_folder)
+    shutil.copy(working_script_path, tmp_folder)
+
+    current_path = os.getcwd()
+    os.chdir(tmp_folder)
+    if LANGUAGE in ("c", "cpp"):
+        tmp_file = "tmp"
+        execute_cmd(f"clang-format {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
+    elif LANGUAGE in ("rs",):
+        execute_cmd(f"rustfmt {PROGRAM_NAME}", output=True)
+        if property_test():
+            shutil.copy(PROGRAM_NAME, working_folder)
+    elif LANGUAGE in ("go",):
+        tmp_file = "tmp"
+        execute_cmd(f"gofmt {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
+    elif LANGUAGE in ("js",):
+        tmp_file = "tmp"
+        execute_cmd(f"js-beautify {PROGRAM_NAME} > {tmp_file}", output=True)
+        if property_test():
+            shutil.copy(tmp_file, working_folder)
+    else:
+        pass
+    os.chdir(current_path)

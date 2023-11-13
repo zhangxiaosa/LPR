@@ -24,7 +24,7 @@ def call_perses(output_folder, level):
         utils.execute_cmd(
             f"java -jar {utils.PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder} > {tmp_log_path} 2>&1")
 
-        call_formatter(working_folder)
+        utils.call_formatter(working_folder)
         end_time = time.time()
         utils.save_file(working_folder, "finish", f"{end_time-start_time}")
     shutil.copy(tmp_program_path, output_program_path)
@@ -146,7 +146,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
         if smallest_program != "":
             utils.save_program_file(tmp_folder, smallest_program)
 
-        call_formatter(tmp_folder)
+        utils.call_formatter(tmp_folder)
         final_program_size = utils.count_token(tmp_program_path)
         print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
         print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
@@ -221,7 +221,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, gpt_ver
     if smallest_program != "":
         utils.save_program_file(tmp_folder, smallest_program)
 
-    call_formatter(tmp_folder)
+    utils.call_formatter(tmp_folder)
     final_program_size = utils.count_token(tmp_program_path)
     print_and_log(f"Finished gpt ({operation})).", level=level)
     print_and_log(f"Current size: {final_program_size} tokens", level=level)
@@ -279,42 +279,6 @@ def call_gpt(message, gpt_version, trail_number=1):
     )
     return completion
 
-
-def call_formatter(working_folder):
-    working_program_path = os.path.join(working_folder, utils.PROGRAM_NAME)
-    working_script_path = os.path.join(working_folder, utils.SCRIPT_NAME)
-
-    tmp_folder = os.path.join(working_folder, "format")
-    os.makedirs(tmp_folder, exist_ok=True)
-    
-    shutil.copy(working_program_path, tmp_folder)
-    shutil.copy(working_script_path, tmp_folder)
-
-    current_path = os.getcwd()
-    os.chdir(tmp_folder)
-    if utils.LANGUAGE in ("c", "cpp"):
-        tmp_file = "tmp"
-        utils.execute_cmd(f"clang-format {utils.PROGRAM_NAME} > {tmp_file}", output=True)
-        if property_test():
-            shutil.copy(tmp_file, working_folder)
-    elif utils.LANGUAGE in ("rs",):
-        utils.execute_cmd(f"rustfmt {utils.PROGRAM_NAME}", output=True)
-        if property_test():
-            shutil.copy(utils.PROGRAM_NAME, working_folder)
-    elif utils.LANGUAGE in ("go",):
-        tmp_file = "tmp"
-        utils.execute_cmd(f"gofmt {utils.PROGRAM_NAME} > {tmp_file}", output=True)
-        if property_test():
-            shutil.copy(tmp_file, working_folder)
-    elif utils.LANGUAGE in ("js",):
-        tmp_file = "tmp"
-        utils.execute_cmd(f"js-beautify {utils.PROGRAM_NAME} > {tmp_file}", output=True)
-        if property_test():
-            shutil.copy(tmp_file, working_folder)
-    else:
-        pass
-    os.chdir(current_path)
-
 def print_and_log(message, level):
     # make indentation
     indent = ""
@@ -350,13 +314,7 @@ def main():
     code_version = utils.get_current_version()
 
     # get case list
-    case_list = []
-    if (case is None):
-        for item in os.listdir(benchmark_suite_folder):
-            if os.path.isdir(item):
-                case_list.append(item)
-    else:
-        case_list.append(case)
+    case_list = utils.get_benchmarks(benchmark_suite_folder, case)
 
     for case in case_list:
         # get main folder
