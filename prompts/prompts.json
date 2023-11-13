@@ -2,7 +2,7 @@
   "prompt_from_system": "You are ChatGPT, a large language model trained by OpenAI. Knowledge cutoff: 2021-09. You are an assistant for program analysis and modifications. Please provide a step-by-step analysis (the analysis should not include any code snippets), and then write the whole final program into a JSON file and be sure to use Markdown syntax to wrap the JSON: ```json{\"program\": \"{PROGRAM_CODE}\"}```. In PROGRAM_CODE, use escape the control characters via double backslash, e.g., \\n and \\t.",
   "operations": {
     "function_inlining": {
-      "single_level_question": "Given the following program, identify a function and optimize it out via function inlining.",
+      "single_level_question": "Given the following program, identify a function that can be inlined, optimize it out via function inlining.",
       "multi_level_question": {
         "primary_question": "Given the following program, identify all functions that can be inlined. Please write the identified functions into a json: {'target_list': [a list of functions]}. If no function is identified, just give an empty list.",
         "followup_question": "Given the following program and the specified function, optimize it out via function inlining."
@@ -29,18 +29,11 @@
         "followup_question": "Given the following program and the specified variable in complex data type, decompose it into variables with primary data type, e.g., int, float."
       }
     },
-    "intermediate_variable": {
-      "single_level_question": "Given the following program, identify an intermediate variable, optimize it out via constant propagation or copy propagation.",
+    "unnecessary_variable": {
+      "single_level_question": "Given the following program, identify an intermediate or unused variable (it can be a global variable, local variable or function parameter), optimize it out via constant propagation or copy propagation.",
       "multi_level_question": {
-        "primary_question": "Given the following program, identify all variables that can be optimized by constant propagation or copy propagation. Please write the identified variables into a json: {'target_list': [a list of variables]}. If no variable is identified, just give an empty list.",
-        "followup_question": "Given the following program and the specified variable, optimize it out by constant propagation or copy propagation."
-      }
-    },
-    "unused_variable": {
-      "single_level_question": "Given the following program, identify an unused variable, optimize it out.",
-      "multi_level_question": {
-        "primary_question": "Given the following program, identify all unused variables. Please write the identified variables into a json: {'target_list': [a list of variables]}. If no variable is identified, just give an empty list.",
-        "followup_question": "Given the following program and the specified variable, eliminate this unused variable."
+        "primary_question": "Given the following program, identify all intermediate or unused variables (it can be a global variable, local variable or function parameter). Please write the identified variables into a json: {'target_list': [a list of variables]}. If no variable is identified, just give an empty list.",
+        "followup_question": "Given the following program and the specified variable, optimize it out by constant propagation or copy propagation. If this variable is unused, just optimize it out."
       }
     }
   }
