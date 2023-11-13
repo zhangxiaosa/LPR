@@ -144,11 +144,13 @@ def init_language(folder):
         "go": "small.go",
         "js": "small.js"
     }
-    for ext, file_name in program_name_dict.items():
-        if glob.glob(os.path.join(folder, file_name)):
-            LANGUAGE = ext
-            PROGRAM_NAME = file_name
-            return
+
+    for _, _, filenames in os.walk(folder):
+        for ext, file_name in program_name_dict.items():
+            if file_name in filenames:
+                LANGUAGE = ext
+                PROGRAM_NAME = file_name
+                return
     raise ValueError("Could not determine the programming language.")
 
 def get_benchmarks(benchmark_suite_folder, case):
