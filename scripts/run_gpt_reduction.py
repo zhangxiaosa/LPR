@@ -81,6 +81,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, gpt_vers
 
     print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
     print_and_log(f"Identified target list: {target_list}", level=level)
+    utils.save_file(tmp_folder, "target_list", ", ".join(target_list))
 
     # if no target identified, return
     if len(target_list) == 0:
