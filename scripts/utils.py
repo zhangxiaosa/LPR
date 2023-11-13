@@ -155,7 +155,7 @@ def get_benchmarks(benchmark_suite_folder, case):
     case_list = []
     if (case is None):
         for item in os.listdir(benchmark_suite_folder):
-            if os.path.isdir(item):
+            if os.path.isdir(os.path.join(benchmark_suite_folder, item)):
                 case_list.append(item)
     else:
         case_list.append(case)
