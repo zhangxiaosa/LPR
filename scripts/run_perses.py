@@ -9,6 +9,10 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         main_folder = os.path.normpath(
             os.path.join("/tmp/gpt_reduction/results/", code_version, args_string, case)
         )
+        if (os.path.exists(main_folder)):
+            utils.print_and_log(f"Benchmark {case} is done, skip it.", level=0)
+            return
+        
         os.makedirs(main_folder, exist_ok=True)
 
         utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
@@ -24,6 +28,12 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         
         utils.print_and_log(f"Start reduction on benchmark {case}", level=0)
         utils.call_perses(main_folder, level=0)
+        utils.call_formatter(main_folder)
+        shutil.copy(
+            os.path.join(main_folder, "perses", "perses_log.txt"),
+            os.path.join(main_folder, "log.txt")
+                    )
+        shutil.rmtree(os.path.join(main_folder, "perses"))
         utils.print_and_log(f"Finished reduction on benchmark {case}", level=0)
     except Exception as e:
         print(f"Error processing case {case}: {e}")
