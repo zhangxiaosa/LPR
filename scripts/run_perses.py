@@ -23,8 +23,6 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
     utils.print_and_log(f"Finished reduction on benchmark {case}", level=0)
 
 def main():
-    utils.init_openai_api_key()
-    utils.init_language()
     args = utils.initialize_args()
     args_string = utils.get_args_string(args)
 
