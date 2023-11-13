@@ -11,6 +11,7 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         )
         os.makedirs(main_folder, exist_ok=True)
 
+        utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
         
