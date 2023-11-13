@@ -2,6 +2,7 @@ import os
 import utils
 import shutil
 from concurrent.futures import ProcessPoolExecutor
+import traceback
 
 def process_case(case, benchmark_suite_folder, code_version, args_string):
     try:
@@ -25,6 +26,7 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         utils.print_and_log(f"Finished reduction on benchmark {case}", level=0)
     except Exception as e:
         print(f"Error processing case {case}: {e}")
+        traceback.print_exc()
 
 def main():
     parser = utils.initialize_parser()
