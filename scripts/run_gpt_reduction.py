@@ -296,8 +296,9 @@ def print_and_log(message, level):
 def main():
 
     utils.init_openai_api_key()
-    args = utils.initialize_args()
-    args_string = utils.get_args_string(args)
+    parser = utils.initialize_parser()
+    args = parser.parse_args()
+    args_string = utils.get_args_string(parser)
 
     prompt_file = args.prompts
     gpt_version = args.version

@@ -27,8 +27,9 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         print(f"Error processing case {case}: {e}")
 
 def main():
-    args = utils.initialize_args()
-    args_string = utils.get_args_string(args)
+    parser = utils.initialize_parser()
+    args = parser.parse_args()
+    args_string = utils.get_args_string(parser)
 
     case = args.case
     benchmark_suite_folder = args.benchmark_suite

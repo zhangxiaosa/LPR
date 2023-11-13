@@ -106,15 +106,21 @@ def get_current_version():
     version = result.stdout.strip()
     return version
 
-def get_args_string(args):
-    """Generate a string representation of the arguments."""
+def get_args_string(parser):
+    """Generate a string representation of the arguments provided explicitly by the user."""
+    args = parser.parse_args()
     args_dict = copy.deepcopy(vars(args))
-    args_dict.pop("case")
-    args_string = '_'.join(f'{key}_{value}' for key, value in args_dict.items())
+    default_args = {action.dest: action.default for action in parser._actions}
+
+    # Keep only user-provided arguments (non-default)
+    user_args = {key: value for key, value in args_dict.items() if default_args.get(key, None) != value}
+
+    # Generate the string representation
+    args_string = '_'.join(f'{key}_{value}' for key, value in user_args.items())
     pattern = re.compile(r'[^a-zA-Z0-9]+')
     return pattern.sub('_', args_string)
 
-def initialize_args():
+def initialize_parser():
     parser = argparse.ArgumentParser(description="Process some inputs.")
     parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json", help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
@@ -124,8 +130,7 @@ def initialize_args():
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
     parser.add_argument("--multi-level", action="store_false", required=False, default=True, help="Enable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
-    args = parser.parse_args()
-    return args
+    return parser
 
 def init_openai_api_key():
     """Initialize OpenAI API key or raise an error if it is not set."""
