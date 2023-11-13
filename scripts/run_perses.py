@@ -1,7 +1,7 @@
 import os
 import utils
 import shutil
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 
 def process_case(case, benchmark_suite_folder, code_version, args_string):
     main_folder = os.path.normpath(
@@ -37,7 +37,7 @@ def main():
 
     max_jobs = args.max_jobs
     print(max_jobs)
-    with ThreadPoolExecutor(max_workers=max_jobs) as executor:
+    with ProcessPoolExecutor(max_workers=max_jobs) as executor:
         futures = [executor.submit(process_case, case, benchmark_suite_folder, code_version, args_string) for case in case_list]
         for future in futures:
             future.result()
