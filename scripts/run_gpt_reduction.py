@@ -296,7 +296,6 @@ def print_and_log(message, level):
 def main():
 
     utils.init_openai_api_key()
-    utils.init_language()
     args = utils.initialize_args()
     args_string = utils.get_args_string(args)
 
@@ -306,6 +305,8 @@ def main():
     benchmark_suite_folder = args.benchmark_suite
     trail_number = args.trail
     multi_level = args.multi_level
+
+    utils.init_language(benchmark_suite_folder)
 
     # get prompts
     prompts = utils.load_json_file(prompt_file)
