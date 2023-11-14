@@ -45,22 +45,25 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
 
         # try multiple times to ensure the quality of target_list
-        target_list = []
+        longest_current_list = []
+
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
             response_json = utils.extract_json(response_text)
             
             if "target_list" in response_json:
                 current_list = response_json["target_list"]
-                # check each item in current_list
+                
+                # Deduplicate and filter out non-string elements
                 if isinstance(current_list, list):
-                    for item in current_list:
-                        if isinstance(item, str):  # if it is str, add it to target_list
-                            target_list.append(item)
+                    deduplicated_and_filtered_list = [item for item in set(current_list) if isinstance(item, str)]
+                    
+                    # Update the longest list if current one is longer
+                    if len(deduplicated_and_filtered_list) > len(longest_current_list):
+                        longest_current_list = deduplicated_and_filtered_list
 
-        # deduplicate
-        target_list = list(set(target_list))
-        target_list = sorted(target_list)
+        # Sort the longest deduplicated and filtered list
+        target_list = sorted(longest_current_list)
 
         print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
         utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
