@@ -14,12 +14,14 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
     operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
 
+    prompt_from_system = prompts["prompt_from_system"]
+    operations = prompts["operations"]
+    questions = operations[operation]["multi_level_question"]
+    primary_question = questions["primary_question"]
+    followup_question = questions["followup_question"]
+
     if not utils.check_finish(operation_folder):
-        prompt_from_system = prompts["prompt_from_system"]
-        operations = prompts["operations"]
-        questions = operations[operation]["multi_level_question"]
-        primary_question = questions["primary_question"]
-        followup_question = questions["followup_question"]
+        
         # ask the primary question
         start_time = time.time()
 
