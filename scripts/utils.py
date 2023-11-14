@@ -225,21 +225,21 @@ def call_formatter(working_folder):
         tmp_file = "tmp"
         execute_cmd(f"clang-format {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_folder)
+            shutil.copy(tmp_file, working_program_path)
     elif LANGUAGE in ("rs",):
         execute_cmd(f"rustfmt {PROGRAM_NAME}", output=True)
         if property_test():
-            shutil.copy(PROGRAM_NAME, working_folder)
+            shutil.copy(PROGRAM_NAME, working_program_path)
     elif LANGUAGE in ("go",):
         tmp_file = "tmp"
         execute_cmd(f"gofmt {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_folder)
+            shutil.copy(tmp_file, working_program_path)
     elif LANGUAGE in ("js",):
         tmp_file = "tmp"
         execute_cmd(f"js-beautify {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_folder)
+            shutil.copy(tmp_file, working_program_path)
     else:
         pass
     os.chdir(current_path)
