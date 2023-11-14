@@ -199,23 +199,23 @@ def call_perses(output_folder, level):
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     working_folder = os.path.join(output_folder, "perses")
-    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
-    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
-    tmp_log_path = os.path.join(working_folder, "perses_log.txt")
+    working_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    working_script_path = os.path.join(working_folder, SCRIPT_NAME)
+    working_log_path = os.path.join(working_folder, "perses_log.txt")
     os.makedirs(working_folder, exist_ok=True)
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, tmp_program_path)
-        shutil.copy(output_script_path, tmp_script_path)
+        shutil.copy(output_program_path, working_program_path)
+        shutil.copy(output_script_path, working_script_path)
 
         execute_cmd(
-            f"java -jar {PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder} --query-caching false --threads 1 > {tmp_log_path} 2>&1")
+            f"java -jar {PERSES_PATH} --input {working_program_path} --test {working_script_path} --output-dir {working_folder} --query-caching false --threads 1 > {working_log_path} 2>&1")
 
         call_formatter(working_folder)
         end_time = time.time()
         save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(tmp_program_path, output_program_path)
+    shutil.copy(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish perses: {program_size} tokens", level=level)
@@ -225,25 +225,24 @@ def call_vulcan(output_folder, level):
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     working_folder = os.path.join(output_folder, "vulcan")
-    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
-    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
-    tmp_log_path = os.path.join(working_folder, "vulcan_log.txt")
+    working_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    working_script_path = os.path.join(working_folder, SCRIPT_NAME)
+    working_log_path = os.path.join(working_folder, "vulcan_log.txt")
     os.makedirs(working_folder, exist_ok=True)
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, tmp_program_path)
-        shutil.copy(output_script_path, tmp_script_path)
+        shutil.copy(output_program_path, working_program_path)
+        shutil.copy(output_script_path, working_script_path)
 
         execute_cmd(
-            f"java -jar {VULCAN_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder}
-              --enable-vulcan true --query-caching false --threads 1 > {tmp_log_path} 2>&1"
+            f"java -jar {VULCAN_PATH} --input {working_program_path} --test {working_script_path} --output-dir {working_folder} --enable-vulcan true --query-caching false --threads 1 > {working_log_path} 2>&1"
         )
 
         call_formatter(working_folder)
         end_time = time.time()
         save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(tmp_program_path, output_program_path)
+    shutil.copy(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish vulcan: {program_size} tokens", level=level)
@@ -253,24 +252,24 @@ def call_creduce(output_folder, level):
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
     working_folder = os.path.join(output_folder, "creduce")
-    tmp_program_path = os.path.join(working_folder, PROGRAM_NAME)
-    tmp_script_path = os.path.join(working_folder, SCRIPT_NAME)
-    tmp_log_path = os.path.join(working_folder, "creduce_log.txt")
+    working_program_path = os.path.join(working_folder, PROGRAM_NAME)
+    working_script_path = os.path.join(working_folder, SCRIPT_NAME)
+    working_log_path = os.path.join(working_folder, "creduce_log.txt")
     os.makedirs(working_folder, exist_ok=True)
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, tmp_program_path)
-        shutil.copy(output_script_path, tmp_script_path)
+        shutil.copy(output_program_path, working_program_path)
+        shutil.copy(output_script_path, working_script_path)
 
         execute_cmd(
-            f" creduce --n 1 --timing {tmp_script_path} {tmp_program_path} > {tmp_log_path} 2>&1"
+            f" creduce --n 1 --timing {working_script_path} {working_program_path} > {working_log_path} 2>&1"
         )
 
         call_formatter(working_folder)
         end_time = time.time()
         save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(tmp_program_path, output_program_path)
+    shutil.copy(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish creduce: {program_size} tokens", level=level)
