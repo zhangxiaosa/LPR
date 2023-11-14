@@ -36,7 +36,7 @@ def get_token_num_from_log(file):
         with open(file, 'r') as f:
             lines = f.readlines()
         for line in reversed(lines):
-            match = re.search(r'Reduction ratio is(\d+)/\d+', line)
+            match = re.search(r'Reduction ratio is (\d+)/\d+', line)
             if match:
                 return match.group(1)
     except FileNotFoundError:
@@ -71,7 +71,7 @@ benchmark_suite = determine_benchmark_suite(RESULT_PATH)
 
 with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
-    csv_writer.writerow(["target", "time", "token num", "query num", "iteration"])
+    csv_writer.writerow(["target", "token num", "time", "query num", "iteration"])
 
     for target in benchmark_suite:
         row = [target]
@@ -83,12 +83,12 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             csv_writer.writerow([target, None, None, None, None])
             continue
 
-        # 计算 time, token number, query number 和 iteration
-        time = get_time_from_log(log_file)
+        # compute token number, time, query number and iteration
         token_num = get_token_num_from_log(log_file)
+        time = get_time_from_log(log_file)
         query_num = get_query_number_from_log(log_file)
         iteration = get_iteration_from_log(log_file)
 
-        print(f"target: {target}: time: {time}, token num: {token_num}, query num: {query_num}, iteration: {iteration}")
-        row.extend([time, token_num, query_num, iteration])
+        print(f"target: {target}, token num: {token_num}, time: {time}, query num: {query_num}, iteration: {iteration}")
+        row.extend([token_num, time, query_num, iteration])
         csv_writer.writerow(row)
