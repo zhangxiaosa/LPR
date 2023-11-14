@@ -68,7 +68,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
     target_list = utils.load_json_file(os.path.join(operation_folder, "target_list.json"))
     print_and_log(f"Identified target list: {target_list}", level=level)
-    
+
     # if no target identified, return
     if len(target_list) == 0:
         return
@@ -143,10 +143,11 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             utils.call_formatter(target_folder)
             end_time = time.time()
 
-            final_program_size = utils.count_token(target_program_path)
-            print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
-            print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
             utils.save_file(target_folder, "finish", f"{end_time-start_time:.2f}")
+
+        final_program_size = utils.count_token(target_program_path)
+        print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
+        print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
 
         shutil.copy(target_program_path, operation_program_path)
 
