@@ -19,6 +19,7 @@ VULCAN_PATH = "/tmp/gpt_reduction/tools/vulcan_deploy.jar"
 LOG_FILE_NAME = None
 LANGUAGE = None
 PROGRAM_NAME = None
+ROOT_FOLDER = None
 
 def execute_cmd(cmd, output=False):
     if output:
@@ -142,6 +143,10 @@ def init_openai_api_key():
     if not openai_api_key:
         raise EnvironmentError("OPENAI_API_KEY is not set in the environment variables.")
     openai.api_key = openai_api_key
+
+def init_root_folder(folder):
+    global ROOT_FOLDER
+    ROOT_FOLDER = folder
 
 def init_language(folder):
     """Determine the programming language and initialize LANGUAGE and PROGRAM_NAME."""
