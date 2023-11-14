@@ -63,11 +63,12 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         target_list = sorted(target_list)
 
         print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
-        print_and_log(f"Identified target list: {target_list}", level=level)
         utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
         utils.save_json_file(operation_folder, "target_list.json", target_list)
 
     target_list = utils.load_json_file(os.path.join(operation_folder, "target_list.json"))
+    print_and_log(f"Identified target list: {target_list}", level=level)
+    
     # if no target identified, return
     if len(target_list) == 0:
         return
