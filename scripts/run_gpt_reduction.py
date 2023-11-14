@@ -6,7 +6,7 @@ import datetime
 import openai
 import utils
 
-def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level):
+def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
 
     operation_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(operation_folder, exist_ok=True)
@@ -34,7 +34,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trail_number=trail_number)
+        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
 
         # save prompt
@@ -46,8 +46,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         # try multiple times to ensure the quality of target_list
         target_list = []
-        for trail in range(trail_number):
-            response_text = completion.choices[trail].message.content
+        for trial in range(trial_number):
+            response_text = completion.choices[trial].message.content
             response_json = utils.extract_json(response_text)
             
             if "target_list" in response_json:
@@ -92,7 +92,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
-            completion = call_gpt(messages, llm_version=llm_version, trail_number=trail_number)
+            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
             end_time = time.time()
             print_and_log(f"Followup question for target ({target}) \
                         finished in {end_time-start_time:.2f} seconds", level=level+1)
@@ -104,36 +104,36 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time-start_time:.2f}")
             
             # save programs from followup_question_response.json
-            for trail in range(trail_number):
-                response_text = completion.choices[trail].message.content
+            for trial in range(trial_number):
+                response_text = completion.choices[trial].message.content
                 response_json = utils.extract_json(response_text)
                 if "program" in response_json and isinstance(response_json["program"], str):
                     program = response_json["program"]
                 else:
                     program = ""
 
-                trail_path = os.path.join(target_folder, f"trail_{trail}")
-                utils.save_program_file(trail_path, program)
-                shutil.copy(operation_script_path, trail_path)
+                trial_path = os.path.join(target_folder, f"trial_{trial}")
+                utils.save_program_file(trial_path, program)
+                shutil.copy(operation_script_path, trial_path)
 
             # test all programs and return the smallest one
             smallest_program = ""
             smallest_size = sys.maxsize
-            for trail in range(trail_number):
-                trail_path = os.path.join(target_folder, f"trail_{trail}")
-                trial_program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
+            for trial in range(trial_number):
+                trial_path = os.path.join(target_folder, f"trial_{trial}")
+                trial_program_path = os.path.join(trial_path, utils.PROGRAM_NAME)
 
                 size = utils.count_token(trial_program_path)
                 program = utils.load_file(trial_program_path)
 
-                os.chdir(trail_path)
+                os.chdir(trial_path)
                 if property_test():
-                    print_and_log(f"trail {trail}: program size {size}, pass", level=level+2)
+                    print_and_log(f"trial {trial}: program size {size}, pass", level=level+2)
                     if size < smallest_size:
                         smallest_size = size
                         smallest_program = program
                 else:
-                    print_and_log(f"trail {trail}: program size {size}, fail", level=level+2)
+                    print_and_log(f"trial {trial}: program size {size}, fail", level=level+2)
 
             if smallest_program != "":
                 utils.save_program_file(target_folder, smallest_program)
@@ -150,7 +150,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
     os.chdir(utils.ROOT_FOLDER)
 
-def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level):
+def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
 
     operation_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(operation_folder, exist_ok=True)
@@ -182,7 +182,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trail_number=trail_number)
+        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
         print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
 
@@ -192,37 +192,37 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         utils.save_json_file(operation_folder, "question_response.json", completion)
 
         # save program
-        for trail in range(trail_number):
-            response_text = completion.choices[trail].message.content
+        for trial in range(trial_number):
+            response_text = completion.choices[trial].message.content
             response_json = utils.extract_json(response_text)
             if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
             else:
-                print_and_log(f"invalid result for trail {trail}", level=level)
+                print_and_log(f"invalid result for trial {trial}", level=level)
                 program = ""
 
-            trail_path = os.path.join(operation_folder, f"trail_{trail}")
-            utils.save_program_file(trail_path, program)
-            shutil.copy(operation_script_path, trail_path)
+            trial_path = os.path.join(operation_folder, f"trial_{trial}")
+            utils.save_program_file(trial_path, program)
+            shutil.copy(operation_script_path, trial_path)
 
         # test all programs and return the smallest one
         smallest_program = ""
         smallest_size = sys.maxsize
-        for trail in range(trail_number):
-            trail_path = os.path.join(operation_folder, f"trail_{trail}")
-            trial_program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
+        for trial in range(trial_number):
+            trial_path = os.path.join(operation_folder, f"trial_{trial}")
+            trial_program_path = os.path.join(trial_path, utils.PROGRAM_NAME)
 
             size = utils.count_token(trial_program_path)
             program = utils.load_file(trial_program_path)
 
-            os.chdir(trail_path)
+            os.chdir(trial_path)
             if property_test():
-                print_and_log(f"trail {trail}: program size {size}, pass", level=level)
+                print_and_log(f"trial {trial}: program size {size}, pass", level=level)
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                print_and_log(f"trail {trail}: program size {size}, fail", level=level)
+                print_and_log(f"trial {trial}: program size {size}, fail", level=level)
 
         if smallest_program != "":
             utils.save_program_file(operation_folder, smallest_program)
@@ -237,7 +237,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
 
     shutil.copy(operation_program_path, output_program_path)
 
-def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trail_number, multi_level, level):
+def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial_number, multi_level, level):
     print_and_log(f"Start gpt ({operation})", level=level)
 
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
@@ -254,9 +254,9 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trail
     shutil.copy(output_script_path, operation_script_path)
 
     if multi_level:
-        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level)
+        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level)
     else:
-        call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level)
+        call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level)
     end_time = time.time()
     utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
 
@@ -274,10 +274,10 @@ def property_test():
     utils.save_file("./", "property_test_result", "pass")
     return True
 
-def call_gpt(message, llm_version, trail_number=1):
+def call_gpt(message, llm_version, trial_number=1):
     completion = openai.ChatCompletion.create(
         model=llm_version,
-        n=trail_number,
+        n=trial_number,
         messages=message
     )
     return completion
@@ -307,7 +307,7 @@ def main():
     llm_version = args.llm_version
     case = args.case
     benchmark_suite_folder = args.benchmark_suite
-    trail_number = args.trail
+    trial_number = args.trial
     multi_level = args.multi_level
 
     utils.init_language(benchmark_suite_folder)
@@ -379,7 +379,7 @@ def main():
                 program_before_operation = utils.load_file(operation_program_path)
                 call_gpt_based_reducer(prompts=prompts, operation=operation,
                                     output_folder=operation_folder, llm_version=llm_version,
-                                    trail_number=trail_number, multi_level=multi_level, level=2)
+                                    trial_number=trial_number, multi_level=multi_level, level=2)
                 program_after_operation = utils.load_file(operation_program_path)
 
                 # call perses
