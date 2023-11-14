@@ -177,6 +177,7 @@ def get_benchmarks(benchmark_suite_folder, case):
     else:
         case_list.append(case)
     
+    case_list = sorted(case_list)
     return case_list
 
 def print_and_log(message, level):
