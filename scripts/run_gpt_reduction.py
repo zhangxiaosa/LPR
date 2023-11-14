@@ -116,10 +116,10 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             smallest_size = sys.maxsize
             for trail in range(trail_number):
                 trail_path = os.path.join(target_folder, f"trail_{trail}")
-                program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
+                trial_program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
 
-                size = utils.count_token(program_path)
-                program = utils.load_file(program_path)
+                size = utils.count_token(trial_program_path)
+                program = utils.load_file(trial_program_path)
 
                 os.chdir(trail_path)
                 if property_test():
@@ -134,6 +134,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 utils.save_program_file(target_folder, smallest_program)
 
             utils.call_formatter(target_folder)
+            end_time = time.time()
+
             final_program_size = utils.count_token(target_program_path)
             print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
             print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
@@ -151,71 +153,84 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
     operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
     operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
 
+    output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
+    output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
+
+    shutil.copy(output_program_path, operation_program_path)
+    shutil.copy(output_script_path, operation_script_path)
+
     prompt_from_system = prompts["prompt_from_system"]
     operations = prompts["operations"]
     question = operations[operation]["single_level_question"]
 
-    # ask the single level question
-    start_time = time.time()
+    if not utils.check_finish(operation_folder):
 
-    # load the program
-    program = utils.load_file(operation_program_path)
+        # ask the single level question
+        start_time = time.time()
 
-    # call gpt
-    prompt_from_user = f"{question}. The program is {program}."
-    messages = [
-        {"role": "system", "content": f"{prompt_from_system}"},
-        {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
-    ]
-    completion = call_gpt(messages, llm_version=llm_version, trail_number=trail_number)
-    end_time = time.time()
-    print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
+        # load the program
+        program = utils.load_file(operation_program_path)
 
-    # save prompt
-    utils.save_json_file(operation_folder, "question_prompt.json", messages)
-    # save response
-    utils.save_json_file(operation_folder, "question_response.json", completion)
+        # call gpt
+        prompt_from_user = f"{question}. The program is {program}."
+        messages = [
+            {"role": "system", "content": f"{prompt_from_system}"},
+            {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+        ]
+        completion = call_gpt(messages, llm_version=llm_version, trail_number=trail_number)
+        end_time = time.time()
+        print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
 
-    # save program
-    for trail in range(trail_number):
-        response_text = completion.choices[trail].message.content
-        response_json = utils.extract_json(response_text)
-        if "program" in response_json and isinstance(response_json["program"], str):
-            program = response_json["program"]
-        else:
-            print_and_log(f"invalid result for trail {trail}", level=level)
-            program = ""
+        # save prompt
+        utils.save_json_file(operation_folder, "question_prompt.json", messages)
+        # save response
+        utils.save_json_file(operation_folder, "question_response.json", completion)
 
-        trail_path = os.path.join(operation_folder, f"trail_{trail}")
-        utils.save_program_file(trail_path, program)
-        shutil.copy(operation_script_path, trail_path)
+        # save program
+        for trail in range(trail_number):
+            response_text = completion.choices[trail].message.content
+            response_json = utils.extract_json(response_text)
+            if "program" in response_json and isinstance(response_json["program"], str):
+                program = response_json["program"]
+            else:
+                print_and_log(f"invalid result for trail {trail}", level=level)
+                program = ""
 
-    # test all programs and return the smallest one
-    smallest_program = ""
-    smallest_size = sys.maxsize
-    for trail in range(trail_number):
-        trail_path = os.path.join(operation_folder, f"trail_{trail}")
-        program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
+            trail_path = os.path.join(operation_folder, f"trail_{trail}")
+            utils.save_program_file(trail_path, program)
+            shutil.copy(operation_script_path, trail_path)
 
-        size = utils.count_token(program_path)
-        program = utils.load_file(program_path)
+        # test all programs and return the smallest one
+        smallest_program = ""
+        smallest_size = sys.maxsize
+        for trail in range(trail_number):
+            trail_path = os.path.join(operation_folder, f"trail_{trail}")
+            trial_program_path = os.path.join(trail_path, utils.PROGRAM_NAME)
 
-        os.chdir(trail_path)
-        if property_test():
-            print_and_log(f"trail {trail}: program size {size}, pass", level=level)
-            if size < smallest_size:
-                smallest_size = size
-                smallest_program = program
-        else:
-            print_and_log(f"trail {trail}: program size {size}, fail", level=level)
+            size = utils.count_token(trial_program_path)
+            program = utils.load_file(trial_program_path)
 
-    if smallest_program != "":
-        utils.save_program_file(operation_folder, smallest_program)
+            os.chdir(trail_path)
+            if property_test():
+                print_and_log(f"trail {trail}: program size {size}, pass", level=level)
+                if size < smallest_size:
+                    smallest_size = size
+                    smallest_program = program
+            else:
+                print_and_log(f"trail {trail}: program size {size}, fail", level=level)
 
-    utils.call_formatter(operation_folder)
-    final_program_size = utils.count_token(operation_program_path)
-    print_and_log(f"Finished gpt ({operation})).", level=level)
-    print_and_log(f"Current size: {final_program_size} tokens", level=level)
+        if smallest_program != "":
+            utils.save_program_file(operation_folder, smallest_program)
+
+        utils.call_formatter(operation_folder)
+        end_time = time.time()
+
+        final_program_size = utils.count_token(operation_program_path)
+        print_and_log(f"Finished gpt ({operation})).", level=level)
+        print_and_log(f"Current size: {final_program_size} tokens", level=level)
+        utils.save_file(operation_folder, "finish", f"{end_time-start_time}")
+
+    shutil.copy(operation_program_path, output_program_path)
 
 def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trail_number, multi_level, level):
     print_and_log(f"Start gpt ({operation})", level=level)
