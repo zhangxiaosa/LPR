@@ -90,7 +90,7 @@ def extract_code(text):
 
 
 def extract_json(text):
-    pattern = r"```(json|JSON|Json)(.*?)```"
+    pattern = r"```(?:json|JSON|Json)(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
     if len(result) != 0:
         json_string = result[-1]
