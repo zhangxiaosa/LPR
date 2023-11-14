@@ -346,7 +346,7 @@ def main():
 
         # start
         original_program_size = utils.count_token(original_program_path)
-        print_and_log(f"Start reduction, original program size: {original_program_size} tokens", level=0)
+        print_and_log(f"Start reduction on {case}, original program size: {original_program_size} tokens", level=0)
         iteration = 0
 
         program_size_before_iteration = sys.maxsize
@@ -401,7 +401,7 @@ def main():
             iteration = iteration + 1
 
         utils.save_program_file(main_folder, smallest_program)
-        print_and_log(f"Finished reduction, reduction ratio: \
+        print_and_log(f"Finished reduction on {case}, reduction ratio: \
                     {program_size_before_iteration}/{original_program_size}", level=0)
 
 if __name__ == "__main__":
