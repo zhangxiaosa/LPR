@@ -250,14 +250,14 @@ def call_formatter(working_folder):
     working_program_path = os.path.join(working_folder, PROGRAM_NAME)
     working_script_path = os.path.join(working_folder, SCRIPT_NAME)
 
-    tmp_folder = os.path.join(working_folder, "format")
-    os.makedirs(tmp_folder, exist_ok=True)
+    format_folder = os.path.join(working_folder, "format")
+    os.makedirs(format_folder, exist_ok=True)
     
-    shutil.copy(working_program_path, tmp_folder)
-    shutil.copy(working_script_path, tmp_folder)
+    shutil.copy(working_program_path, format_folder)
+    shutil.copy(working_script_path, format_folder)
 
     current_path = os.getcwd()
-    os.chdir(tmp_folder)
+    os.chdir(format_folder)
     if LANGUAGE in ("c", "cpp"):
         tmp_file = "tmp"
         execute_cmd(f"clang-format {PROGRAM_NAME} > {tmp_file}", output=True)

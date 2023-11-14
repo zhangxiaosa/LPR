@@ -74,7 +74,12 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     # ask the followup question
     for target_id, target in enumerate(target_list):
         target_folder = os.path.join(operation_folder, f"target_{target_id}")
+        os.makedirs(target_folder, exist_ok=True)
         target_program_path = os.path.join(target_folder, utils.PROGRAM_NAME)
+        target_script_path = os.path.join(target_folder, utils.SCRIPT_NAME)
+        
+        shutil.copy(operation_program_path, target_program_path)
+        shutil.copy(operation_script_path, target_script_path)
 
         if not utils.check_finish(target_folder):
             # call gpt
