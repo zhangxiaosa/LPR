@@ -6,33 +6,6 @@ import datetime
 import openai
 import utils
 
-def call_perses(output_folder, level):
-    print_and_log(f"start perses", level=level)
-    output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
-    output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
-    working_folder = os.path.join(output_folder, "perses")
-    tmp_program_path = os.path.join(working_folder, utils.PROGRAM_NAME)
-    tmp_script_path = os.path.join(working_folder, utils.SCRIPT_NAME)
-    tmp_log_path = os.path.join(working_folder, "perses_log.txt")
-    os.makedirs(working_folder, exist_ok=True)
-
-    if not check_finish(working_folder):
-        start_time = time.time()
-        shutil.copy(output_program_path, tmp_program_path)
-        shutil.copy(output_script_path, tmp_script_path)
-
-        utils.execute_cmd(
-            f"java -jar {utils.PERSES_PATH} --input {tmp_program_path} --test {tmp_script_path} --output-dir {working_folder} > {tmp_log_path} 2>&1")
-
-        utils.call_formatter(working_folder)
-        end_time = time.time()
-        utils.save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(tmp_program_path, output_program_path)
-
-    program_size = utils.count_token(output_program_path)
-    print_and_log(f"Finish perses: {program_size} tokens", level=level)
-
-
 def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level):
 
     tmp_folder = os.path.join(output_folder, f"{operation}")
@@ -65,6 +38,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     utils.save_json_file(tmp_folder, "primary_question_prompt.json", messages)
     # save response
     utils.save_json_file(tmp_folder, "primary_question_response.json", completion)
+    # save response time
+    utils.save_file(tmp_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
 
     # try multiple times to ensure the quality of target_list
     target_list = []
@@ -112,8 +87,10 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                       finished in {end_time-start_time:.2f} seconds", level=level+1)
         # save prompt
         utils.save_json_file(target_path, "followup_question_prompt.json", messages)
-        # save response
+        # save response content
         utils.save_json_file(target_path, "followup_question_response.json", completion)
+        # save response time
+        utils.save_file(target_path, "followup_question_response_time.txt", f"{end_time-start_time:.2f}")
 
         # save program
         for trail in range(trail_number):
@@ -241,7 +218,7 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trail
     tmp_script_path = os.path.join(tmp_folder, utils.SCRIPT_NAME)
     os.makedirs(tmp_folder, exist_ok=True)
 
-    if not check_finish(tmp_folder):
+    if not utils.check_finish(tmp_folder):
         start_time = time.time()
         shutil.copy(output_program_path, tmp_program_path)
         shutil.copy(output_program_path, orig_program_path)
@@ -267,13 +244,6 @@ def property_test():
             return False
     utils.save_file("./", "property_test_result", "pass")
     return True
-
-def check_finish(folder):
-    status_file = os.path.join(folder, "finish")
-    if os.path.exists(status_file):
-        return True
-    return False
-
 
 def call_gpt(message, llm_version, trail_number=1):
     completion = openai.ChatCompletion.create(
@@ -386,7 +356,7 @@ def main():
                 # call perses
                 if program_before_operation != program_after_operation:
                     print_and_log("GPT made progress", level=2)
-                    call_perses(operation_folder, level=2)
+                    utils.call_perses(operation_folder, level=2)
 
                 program_size_after_operation = utils.count_token(operation_program_path)
                 shutil.copy(operation_program_path, iteration_folder)
