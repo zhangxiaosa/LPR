@@ -60,6 +60,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         # deduplicate
         target_list = list(set(target_list))
+        target_list = sorted(target_list)
 
         print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
         print_and_log(f"Identified target list: {target_list}", level=level)
