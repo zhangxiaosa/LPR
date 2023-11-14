@@ -9,6 +9,7 @@ import openai
 import datetime
 import shutil
 import time
+import sys
 
 
 SCRIPT_NAME = "r.sh"
@@ -117,6 +118,8 @@ def get_args_string(parser):
 
     # Generate the string representation
     args_string = '_'.join(f'{key}_{value}' for key, value in user_args.items())
+    script_name = sys.argv[0]
+    args_string = script_name + "_" + args_string
     pattern = re.compile(r'[^a-zA-Z0-9]+')
     return pattern.sub('_', args_string)
 

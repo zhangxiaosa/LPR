@@ -81,7 +81,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
     print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
     print_and_log(f"Identified target list: {target_list}", level=level)
-    utils.save_file(tmp_folder, "target_list", ", ".join(target_list))
+    utils.save_file(tmp_folder, "target_list.txt", "\n".join(target_list))
 
     # if no target identified, return
     if len(target_list) == 0:
@@ -134,7 +134,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             size = utils.count_token(program_path)
             program = utils.load_file(program_path)
 
-            os.chdir(trail_path)
+            # os.chdir(trail_path)
             if property_test():
                 print_and_log(f"trail {trail}: program size {size}, pass", level=level+2)
                 if size < smallest_size:
@@ -150,7 +150,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         final_program_size = utils.count_token(tmp_program_path)
         print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
         print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
-    os.chdir(utils.ROOT_FOLDER)
+    # os.chdir(utils.ROOT_FOLDER)
 
 def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level):
 
@@ -209,7 +209,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         size = utils.count_token(program_path)
         program = utils.load_file(program_path)
 
-        os.chdir(trail_path)
+        # os.chdir(trail_path)
         if property_test():
             print_and_log(f"trail {trail}: program size {size}, pass", level=level)
             if size < smallest_size:
