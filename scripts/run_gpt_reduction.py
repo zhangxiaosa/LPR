@@ -63,7 +63,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
         print_and_log(f"Identified target list: {target_list}", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time-start_time}")
+        utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
         utils.save_json_file(operation_folder, "target_list.json", target_list)
 
     target_list = utils.load_json_file(os.path.join(operation_folder, "target_list.json"))
@@ -139,7 +139,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             final_program_size = utils.count_token(target_program_path)
             print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
             print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
-            utils.save_file(target_folder, "finish", f"{end_time-start_time}")
+            utils.save_file(target_folder, "finish", f"{end_time-start_time:.2f}")
 
         shutil.copy(target_program_path, operation_program_path)
 
@@ -228,7 +228,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         final_program_size = utils.count_token(operation_program_path)
         print_and_log(f"Finished gpt ({operation})).", level=level)
         print_and_log(f"Current size: {final_program_size} tokens", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time-start_time}")
+        utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
 
     shutil.copy(operation_program_path, output_program_path)
 
@@ -253,7 +253,7 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trail
     else:
         call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trail_number, level)
     end_time = time.time()
-    utils.save_file(operation_folder, "finish", f"{end_time-start_time}")
+    utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
 
     operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
     final_program_size = utils.count_token(operation_program_path)
