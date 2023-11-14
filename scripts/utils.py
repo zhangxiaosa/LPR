@@ -131,7 +131,7 @@ def initialize_parser():
     parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json", help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=False, default=None, help="Benchmark ID")
-    parser.add_argument("--trail", type=int, required=False, default=5, help="Number of trials in GPT")
+    parser.add_argument("--trial", type=int, required=False, default=5, help="Number of trials in GPT")
     parser.add_argument("--max-jobs", type=int, required=False, default=1, help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
     parser.add_argument("--multi-level", action="store_false", required=False, default=True, help="Enable multi-level prompt")
