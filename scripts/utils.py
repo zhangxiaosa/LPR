@@ -93,8 +93,9 @@ def extract_code(text):
 def extract_json(text):
     pattern = r"```(?:json|JSON|Json)(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
-    if len(result) != 0:
+    if result:
         json_string = result[-1]
+        json_string = json_string.replace("\\\n", "")
         try:
             return json.loads(json_string)
         except json.JSONDecodeError:
