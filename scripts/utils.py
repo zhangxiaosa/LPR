@@ -96,6 +96,7 @@ def extract_json(text):
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         json_string = result[-1]
+        # in case gpt generates some \\\n and make json parsing fail
         json_string = json_string.replace("\\\n", "")
         try:
             return json.loads(json_string)

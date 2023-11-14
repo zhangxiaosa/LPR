@@ -71,10 +71,14 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     for trail in range(trail_number):
         response_text = completion.choices[trail].message.content
         response_json = utils.extract_json(response_text)
+        
         if "target_list" in response_json:
-            target_list = response_json["target_list"]
-            if isinstance(target_list, list) and all(isinstance(item, str) for item in target_list):
-                break
+            current_list = response_json["target_list"]
+            # check each item in current_list
+            if isinstance(current_list, list):
+                for item in current_list:
+                    if isinstance(item, str):  # if it is str, add it to target_list
+                        target_list.append(item)
 
     # deduplicate
     target_list = list(set(target_list))
