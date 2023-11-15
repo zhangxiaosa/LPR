@@ -10,7 +10,7 @@ import datetime
 import shutil
 import time
 import sys
-
+import benchmarks
 
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER_PATH = "/tmp/gpt_reduction/tools/token_counter_deploy.jar"
@@ -263,7 +263,7 @@ def call_creduce(output_folder, level):
         shutil.copy(output_script_path, working_script_path)
 
         execute_cmd(
-            f" creduce --n 1 --timing {working_script_path} {working_program_path} > {working_log_path} 2>&1"
+            f" creduce --n 1 --timing --no-cache {working_script_path} {working_program_path} > {working_log_path} 2>&1"
         )
 
         call_formatter(working_folder)
@@ -308,3 +308,17 @@ def call_formatter(working_folder):
     else:
         pass
     os.chdir(current_path)
+
+# Function to determine the benchmark suite based on folder names in RESULT_PATH
+def determine_benchmark_suite(result_path):
+    for entry in os.listdir(result_path):
+        print(entry)
+        full_path = os.path.join(result_path, entry)
+        if os.path.isdir(full_path):
+            if 'gcc' in entry or 'llvm' in entry:
+                return benchmarks.benchmark_suite_c
+            elif 'rust' in entry:
+                return benchmarks.benchmark_suite_rust
+            elif 'js' in entry:
+                return benchmarks.benchmark_suite_js
+    return None  # Fallback in case no matching folder is found

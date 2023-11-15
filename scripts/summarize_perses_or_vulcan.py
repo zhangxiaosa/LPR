@@ -2,21 +2,7 @@ import os
 import re
 import sys
 import csv
-import benchmarks
-
-# Function to determine the benchmark suite based on folder names in RESULT_PATH
-def determine_benchmark_suite(result_path):
-    for entry in os.listdir(result_path):
-        print(entry)
-        full_path = os.path.join(result_path, entry)
-        if os.path.isdir(full_path):
-            if 'gcc' in entry or 'llvm' in entry:
-                return benchmarks.benchmark_suite_c
-            elif 'rust' in entry:
-                return benchmarks.benchmark_suite_rust
-            elif 'js' in entry:
-                return benchmarks.benchmark_suite_js
-    return None  # Fallback in case no matching folder is found
+import utils
 
 # Function to calculate total time from 'finish' files
 def get_time_from_log(file):
@@ -67,7 +53,7 @@ def get_iteration_from_log(file):
         return None
 
 RESULT_PATH = sys.argv[1]
-benchmark_suite = determine_benchmark_suite(RESULT_PATH)
+benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
 
 with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
