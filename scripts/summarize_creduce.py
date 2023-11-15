@@ -22,11 +22,10 @@ def get_query_number_from_log(file):
     query_num = 0
     try:
         with open(file, 'r') as f:
-            lines = f.readlines()
-        for line in lines:
-            match = re.search(r'(worked|failed) (\d+) times', line)
-            if match:
-                query_num += int(match.group(2))
+            content = f.read()
+            matches = re.findall(r'(worked|failed) (\d+) times', content)
+            for match in matches:
+                query_num += int(match[1])
     except FileNotFoundError:
         return None
     return query_num
