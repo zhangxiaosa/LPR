@@ -23,7 +23,7 @@ def get_token_num_from_log(file):
         with open(file, 'r') as f:
             lines = f.readlines()
         last_line = lines[-1] if lines else ''
-        match = re.search(r'reduction ratio: (\d+)/\d+', last_line)
+        match = re.search(r'reduction ratio:\s*(\d+)/\d+', last_line)
         return match.group(1) if match else None
     except FileNotFoundError:
         return None
