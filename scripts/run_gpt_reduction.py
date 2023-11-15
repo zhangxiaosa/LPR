@@ -99,8 +99,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             ]
             completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
             end_time = time.time()
-            print_and_log(f"Followup question for target ({target}) \
-                        finished in {end_time-start_time:.2f} seconds", level=level+1)
+    
             # save prompt
             utils.save_json_file(target_folder, "followup_question_prompt.json", messages)
             # save response content
@@ -121,37 +120,40 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 utils.save_program_file(trial_path, program)
                 shutil.copy(operation_script_path, trial_path)
 
-            # test all programs and return the smallest one
-            smallest_program = ""
-            smallest_size = sys.maxsize
-            for trial in range(trial_number):
-                trial_path = os.path.join(target_folder, f"trial_{trial}")
-                trial_program_path = os.path.join(trial_path, utils.PROGRAM_NAME)
-
-                size = utils.count_token(trial_program_path)
-                program = utils.load_file(trial_program_path)
-
-                os.chdir(trial_path)
-                if property_test():
-                    print_and_log(f"trial {trial}: program size {size}, pass", level=level+2)
-                    if size < smallest_size:
-                        smallest_size = size
-                        smallest_program = program
-                else:
-                    print_and_log(f"trial {trial}: program size {size}, fail", level=level+2)
-
-            if smallest_program != "":
-                utils.save_program_file(target_folder, smallest_program)
-
-            utils.call_formatter(target_folder)
             end_time = time.time()
-
             utils.save_file(target_folder, "finish", f"{end_time-start_time:.2f}")
+
+        elasped_time = utils.load_file(os.path.join(target_folder, "followup_question_response_time.txt"))
+        print_and_log(f"Followup question for target ({target}) \
+            finished in {elasped_time} seconds", level=level+1)
+
+        # test all programs and return the smallest one
+        smallest_program = ""
+        smallest_size = sys.maxsize
+        for trial in range(trial_number):
+            trial_path = os.path.join(target_folder, f"trial_{trial}")
+            trial_program_path = os.path.join(trial_path, utils.PROGRAM_NAME)
+
+            size = utils.count_token(trial_program_path)
+            program = utils.load_file(trial_program_path)
+
+            os.chdir(trial_path)
+            if property_test():
+                print_and_log(f"trial {trial}: program size {size}, pass", level=level+2)
+                if size < smallest_size:
+                    smallest_size = size
+                    smallest_program = program
+            else:
+                print_and_log(f"trial {trial}: program size {size}, fail", level=level+2)
+
+        if smallest_program != "":
+            utils.save_program_file(target_folder, smallest_program)
+
+        utils.call_formatter(target_folder)
 
         final_program_size = utils.count_token(target_program_path)
         print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
         print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
-
         shutil.copy(target_program_path, operation_program_path)
 
     os.chdir(utils.ROOT_FOLDER)
