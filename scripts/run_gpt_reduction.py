@@ -338,14 +338,13 @@ def main():
         os.makedirs(main_folder, exist_ok=True)
 
         # check previous result and skip if it is finished
+        utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         if os.path.exists(utils.LOG_FILE_NAME):
             with open(utils.LOG_FILE_NAME, 'r') as file:
                 last_line = file.readlines()[-1]
                 if "reduction ratio" in last_line:
                     continue
-
-        utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
-
+        
         # copy original files to main folder
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
