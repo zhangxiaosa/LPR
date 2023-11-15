@@ -312,7 +312,6 @@ def call_formatter(working_folder):
 # Function to determine the benchmark suite based on folder names in RESULT_PATH
 def determine_benchmark_suite(result_path):
     for entry in os.listdir(result_path):
-        print(entry)
         full_path = os.path.join(result_path, entry)
         if os.path.isdir(full_path):
             if 'gcc' in entry or 'clang' in entry:

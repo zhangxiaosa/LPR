@@ -337,6 +337,13 @@ def main():
         )
         os.makedirs(main_folder, exist_ok=True)
 
+        # check previous result and skip if it is finished
+        if os.path.exists(utils.LOG_FILE_NAME):
+            with open(utils.LOG_FILE_NAME, 'r') as file:
+                last_line = file.readlines()[-1]
+                if "reduction ratio" in last_line:
+                    continue
+
         utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
 
         # copy original files to main folder
