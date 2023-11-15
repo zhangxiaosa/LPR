@@ -33,6 +33,7 @@ def get_query_number_from_log(file):
 
 RESULT_PATH = sys.argv[1]
 benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
+utils.init_language(RESULT_PATH)
 
 with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
