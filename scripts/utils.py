@@ -315,7 +315,7 @@ def determine_benchmark_suite(result_path):
         print(entry)
         full_path = os.path.join(result_path, entry)
         if os.path.isdir(full_path):
-            if 'gcc' in entry or 'llvm' in entry:
+            if 'gcc' in entry or 'clang' in entry:
                 return benchmarks.benchmark_suite_c
             elif 'rust' in entry:
                 return benchmarks.benchmark_suite_rust
