@@ -59,7 +59,7 @@ benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
 
 with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
-    csv_writer.writerow(["target", "time", "token num", "query number", "iteration"])
+    csv_writer.writerow(["target", "token num", "time", "query number", "iteration"])
 
     for target in benchmark_suite:
         row = [target]  # Initialize row with target as the first column
@@ -70,12 +70,12 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             csv_writer.writerow([target, None, None, None, None])  # Write only target if not available
             continue
 
-        # Calculate time
-        time = calculate_total_time(case_path)
-
         # Get token number
         log_file = os.path.join(case_path, "log.txt")
         token_num = get_token_num_from_log(log_file)
+
+        # Calculate time
+        time = calculate_total_time(case_path)
 
         # Calculate query number
         query_number = get_query_number(case_path)
@@ -87,6 +87,6 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             print(f"{target}: token number not available")
             csv_writer.writerow([target, None, None, None, None])
         else:
-            print(f"target: {target}: time: {time}, token num: {token_num}, query number: {query_number}, iteration: {iteration_count}")
+            print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}")
             row.extend([time, token_num, query_number, iteration_count])
             csv_writer.writerow(row)
