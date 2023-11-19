@@ -45,6 +45,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
 
         # Iterating through the trials
+        target_list = []
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
             response_json = utils.extract_json(response_text)
