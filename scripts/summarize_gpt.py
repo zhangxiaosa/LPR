@@ -88,5 +88,5 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             csv_writer.writerow([target, None, None, None, None])
         else:
             print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}")
-            row.extend([time, token_num, query_number, iteration_count])
+            row.extend([token_num, time, query_number, iteration_count])
             csv_writer.writerow(row)
