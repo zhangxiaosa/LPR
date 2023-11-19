@@ -10,7 +10,7 @@ def get_time_from_log(file):
         with open(file, 'r') as f:
             lines = f.readlines()
         for line in reversed(lines):
-            match = re.search(r'Elapsed time is (\d+) seconds', line)
+            match = re.search(r'Elapsed time is (\d+) second', line)
             if match:
                 return int(match.group(1))
     except FileNotFoundError:

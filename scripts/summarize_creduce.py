@@ -11,9 +11,10 @@ def get_time_from_log(file):
             lines = f.readlines()
         for i in range(len(lines)-1, -1, -1):
             if "== done ==" in lines[i]:
-                match = re.search(r'timestamp (\d+)', lines[i-1])
-                if match:
-                    return int(match.group(1))
+                for j in range(i-1, -1, -1):
+                    match = re.search(r'timestamp (\d+)', lines[j])
+                    if match:
+                        return int(match.group(1))
     except FileNotFoundError:
         return None
 
