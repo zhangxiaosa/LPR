@@ -22,7 +22,8 @@ def calculate_gpt_info(path):
     gpt_time = 0.0
     gpt_query_count = 0
     for root, dirs, files in os.walk(path):
-        if 'perses' not in root:  # Exclude 'perses' folders
+        # Exclude 'perses' folders
+        if 'perses' != os.path.basename(root):
             for file in files:
                 if file == 'finish':
                     with open(os.path.join(root, file), 'r') as f:
@@ -107,3 +108,5 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             csv_writer.writerow([target, None, None, None, None, None, None])
         else:
             print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}, gpt time: {gpt_time}, gpt query: {gpt_query_count}")
+            row.extend([token_num, time, query_number, iteration_count, gpt_time, gpt_query_count])
+            csv_writer.writerow(row)
