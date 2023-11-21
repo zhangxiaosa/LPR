@@ -17,9 +17,10 @@ def calculate_total_time(path):
                         pass  # Ignore files that do not contain a valid float
     return int(total_time)
 
-# New function to calculate GPT time, excluding time in 'perses' folders
-def calculate_gpt_time(path):
+# Updated function to calculate GPT time and query count
+def calculate_gpt_info(path):
     gpt_time = 0.0
+    gpt_query_count = 0
     for root, dirs, files in os.walk(path):
         if 'perses' not in root:  # Exclude 'perses' folders
             for file in files:
@@ -27,9 +28,10 @@ def calculate_gpt_time(path):
                     with open(os.path.join(root, file), 'r') as f:
                         try:
                             gpt_time += float(f.read().strip())
+                            gpt_query_count += 1  # Increment query count for each 'finish' file
                         except ValueError:
                             pass  # Ignore non-float files
-    return int(gpt_time)
+    return int(gpt_time), gpt_query_count
 
 # Function to get token number from log.txt
 def get_token_num_from_log(file):
@@ -73,7 +75,7 @@ benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
 
 with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
-    csv_writer.writerow(["target", "token num", "time", "query number", "iteration", "gpt time"])
+    csv_writer.writerow(["target", "token num", "time", "query number", "iteration", "gpt time", "gpt query"])
 
     for target in benchmark_suite:
         row = [target]  # Initialize row with target as the first column
@@ -81,7 +83,7 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
 
         if not os.path.exists(case_path):
             print(f"{target} is not available")
-            csv_writer.writerow([target, None, None, None, None, None])  # Write only target if not available
+            csv_writer.writerow([target, None, None, None, None, None, None])  # Write only target if not available
             continue
 
         # Get token number
@@ -97,13 +99,12 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
         # Calculate iteration count
         iteration_count = get_iteration_count(case_path)
 
-        # Calculate GPT time
-        gpt_time = calculate_gpt_time(case_path)
+        # Calculate GPT time and query count
+        gpt_time, gpt_query_count = calculate_gpt_info(case_path)
 
         if token_num is None:
             print(f"{target}: token number not available")
-            csv_writer.writerow([target, None, None, None, None, None])
+            csv_writer.writerow([target, None, None, None, None, None, None])
         else:
-            print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}, gpt time: {gpt_time}")
-            row.extend([token_num, time, query_number, iteration_count, gpt_time])
-            csv_writer.writerow(row)
+            print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}, gpt time: {gpt_time}, gpt query: {gpt_query_count}")
+            row
