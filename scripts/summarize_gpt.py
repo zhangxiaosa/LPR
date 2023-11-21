@@ -107,4 +107,3 @@ with open(os.path.join(RESULT_PATH, 'summary.csv'), 'w', newline='') as csvfile:
             csv_writer.writerow([target, None, None, None, None, None, None])
         else:
             print(f"target: {target}: token num: {token_num}, time: {time}, query number: {query_number}, iteration: {iteration_count}, gpt time: {gpt_time}, gpt query: {gpt_query_count}")
-            row
