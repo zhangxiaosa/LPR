@@ -270,12 +270,20 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     print_and_log(f"Finished gpt ({operation}): {final_program_size} tokens", level=level)
 
 def property_test():
+    result_file_name = "property_test_result"
+    result_file_path = os.path.join("./", result_file_name)
+    if (os.path.exists(result_file_path)):
+        saved_result = utils.load_file(result_file_path)
+        if (saved_result is "fail"):
+            return False
+        else:
+            return True
     for _ in range(5):
         ret = utils.execute_cmd("./r.sh")
         if ret == 1:
-            utils.save_file("./", "property_test_result", "fail")
+            utils.save_file("./", result_file_name, "fail")
             return False
-    utils.save_file("./", "property_test_result", "pass")
+    utils.save_file("./", result_file_name, "pass")
     return True
 
 def call_gpt(message, llm_version, trial_number=1):
