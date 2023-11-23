@@ -274,7 +274,7 @@ def property_test():
     result_file_path = os.path.join("./", result_file_name)
     if (os.path.exists(result_file_path)):
         saved_result = utils.load_file(result_file_path)
-        if (saved_result is "fail"):
+        if (saved_result == "fail"):
             return False
         else:
             return True
