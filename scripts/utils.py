@@ -75,18 +75,30 @@ def check_finish(folder):
         return True
     return False
 
+def compute_md5(file_path):
+    output = subprocess.check_output(
+        f"md5sum {file_path}", shell=True)
+    md5_str_line = output.decode().splitlines()[-1]
+    md5_str = md5_str_line.split(" ")[0]
+    return md5_str
 
 def count_token(program_path):
+    current_md5 = compute_md5(program_path)
+
     program_folder = os.path.dirname(program_path)
-    program_size_file_name = "program_size"
+    program_size_file_name = "program_size.json"
     program_size_path = os.path.join(program_folder, program_size_file_name)
     if (os.path.exists(program_size_path)):
-        size_str = load_file(program_size_path)
-        return int(size_str)
+        size_json = load_json_file(program_size_path)
+        if (current_md5 == size_json["md5"]):
+            return size_json["size"]
+        
     output = subprocess.check_output(
         f"java -jar {TOKEN_COUNTER_PATH} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
-    save_file(program_folder, program_size_file_name, size_str)
+    size_int = int(size_str)
+    json_object = {"md5": current_md5, "size": size_int}
+    save_json_file(program_folder, program_size_file_name, json_object)
     return int(size_str)
 
 
