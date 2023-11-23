@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replace the following with the command you want to run in a loop
-COMMAND="python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/rust/perses_results_rename --trial 3 --id 0"
+COMMAND=$1
 
 # Loop runs the command until it returns 0
 while ! $COMMAND; do
