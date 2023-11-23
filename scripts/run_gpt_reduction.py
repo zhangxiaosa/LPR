@@ -144,8 +144,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         if smallest_program != "":
             utils.save_program_file(target_folder, smallest_program)
+            utils.call_formatter(target_folder)
 
-        utils.call_formatter(target_folder)
 
         final_program_size = utils.count_token(target_program_path)
         print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
@@ -230,8 +230,8 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
 
         if smallest_program != "":
             utils.save_program_file(operation_folder, smallest_program)
+            utils.call_formatter(operation_folder)
 
-        utils.call_formatter(operation_folder)
         end_time = time.time()
 
         final_program_size = utils.count_token(operation_program_path)
