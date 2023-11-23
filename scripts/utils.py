@@ -77,9 +77,16 @@ def check_finish(folder):
 
 
 def count_token(program_path):
+    program_folder = os.path.dirname(program_path)
+    program_size_file_name = "program_size"
+    program_size_path = os.path.join(program_folder, program_size_file_name)
+    if (os.path.exists(program_size_path)):
+        size_str = load_file(program_size_path)
+        return int(size_str)
     output = subprocess.check_output(
         f"java -jar {TOKEN_COUNTER_PATH} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
+    save_file(program_folder, program_size_file_name, size_str)
     return int(size_str)
 
 
