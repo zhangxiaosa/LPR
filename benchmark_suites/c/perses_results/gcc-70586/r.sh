@@ -29,7 +29,7 @@ readonly CLANG_MEM_SANITIZER="clang-7.1.0 -w -O0 -m64 -fsanitize=memory"
 rm -f out*.txt
 
 if
-clang-7.1.0 -Wfatal-errors -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
+timeout -s 9 $TIMEOUTCC clang-7.1.0 -Wfatal-errors -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
 ! grep -q 'conversions than data arguments' out.txt &&\
 ! grep -q 'incompatible redeclaration' out.txt &&\
 ! grep -q 'ordered comparison between pointer' out.txt &&\

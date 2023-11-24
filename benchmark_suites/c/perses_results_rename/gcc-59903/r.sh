@@ -15,7 +15,7 @@ CLANGFC="clang-7.1.0 -O0 -Wall -fwrapv -ftrapv -fsanitize=undefined,address"
 rm -f out*.txt 
 
 if 
-  clang-7.1.0 -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
+  timeout -s 9 $TIMEOUTCC clang-7.1.0 -pedantic -Wall -Wsystem-headers -O0 -c $CFILE  >out.txt 2>&1 &&\
   ! grep 'conversions than data arguments' out.txt &&\
   ! grep 'incompatible redeclaration' out.txt &&\
   ! grep 'ordered comparison between pointer' out.txt &&\
