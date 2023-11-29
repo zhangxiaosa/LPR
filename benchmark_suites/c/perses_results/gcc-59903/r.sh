@@ -4,6 +4,7 @@
 BADCC=("gcc-4.8.2 -m32 -O3")
 GOODCC=("ccomp -fall")
 TIMEOUT=30
+TIMEOUTCC=20
 CFILE=small.c
 CFLAG="-o t"
 CLANGFC="clang-7.1.0 -O0 -Wall -fwrapv -ftrapv -fsanitize=undefined,address"
@@ -83,29 +84,29 @@ for cc in "${GOODCC[@]}" ; do
 
     # compile 
     if [[ $cc == ccomp* ]] ; then 
-    	timeout -s 9 $TIMEOUT $cc -interp $CFLAG $CFILE >& /dev/null
-    	ret=$? 
-    	if [ $ret != 0 ] ; then 
-    	    exit 1 
-    	fi
+        timeout -s 9 $TIMEOUT $cc -interp $CFLAG $CFILE >& /dev/null
+        ret=$? 
+        if [ $ret != 0 ] ; then 
+            exit 1 
+        fi
     fi
     
     timeout -s 9 $TIMEOUT $cc $CFLAG $CFILE >& /dev/null
     ret=$? 
     if [ $ret != 0 ] ; then 
-	exit 1 
+    exit 1 
     fi
 
     # execute 
     (timeout -s 9 $TIMEOUT ./t >out1.txt 2>&1) >&/dev/null
     ret=$? 
     if [ $ret != 0 ] ; then 
-	exit 1 
+    exit 1 
     fi 
     
     # compare with reference: out0.txt 
     if ! diff -q out0.txt out1.txt >/dev/null ; then
-	exit 1
+    exit 1
     fi    
 done
 
@@ -117,7 +118,7 @@ for cc in "${BADCC[@]}" ; do
     timeout -s 9 $TIMEOUT $cc $CFLAG $CFILE > out.txt 2>&1
 
     if ! grep 'internal compiler error' out.txt ; then 
-	exit 1 
+    exit 1 
     fi 
 done
 
