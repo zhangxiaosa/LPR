@@ -1,24 +1,24 @@
-fn main() {
-    let a: b<b>;
-    let a: c<b>;
-    let a: d<b>;
-    let a: e<b>;
-    let a: f<b>;
-    let a: usize<main>;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
-    let a;
+fn main ( ) {
+let x : isize < isize > ;
+let x : i8 < isize > ;
+let x : i16 < isize > ;
+let x : i32 < isize > ;
+let x : i64 < isize > ;
+let x : usize < main > ;
+let x                ;
+let x                 ;
+let x                 ;
+let x                 ;
+let x                  ;
+let x                     ;
+let x                  ;
+let x                   ;
+let x                   ;
+let x                   ;
+let x                     ;
+let x                  ;
+let x                   ;
+let x                   ;
+let x                   ;
+let x                    ;
 }
