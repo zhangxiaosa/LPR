@@ -4,6 +4,7 @@
 BADCC=("gcc-4.8.2 -m32 -Os")
 GOODCC=("gcc-4.8.2 -m32 -O0")
 TIMEOUT=10
+TIMEOUTCC=20
 CFILE=small.c
 CFLAG="-o t"
 CLANGFC="clang-7.1.0 -m64 -O0 -Wall -fwrapv -ftrapv -fsanitize=undefined"
