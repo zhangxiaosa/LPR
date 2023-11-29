@@ -29,15 +29,16 @@ def execute_cmd(cmd, output=False):
                                  stderr=subprocess.DEVNULL, check=False)
     return process.returncode
 
-def property_test():
+def property_test(rerun=False):
     result_file_name = "property_test_result"
     result_file_path = os.path.join("./", result_file_name)
-    if (os.path.exists(result_file_path)):
-        saved_result = load_file(result_file_path)
-        if (saved_result == "fail"):
-            return False
-        else:
-            return True
+    if not rerun:
+        if (os.path.exists(result_file_path)):
+            saved_result = load_file(result_file_path)
+            if (saved_result == "fail"):
+                return False
+            else:
+                return True
     
     ret = execute_cmd("./r.sh")
     if ret == 1:

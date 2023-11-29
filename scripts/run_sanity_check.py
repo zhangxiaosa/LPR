@@ -18,7 +18,7 @@ def main():
 
     for case in case_list:        
         os.chdir(os.path.join(benchmark_suite_folder, case))
-        if (utils.property_test()):
+        if (utils.property_test(rerun=True)):
             print(f"Sanity check passed on {case}")
         else:
             print(f"Sanity check failed on {case}")
