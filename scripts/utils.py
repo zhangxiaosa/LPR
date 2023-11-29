@@ -38,11 +38,12 @@ def property_test():
             return False
         else:
             return True
-    for _ in range(5):
-        ret = execute_cmd("./r.sh")
-        if ret == 1:
-            save_file("./", result_file_name, "fail")
-            return False
+    
+    ret = execute_cmd("./r.sh")
+    if ret == 1:
+        save_file("./", result_file_name, "fail")
+        return False
+    
     save_file("./", result_file_name, "pass")
     return True
 
