@@ -352,6 +352,11 @@ def main():
         # copy original files to main folder
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
+
+        os.chdir(os.path.join(benchmark_suite_folder, case))
+        if (not property_test()):
+            print_and_log(f"Sanity check failed on {case}, skipped it")
+            continue
         
         main_program_path = os.path.join(main_folder, utils.PROGRAM_NAME)
         main_script_path = os.path.join(main_folder, utils.SCRIPT_NAME)
