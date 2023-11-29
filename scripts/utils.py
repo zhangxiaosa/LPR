@@ -29,13 +29,23 @@ def execute_cmd(cmd, output=False):
                                  stderr=subprocess.DEVNULL, check=False)
     return process.returncode
 
-def property_test():
-    for _ in range(5):
-        ret = execute_cmd("./r.sh")
-        if ret == 1:
-            save_file("./", "property_test_result", "fail")
-            return False
-    save_file("./", "property_test_result", "pass")
+def property_test(rerun=False):
+    result_file_name = "property_test_result"
+    result_file_path = os.path.join("./", result_file_name)
+    if not rerun:
+        if (os.path.exists(result_file_path)):
+            saved_result = load_file(result_file_path)
+            if (saved_result == "fail"):
+                return False
+            else:
+                return True
+    
+    ret = execute_cmd("./r.sh")
+    if ret == 1:
+        save_file("./", result_file_name, "fail")
+        return False
+    
+    save_file("./", result_file_name, "pass")
     return True
 
 def save_file(folder_path, file_name, content):
