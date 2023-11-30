@@ -323,7 +323,7 @@ def main():
 
         os.chdir(os.path.join(benchmark_suite_folder, case))
         if (not utils.property_test()):
-            utils.print_and_log(f"Sanity check failed on {case}, skipped it")
+            utils.print_and_log(f"Sanity check failed on {case}, skipped it", 0)
             continue
         
         main_program_path = os.path.join(main_folder, utils.PROGRAM_NAME)
