@@ -163,7 +163,7 @@ def initialize_parser():
     parser.add_argument("--trial", type=int, required=False, default=5, help="Number of trials in GPT")
     parser.add_argument("--max-jobs", type=int, required=False, default=1, help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
-    parser.add_argument("--multi-level", action="store_false", required=False, default=True, help="Enable multi-level prompt")
+    parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False, help="Disable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
     return parser
 

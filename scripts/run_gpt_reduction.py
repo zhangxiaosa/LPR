@@ -288,7 +288,7 @@ def main():
     case = args.case
     benchmark_suite_folder = args.benchmark_suite
     trial_number = args.trial
-    multi_level = args.multi_level
+    multi_level = not args.disable_multi_level
 
     utils.init_language(benchmark_suite_folder)
     utils.init_root_folder(os.getcwd())
