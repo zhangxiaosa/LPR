@@ -147,11 +147,15 @@ for cc in "${BADCC2[@]}" ; do
     fi
 
     # execute 
-    (timeout -s 9 $TIMEOUTEXE ./t >out2.txt 2>&1) >&/dev/null
+    (timeout -s 9 $TIMEOUTEXE ./t) >&/dev/null
     ret=$? 
     if [ $ret -ne 136 ] ; then 
 	exit 1 
-    fi 
+    fi
+    (sh -c ./t) > out2.txt 2>&1
+    if ! grep -e "Floating point exception" out2.txt; then
+    exit 1
+    fi
 done
 
 for cc in "${BADCC3[@]}" ; do 
