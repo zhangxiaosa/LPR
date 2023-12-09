@@ -152,6 +152,8 @@ for cc in "${BADCC2[@]}" ; do
     if [ $ret -ne 136 ] ; then 
 	exit 1 
     fi
+
+    # grep error message
     (sh -c ./t) > out2.txt 2>&1
     if ! grep -e "Floating point exception" out2.txt; then
     exit 1
