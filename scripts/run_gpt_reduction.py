@@ -2,8 +2,16 @@ import os
 import sys
 import shutil
 import time
-import openai
+from openai import OpenAI
 import utils
+
+openai_api_key = "EMPTY"
+openai_api_base = "http://localhost:8000/v1"
+
+client = OpenAI(
+    api_key=openai_api_key,
+    base_url=openai_api_base,
+)
 
 def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
 
@@ -20,7 +28,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     followup_question = questions["followup_question"]
 
     if not utils.check_finish(operation_folder):
-        
+
         # ask the primary question
         start_time = time.time()
 
@@ -31,7 +39,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         prompt_from_user = f"{primary_question}. The program is {program}."
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+            {"role": "user", "content": f"{prompt_from_user}"}
         ]
         completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
@@ -39,7 +47,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         # save prompt
         utils.save_json_file(operation_folder, "primary_question_prompt.json", messages)
         # save response
-        utils.save_json_file(operation_folder, "primary_question_response.json", completion)
+        utils.save_file(operation_folder, "primary_question_response.json", completion.model_dump_json(indent=2))
         # save response time
         utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
 
@@ -77,7 +85,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         os.makedirs(target_folder, exist_ok=True)
         target_program_path = os.path.join(target_folder, utils.PROGRAM_NAME)
         target_script_path = os.path.join(target_folder, utils.SCRIPT_NAME)
-        
+
         shutil.copy(operation_program_path, target_program_path)
         shutil.copy(operation_script_path, target_script_path)
 
@@ -94,14 +102,14 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             ]
             completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
             end_time = time.time()
-    
+
             # save prompt
             utils.save_json_file(target_folder, "followup_question_prompt.json", messages)
             # save response content
-            utils.save_json_file(target_folder, "followup_question_response.json", completion)
+            utils.save_file(target_folder, "followup_question_response.json", completion.model_dump_json(indent=2))
             # save response time
             utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time-start_time:.2f}")
-            
+
             # save programs from followup_question_response.json
             for trial in range(trial_number):
                 response_text = completion.choices[trial].message.content
@@ -183,7 +191,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         prompt_from_user = f"{question}. The program is {program}."
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+            {"role": "user", "content": f"{prompt_from_user}"}
         ]
         completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
@@ -192,7 +200,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         # save prompt
         utils.save_json_file(operation_folder, "question_prompt.json", messages)
         # save response
-        utils.save_json_file(operation_folder, "question_response.json", completion)
+        utils.save_file(operation_folder, "question_response.json", completion.model_dump_json(indent=2))
 
         # save program
         for trial in range(trial_number):
@@ -269,7 +277,7 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     utils.print_and_log(f"Finished gpt ({operation}): {final_program_size} tokens", level=level)
 
 def call_gpt(message, llm_version, trial_number=1):
-    completion = openai.ChatCompletion.create(
+    completion = client.chat.completions.create(
         model=llm_version,
         n=trial_number,
         messages=message
@@ -278,7 +286,6 @@ def call_gpt(message, llm_version, trial_number=1):
 
 def main():
 
-    utils.init_openai_api_key()
     parser = utils.initialize_parser()
     args = parser.parse_args()
     args_string = utils.get_args_string(parser)
@@ -316,7 +323,7 @@ def main():
                 last_line = file.readlines()[-1]
                 if "reduction ratio" in last_line:
                     continue
-        
+
         # copy original files to main folder
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
@@ -325,10 +332,10 @@ def main():
         if (not utils.property_test()):
             utils.print_and_log(f"Sanity check failed on {case}, skipped it", 0)
             continue
-        
+
         main_program_path = os.path.join(main_folder, utils.PROGRAM_NAME)
         main_script_path = os.path.join(main_folder, utils.SCRIPT_NAME)
-        
+
         shutil.copy(original_program_path, main_program_path)
         shutil.copy(original_script_path, main_script_path)
 

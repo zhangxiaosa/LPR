@@ -39,12 +39,12 @@ def property_test(rerun=False):
                 return False
             else:
                 return True
-    
+
     ret = execute_cmd("./r.sh")
     if ret == 1:
         save_file("./", result_file_name, "fail")
         return False
-    
+
     save_file("./", result_file_name, "pass")
     return True
 
@@ -102,7 +102,7 @@ def count_token(program_path):
         size_json = load_json_file(program_size_path)
         if (current_md5 == size_json["md5"]):
             return size_json["size"]
-        
+
     output = subprocess.check_output(
         f"java -jar {TOKEN_COUNTER_PATH} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
@@ -205,7 +205,7 @@ def get_benchmarks(benchmark_suite_folder, case):
                 case_list.append(item)
     else:
         case_list.append(case)
-    
+
     case_list = sorted(case_list)
     return case_list
 
@@ -309,7 +309,7 @@ def call_formatter(working_folder):
 
     format_folder = os.path.join(working_folder, "format")
     os.makedirs(format_folder, exist_ok=True)
-    
+
     shutil.copy(working_program_path, format_folder)
     shutil.copy(working_script_path, format_folder)
 
