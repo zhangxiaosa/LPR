@@ -163,10 +163,14 @@ for cc in "${BADCC2[@]}" ; do
         # the possibility of producing uncertain result
         segfault_happens=false
         for _ in {1..5} ; do
-            (timeout -s 9 $TIMEOUTEXE ./t >out2.txt 2>&1) >&/dev/null
+            (timeout -s 9 $TIMEOUTEXE ./t) >&/dev/null
             ret=$?
             if [ $ret == 139 ]; then
-                segfault_happens=true
+                # grep error message
+                (sh -c ./t) > out2.txt 2>&1
+                if grep -e "Segmentation fault" out2.txt; then
+                  segfault_happens=true
+                fi
                 # "break" is not used here for stable execution time
             fi
         done
