@@ -31,7 +31,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         prompt_from_user = f"{primary_question}. The program is {program}."
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+            {"role": "user", "content": f"{prompt_from_user}"}
         ]
         completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
