@@ -9,13 +9,13 @@ def process_case(case, benchmark_suite_folder, code_version, args_string):
         main_folder = os.path.normpath(
             os.path.join("/tmp/gpt_reduction/results/", code_version, args_string, case)
         )
+        utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         if (os.path.exists(main_folder)):
             utils.print_and_log(f"Benchmark {case} is done, skip it.", level=0)
             return
         
         os.makedirs(main_folder, exist_ok=True)
 
-        utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
         
