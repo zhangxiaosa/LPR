@@ -5,7 +5,7 @@ import time
 import openai
 import utils
 
-def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
+def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
 
     operation_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(operation_folder, exist_ok=True)
@@ -33,7 +33,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
         end_time = time.time()
 
         # save prompt
@@ -92,7 +92,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
-            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
             end_time = time.time()
     
             # save prompt
@@ -240,7 +240,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
 
     shutil.copy(operation_program_path, output_program_path)
 
-def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial_number, multi_level, level):
+def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial_number, temperature, multi_level, level):
     utils.print_and_log(f"Start gpt ({operation})", level=level)
 
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
@@ -257,9 +257,9 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     shutil.copy(output_script_path, operation_script_path)
 
     if multi_level:
-        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level)
+        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level)
     else:
-        call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level)
+        call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level)
     end_time = time.time()
     utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
 
@@ -268,10 +268,11 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     shutil.copy(operation_program_path, output_program_path)
     utils.print_and_log(f"Finished gpt ({operation}): {final_program_size} tokens", level=level)
 
-def call_gpt(message, llm_version, trial_number=1):
+def call_gpt(message, llm_version, trial_number=1, temperature=1.0):
     completion = openai.ChatCompletion.create(
         model=llm_version,
         n=trial_number,
+        temperature=temperature,
         messages=message
     )
     return completion
@@ -288,6 +289,7 @@ def main():
     case = args.case
     benchmark_suite_folder = args.benchmark_suite
     trial_number = args.trial
+    temperature = args.temperature
     multi_level = not args.disable_multi_level
 
     utils.init_language(benchmark_suite_folder)
@@ -370,7 +372,7 @@ def main():
                 program_before_operation = utils.load_file(operation_program_path)
                 call_gpt_based_reducer(prompts=prompts, operation=operation,
                                     output_folder=operation_folder, llm_version=llm_version,
-                                    trial_number=trial_number, multi_level=multi_level, level=2)
+                                    trial_number=trial_number, temperature=temperature, multi_level=multi_level, level=2)
                 program_after_operation = utils.load_file(operation_program_path)
 
                 # call perses
