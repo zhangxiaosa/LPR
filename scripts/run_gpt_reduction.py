@@ -302,7 +302,8 @@ def main():
     code_version = utils.get_current_version()
 
     # get case list
-    case_list = utils.get_benchmarks(benchmark_suite_folder, case)
+    # case_list = utils.get_benchmarks(benchmark_suite_folder, case)
+    case_list = utils.determine_benchmark_suite(benchmark_suite_folder)
 
     for case in case_list:
         # get main folder
