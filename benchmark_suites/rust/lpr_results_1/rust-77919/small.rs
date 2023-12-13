@@ -1,11 +1,11 @@
-struct b {
-    h: g,
+trait TypeVal<T> {
+    const C: T;
 }
-
-impl TypeVal<usize> for b {
-    const c: usize = 0;
+struct Five;
+struct B<F> {
+    h: G,
 }
-
+impl<F: TypeVal<C>> TypeVal<usize> for B<F> {}
 fn main() {
-    [1; <b as TypeVal<usize>>::c];
+    [1; <B<Five>>::C];
 }

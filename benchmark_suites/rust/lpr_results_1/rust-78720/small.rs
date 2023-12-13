@@ -1,17 +1,10 @@
 fn a() -> impl b {
-    {
-        // Function body of `c({})` inlined
-    }
-
-    // Function call `d(|| "")` remains the same
+    {}.d(|| "")
 }
-
-struct f<e> {
+trait b {
+    fn d<e>(self, e) -> f<e> {}
+}
+struct f<c> {
     h: e,
 }
-
-fn c<e>(g: e) {}
-
-fn d<F: Fn() -> &str>(f: F) {}
-
 impl<e> b for e {}
