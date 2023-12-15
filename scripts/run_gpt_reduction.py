@@ -45,7 +45,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         target_list = []
         for trial in range(trial_number):
             response_text = completion
-            response_json = utils.extract_json(response_text)
+            response_json = utils.extract_targets(response_text)
 
             if "target_list" in response_json:
                 current_list = response_json["target_list"]
