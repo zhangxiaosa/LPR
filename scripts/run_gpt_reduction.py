@@ -31,7 +31,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         # call gpt
         prompt_from_user = f"{primary_question}. The program is {program}."
         messages = prompt_from_system + " " + prompt_from_user
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+        completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
 
         # save prompt
@@ -58,6 +58,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                     target_list = sorted(deduplicated_and_filtered_list)
                     break  # Break the loop as we have found our list
 
+        utils.print_and_log(f"Response: {completion}", level=level)
         utils.print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
         utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
         utils.save_json_file(operation_folder, "target_list.json", target_list)
@@ -111,6 +112,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
             end_time = time.time()
             utils.save_file(target_folder, "finish", f"{end_time-start_time:.2f}")
+            utils.print_and_log(f"Response: {completion}", level=level+1)
 
         elasped_time = utils.load_file(os.path.join(target_folder, "followup_question_response_time.txt"))
         utils.print_and_log(f"Followup question for target ({target}) \
