@@ -4,14 +4,7 @@ import shutil
 import time
 from openai import OpenAI
 import utils
-
-openai_api_key = "EMPTY"
-openai_api_base = "http://localhost:8000/v1"
-
-client = OpenAI(
-    api_key=openai_api_key,
-    base_url=openai_api_base,
-)
+import replicate
 
 def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
 
@@ -41,20 +34,20 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+        completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
 
         # save prompt
         utils.save_json_file(operation_folder, "primary_question_prompt.json", messages)
         # save response
-        utils.save_file(operation_folder, "primary_question_response.json", completion.model_dump_json(indent=2))
+        utils.save_file(operation_folder, "primary_question_response.json", completion)
         # save response time
         utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
 
         # Iterating through the trials
         target_list = []
         for trial in range(trial_number):
-            response_text = completion.choices[trial].message.content
+            response_text = completion
             response_json = utils.extract_json(response_text)
 
             if "target_list" in response_json:
@@ -100,19 +93,19 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
-            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+            completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
             end_time = time.time()
 
             # save prompt
             utils.save_json_file(target_folder, "followup_question_prompt.json", messages)
             # save response content
-            utils.save_file(target_folder, "followup_question_response.json", completion.model_dump_json(indent=2))
+            utils.save_file(target_folder, "followup_question_response.json", completion)
             # save response time
             utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time-start_time:.2f}")
 
             # save programs from followup_question_response.json
             for trial in range(trial_number):
-                response_text = completion.choices[trial].message.content
+                response_text = completion
                 response_json = utils.extract_json(response_text)
                 if "program" in response_json and isinstance(response_json["program"], str):
                     program = response_json["program"]
@@ -193,18 +186,18 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+        completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
         utils.print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
 
         # save prompt
         utils.save_json_file(operation_folder, "question_prompt.json", messages)
         # save response
-        utils.save_file(operation_folder, "question_response.json", completion.model_dump_json(indent=2))
+        utils.save_file(operation_folder, "question_response.json", completion)
 
         # save program
         for trial in range(trial_number):
-            response_text = completion.choices[trial].message.content
+            response_text = completion
             response_json = utils.extract_json(response_text)
             if "program" in response_json and isinstance(response_json["program"], str):
                 program = response_json["program"]
@@ -277,12 +270,11 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     utils.print_and_log(f"Finished gpt ({operation}): {final_program_size} tokens", level=level)
 
 def call_gpt(message, llm_version, trial_number=1):
-    completion = client.chat.completions.create(
-        model=llm_version,
-        n=trial_number,
-        messages=message
+    completion = replicate.run(
+        "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
+        input={"prompt": message}
     )
-    return completion
+    return "".join(list(completion))
 
 def main():
 
