@@ -30,11 +30,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         # call gpt
         prompt_from_user = f"{primary_question}. The program is {program}."
-        messages = [
-            {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}"}
-        ]
-        completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
+        messages = prompt_from_system + " " + prompt_from_user
+        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
 
         # save prompt
@@ -88,12 +85,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
             # load the program
             program = utils.load_file(operation_program_path)
-            messages = [
-                {"role": "system", "content": f"{prompt_from_system}"},
-                {"role": "user", "content": f"{followup_question}. The program is {program}. \
-                The target to be optimized is {target}."}
-            ]
-            completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
+            messages = prompt_from_system + " " + prompt_from_user
+            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
             end_time = time.time()
 
             # save prompt
@@ -182,11 +175,8 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
 
         # call gpt
         prompt_from_user = f"{question}. The program is {program}."
-        messages = [
-            {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}"}
-        ]
-        completion = call_gpt(prompt_from_user, llm_version=llm_version, trial_number=trial_number)
+        messages = prompt_from_system + " " + prompt_from_user
+        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
         end_time = time.time()
         utils.print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
 
