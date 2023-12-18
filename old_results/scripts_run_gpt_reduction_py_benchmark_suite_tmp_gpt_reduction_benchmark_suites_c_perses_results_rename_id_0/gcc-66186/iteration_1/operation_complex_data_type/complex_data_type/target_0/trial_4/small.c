@@ -1,0 +1,1 @@
+#include <iostream>\n\nint main() {\n  short ak;  // Optimized variable\n\n  if (g < 0) {\n    for (unsigned short p3 = 0; p3 <= 7; p3 += 1) {\n      if (ak) {\n        break;\n      }\n    }\n  }\n\n  return 0;\n}

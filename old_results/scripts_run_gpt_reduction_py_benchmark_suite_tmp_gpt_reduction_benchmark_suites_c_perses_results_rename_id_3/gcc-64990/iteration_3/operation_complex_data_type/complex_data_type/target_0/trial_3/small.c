@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstatic int g = 0x7EBA;\nint h = 0xCA;\nint i;\nint j_old_val[5][5];\nstatic int l;\nint m_val[9][2][3];\n\nint fn3() {\n  fn1(fn2(0));\n  return 0;\n}\n\nint main() {\n  fn3();\n  return 0;\n}

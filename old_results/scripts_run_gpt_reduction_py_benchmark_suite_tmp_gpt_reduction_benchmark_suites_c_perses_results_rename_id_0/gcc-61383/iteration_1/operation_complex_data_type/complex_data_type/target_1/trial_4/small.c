@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned int n;\nint o;\nint temp;\n\nint main() {\n  for (; n < 12 && o > 0xE3L; n = fn3(n, 3)) {\n    temp = fn1(o, o);\n    if (0x4F92L < temp) {\n    } else if (o <= 0xE3L) {\n    } else if (temp != 0)\n      break;\n  }\n  return 0;\n}

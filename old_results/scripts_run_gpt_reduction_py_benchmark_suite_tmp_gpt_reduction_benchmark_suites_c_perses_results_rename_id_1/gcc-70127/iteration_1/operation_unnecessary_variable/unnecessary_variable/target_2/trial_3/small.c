@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned u;\ntypedef struct {\n  int ab;\n  signed q : 22;\n} p;\np v[1];\n\nint main() {\n  p a = {8L, 666};\n  for (; u <= 1; u += 1) {\n    a = v[0] = {0x12345678, 999};\n    v[0] = a;\n  }\n  printf("checksum = %X\n", v[0].q);\n  return 0;\n}

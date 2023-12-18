@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int i;\n  short r = 0;\n\n  // Unrolled loop\n  for (i = 0; i < 5; i++) {\n    r -= 2;\n    r -= 2;\n    r -= 2;\n    r -= 2;\n    r -= 2;\n  }\n\n  printf("checksum = %X\\n", r);\n  return 0;\n}

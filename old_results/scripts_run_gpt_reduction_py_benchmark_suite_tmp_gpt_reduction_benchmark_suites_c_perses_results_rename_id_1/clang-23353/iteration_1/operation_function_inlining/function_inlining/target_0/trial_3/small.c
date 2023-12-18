@@ -1,0 +1,1 @@
+struct g {\n  int h;\n};\nint i;\nstruct g j;\nint *fn2(unsigned p3, int *p2) {\n  for (p3 = 6; p3 != -7; p3--)\n    j.h ^= p3 * i && 1L;\n  return p2;\n}\nint main() {\n  return 0;\n}

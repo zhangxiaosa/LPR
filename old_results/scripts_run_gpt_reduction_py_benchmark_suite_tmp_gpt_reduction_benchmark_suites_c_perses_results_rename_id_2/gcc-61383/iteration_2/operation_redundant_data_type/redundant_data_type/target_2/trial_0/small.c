@@ -1,0 +1,19 @@
+unsigned fn3(unsigned p1, unsigned p2) {
+  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1
+                                                                    : p1 + p2;
+}
+
+unsigned n;
+unsigned o;
+unsigned fn6() {
+  for (; n < 12; n = fn3(n, 3)) {
+    unsigned temp1 = o == 0 ? 0 : o % o;
+    if (o <= 0xE3L)
+      ;
+    else if (temp1)
+      break;
+  }
+  return 0;
+}
+
+int main() { fn6(); }

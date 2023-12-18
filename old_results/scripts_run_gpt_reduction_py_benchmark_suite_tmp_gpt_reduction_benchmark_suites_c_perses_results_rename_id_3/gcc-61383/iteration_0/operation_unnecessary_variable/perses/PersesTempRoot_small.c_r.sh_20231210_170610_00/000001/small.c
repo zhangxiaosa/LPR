@@ -1,0 +1,14 @@
+int
+fn2
+(
+short
+p1
+,
+int
+p2
+)
+{
+return
+p1
+;
+}

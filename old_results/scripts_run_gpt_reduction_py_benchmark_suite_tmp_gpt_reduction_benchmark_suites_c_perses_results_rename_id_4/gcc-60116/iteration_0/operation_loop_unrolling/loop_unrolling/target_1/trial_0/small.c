@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+typedef short a;
+typedef int b;
+typedef long c;
+typedef char d;
+typedef unsigned e;
+typedef unsigned f;
+typedef long long g;
+
+a fn2(a p1, a p2) {
+  return p1 && p2 ? p1 : p1 % p2;
+}
+
+c fn3(c p1, c p2) {
+  return p2;
+}
+
+d fn5(d p1, int p2) {
+  return p2;
+}
+
+e fn6(e p1, e p2) {
+  return p2;
+}
+
+e fn7(e p1, e p2) {
+  return p1;
+}
+
+g fn8(g p1, g p2) {
+  return p1 + p2;
+}
+
+f q;
+f w = 0xDC6F3D13L;
+g ag[4];
+a ah;
+d ai;
+c aj;
+g ak;
+f al;
+b am = 0x41AEA787L;
+b ao;
+f ap;
+b aq;
+
+c fn12() {
+  d as = 4UL;
+  a at = 1L;
+  b au[5][2][10];
+
+  ak = 0;
+
+  // Body 1
+  if (w >= (fn7(as, fn6(aq, fn5(ai, au[4][1][5] = fn8(~(fn3(aj, fn2(ap, at)) != 0), 1) && 0x57L))) > 2) {
+    q = am;
+    ag[3] = au[4][1][5];
+  }
+  
+  // Body 2
+  if (w >= (fn7(as, fn6(aq, fn5(ai, au[4][1][5] = fn8(~(fn3(aj, fn2(ap, at)) != 0), 2) && 0x57L))) > 2) {
+    q = am;
+    ag[3] = au[4][1][5];
+  }
+  
+  // Body 3
+  if (w >= (fn7(as, fn6(aq, fn5(ai, au[4][1][5] = fn8(~(fn3(aj, fn2(ap, at)) != 0), 3) && 0x57L))) > 2) {
+    q = am;
+    ag[3] = au[4][1][5];
+  }
+  
+  // Body 4
+  if (w >= (fn7(as, fn6(aq, fn5(ai, au[4][1][5] = fn8(~(fn3(aj, fn2(ap, at)) != 0), 4) && 0x57L))) > 2) {
+    q = am;
+    ag[3] = au[4][1][5];
+  }
+
+  return al;
+}
+
+int main() {
+  fn12();
+  printf("checksum = %X\n", q);
+  return 0;
+}

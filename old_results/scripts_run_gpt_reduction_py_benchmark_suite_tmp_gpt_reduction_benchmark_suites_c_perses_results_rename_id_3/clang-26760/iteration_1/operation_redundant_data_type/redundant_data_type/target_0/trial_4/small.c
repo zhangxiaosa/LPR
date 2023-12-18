@@ -1,0 +1,1 @@
+int g;\nshort fn1() {\n  int i;\n  int j = 0x24F96B7BL;\n  for (int = 0; int; )\n    for (; j; --j)\n      ;\n  int l = 1L;\n  int m = j;\n  int n = g;\n  int o = n;\n  unsigned p = o;\nq:;\n  = >> l;\n  i = ;\n  if (i) {\n    = << m;\n    goto q;\n  }\n}\nint main() {}

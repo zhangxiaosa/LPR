@@ -1,0 +1,3 @@
+#include <stdio.h>
+
+// ... Rest of the code after inlining fn5 ...

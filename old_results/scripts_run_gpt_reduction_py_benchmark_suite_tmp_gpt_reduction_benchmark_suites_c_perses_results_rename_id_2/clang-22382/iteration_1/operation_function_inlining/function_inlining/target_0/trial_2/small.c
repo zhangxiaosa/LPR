@@ -1,0 +1,1 @@
+typedef long c;\ntypedef unsigned d;\ntypedef unsigned e;\ntypedef unsigned f;\ntypedef unsigned g;\nstruct h {\n  signed i;\n  c j;\n  unsigned k;\n};\nd l;\n\ne fn2(p1) {\n  struct h p;\nw:\n  goto w;\n}\n\nint main() {}\n

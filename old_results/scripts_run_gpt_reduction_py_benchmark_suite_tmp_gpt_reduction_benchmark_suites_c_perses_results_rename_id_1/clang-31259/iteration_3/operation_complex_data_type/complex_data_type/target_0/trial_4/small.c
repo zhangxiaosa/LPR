@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+int fn4(int p1, int p2) { return p2 % p1; }
+
+unsigned u;
+int v;
+static unsigned w = 254U;
+int ad_dim1_0_0_0 = 8;
+int af;
+int fn2(int p1, int p2) { return p1; }
+int optimized_fn9() {
+  int ai[2];
+  int j;
+  for (j = 0; j < 2; j++)
+    ai[j] = 8;
+  for (w = 1;;) {
+    for (; j < 4; j++) {
+    }
+    for (af = 6; af >= 0; af -= 1)
+      v = ai[0] ^= ad_dim1[w + 1][w][af] = fn4(1, fn2(3, u--));
+    return 0;
+  }
+}
+
+int main() {
+  optimized_fn9();
+  printf("checksum = %x\n", ad_dim1_2_1_0);
+  return 0;
+}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int an;\n  short ao = 0xBCD1;\n  short ac_p = 1;\n  long v = 0;\n  short w;\n\n  for (w = 3; w; w -= 1) {\n    if (an = 250) {\n      short u = ac_p || (an = w) == 0x294A85636008822;\n      if ((ao - (1 - an)) - u & 1)\n        v = 1;\n    }\n  }\n\n  printf("checksum = %lX\n", v);\n  return 0;\n}

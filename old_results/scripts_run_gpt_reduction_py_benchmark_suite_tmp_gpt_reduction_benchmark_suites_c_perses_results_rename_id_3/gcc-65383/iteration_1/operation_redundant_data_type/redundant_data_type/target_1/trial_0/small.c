@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint g;\nint h2 = 0x92A1D2CDL;\nint i = 0x06D7L;\n\nint fn2() {\n  for (;;) {\n    int r[5][9][5];\n    if (h2)\n      return 0xC3L;\n    g = r[i][i][i];\n  }\n}\n\nint main() {\n  fn2();\n}

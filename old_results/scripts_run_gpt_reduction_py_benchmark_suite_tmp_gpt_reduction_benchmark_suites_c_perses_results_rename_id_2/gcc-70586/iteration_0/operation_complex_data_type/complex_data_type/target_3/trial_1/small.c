@@ -1,0 +1,1 @@
+unsigned af = 0;\n\nfor (af = 0; af <= 49; af += 8) {\n  if (fn2(p1, ag[6][5][0] + p1 || p1 && (ad = fn3(p1, 0xBC2AB98C)))) {\n  } else {\n    if (!r) {\n      printf("l_1179=%lld\n", (long long)ad);\n      break;\n    }\n  }\n}\n\n// Optimal value of `af` is stored after the loop

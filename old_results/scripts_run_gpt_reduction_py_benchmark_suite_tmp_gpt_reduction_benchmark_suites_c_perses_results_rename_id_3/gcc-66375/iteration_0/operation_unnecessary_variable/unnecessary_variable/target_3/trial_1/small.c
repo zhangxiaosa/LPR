@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nchar fn2(char p1, int p2) { return p1; }\n\nshort fn3(short p1, short p2) { return p2; }\n\nunsigned p;\nunsigned u;\nunsigned v_value;\n\nint main() {\n  int d = 2;\n  unsigned e = 0x9EE7F9D1C772505BLL; // Optimized constant value\n\n  d = fn2(fn3(4, d), 3) + e;\n\n  printf("checksum = %x\n", v_value);\n  return 0;\n}

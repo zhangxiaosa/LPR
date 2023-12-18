@@ -1,0 +1,54 @@
+#include <stdio.h>
+unsigned q; 
+signed v;
+unsigned w = 0xDC6F3D13L;
+long long ag_3;
+signed ai;
+long ak;
+signed ao;
+unsigned ap;
+long fn2(signed p1, signed p2) { return p1 && p2 ? p1 : p1 % p2; }
+long fn3(long p1, long p2) { return p2; }
+signed fn5(signed p1, signed p2) { return p2; }
+unsigned fn7(unsigned p1, unsigned p2) { return p1; }
+long long fn8(long p1, long long p2) { return p1 + p2; }
+signed main() {
+  signed au_0[5][2][10];
+  for (ak = 0;;) {
+    if (w >=
+        (fn7(4UL, fn7(4UL, fn5(0, au_0[4][1][5] =
+                                       fn8(~(fn3(0, fn2(ap, 1L)) != 0), ak) &&
+                                       0x57L))) > 2)) {
+      v = 0x41AEA787L;
+      ag_3 = au_0[4][1][5];
+    } else
+      ao = au_0[4][1][5];
+    if (w >=
+        (fn7(4UL, fn7(4UL, fn5(1, au_0[4][1][5] =
+                                       fn8(~(fn3(0, fn2(ap, 1L)) != 0), ak) &&
+                                       0x57L))) > 2)) {
+      v = 0x41AEA787L;
+      ag_3 = au_0[4][1][5];
+    } else
+      ao = au_0[4][1][5];
+    if (w >=
+        (fn7(4UL, fn7(4UL, fn5(2, au_0[4][1][5] =
+                                       fn8(~(fn3(0, fn2(ap, 1L)) != 0), ak) &&
+                                       0x57L))) > 2)) {
+      v = 0x41AEA787L;
+      ag_3 = au_0[4][1][5];
+    } else
+      ao = au_0[4][1][5];
+    if (w >=
+        (fn7(4UL, fn7(4UL, fn5(3, au_0[4][1][5] =
+                                       fn8(~(fn3(0, fn2(ap, 1L)) != 0), ak) &&
+                                       0x57L))) > 2)) {
+      v = 0x41AEA787L;
+      ag_3 = au_0[4][1][5];
+    } else
+      ao = au_0[4][1][5];
+    q = v;
+    printf("checksum = %d\n", q);
+    return 0;
+  }
+}

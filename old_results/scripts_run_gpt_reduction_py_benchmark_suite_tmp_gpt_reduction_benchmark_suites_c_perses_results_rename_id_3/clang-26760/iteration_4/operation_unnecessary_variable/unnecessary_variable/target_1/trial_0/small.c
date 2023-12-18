@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned g;\n\nint main() {\n  unsigned j = 0x24F96B7BL;\n  if (j)\n    --j;\nq:\n  if (g) {\n    goto q;\n  }\n\n  return 0;\n}

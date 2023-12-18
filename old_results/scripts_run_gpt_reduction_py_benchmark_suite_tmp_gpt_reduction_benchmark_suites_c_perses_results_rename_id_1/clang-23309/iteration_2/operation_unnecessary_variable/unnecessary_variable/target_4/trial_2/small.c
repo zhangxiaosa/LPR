@@ -1,0 +1,1 @@
+int subtract(int p1, int p2) {\n  return p1 - p2;\n}\n\nint p;\nint u;\nint ac = 1;\nint main() {\n  int am = 1;\n  int an;\n  for (;;) {\n    if (an != 250) {\n      break;\n    }\n    u = ac || an;\n    short ao = 0xBCD1;\n    if ((ao - (subtract(am, an) - 0xECL)) - u & 1) {\n      p = 1;\n    }\n  }\n  printf("checksum = %d\n", p);\n  return 0;\n}

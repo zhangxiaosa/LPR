@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int fn2(int p1, int p2) { return p1; }
+
+int fn4(int p1, int p2) { return p1 % p2; }
+
+int fn5(int p1, int p2) { return p1; }
+
+int main() {
+    int ai[2];
+    int aj;
+    for (aj = 0; aj < 2; aj++)
+        ai[aj] = 8;
+
+    for (int w = 1;;) {
+        for (; aj < 5; aj++)
+            continue;
+
+        for (int af = 6; af >= 0; af -= 1) {
+            ai[0] ^= ad[w + 1][w][af] = fn4(fn2(1, fn5(255, u--)), 4294967295);
+        }
+        break;
+    }
+
+    int i, j, k;
+    int s = 0;
+    for (i = 0; i < 6; i += 2) {
+        for (j = 0; j < 5; j++) {
+            for (k = 0; k < 5; k += 2) {
+                s ^= ad[i][j][k];
+            }
+        }
+    }
+
+    printf("checksum = %X\n", s);
+    return 0;
+}

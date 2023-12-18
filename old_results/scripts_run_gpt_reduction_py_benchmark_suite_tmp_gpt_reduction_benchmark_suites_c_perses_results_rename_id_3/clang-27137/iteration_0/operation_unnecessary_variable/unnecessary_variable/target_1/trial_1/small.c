@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef short b;\ntypedef int c;\ntypedef unsigned d;\n\nd h;\nb o;\n\nint main() {\n  b q = o; // Optimization: replace 'r' with 'o'\n\n  while (q > 1L)\n    q -= 1;\n\n  h = q;\n  printf("checksum = %X\n", h);\n\n  return 0;\n}

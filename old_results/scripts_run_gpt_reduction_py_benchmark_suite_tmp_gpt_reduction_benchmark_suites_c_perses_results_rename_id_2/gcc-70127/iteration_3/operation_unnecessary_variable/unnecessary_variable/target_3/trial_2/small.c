@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+struct p {
+  int ab;
+  int q : 22;
+};
+
+int u;
+struct p w = {0x1C87E74F, 816};
+
+int main() {
+  struct p a = {8, 666};
+  struct p v[1];
+
+  v[0] = w;
+
+  printf("checksum = %X\n", v[0].q);
+
+  return 0;
+}

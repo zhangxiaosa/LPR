@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct p {\n  int ab;\n  int q : 22;\n};\n\nunsigned u = 1; // Optimized initialization\n\nstruct p v[1];\n\nvoid print_checksum(unsigned checksum) { printf("checksum = %X\n", checksum); }\n\nint main() {\n  struct p a = {8L, 666};\n\n  for (; u <= 1; u += 1) {\n    // No assignments needed inside the loop\n  }\n\n  print_checksum(v[0].q);\n\n  return 0;\n}

@@ -1,0 +1,1 @@
+#include <stddef.h>\n\nstruct original_data_type {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic unsigned fn1(unsigned p1, struct original_data_type p5) {\n  p5.k;\nw:\n  goto w;\n}\n\nunsigned fn2() {\n  fn1(0, (struct original_data_type){0});\n}\n\nint main() {}\n

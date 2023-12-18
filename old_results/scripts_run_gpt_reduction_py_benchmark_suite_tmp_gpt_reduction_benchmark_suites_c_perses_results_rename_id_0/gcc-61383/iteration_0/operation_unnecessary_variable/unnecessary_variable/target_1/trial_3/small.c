@@ -1,0 +1,3 @@
+#include <iostream>
+
+int fn1(int p1, int p2) {\n  return p2 == 0 ? p1 : p1 % p2;\n}\n\nint fn3(int p1, int p2) {\n  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1 : p1 + p2;\n}\n\nunsigned n;\nint o;\nshort fn6() {\n  for (; n < 12; n = fn3(n, 3)) {\n    if (0x4F92L < (fn1(o, o), 6)) {\n    } else {\n      int temp2 = 0xE3L;\n      if (o <= temp2) {\n      } else if (fn1(o, o))\n        break;\n    }\n  }\n  return 0;\n}\n\nint main() {\n  fn6();\n}

@@ -1,0 +1,11 @@
+int main() {
+  short ak[8];
+  unsigned p2;
+  unsigned short p3 = -7L;
+  unsigned p4;
+  for (p2 = 0; p2 <= 7; p2 += 2)
+    for (p4 = 0; p4 <= 7; p4 += 1)
+      for (unsigned p5 = 0; p5 <= 7; p5 += 1)
+        if (ak[p3])
+          break;
+}

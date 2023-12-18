@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  // Main function\n  return 0;\n}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+unsigned q;
+int v;
+unsigned w = 0xDC6F3D13L;
+long long ag[4];
+int ah;
+char ai;
+long aj;
+long ak;
+unsigned al;
+int am = 0x41AEA787L;
+char an;
+int ao;
+unsigned ap;
+int aq;
+long fn2(int p1, int p2) { return p1 && p2 ? p1 : p1 % p2; }
+long fn3(long p1, long p2) { return p2; }
+char fn4(char p1, char p2) { return p1; }
+char fn5(char p1, int p2) { return p2; }
+unsigned fn6(unsigned p1, unsigned p2) { return p2; }
+unsigned fn7(unsigned p1, unsigned p2) { return p1; }
+long long fn8(long p1, long long p2) { return p1 + p2; }
+
+int main() {
+  unsigned w = 0xDC6F3D13L;
+  long aj;
+  long ak;
+  unsigned al;
+  int am = 0x41AEA787L;
+  char an;
+  int ao;
+  unsigned ap;
+  int aq;
+
+  int au[5][2][10];
+  for (ak = 0;;) {
+    for (ah = 0; ah <= 3; ah += 1) {
+      if (w >= (w >= 4UL && (aq && (ai && (au[4][1][5] = (aj && (ap % 1L != 0) ? aj : ap % 1L)))) > 2)) {
+        v = am;
+        ag[3] = au[4][1][5];
+      } else {
+        ao = au[4][1][5];
+      }
+    }
+    printf("checksum = %d\n", v);
+    return 0;
+  }
+}

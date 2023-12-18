@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int fn2(int p1, int p2) { return p1 && p2 ? p1 : p1 % p2; }
+
+long fn3(int p1, int p2) { return p2; }
+
+long long fn8(long p1, long long p2) { return p1 + p2; }
+
+int v;
+unsigned long w_decomposed = 0xDC6F3D13L;
+long long ag_decomposed_0;
+long long ag_decomposed_1;
+long long ag_decomposed_2;
+long long ag_decomposed_3;
+int ah;
+int aj;
+long ak;
+int al;
+int am_decomposed = 0x41AEA787L;
+int ao;
+int ap;
+
+int fn12() {
+  long au_0;
+  for (ak = 0;;) {
+    for (ah = 0; ah <= 3; ah += 1) {
+      au_0 = fn8(~(fn3(aj, fn2(ap, 1)) != 0), ak) && 0x57;
+      if (w_decomposed) {
+        v = am_decomposed;
+        ag_decomposed_3 = au_0;
+      } else
+        ao = au_0;
+    }
+    return al;
+  }
+}
+
+int main() {
+  fn12();
+  printf("checksum = %d\n", v);
+  return 0;
+}

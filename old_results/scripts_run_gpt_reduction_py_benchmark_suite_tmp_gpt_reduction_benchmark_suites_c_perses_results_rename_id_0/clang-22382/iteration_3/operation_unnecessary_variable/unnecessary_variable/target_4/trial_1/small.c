@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct original_data_type {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic unsigned fn1(struct original_data_type p5) {\n  p5.k;\nw:\n  goto w;\n}\n\nunsigned fn2() {\n  struct original_data_type p;\n  fn1(p);\n  while (1) {\n    struct original_data_type r;\n    p = r = p;\n  }\n}\n\nint main() {\n  return 0;\n}

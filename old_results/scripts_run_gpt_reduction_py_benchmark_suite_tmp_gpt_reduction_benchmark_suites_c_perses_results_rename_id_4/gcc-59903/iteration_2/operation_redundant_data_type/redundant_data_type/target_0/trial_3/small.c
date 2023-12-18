@@ -1,0 +1,44 @@
+#include <iostream>
+
+unsigned m[4];
+int j;
+int k;
+int l;
+int n[2][3];
+
+char fn1(unsigned p1, int p2) {
+  return p1 > p2 ? p1 : p1 << p2;
+}
+
+int fn2(int p1, int p2[3], unsigned p3, short p4) {
+  int v[3] = {0x15L, -5L};
+  int w;
+  int a;
+  if (p4 ^ v[1])
+    ;
+  else
+    n[0] = v;
+  for (; w; w += 1)
+    for (p3 = 0; p3 <= 39; ++p3)
+      for (p2[0] = 0; p2[0] <= 2; p2[0] += 1) {
+        n[0] = v;
+        v[2] = m[p2[0]];
+        if (!n[0][0])
+          ;
+        else {
+          w = fn1(n[0][2], 2) && p2[1];
+          for (; a; a += 1)
+            n[0] = v;
+        }
+      }
+  return p2;
+}
+
+unsigned fn3(int p1) {
+  unsigned char q[7][7];
+  if (fn2(p1, n[0], 0, q[0][0]), p1)
+    ;
+  return p1;
+}
+
+int main() {}

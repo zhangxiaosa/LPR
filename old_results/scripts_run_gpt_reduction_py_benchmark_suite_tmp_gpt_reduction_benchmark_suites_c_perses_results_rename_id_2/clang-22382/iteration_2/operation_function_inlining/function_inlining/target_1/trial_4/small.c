@@ -1,0 +1,1 @@
+typedef long long_type;\ntypedef unsigned unsigned_type;\n\nstruct h {\n  int i;\n  long_type j;\n  unsigned_type k;\n};\n\nunsigned_type l;\n\nunsigned_type fn2(unsigned_type p1) {\n  struct h p;\n  p.k;\nw:\n  goto w;\n}\n\nint main() {}

@@ -1,0 +1,1 @@
+typedef unsigned g;\nunsigned fn1(unsigned p1, int p2) { return p2; }\nint r;\nstatic signed s = -5L;\ng t;\nint u;\nunsigned v;\nint main() {\n  // struct m ad = {1957};\n  // ad.o = fn1(v, 5);\n  int ae;\n  int af = t;\n  ae = 1;  // ad.o is replaced with 1\n  ad.o = u;\n  r = af % (~s / ae);\n  ad.o;\n}

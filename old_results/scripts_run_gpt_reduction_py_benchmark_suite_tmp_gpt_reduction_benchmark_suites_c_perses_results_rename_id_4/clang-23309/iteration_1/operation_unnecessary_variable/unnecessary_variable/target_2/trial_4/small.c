@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  long v = 0;\n  \n  int an = 250;\n  int t = (an = 3) == 0x294A85636008822D;\n  short ao = 0xBCD1;\n  if ((ao - (1 - an)) - t & 1)\n    v = 1;\n\n  int p = 1;\n  printf("checksum = %X\n", p);\n  return 0;\n}

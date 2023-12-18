@@ -1,0 +1,43 @@
+long fn2(long p1, long p2) { return p1; }
+long fn3(long p1, long p2) { return p2 == 0 || p1 && p2 ? p1 : p1 % p2; }
+long o;
+long p;
+static long r = 0x2A52L;
+long s = 0x03F238A4L;
+long t2;
+static long fn7(short);
+long fn7(short p1) {
+  long ac;
+  ac = fn3(p1, o);
+  if (s) {
+    long ad;
+    unsigned long af;
+    for (; p1; --p1) {
+    }
+    for (af = 0; af <= 48; af = af + 8) {
+      long ag_dim_1[8][6][5] = {1L};
+      unsigned long ah;
+      if (fn2(p1, ag_dim_1[6][5][0] + p1 ||
+                      p1 && fn3(ad = fn3(p1, 0xBC2AB98CL), 9)))
+        ;
+      else {
+        ah = ac;
+        if (!r) {
+          printf("l_1179=\%lld\n", ad);
+          break;
+        }
+      }
+      p1 = (0x60781BCDL >= fn3(fn3(p1, p1) > 0xB5L, p1) != p1 ^ 4294967287UL) -
+           ah;
+      p = p1;
+    }
+  } else {
+    unsigned long aj[3];
+    t2 = fn3(aj[1], p);
+  }
+  return p1;
+}
+int main() {
+  if (fn7(1))
+    ;
+}

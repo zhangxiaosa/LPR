@@ -1,0 +1,1 @@
+#include <iostream>\n\nint g;\n\nunsigned fn1() {\n  unsigned j = 0x24F96B7BL;\n  unsigned k;\n  \n  // Unrolled loop optimization\n  j = 0;\n\n  unsigned m = j;\n  unsigned n = g;\n\nq:\n  k = k >> 1L;\n  if (n) {\n    k = k << m;\n    goto q;\n  }\n}\n\nint main() {\n  // Main function\n  return 0;\n}

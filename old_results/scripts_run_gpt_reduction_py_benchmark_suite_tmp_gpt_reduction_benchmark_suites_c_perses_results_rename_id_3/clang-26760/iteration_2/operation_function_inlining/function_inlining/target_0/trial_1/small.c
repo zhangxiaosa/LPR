@@ -1,0 +1,1 @@
+#include<iostream>\n\nint g;\n\nint main() {\n  unsigned j = 0x24F96B7BL;\n  for (int f; f;)\n    for (; j; --j)\n      ;\n  unsigned m = j;\n  unsigned n = g;\nq:\n  if (n) {\n    for (; j; --j)\n      ;\n    goto q;\n  }\n}

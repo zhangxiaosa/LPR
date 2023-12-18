@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+char fn2(int p1, int p2) {
+  return p1;
+}
+
+int u;
+int v3;
+
+int main() {
+  int checksum = 2;
+  for (; u < 51; ++u) {
+    v3 = 4;
+    checksum = fn2(checksum, 3);
+    checksum = checksum + 0x9EE7F9D1C772505B;
+  }
+  printf("checksum = %d\n", 4);
+  return 0;
+}

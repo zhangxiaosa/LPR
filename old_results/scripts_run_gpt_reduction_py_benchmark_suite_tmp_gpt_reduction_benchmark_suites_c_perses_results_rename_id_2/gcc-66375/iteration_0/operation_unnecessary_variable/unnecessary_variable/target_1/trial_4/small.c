@@ -1,0 +1,18 @@
+typedef char a;
+typedef int d;
+typedef unsigned f;
+typedef unsigned g;
+a fn2(a p1, int p2) { return p1; }
+f p;
+g u;
+g v[4];
+int main() {
+  for (; u < 51; ++u) {
+    g e[9];
+    e[0] = 0x9EE7F9D1C772505BLL;
+    fn2(v[3] = fn2(v[3], 3) + e[0], 3);
+  }
+  p = v[3];
+  printf("checksum = %X\n", p);
+  return 0;
+}

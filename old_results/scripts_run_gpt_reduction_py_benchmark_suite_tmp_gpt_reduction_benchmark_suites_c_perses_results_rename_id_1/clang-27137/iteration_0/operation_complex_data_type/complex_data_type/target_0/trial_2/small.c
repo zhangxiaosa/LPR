@@ -1,0 +1,25 @@
+void fn1(unsigned p1, int p2) {
+  printf("checksum = %X\n", p1);
+}
+
+short o_opt;
+char p;
+
+int main() {
+  int i;
+  short r = o_opt;
+  int s = 1L;
+
+  for (i = 0; i < 10; i++) {
+    while (r > s) {
+      r -= 1;
+    }
+  }
+
+  if (p = r) {
+  }
+
+  fn1(p, 0);
+
+  return 0;
+}

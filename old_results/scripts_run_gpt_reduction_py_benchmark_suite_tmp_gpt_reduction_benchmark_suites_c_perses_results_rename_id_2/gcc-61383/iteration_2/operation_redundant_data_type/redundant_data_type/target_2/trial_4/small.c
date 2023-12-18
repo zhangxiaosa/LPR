@@ -1,0 +1,1 @@
+int fn6() {\n  for (; n < 12; n += 3) {\n    int temp1 = o == 0 ? 0 : o % o;\n    if (o <= 0xE3L)\n      ;\n    else if (temp1)\n      break;\n  }\n  return 0;\n}\n\nint main() { fn6(); }

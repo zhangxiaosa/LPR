@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+char fn2(short p1, int p2) { return (char)p1; }
+
+short fn3(short p1, short p2) { return p2; }
+
+int g;
+int u;
+int v[1][4];
+
+int fn10(int p1, int p2, int p3, int p4) {
+  int d_ = 2;
+  while (u < 51) {
+    v[0][3] = fn3(4, (short)d_);
+    d_ = (int)fn2(v[0][3], 3) + 0x9EE7F9D1C772505BLL;
+    ++u;
+  }
+  return 3;
+}
+
+short fn11() {
+  fn10(6, 255UL, 1, 0);
+  return 0;
+}
+
+int main() {
+  int j_;
+  fn11();
+  j_ = 0;
+  while (j_ < 4) {
+    g = v[0][j_];
+    ++j_;
+  }
+  printf("checksum = %Xu\n", g);
+  return 0;
+}

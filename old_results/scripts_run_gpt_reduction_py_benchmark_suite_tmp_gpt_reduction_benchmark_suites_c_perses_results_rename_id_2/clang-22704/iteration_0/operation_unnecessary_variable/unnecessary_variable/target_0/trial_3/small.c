@@ -1,0 +1,1 @@
+int f;\n\nint fn1() {\n  const int h = 6;\n  if (f)\n    goto i;\n  fn1();\n  int j = 0xEEACFBBF;\n  return j;\ni:\n  f = h;\n  fn1();\n  return j;\n}\n\nint main() {}\n

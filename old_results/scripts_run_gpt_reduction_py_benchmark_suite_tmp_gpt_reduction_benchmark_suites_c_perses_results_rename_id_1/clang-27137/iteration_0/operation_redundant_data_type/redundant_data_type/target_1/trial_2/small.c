@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef int c;\ntypedef unsigned d;\n\nvoid fn1(d p1, int p2) { printf("checksum = %X\n", p1); }\n\nshort o;\nchar p;\n\nint main() {\n  int i;\n  short r = o;\n  c s = 1L;\n\n  for (i = 0; i < 10; i++)\n    while (r > s)\n      r -= 1;\n\n  if (p = r)\n    ;\n\n  fn1(p, 0);\n\n  return 0;\n}

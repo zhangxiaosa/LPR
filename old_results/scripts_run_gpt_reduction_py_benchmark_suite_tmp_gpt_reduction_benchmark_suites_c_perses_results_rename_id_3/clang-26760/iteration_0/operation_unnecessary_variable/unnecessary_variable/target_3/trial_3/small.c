@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned f;\nint g;\nshort fn1() {\n  int i;\n  int j = 0x24F96B7B;\n  unsigned k;\n  for (f = 0;)\n    for (; j; --j)\n      ;\n  int l = 1L;\n  int n = g;\n  int o = n;\n  unsigned p = o;\nq:;\n  k = k >> l;\n  i = p;\n  if (i) {\n    k = k << 0x24F96B7B;\n    goto q;\n  }\n}\n\nint main() {}\n

@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+struct c {
+  int d : 18;
+  int e;
+  int f;
+  int g;
+  int h;
+};
+
+struct c var1;
+struct c var2;
+
+int main() {
+  struct c var3 = {24, 6738, 165};
+  var3.d = var2.e;
+  int var5 = var1.h && var2.e;
+  var1.g = var2.e | -(var3.f && var2.e) - var5;
+
+  return 0;
+}

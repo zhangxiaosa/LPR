@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nchar fn2(char p1, int p2_int) {\n  return p1;\n}\n\nshort fn3(short p1, short p2_short) {\n  return p2_short;\n}\n\nint u;\nint v0[4];\n\nshort fn11() {\n  short d_ = 2;\n  for (; u < 51; ++u) {\n    v0[3] = fn3(4, d_);\n    d_ = v0[3] + 0x9EE7F9D1C772505B;\n  }\n  return 0;\n}\n\nint main() {\n  fn11();\n  printf("checksum = %X\n", v0[3]);\n  return 0;\n}

@@ -1,0 +1,1 @@
+typedef signed a;\ntypedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\nb e;\nc f;\nd g;\nb h2 = 0x92A1D2CDL;\n\nint main() {\n  for (;;) {\n    g = 0;\n  }\n  return 0;\n}

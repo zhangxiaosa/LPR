@@ -1,0 +1,12 @@
+int fn1() {
+  if (6) {
+    6 = 6;
+    fn1();
+    int j = 0xEEACFBBF;
+    return j;
+  }
+  fn1();
+  int j;
+  return j;
+}
+int main() {}

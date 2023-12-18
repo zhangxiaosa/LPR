@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef unsigned e;\ntypedef unsigned int g;\n\ne fn1(e p1, int p2) { return p2; }\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nint r;\nstatic signed s = -5L;\nint t;\nint u;\nint v;\n\nint main() {\n  struct m ad = {1957};\n  ad.o = fn1(v, 5);\n  int ae;\n  int af = t;\n  ae = ad.o;\n  ad.o = u;\n  r = af % (~s / ae);\n  ad.o;\n}

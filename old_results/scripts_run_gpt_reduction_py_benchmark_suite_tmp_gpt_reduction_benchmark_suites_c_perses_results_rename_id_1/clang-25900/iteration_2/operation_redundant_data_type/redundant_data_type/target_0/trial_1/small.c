@@ -1,0 +1,1 @@
+#include <stdint.h>\n\nint32_t r;\nstatic int32_t s = -5L;\nint32_t t;\nint32_t v;\n\nint32_t fn1(uint32_t p1, int32_t p2) {\n  return p2;\n}\n\nint main() {\n  int32_t ad = 1957;\n  int32_t ae = fn1(v, 5);\n  ad = 0;\n  r = t % (~s / ae);\n\n  return 0;\n}

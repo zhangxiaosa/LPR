@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int fn4(int p1, int p2) { return p1 % p2; }
+
+int s;
+int u;
+int v;
+static int w = 254;
+int ad_dimension1_size = 3;
+int ad_dimension2_size = 5;
+int ad_dimension3_size = 7;
+int ad[3][5][7] = {{8}, {8}, {{8}, 0x98}};
+
+int af;
+
+int main() {
+  int ai_0;
+  int ai_1;
+  int j;
+
+  ai_0 = 8;
+  ai_1 = 8;
+
+  w = 1;
+
+  for (; j < 25; j += 20) {
+  }
+
+  for (af = 6; af >= 0; af -= 1)
+    v = ai_0 ^= ad[w + 1][w][af] = fn4(u--, 4294967295);
+
+  s = ad[2][1][0];
+
+  printf("checksum = %X\n", s);
+
+  return 0;
+}

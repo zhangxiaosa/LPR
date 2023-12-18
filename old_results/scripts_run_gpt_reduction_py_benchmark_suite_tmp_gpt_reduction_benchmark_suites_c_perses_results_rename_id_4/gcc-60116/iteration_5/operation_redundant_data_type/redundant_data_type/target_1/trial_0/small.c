@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int fn2(int p1, int p2) { return p1 && p2 ? p1 : p1 % p2; }
+int fn8(int p1, int p2) { return p1 + p2; }
+int v;
+int w = 0xDC6F3D13L;
+int ag[4];
+int ah;
+int ak;
+int ap;
+
+void fn12() {
+  for (ak = 0;;) {
+    for (ah = 0; ah <= 3; ah += 1) {
+      int au_0 = fn8(~(fn2(ap, 1) != 0), ak) && 0x57;
+      if (w) {
+        v = 0x41AEA787L;
+        ag[3] = au_0;
+      } else
+        ag[3] = au_0;
+    }
+  }
+}
+
+void main() {
+  fn12();
+  printf("checksum = %ld\n", v);
+}

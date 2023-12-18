@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef short b;\ntypedef int c;\ntypedef unsigned d;\nd h;\nb o;\n\nint main() {\n  b q;\n  int i;\n  b r = o;\n\n  q = r;\n  c s = 1L;\n\n  q -= 10;\n\n  h = q;\n  printf("checksum = %X\n", h);\n  return 0;\n}

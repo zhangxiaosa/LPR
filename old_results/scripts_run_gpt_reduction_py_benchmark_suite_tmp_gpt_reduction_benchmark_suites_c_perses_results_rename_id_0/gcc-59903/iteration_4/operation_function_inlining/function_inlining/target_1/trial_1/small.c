@@ -1,0 +1,78 @@
+char fn1(unsigned p1, int p2) {
+  return p1 > p2 ? p1 : p1 << p2;
+}
+
+int n_0_j;
+int n_0_l;
+struct i {
+  int j;
+  int k;
+};
+unsigned m[4];
+
+struct i fn2(int p1, struct i p2, unsigned p3, short p4) {
+  int v_j;
+  v_j = 0x15L;
+  int w;
+  int a;
+
+  if (p4 ^ -5L) {
+    v_j = 0;
+  }
+
+  for (; w; w += 1) {
+    for (p3 = 0; p3 <= 39; ++p3) {
+      for (p2.j = 0; p2.j <= 2; p2.j += 1) {
+        if (!v_j) {
+
+        } else {
+          w = (p1 > 2) && p2.k;
+          for (; a; a += 4) {
+            n_0_j = v_j;
+          }
+          n_0_l = m[p2.j];
+        }
+      }
+    }
+  }
+
+  return p2;
+}
+
+unsigned fn3(p1) {
+  unsigned char q[7][7];
+  struct i r;
+
+  int p1_out = p1;
+  struct i p2_out = r;
+  unsigned p3_out = 0;
+  short p4_out = q[0][0];
+
+  int v_j = 0x15L;
+  int w;
+  int a;
+
+  if (p4_out ^ -5L) {
+    v_j = 0;
+  }
+
+  for (; w; w += 1) {
+    for (p3_out = 0; p3_out <= 39; ++p3_out) {
+      for (p2_out.j = 0; p2_out.j <= 2; p2_out.j += 1) {
+        if (!v_j) {
+
+        } else {
+          w = (p1_out > 2) && p2_out.k;
+          for (; a; a += 4) {
+            n_0_j = v_j;
+          }
+          n_0_l = m[p2_out.j];
+        }
+      }
+    }
+  }
+
+  return p2_out;
+}
+
+int main() {}

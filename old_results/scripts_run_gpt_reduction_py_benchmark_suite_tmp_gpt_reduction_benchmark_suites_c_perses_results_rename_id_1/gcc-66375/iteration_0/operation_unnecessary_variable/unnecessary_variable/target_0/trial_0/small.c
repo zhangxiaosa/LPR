@@ -1,0 +1,23 @@
+char fn2(char p1, int p2_int) { return p1; }
+
+short fn3(short p1, short p2_short) { return p2_short; }
+
+int u;
+int v0[4];
+int fn10(int p1, int p2) {
+  short d_ = 2;
+  for (; u < 51; ++u) {
+    v0[3] = fn3(4, d_);
+    d_ = k;
+  }
+  return 3;
+}
+short fn11() {
+  fn10(6, 255);
+  return 0;
+}
+int main() {
+  fn11();
+  printf("checksum = %X\n", v0[3]);
+  return 0;
+}

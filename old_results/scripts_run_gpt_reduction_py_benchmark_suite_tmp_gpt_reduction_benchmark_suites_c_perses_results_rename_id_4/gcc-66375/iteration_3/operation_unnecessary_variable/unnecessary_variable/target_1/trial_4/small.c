@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int v_0_3;\n  int d_temp = 2;\n  \n  for (int temp_u = 0; temp_u < 51; ++temp_u)\n    d_temp = (char)(v_0_3 = d_temp) + 0x9EE7F9D1C772505BLL;\n\n  printf("checksum = %X\n", v_0_3);\n  return 0;\n}

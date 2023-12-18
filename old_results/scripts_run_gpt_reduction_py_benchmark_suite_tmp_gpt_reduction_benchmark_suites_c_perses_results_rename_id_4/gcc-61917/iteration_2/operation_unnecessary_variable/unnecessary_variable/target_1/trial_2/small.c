@@ -1,0 +1,11 @@
+volatile unsigned m_2_5;
+int fn3(p1) {
+  for (;;) {
+    int unroll_count = 4;
+    for (; unroll_count; unroll_count--)
+      for (; 0 >= -27; 0 = 0 - 6)
+        p1 = 0 - p1;
+    p1 || m_2_5;
+  }
+}
+int main() {}

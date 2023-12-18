@@ -1,0 +1,19 @@
+struct c {
+  int int_field_d : 18;
+  int int_field_e;
+  int int_field_f;
+  int int_field_g;
+  int int_field_h;
+};
+struct c i;
+int main() {
+  int int_var_a;
+  int int_var_b = i.int_field_e;
+  int int_var_c = 165;
+  struct c l = {int_var_a, int_var_b, int_var_c};
+  l.int_field_d = int_var_b;
+  int int_var_b2 = i.int_field_h && l.int_field_d;
+  signed int_var_p =
+      l.int_field_d | -(l.int_field_f && l.int_field_d) - int_var_b2;
+  i.int_field_g = int_var_p;
+}
