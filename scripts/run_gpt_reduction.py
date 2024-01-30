@@ -54,20 +54,32 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         # Iterating through the trials
         target_list = []
+        # for trial in range(trial_number):
+        #     response_text = completion.choices[trial].message.content
+        #     response_json = utils.extract_json(response_text)
+
+        #     if "target_list" in response_json:
+        #         current_list = response_json["target_list"]
+
+        #         # Check if current_list is a list, deduplicate and filter out non-string elements
+        #         if isinstance(current_list, list):
+        #             deduplicated_and_filtered_list = [item for item in set(current_list) if isinstance(item, str)]
+
+        #             # Use the deduplicated and filtered list from the current trial
+        #             target_list = sorted(deduplicated_and_filtered_list)
+        #             break  # Break the loop as we have found our list
+
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
-            response_json = utils.extract_json(response_text)
+            response_list_str = utils.extract_string_from_docstring(response_text)
+            response_list = utils.parse_into_list(response_list_str)
 
-            if "target_list" in response_json:
-                current_list = response_json["target_list"]
+            if (len(response_list) is not 0):
+                deduplicated_and_filtered_list = [item for item in set(response_list) if isinstance(item, str)]
 
-                # Check if current_list is a list, deduplicate and filter out non-string elements
-                if isinstance(current_list, list):
-                    deduplicated_and_filtered_list = [item for item in set(current_list) if isinstance(item, str)]
-
-                    # Use the deduplicated and filtered list from the current trial
-                    target_list = sorted(deduplicated_and_filtered_list)
-                    break  # Break the loop as we have found our list
+                # Use the deduplicated and filtered list from the current trial
+                target_list = sorted(deduplicated_and_filtered_list)
+                break
 
         utils.print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
         utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
@@ -119,7 +131,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 #     program = response_json["program"]
                 # else:
                 #     program = ""
-                program = utils.extract_code_without_language_indicator(response_text)
+                program = utils.extract_string_from_docstring(response_text)
 
                 trial_path = os.path.join(target_folder, f"trial_{trial}")
                 utils.save_program_file(trial_path, program)

@@ -11,6 +11,7 @@ import shutil
 import time
 import sys
 import benchmarks
+import ast
 
 SCRIPT_NAME = "r.sh"
 TOKEN_COUNTER_PATH = "/tmp/gpt_reduction/tools/token_counter_deploy.jar"
@@ -117,15 +118,15 @@ def extract_code(text):
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         return result[-1]
-    return text
+    return ""
 
-def extract_code_without_language_indicator(text):
+
+def extract_string_from_docstring(text):
     pattern = r"```(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         return result[-1]
     return ""
-
 
 def extract_json(text):
     pattern = r"```(?:json|JSON|Json)(.*?)```"
@@ -140,6 +141,13 @@ def extract_json(text):
             return {}
     else:
         return {}
+    
+def parse_into_list(text):
+    try:
+        return ast.literal_eval(text)
+
+    except Exception as e:
+        return []
 
 def get_current_version():
     result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True, check=False)
