@@ -22,6 +22,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
 
     prompt_from_system = prompts["prompt_from_system"]
+    prompt_to_generate_program = prompts["prompt_to_generate_program"]
     operations = prompts["operations"]
     questions = operations[operation]["multi_level_question"]
     primary_question = questions["primary_question"]
@@ -96,7 +97,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             # load the program
             program = utils.load_file(operation_program_path)
             messages = [
-                {"role": "system", "content": f"{prompt_from_system}"},
+                {"role": "system", "content": f"{prompt_from_system} {prompt_to_generate_program}"},
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
@@ -177,6 +178,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
     shutil.copy(output_script_path, operation_script_path)
 
     prompt_from_system = prompts["prompt_from_system"]
+    prompt_to_generate_program = prompts["prompt_to_generate_program"]
     operations = prompts["operations"]
     question = operations[operation]["single_level_question"]
 
@@ -191,7 +193,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         # call gpt
         prompt_from_user = f"{question}. The program is {program}."
         messages = [
-            {"role": "system", "content": f"{prompt_from_system}"},
+            {"role": "system", "content": f"{prompt_from_system} {prompt_to_generate_program}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
         completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
