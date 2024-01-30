@@ -74,7 +74,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             response_list_str = utils.extract_string_from_docstring(response_text)
             response_list = utils.parse_into_list(response_list_str)
 
-            if (len(response_list) is not 0):
+            if (len(response_list) != 0):
                 deduplicated_and_filtered_list = [item for item in set(response_list) if isinstance(item, str)]
 
                 # Use the deduplicated and filtered list from the current trial
