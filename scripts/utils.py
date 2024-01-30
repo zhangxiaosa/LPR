@@ -119,6 +119,13 @@ def extract_code(text):
         return result[-1]
     return text
 
+def extract_code_without_language_indicator(text):
+    pattern = r"```(.*?)```"
+    result = re.findall(pattern, text, re.DOTALL)
+    if result:
+        return result[-1]
+    return ""
+
 
 def extract_json(text):
     pattern = r"```(?:json|JSON|Json)(.*?)```"

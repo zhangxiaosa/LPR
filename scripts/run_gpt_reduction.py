@@ -113,11 +113,12 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             # save programs from followup_question_response.json
             for trial in range(trial_number):
                 response_text = completion.choices[trial].message.content
-                response_json = utils.extract_json(response_text)
-                if "program" in response_json and isinstance(response_json["program"], str):
-                    program = response_json["program"]
-                else:
-                    program = ""
+                # response_json = utils.extract_json(response_text)
+                # if "program" in response_json and isinstance(response_json["program"], str):
+                #     program = response_json["program"]
+                # else:
+                #     program = ""
+                program = utils.extract_code_without_language_indicator(response_text)
 
                 trial_path = os.path.join(target_folder, f"trial_{trial}")
                 utils.save_program_file(trial_path, program)
