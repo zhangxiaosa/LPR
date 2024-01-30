@@ -71,8 +71,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
-            response_list_str = utils.extract_string_from_docstring(response_text)
-            response_list = utils.parse_into_list(response_list_str)
+            response_list = utils.extract_list_between_star_and_newline(response_text)
 
             if (len(response_list) != 0):
                 deduplicated_and_filtered_list = [item for item in set(response_list) if isinstance(item, str)]

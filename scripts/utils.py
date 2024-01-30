@@ -149,6 +149,11 @@ def parse_into_list(text):
     except Exception as e:
         return []
 
+def extract_list_between_star_and_newline(text):
+    pattern = r"\* (.*?)(?=\n\* |\n$)"
+    items = re.findall(pattern, text, re.DOTALL)
+    return items
+
 def get_current_version():
     result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True, check=False)
     version = result.stdout.strip()
