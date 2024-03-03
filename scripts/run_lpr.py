@@ -6,29 +6,29 @@ import openai
 import utils
 
 
-def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
+def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature, level):
     """
     call LLM with the multi-level prompt
     """
-    operation_folder = os.path.join(output_folder, f"{operation}")
-    os.makedirs(operation_folder, exist_ok=True)
+    transformation_folder = os.path.join(output_folder, f"{transformation}")
+    os.makedirs(transformation_folder, exist_ok=True)
 
-    operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
-    operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
+    transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
+    transformation_script_path = os.path.join(transformation_folder, utils.SCRIPT_NAME)
 
     prompt_from_system = prompts["prompt_from_system"]
-    operations = prompts["operations"]
-    questions = operations[operation]["multi_level_question"]
+    transformations = prompts["transformations"]
+    questions = transformations[transformation]["multi_level_question"]
     primary_question = questions["primary_question"]
     followup_question = questions["followup_question"]
 
-    if not utils.check_finish(operation_folder):
+    if not utils.check_finish(transformation_folder):
 
         # ask the primary question
         start_time = time.time()
 
         # load the program
-        program = utils.load_file(operation_program_path)
+        program = utils.load_file(transformation_program_path)
 
         # call llm
         prompt_from_user = f"{primary_question}. The program is {program}."
@@ -40,11 +40,11 @@ def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         end_time = time.time()
 
         # save prompt
-        utils.save_json_file(operation_folder, "primary_question_prompt.json", messages)
+        utils.save_json_file(transformation_folder, "primary_question_prompt.json", messages)
         # save response
-        utils.save_json_file(operation_folder, "primary_question_response.json", completion)
+        utils.save_json_file(transformation_folder, "primary_question_response.json", completion)
         # save response time
-        utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time - start_time:.2f}")
+        utils.save_file(transformation_folder, "primary_question_response_time.txt", f"{end_time - start_time:.2f}")
 
         # Iterating through the trials
         target_list = []
@@ -64,10 +64,10 @@ def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                     break  # Break the loop as we have found our list
 
         utils.print_and_log(f"Primary question finished in {end_time - start_time:.2f} seconds", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
-        utils.save_json_file(operation_folder, "target_list.json", target_list)
+        utils.save_file(transformation_folder, "finish", f"{end_time - start_time:.2f}")
+        utils.save_json_file(transformation_folder, "target_list.json", target_list)
 
-    target_list = utils.load_json_file(os.path.join(operation_folder, "target_list.json"))
+    target_list = utils.load_json_file(os.path.join(transformation_folder, "target_list.json"))
     utils.print_and_log(f"Identified target list: {target_list}", level=level)
 
     # if no target identified, return
@@ -76,20 +76,20 @@ def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
     # ask the followup question
     for target_id, target in enumerate(target_list):
-        target_folder = os.path.join(operation_folder, f"target_{target_id}")
+        target_folder = os.path.join(transformation_folder, f"target_{target_id}")
         os.makedirs(target_folder, exist_ok=True)
         target_program_path = os.path.join(target_folder, utils.PROGRAM_NAME)
         target_script_path = os.path.join(target_folder, utils.SCRIPT_NAME)
 
-        utils.copy_file(operation_program_path, target_program_path)
-        utils.copy_file(operation_script_path, target_script_path)
+        utils.copy_file(transformation_program_path, target_program_path)
+        utils.copy_file(transformation_script_path, target_script_path)
 
         if not utils.check_finish(target_folder):
             # call llm
             start_time = time.time()
 
             # load the program
-            program = utils.load_file(operation_program_path)
+            program = utils.load_file(transformation_program_path)
             messages = [
                 {"role": "system", "content": f"{prompt_from_system}"},
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
@@ -116,7 +116,7 @@ def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
                 trial_path = os.path.join(target_folder, f"trial_{trial}")
                 utils.save_program_file(trial_path, program)
-                utils.copy_file(operation_script_path, trial_path)
+                utils.copy_file(transformation_script_path, trial_path)
 
             end_time = time.time()
             utils.save_file(target_folder, "finish", f"{end_time - start_time:.2f}")
@@ -149,40 +149,40 @@ def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
             utils.call_formatter(target_folder)
 
         final_program_size = utils.count_token(target_program_path)
-        utils.print_and_log(f"Finished llm ({operation}), target ({target}).", level=level + 1)
+        utils.print_and_log(f"Finished llm ({transformation}), target ({target}).", level=level + 1)
         utils.print_and_log(f"Current size: {final_program_size} tokens", level=level + 1)
-        utils.copy_file(target_program_path, operation_program_path)
+        utils.copy_file(target_program_path, transformation_program_path)
 
     os.chdir(utils.ROOT_FOLDER)
 
 
-def call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
+def call_llm_with_single_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature, level):
     """
     call LLM with the single-level prompt
     """
-    operation_folder = os.path.join(output_folder, f"{operation}")
-    os.makedirs(operation_folder, exist_ok=True)
+    transformation_folder = os.path.join(output_folder, f"{transformation}")
+    os.makedirs(transformation_folder, exist_ok=True)
 
-    operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
-    operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
+    transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
+    transformation_script_path = os.path.join(transformation_folder, utils.SCRIPT_NAME)
 
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
 
-    utils.copy_file(output_program_path, operation_program_path)
-    utils.copy_file(output_script_path, operation_script_path)
+    utils.copy_file(output_program_path, transformation_program_path)
+    utils.copy_file(output_script_path, transformation_script_path)
 
     prompt_from_system = prompts["prompt_from_system"]
-    operations = prompts["operations"]
-    question = operations[operation]["single_level_question"]
+    transformations = prompts["transformations"]
+    question = transformations[transformation]["single_level_question"]
 
-    if not utils.check_finish(operation_folder):
+    if not utils.check_finish(transformation_folder):
 
         # ask the single level question
         start_time = time.time()
 
         # load the program
-        program = utils.load_file(operation_program_path)
+        program = utils.load_file(transformation_program_path)
 
         # call llm
         prompt_from_user = f"{question}. The program is {program}."
@@ -195,9 +195,9 @@ def call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         utils.print_and_log(f"Question finished in {end_time - start_time:.2f} seconds", level=level)
 
         # save prompt
-        utils.save_json_file(operation_folder, "question_prompt.json", messages)
+        utils.save_json_file(transformation_folder, "question_prompt.json", messages)
         # save response
-        utils.save_json_file(operation_folder, "question_response.json", completion)
+        utils.save_json_file(transformation_folder, "question_response.json", completion)
 
         # save program
         for trial in range(trial_number):
@@ -209,15 +209,15 @@ def call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_ver
                 utils.print_and_log(f"invalid result for trial {trial}", level=level)
                 program = ""
 
-            trial_path = os.path.join(operation_folder, f"trial_{trial}")
+            trial_path = os.path.join(transformation_folder, f"trial_{trial}")
             utils.save_program_file(trial_path, program)
-            utils.copy_file(operation_script_path, trial_path)
+            utils.copy_file(transformation_script_path, trial_path)
 
         # test all programs and return the smallest one
         smallest_program = ""
         smallest_size = sys.maxsize
         for trial in range(trial_number):
-            trial_path = os.path.join(operation_folder, f"trial_{trial}")
+            trial_path = os.path.join(transformation_folder, f"trial_{trial}")
             trial_program_path = os.path.join(trial_path, utils.PROGRAM_NAME)
 
             size = utils.count_token(trial_program_path)
@@ -233,52 +233,52 @@ def call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_ver
                 utils.print_and_log(f"trial {trial}: program size {size}, fail", level=level)
 
         if smallest_program != "":
-            utils.save_program_file(operation_folder, smallest_program)
-            utils.call_formatter(operation_folder)
+            utils.save_program_file(transformation_folder, smallest_program)
+            utils.call_formatter(transformation_folder)
 
         end_time = time.time()
 
-        final_program_size = utils.count_token(operation_program_path)
-        utils.print_and_log(f"Finished llm ({operation})).", level=level)
+        final_program_size = utils.count_token(transformation_program_path)
+        utils.print_and_log(f"Finished llm ({transformation})).", level=level)
         utils.print_and_log(f"Current size: {final_program_size} tokens", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
+        utils.save_file(transformation_folder, "finish", f"{end_time - start_time:.2f}")
 
-    utils.copy_file(operation_program_path, output_program_path)
+    utils.copy_file(transformation_program_path, output_program_path)
 
 
-def call_llm_based_reducer(prompts, operation, output_folder, llm_version, trial_number, temperature, multi_level,
+def call_llm_based_reducer(prompts, transformation, output_folder, llm_version, trial_number, temperature, multi_level,
                            level):
     """
     call LLM based reducer, with multi-level or single-level prompt.
     """
-    utils.print_and_log(f"Start llm ({operation})", level=level)
+    utils.print_and_log(f"Start llm ({transformation})", level=level)
 
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
-    operation_folder = os.path.join(output_folder, f"{operation}")
-    operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
-    orig_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME + ".orig")
-    operation_script_path = os.path.join(operation_folder, utils.SCRIPT_NAME)
-    os.makedirs(operation_folder, exist_ok=True)
+    transformation_folder = os.path.join(output_folder, f"{transformation}")
+    transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
+    orig_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME + ".orig")
+    transformation_script_path = os.path.join(transformation_folder, utils.SCRIPT_NAME)
+    os.makedirs(transformation_folder, exist_ok=True)
 
     start_time = time.time()
-    utils.copy_file(output_program_path, operation_program_path)
+    utils.copy_file(output_program_path, transformation_program_path)
     utils.copy_file(output_program_path, orig_program_path)
-    utils.copy_file(output_script_path, operation_script_path)
+    utils.copy_file(output_script_path, transformation_script_path)
 
     if multi_level:
-        call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature,
+        call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature,
                                          level)
     else:
-        call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature,
+        call_llm_with_single_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature,
                                           level)
     end_time = time.time()
-    utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
+    utils.save_file(transformation_folder, "finish", f"{end_time - start_time:.2f}")
 
-    operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
-    final_program_size = utils.count_token(operation_program_path)
-    utils.copy_file(operation_program_path, output_program_path)
-    utils.print_and_log(f"Finished llm ({operation}): {final_program_size} tokens", level=level)
+    transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
+    final_program_size = utils.count_token(transformation_program_path)
+    utils.copy_file(transformation_program_path, output_program_path)
+    utils.print_and_log(f"Finished llm ({transformation}): {final_program_size} tokens", level=level)
 
 
 def call_llm(message, llm_version, trial_number=1, temperature=1.0):
@@ -383,34 +383,34 @@ def main():
                                 level=1)
 
             # call llm reducers
-            operations = prompts["operations"]
-            for operation in operations.keys():
-                operation_folder = os.path.join(iteration_folder, f"operation_{operation}")
-                os.makedirs(operation_folder, exist_ok=True)
-                utils.copy_file(iteration_program_path, operation_folder)
-                utils.copy_file(iteration_script_path, operation_folder)
-                operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
+            transformations = prompts["transformations"]
+            for transformation in transformations.keys():
+                transformation_folder = os.path.join(iteration_folder, f"transformation_{transformation}")
+                os.makedirs(transformation_folder, exist_ok=True)
+                utils.copy_file(iteration_program_path, transformation_folder)
+                utils.copy_file(iteration_script_path, transformation_folder)
+                transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
 
                 utils.print_and_log(
-                    f"Start operation {operation}, current size: {utils.count_token(operation_program_path)}", level=2)
+                    f"Start transformation {transformation}, current size: {utils.count_token(transformation_program_path)}", level=2)
 
                 # call llm
-                program_before_operation = utils.load_file(operation_program_path)
-                call_llm_based_reducer(prompts=prompts, operation=operation,
-                                       output_folder=operation_folder, llm_version=llm_version,
+                program_before_transformation = utils.load_file(transformation_program_path)
+                call_llm_based_reducer(prompts=prompts, transformation=transformation,
+                                       output_folder=transformation_folder, llm_version=llm_version,
                                        trial_number=trial_number, temperature=temperature, multi_level=multi_level,
                                        level=2)
-                program_after_operation = utils.load_file(operation_program_path)
+                program_after_transformation = utils.load_file(transformation_program_path)
 
                 # call Perses
-                if program_before_operation != program_after_operation:
+                if program_before_transformation != program_after_transformation:
                     utils.print_and_log("llm made progress", level=2)
-                    utils.call_perses(operation_folder, level=2)
+                    utils.call_perses(transformation_folder, level=2)
 
-                program_size_after_operation = utils.count_token(operation_program_path)
-                utils.copy_file(operation_program_path, iteration_folder)
-                utils.print_and_log(f"Finished iteration {iteration}, operation {operation}, \
-                            current size: {program_size_after_operation} tokens", level=2)
+                program_size_after_transformation = utils.count_token(transformation_program_path)
+                utils.copy_file(transformation_program_path, iteration_folder)
+                utils.print_and_log(f"Finished iteration {iteration}, transformation {transformation}, \
+                            current size: {program_size_after_transformation} tokens", level=2)
 
             program_size_after_iteration = utils.count_token(iteration_program_path)
             utils.copy_file(iteration_program_path, main_folder)
