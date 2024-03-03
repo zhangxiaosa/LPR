@@ -4,32 +4,39 @@ import sys
 import csv
 import utils
 
-# Function to calculate total time from log file
+
 def get_time_from_log(file):
+    """
+    extract execution time from the log file
+    """
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             lines = f.readlines()
-        for i in range(len(lines)-1, -1, -1):
+        for i in range(len(lines) - 1, -1, -1):
             if "== done ==" in lines[i]:
-                for j in range(i-1, -1, -1):
+                for j in range(i - 1, -1, -1):
                     match = re.search(r'timestamp (\d+)', lines[j])
                     if match:
                         return int(match.group(1))
     except FileNotFoundError:
         return None
 
-# Function to get query number from log.txt  
+
 def get_query_number_from_log(file):
-    query_num = 0
+    """
+    extract query number from the log file
+    """
+    query_number = 0
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             content = f.read()
             matches = re.findall(r'(worked|failed) (\d+) times', content)
             for match in matches:
-                query_num += int(match[1])
+                query_number += int(match[1])
     except FileNotFoundError:
         return None
-    return query_num
+    return query_number
+
 
 RESULT_PATH = sys.argv[1]
 benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)

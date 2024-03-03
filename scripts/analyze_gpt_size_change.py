@@ -40,7 +40,7 @@ def compute_size_changes_of_transformation_without_perses(case_path, transformat
                     tmp_folder = os.path.join("/tmp", transformation)
                     os.makedirs(tmp_folder, exist_ok=True)
                     tmp_orig_file = os.path.join(tmp_folder, utils.PROGRAM_NAME)
-                    shutil.copy(orig_file, tmp_orig_file)
+                    utils.copy_file(orig_file, tmp_orig_file)
 
                     orig_count = utils.count_token(tmp_orig_file)
                     diff = program_count - orig_count
@@ -74,7 +74,7 @@ def compute_size_changes_of_transformation_with_perses(case_path, transformation
                     tmp_folder = os.path.join("/tmp", transformation)
                     os.makedirs(tmp_folder, exist_ok=True)
                     tmp_orig_file = os.path.join(tmp_folder, utils.PROGRAM_NAME)
-                    shutil.copy(orig_file, tmp_orig_file)
+                    utils.copy_file(orig_file, tmp_orig_file)
 
                     orig_count = utils.count_token(tmp_orig_file)
                     diff = program_count - orig_count

@@ -5,8 +5,11 @@ import time
 import openai
 import utils
 
-def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
 
+def call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
+    """
+    call LLM with the multi-level prompt
+    """
     operation_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(operation_folder, exist_ok=True)
 
@@ -20,20 +23,20 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
     followup_question = questions["followup_question"]
 
     if not utils.check_finish(operation_folder):
-        
+
         # ask the primary question
         start_time = time.time()
 
         # load the program
         program = utils.load_file(operation_program_path)
 
-        # call gpt
+        # call llm
         prompt_from_user = f"{primary_question}. The program is {program}."
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
+        completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
         end_time = time.time()
 
         # save prompt
@@ -41,7 +44,7 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         # save response
         utils.save_json_file(operation_folder, "primary_question_response.json", completion)
         # save response time
-        utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time-start_time:.2f}")
+        utils.save_file(operation_folder, "primary_question_response_time.txt", f"{end_time - start_time:.2f}")
 
         # Iterating through the trials
         target_list = []
@@ -60,8 +63,8 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                     target_list = sorted(deduplicated_and_filtered_list)
                     break  # Break the loop as we have found our list
 
-        utils.print_and_log(f"Primary question finished in {end_time-start_time:.2f} seconds", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
+        utils.print_and_log(f"Primary question finished in {end_time - start_time:.2f} seconds", level=level)
+        utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
         utils.save_json_file(operation_folder, "target_list.json", target_list)
 
     target_list = utils.load_json_file(os.path.join(operation_folder, "target_list.json"))
@@ -77,12 +80,12 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
         os.makedirs(target_folder, exist_ok=True)
         target_program_path = os.path.join(target_folder, utils.PROGRAM_NAME)
         target_script_path = os.path.join(target_folder, utils.SCRIPT_NAME)
-        
-        shutil.copy(operation_program_path, target_program_path)
-        shutil.copy(operation_script_path, target_script_path)
+
+        utils.copy_file(operation_program_path, target_program_path)
+        utils.copy_file(operation_script_path, target_script_path)
 
         if not utils.check_finish(target_folder):
-            # call gpt
+            # call llm
             start_time = time.time()
 
             # load the program
@@ -92,16 +95,16 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
-            completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
+            completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
             end_time = time.time()
-    
+
             # save prompt
             utils.save_json_file(target_folder, "followup_question_prompt.json", messages)
             # save response content
             utils.save_json_file(target_folder, "followup_question_response.json", completion)
             # save response time
-            utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time-start_time:.2f}")
-            
+            utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time - start_time:.2f}")
+
             # save programs from followup_question_response.json
             for trial in range(trial_number):
                 response_text = completion.choices[trial].message.content
@@ -113,14 +116,14 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
                 trial_path = os.path.join(target_folder, f"trial_{trial}")
                 utils.save_program_file(trial_path, program)
-                shutil.copy(operation_script_path, trial_path)
+                utils.copy_file(operation_script_path, trial_path)
 
             end_time = time.time()
-            utils.save_file(target_folder, "finish", f"{end_time-start_time:.2f}")
+            utils.save_file(target_folder, "finish", f"{end_time - start_time:.2f}")
 
-        elasped_time = utils.load_file(os.path.join(target_folder, "followup_question_response_time.txt"))
+        elapsed_time = utils.load_file(os.path.join(target_folder, "followup_question_response_time.txt"))
         utils.print_and_log(f"Followup question for target ({target}) \
-            finished in {elasped_time} seconds", level=level+1)
+            finished in {elapsed_time} seconds", level=level + 1)
 
         # test all programs and return the smallest one
         smallest_program = ""
@@ -134,27 +137,29 @@ def call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_vers
 
             os.chdir(trial_path)
             if utils.property_test():
-                utils.print_and_log(f"trial {trial}: program size {size}, pass", level=level+2)
+                utils.print_and_log(f"trial {trial}: program size {size}, pass", level=level + 2)
                 if size < smallest_size:
                     smallest_size = size
                     smallest_program = program
             else:
-                utils.print_and_log(f"trial {trial}: program size {size}, fail", level=level+2)
+                utils.print_and_log(f"trial {trial}: program size {size}, fail", level=level + 2)
 
         if smallest_program != "":
             utils.save_program_file(target_folder, smallest_program)
             utils.call_formatter(target_folder)
 
-
         final_program_size = utils.count_token(target_program_path)
-        utils.print_and_log(f"Finished gpt ({operation}), target ({target}).", level=level+1)
-        utils.print_and_log(f"Current size: {final_program_size} tokens", level=level+1)
-        shutil.copy(target_program_path, operation_program_path)
+        utils.print_and_log(f"Finished llm ({operation}), target ({target}).", level=level + 1)
+        utils.print_and_log(f"Current size: {final_program_size} tokens", level=level + 1)
+        utils.copy_file(target_program_path, operation_program_path)
 
     os.chdir(utils.ROOT_FOLDER)
 
-def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, level):
 
+def call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level):
+    """
+    call LLM with the single-level prompt
+    """
     operation_folder = os.path.join(output_folder, f"{operation}")
     os.makedirs(operation_folder, exist_ok=True)
 
@@ -164,8 +169,8 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
 
-    shutil.copy(output_program_path, operation_program_path)
-    shutil.copy(output_script_path, operation_script_path)
+    utils.copy_file(output_program_path, operation_program_path)
+    utils.copy_file(output_script_path, operation_script_path)
 
     prompt_from_system = prompts["prompt_from_system"]
     operations = prompts["operations"]
@@ -179,15 +184,15 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         # load the program
         program = utils.load_file(operation_program_path)
 
-        # call gpt
+        # call llm
         prompt_from_user = f"{question}. The program is {program}."
         messages = [
             {"role": "system", "content": f"{prompt_from_system}"},
             {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
         ]
-        completion = call_gpt(messages, llm_version=llm_version, trial_number=trial_number)
+        completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
         end_time = time.time()
-        utils.print_and_log(f"Question finished in {end_time-start_time:.2f} seconds", level=level)
+        utils.print_and_log(f"Question finished in {end_time - start_time:.2f} seconds", level=level)
 
         # save prompt
         utils.save_json_file(operation_folder, "question_prompt.json", messages)
@@ -206,7 +211,7 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
 
             trial_path = os.path.join(operation_folder, f"trial_{trial}")
             utils.save_program_file(trial_path, program)
-            shutil.copy(operation_script_path, trial_path)
+            utils.copy_file(operation_script_path, trial_path)
 
         # test all programs and return the smallest one
         smallest_program = ""
@@ -234,14 +239,19 @@ def call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_ver
         end_time = time.time()
 
         final_program_size = utils.count_token(operation_program_path)
-        utils.print_and_log(f"Finished gpt ({operation})).", level=level)
+        utils.print_and_log(f"Finished llm ({operation})).", level=level)
         utils.print_and_log(f"Current size: {final_program_size} tokens", level=level)
-        utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
+        utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
 
-    shutil.copy(operation_program_path, output_program_path)
+    utils.copy_file(operation_program_path, output_program_path)
 
-def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial_number, temperature, multi_level, level):
-    utils.print_and_log(f"Start gpt ({operation})", level=level)
+
+def call_llm_based_reducer(prompts, operation, output_folder, llm_version, trial_number, temperature, multi_level,
+                           level):
+    """
+    call LLM based reducer, with multi-level or single-level prompt.
+    """
+    utils.print_and_log(f"Start llm ({operation})", level=level)
 
     output_program_path = os.path.join(output_folder, utils.PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, utils.SCRIPT_NAME)
@@ -252,23 +262,29 @@ def call_gpt_based_reducer(prompts, operation, output_folder, llm_version, trial
     os.makedirs(operation_folder, exist_ok=True)
 
     start_time = time.time()
-    shutil.copy(output_program_path, operation_program_path)
-    shutil.copy(output_program_path, orig_program_path)
-    shutil.copy(output_script_path, operation_script_path)
+    utils.copy_file(output_program_path, operation_program_path)
+    utils.copy_file(output_program_path, orig_program_path)
+    utils.copy_file(output_script_path, operation_script_path)
 
     if multi_level:
-        call_gpt_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level)
+        call_llm_with_multi_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature,
+                                         level)
     else:
-        call_gpt_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature, level)
+        call_llm_with_single_level_prompt(prompts, operation, output_folder, llm_version, trial_number, temperature,
+                                          level)
     end_time = time.time()
-    utils.save_file(operation_folder, "finish", f"{end_time-start_time:.2f}")
+    utils.save_file(operation_folder, "finish", f"{end_time - start_time:.2f}")
 
     operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
     final_program_size = utils.count_token(operation_program_path)
-    shutil.copy(operation_program_path, output_program_path)
-    utils.print_and_log(f"Finished gpt ({operation}): {final_program_size} tokens", level=level)
+    utils.copy_file(operation_program_path, output_program_path)
+    utils.print_and_log(f"Finished llm ({operation}): {final_program_size} tokens", level=level)
 
-def call_gpt(message, llm_version, trial_number=1, temperature=1.0):
+
+def call_llm(message, llm_version, trial_number=1, temperature=1.0):
+    """
+    call LLM
+    """
     completion = openai.ChatCompletion.create(
         model=llm_version,
         n=trial_number,
@@ -277,8 +293,11 @@ def call_gpt(message, llm_version, trial_number=1, temperature=1.0):
     )
     return completion
 
-def main():
 
+def main():
+    """
+    run LPR
+    """
     utils.init_openai_api_key()
     parser = utils.initialize_parser()
     args = parser.parse_args()
@@ -303,52 +322,56 @@ def main():
 
     # get case list
     # case_list = utils.get_benchmarks(benchmark_suite_folder, case)
-    case_list = utils.determine_benchmark_suite(benchmark_suite_folder)
+    if case is None:
+        case_list = utils.determine_benchmark_suite(benchmark_suite_folder)
+    else:
+        case_list = [case]
 
     for case in case_list:
         # get main folder
         main_folder = os.path.normpath(
-            os.path.join("/tmp/gpt_reduction/results/", code_version, args_string, case)
+            os.path.join("/tmp/llm_reduction/results/", code_version, args_string, case)
         )
         os.makedirs(main_folder, exist_ok=True)
 
         # check previous result and skip if it is finished
         utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         if os.path.exists(utils.LOG_FILE_NAME):
-            with open(utils.LOG_FILE_NAME, 'r') as file:
+            with open(utils.LOG_FILE_NAME) as file:
                 last_line = file.readlines()[-1]
                 if "reduction ratio" in last_line:
                     continue
-        
+
         # copy original files to main folder
         original_program_path = os.path.join(benchmark_suite_folder, case, utils.PROGRAM_NAME)
         original_script_path = os.path.join(benchmark_suite_folder, case, utils.SCRIPT_NAME)
 
         os.chdir(os.path.join(benchmark_suite_folder, case))
-        if (not utils.property_test()):
+        if not utils.property_test():
             utils.print_and_log(f"Sanity check failed on {case}, skipped it", 0)
             continue
-        
+
         main_program_path = os.path.join(main_folder, utils.PROGRAM_NAME)
         main_script_path = os.path.join(main_folder, utils.SCRIPT_NAME)
-        
-        shutil.copy(original_program_path, main_program_path)
-        shutil.copy(original_script_path, main_script_path)
+
+        utils.copy_file(original_program_path, main_program_path)
+        utils.copy_file(original_script_path, main_script_path)
 
         # start
         original_program_size = utils.count_token(original_program_path)
-        utils.print_and_log(f"Start reduction on {case}, original program size: {original_program_size} tokens", level=0)
+        utils.print_and_log(f"Start reduction on {case}, original program size: {original_program_size} tokens",
+                            level=0)
         iteration = 0
 
         program_size_before_iteration = sys.maxsize
-
         program_size_after_iteration = utils.count_token(main_program_path)
+        smallest_program = ""
 
         while program_size_after_iteration < program_size_before_iteration:
             iteration_folder = os.path.join(main_folder, f"iteration_{iteration}")
             os.makedirs(iteration_folder, exist_ok=True)
-            shutil.copy(main_program_path, iteration_folder)
-            shutil.copy(main_script_path, iteration_folder)
+            utils.copy_file(main_program_path, iteration_folder)
+            utils.copy_file(main_script_path, iteration_folder)
 
             iteration_program_path = os.path.join(iteration_folder, utils.PROGRAM_NAME)
             iteration_script_path = os.path.join(iteration_folder, utils.SCRIPT_NAME)
@@ -356,44 +379,48 @@ def main():
             program_size_before_iteration = program_size_after_iteration
             smallest_program = utils.load_file(main_program_path)
 
-            utils.print_and_log(f"Start iteration {iteration}, current size: {utils.count_token(main_program_path)}", level=1)
+            utils.print_and_log(f"Start iteration {iteration}, current size: {utils.count_token(main_program_path)}",
+                                level=1)
 
-            # call gpt reducers
+            # call llm reducers
             operations = prompts["operations"]
             for operation in operations.keys():
                 operation_folder = os.path.join(iteration_folder, f"operation_{operation}")
                 os.makedirs(operation_folder, exist_ok=True)
-                shutil.copy(iteration_program_path, operation_folder)
-                shutil.copy(iteration_script_path, operation_folder)
+                utils.copy_file(iteration_program_path, operation_folder)
+                utils.copy_file(iteration_script_path, operation_folder)
                 operation_program_path = os.path.join(operation_folder, utils.PROGRAM_NAME)
 
-                utils.print_and_log(f"Start operation {operation}, current size: {utils.count_token(operation_program_path)}", level=2)
+                utils.print_and_log(
+                    f"Start operation {operation}, current size: {utils.count_token(operation_program_path)}", level=2)
 
-                # call gpt
+                # call llm
                 program_before_operation = utils.load_file(operation_program_path)
-                call_gpt_based_reducer(prompts=prompts, operation=operation,
-                                    output_folder=operation_folder, llm_version=llm_version,
-                                    trial_number=trial_number, temperature=temperature, multi_level=multi_level, level=2)
+                call_llm_based_reducer(prompts=prompts, operation=operation,
+                                       output_folder=operation_folder, llm_version=llm_version,
+                                       trial_number=trial_number, temperature=temperature, multi_level=multi_level,
+                                       level=2)
                 program_after_operation = utils.load_file(operation_program_path)
 
-                # call perses
+                # call Perses
                 if program_before_operation != program_after_operation:
-                    utils.print_and_log("GPT made progress", level=2)
+                    utils.print_and_log("llm made progress", level=2)
                     utils.call_perses(operation_folder, level=2)
 
                 program_size_after_operation = utils.count_token(operation_program_path)
-                shutil.copy(operation_program_path, iteration_folder)
+                utils.copy_file(operation_program_path, iteration_folder)
                 utils.print_and_log(f"Finished iteration {iteration}, operation {operation}, \
                             current size: {program_size_after_operation} tokens", level=2)
 
             program_size_after_iteration = utils.count_token(iteration_program_path)
-            shutil.copy(iteration_program_path, main_folder)
+            utils.copy_file(iteration_program_path, main_folder)
             # Increase the iteration count
-            iteration = iteration + 1
+            iteration += 1
 
         utils.save_program_file(main_folder, smallest_program)
         utils.print_and_log(f"Finished reduction on {case}, reduction ratio: \
                     {program_size_before_iteration}/{original_program_size}", level=0)
+
 
 if __name__ == "__main__":
     main()

@@ -117,7 +117,7 @@ export OPENAI_API_KEY=sk-xxxxxxx
 
 ```bash
 cd /tmp/gpt_reduction/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
 ./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
@@ -144,11 +144,11 @@ This script will save the size change of each transformation on each benchmark t
 To specify another version of GPT instead of the default "gpt-3.5-turbo-0613", use flag "--llm-version", for example:
 
 ```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
 ```
 
 To specify the temperature, use flag "--temperature", for example:
 
 ```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
 ```

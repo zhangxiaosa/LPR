@@ -4,7 +4,6 @@ import subprocess
 import re
 import argparse
 import copy
-import glob
 import openai
 import datetime
 import shutil
@@ -21,7 +20,11 @@ LANGUAGE = None
 PROGRAM_NAME = None
 ROOT_FOLDER = None
 
+
 def execute_cmd(cmd, output=False):
+    """
+    execute a given command
+    """
     if output:
         process = subprocess.run(f"{cmd}", shell=True, check=False)
     else:
@@ -29,32 +32,44 @@ def execute_cmd(cmd, output=False):
                                  stderr=subprocess.DEVNULL, check=False)
     return process.returncode
 
+
 def property_test(rerun=False):
+    """
+    test whether the given program satisfies the property
+    """
     result_file_name = "property_test_result"
     result_file_path = os.path.join("./", result_file_name)
     if not rerun:
-        if (os.path.exists(result_file_path)):
+        if os.path.exists(result_file_path):
             saved_result = load_file(result_file_path)
-            if (saved_result == "fail"):
+            if saved_result == "fail":
                 return False
             else:
                 return True
-    
+
     ret = execute_cmd("./r.sh")
     if ret == 1:
         save_file("./", result_file_name, "fail")
         return False
-    
+
     save_file("./", result_file_name, "pass")
     return True
 
+
 def save_file(folder_path, file_name, content):
+    """
+    save a string to a given file
+    """
     os.makedirs(folder_path, exist_ok=True)
     file_path = os.path.join(folder_path, file_name)
     with open(file_path, "w") as file_writer:
         file_writer.write(content)
 
+
 def save_program_file(folder_path, program):
+    """
+    save a string to the PROGRAM_NAME
+    """
     os.makedirs(folder_path, exist_ok=True)
     file_path = os.path.join(folder_path, PROGRAM_NAME)
     with open(file_path, "w") as file_writer:
@@ -62,6 +77,9 @@ def save_program_file(folder_path, program):
 
 
 def save_json_file(folder_path, file_name, json_object):
+    """
+    save a json object to a file
+    """
     os.makedirs(folder_path, exist_ok=True)
     file_path = os.path.join(folder_path, file_name)
     with open(file_path, "w") as file_writer:
@@ -69,40 +87,58 @@ def save_json_file(folder_path, file_name, json_object):
 
 
 def load_file(path):
+    """
+    load file to string
+    """
     with open(path, "r") as file_reader:
         program = file_reader.read()
     return program
 
 
 def load_json_file(path):
+    """
+    load json file to json object
+    """
     with open(path, "r") as file_reader:
         json_object = json.load(file_reader)
     return json_object
 
+
 def check_finish(folder):
+    """
+    check whether file finish exists
+    """
     status_file = os.path.join(folder, "finish")
     if os.path.exists(status_file):
         return True
     return False
 
+
 def compute_md5(file_path):
+    """
+    compute md5 of a file
+    """
     output = subprocess.check_output(
         f"md5sum {file_path}", shell=True)
     md5_str_line = output.decode().splitlines()[-1]
     md5_str = md5_str_line.split(" ")[0]
     return md5_str
 
+
 def count_token(program_path):
+    """
+    count token number of a program
+    """
     current_md5 = compute_md5(program_path)
 
     program_folder = os.path.dirname(program_path)
     program_size_file_name = "program_size.json"
     program_size_path = os.path.join(program_folder, program_size_file_name)
-    if (os.path.exists(program_size_path)):
+    if os.path.exists(program_size_path):
         size_json = load_json_file(program_size_path)
-        if (current_md5 == size_json["md5"]):
+        if current_md5 == size_json["md5"]:
             return size_json["size"]
-        
+
     output = subprocess.check_output(
         f"java -jar {TOKEN_COUNTER_PATH} -- {program_path}", shell=True)
     size_str = output.decode().splitlines()[-1]
@@ -113,6 +149,9 @@ def count_token(program_path):
 
 
 def extract_code(text):
+    """
+    extract code within docstring format
+    """
     pattern = r"```[\S]*(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
     if result:
@@ -121,6 +160,9 @@ def extract_code(text):
 
 
 def extract_json(text):
+    """
+    extract json object from docstring format
+    """
     pattern = r"```(?:json|JSON|Json)(.*?)```"
     result = re.findall(pattern, text, re.DOTALL)
     if result:
@@ -134,10 +176,15 @@ def extract_json(text):
     else:
         return {}
 
+
 def get_current_version():
+    """
+    get current version of git repo
+    """
     result = subprocess.run("git rev-parse --short HEAD", stdout=subprocess.PIPE, shell=True, text=True, check=False)
     version = result.stdout.strip()
     return version
+
 
 def get_args_string(parser):
     """Generate a string representation of the arguments provided explicitly by the user."""
@@ -155,29 +202,44 @@ def get_args_string(parser):
     pattern = re.compile(r'[^a-zA-Z0-9]+')
     return pattern.sub('_', args_string)
 
+
 def initialize_parser():
+    """
+    initialize parser with arguments
+    """
     parser = argparse.ArgumentParser(description="Process some inputs.")
-    parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json", help="Configuration file about prompts")
+    parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json",
+                        help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=False, default=None, help="Benchmark ID")
     parser.add_argument("--trial", type=int, required=False, default=5, help="Number of trials in LLMs")
     parser.add_argument("--temperature", type=float, required=False, default=1.0, help="Temperature used in LLMs")
-    parser.add_argument("--max-jobs", type=int, required=False, default=1, help="The maximum number of concurrent tasks allowed")
+    parser.add_argument("--max-jobs", type=int, required=False, default=1,
+                        help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
-    parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False, help="Disable multi-level prompt")
+    parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False,
+                        help="Disable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
     return parser
 
+
 def init_openai_api_key():
-    """Initialize OpenAI API key or raise an error if it is not set."""
+    """
+    Initialize OpenAI API key or raise an error if it is not set.
+    """
     openai_api_key = os.getenv("OPENAI_API_KEY")
     if not openai_api_key:
         raise EnvironmentError("OPENAI_API_KEY is not set in the environment variables.")
     openai.api_key = openai_api_key
 
+
 def init_root_folder(folder):
+    """
+    init variable ROOT_FOLDER
+    """
     global ROOT_FOLDER
     ROOT_FOLDER = folder
+
 
 def init_language(folder):
     """Determine the programming language and initialize LANGUAGE and PROGRAM_NAME."""
@@ -198,23 +260,32 @@ def init_language(folder):
                 return
     raise ValueError("Could not determine the programming language.")
 
+
 def get_benchmarks(benchmark_suite_folder, case):
+    """
+    get benchmarks from a given folder
+    if the benchmark is given, use it directly
+    """
     case_list = []
-    if (case is None):
+    if case is None:
         for item in os.listdir(benchmark_suite_folder):
             if os.path.isdir(os.path.join(benchmark_suite_folder, item)):
                 case_list.append(item)
     else:
         case_list.append(case)
-    
+
     case_list = sorted(case_list)
     return case_list
 
+
 def print_and_log(message, level):
+    """
+    print and log information
+    """
     # make indentation
     indent = ""
     for _ in range(level):
-        indent = indent + "  "
+        indent += "  "
 
     # make time stamp
     now = datetime.datetime.now()
@@ -224,7 +295,11 @@ def print_and_log(message, level):
     with open(LOG_FILE_NAME, 'a') as file:
         file.write(message + '\n')
 
+
 def call_perses(output_folder, level):
+    """
+    call Perses
+    """
     print_and_log(f"start perses", level=level)
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
@@ -236,21 +311,24 @@ def call_perses(output_folder, level):
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, working_program_path)
-        shutil.copy(output_script_path, working_script_path)
+        copy_file(output_program_path, working_program_path)
+        copy_file(output_script_path, working_script_path)
 
         execute_cmd(
             f"java -jar {PERSES_PATH} --input {working_program_path} --test {working_script_path} --output-dir {working_folder} --query-caching false --threads 1 > {working_log_path} 2>&1")
 
         call_formatter(working_folder)
         end_time = time.time()
-        save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(working_program_path, output_program_path)
+        save_file(working_folder, "finish", f"{end_time - start_time}")
+    copy_file(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish perses: {program_size} tokens", level=level)
 
+
 def call_vulcan(output_folder, level):
+    """
+    call Vulcan"""
     print_and_log(f"start vulcan", level=level)
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
@@ -262,8 +340,8 @@ def call_vulcan(output_folder, level):
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, working_program_path)
-        shutil.copy(output_script_path, working_script_path)
+        copy_file(output_program_path, working_program_path)
+        copy_file(output_script_path, working_script_path)
 
         execute_cmd(
             f"java -jar {VULCAN_PATH} --input {working_program_path} --test {working_script_path} --output-dir {working_folder} --enable-vulcan true --query-caching false --threads 1 > {working_log_path} 2>&1"
@@ -271,13 +349,17 @@ def call_vulcan(output_folder, level):
 
         call_formatter(working_folder)
         end_time = time.time()
-        save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(working_program_path, output_program_path)
+        save_file(working_folder, "finish", f"{end_time - start_time}")
+    copy_file(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish vulcan: {program_size} tokens", level=level)
 
+
 def call_creduce(output_folder, level):
+    """
+    call C-Reduce
+    """
     print_and_log(f"start creduce", level=level)
     output_program_path = os.path.join(output_folder, PROGRAM_NAME)
     output_script_path = os.path.join(output_folder, SCRIPT_NAME)
@@ -289,8 +371,8 @@ def call_creduce(output_folder, level):
 
     if not check_finish(working_folder):
         start_time = time.time()
-        shutil.copy(output_program_path, working_program_path)
-        shutil.copy(output_script_path, working_script_path)
+        copy_file(output_program_path, working_program_path)
+        copy_file(output_script_path, working_script_path)
 
         execute_cmd(
             f" creduce --n 1 --timing --no-cache {working_script_path} {working_program_path} > {working_log_path} 2>&1"
@@ -298,21 +380,25 @@ def call_creduce(output_folder, level):
 
         call_formatter(working_folder)
         end_time = time.time()
-        save_file(working_folder, "finish", f"{end_time-start_time}")
-    shutil.copy(working_program_path, output_program_path)
+        save_file(working_folder, "finish", f"{end_time - start_time}")
+    copy_file(working_program_path, output_program_path)
 
     program_size = count_token(output_program_path)
     print_and_log(f"Finish creduce: {program_size} tokens", level=level)
 
+
 def call_formatter(working_folder):
+    """
+    call formatter on the program
+    """
     working_program_path = os.path.join(working_folder, PROGRAM_NAME)
     working_script_path = os.path.join(working_folder, SCRIPT_NAME)
 
     format_folder = os.path.join(working_folder, "format")
     os.makedirs(format_folder, exist_ok=True)
-    
-    shutil.copy(working_program_path, format_folder)
-    shutil.copy(working_script_path, format_folder)
+
+    copy_file(working_program_path, format_folder)
+    copy_file(working_script_path, format_folder)
 
     current_path = os.getcwd()
     os.chdir(format_folder)
@@ -320,27 +406,37 @@ def call_formatter(working_folder):
         tmp_file = "tmp"
         execute_cmd(f"clang-format {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_program_path)
+            copy_file(tmp_file, working_program_path)
     elif LANGUAGE in ("rs",):
         execute_cmd(f"rustfmt {PROGRAM_NAME}", output=True)
         if property_test():
-            shutil.copy(PROGRAM_NAME, working_program_path)
+            copy_file(PROGRAM_NAME, working_program_path)
     elif LANGUAGE in ("go",):
         tmp_file = "tmp"
         execute_cmd(f"gofmt {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_program_path)
+            copy_file(tmp_file, working_program_path)
     elif LANGUAGE in ("js",):
         tmp_file = "tmp"
         execute_cmd(f"js-beautify {PROGRAM_NAME} > {tmp_file}", output=True)
         if property_test():
-            shutil.copy(tmp_file, working_program_path)
+            copy_file(tmp_file, working_program_path)
     else:
         pass
     os.chdir(current_path)
 
-# Function to determine the benchmark suite based on folder names in RESULT_PATH
+
+def copy_file(src_file, dst):
+    """
+    copy
+    """
+    shutil.copy(src_file, dst)
+
+
 def determine_benchmark_suite(result_path):
+    """
+    determine the benchmark suite based on folder names in RESULT_PATH
+    """
     for entry in os.listdir(result_path):
         full_path = os.path.join(result_path, entry)
         if os.path.isdir(full_path):

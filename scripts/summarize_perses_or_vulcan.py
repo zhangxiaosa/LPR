@@ -4,10 +4,13 @@ import sys
 import csv
 import utils
 
-# Function to calculate total time from 'finish' files
+
 def get_time_from_log(file):
+    """
+    calculate total time from 'finish' files
+    """
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             lines = f.readlines()
         for line in reversed(lines):
             match = re.search(r'Elapsed time is (\d+) second', line)
@@ -16,10 +19,13 @@ def get_time_from_log(file):
     except FileNotFoundError:
         return None
 
-# Function to get token number from log.txt
+
 def get_token_num_from_log(file):
+    """
+    get token number from log.txt
+    """
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             lines = f.readlines()
         for line in reversed(lines):
             match = re.search(r'Reduction ratio is (\d+)/\d+', line)
@@ -28,10 +34,13 @@ def get_token_num_from_log(file):
     except FileNotFoundError:
         return None
 
-# Function to get query number from log.txt  
+
 def get_query_number_from_log(file):
+    """
+    get query number from log.txt
+    """
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             lines = f.readlines()
         for line in reversed(lines):
             match = re.search(r'Test script execution count: (\d+)', line)
@@ -40,17 +49,21 @@ def get_query_number_from_log(file):
     except FileNotFoundError:
         return None
 
-# Function to get iteration from log.txt  
+
 def get_iteration_from_log(file):
+    """
+    get iteration from log.txt
+    """
     try:
-        with open(file, 'r') as f:
+        with open(file) as f:
             lines = f.readlines()
         for line in reversed(lines):
-            match = re.search(r'Fixpoint\[(\d+)\]', line)
+            match = re.search(r'Fixpoint\[(\d+)]', line)
             if match:
                 return int(match.group(1))
     except FileNotFoundError:
         return None
+
 
 RESULT_PATH = sys.argv[1]
 benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
