@@ -76,7 +76,7 @@ cat small.js > whole_program.js
 echo -e "$template" >> whole_program.js
 
 rm -f log.txt
-timeout -s 9 30 /tmp/gpt_reduction/compilers/javascript/webkit-c6a5bcca33/FuzzBuild/Debug/bin/jsc whole_program.js > log.txt 2>&1
+timeout -s 9 30 /tmp/LPR/compilers/javascript/webkit-c6a5bcca33/FuzzBuild/Debug/bin/jsc whole_program.js > log.txt 2>&1
 
 if grep -q "ERROR: UndefinedBehaviorSanitizer: SEGV on unknown address" log.txt; then
     exit 0

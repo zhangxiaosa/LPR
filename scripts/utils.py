@@ -12,9 +12,9 @@ import sys
 import benchmarks
 
 SCRIPT_NAME = "r.sh"
-TOKEN_COUNTER_PATH = "/tmp/gpt_reduction/tools/token_counter_deploy.jar"
-PERSES_PATH = "/tmp/gpt_reduction/tools/perses_deploy.jar"
-VULCAN_PATH = "/tmp/gpt_reduction/tools/vulcan_deploy.jar"
+TOKEN_COUNTER_PATH = "/tmp/LPR/tools/token_counter_deploy.jar"
+PERSES_PATH = "/tmp/LPR/tools/perses_deploy.jar"
+VULCAN_PATH = "/tmp/LPR/tools/vulcan_deploy.jar"
 LOG_FILE_NAME = None
 LANGUAGE = None
 PROGRAM_NAME = None
@@ -167,7 +167,7 @@ def extract_json(text):
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         json_string = result[-1]
-        # in case gpt generates some \\\n and make json parsing fail
+        # in case LLM generates some \\\n and make json parsing fail
         json_string = json_string.replace("\\\n", "")
         try:
             return json.loads(json_string)
@@ -208,7 +208,7 @@ def initialize_parser():
     initialize parser with arguments
     """
     parser = argparse.ArgumentParser(description="Process some inputs.")
-    parser.add_argument("--prompts", type=str, required=False, default="/tmp/gpt_reduction/prompts/prompts.json",
+    parser.add_argument("--prompts", type=str, required=False, default="/tmp/LPR/prompts/prompts.json",
                         help="Configuration file about prompts")
     parser.add_argument("--benchmark-suite", type=str, required=True, help="Folder of benchmark suite")
     parser.add_argument("--case", type=str, required=False, default=None, help="Benchmark ID")

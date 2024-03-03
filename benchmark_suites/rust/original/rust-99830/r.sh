@@ -36,8 +36,8 @@ opt-level = 1'
 
 readonly OUTPUT_BUGGY="output_buggy.txt"
 readonly OUTPUT_CORRECT1="output_correct1.txt"
-#cp /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/Cargo.lock .
-#cp -r /tmp/gpt_reduction/benchmark_suites/rust/original/rust-99830/target/ .
+#cp /tmp/LPR/benchmark_suites/rust/original/rust-99830/Cargo.lock .
+#cp -r /tmp/LPR/benchmark_suites/rust/original/rust-99830/target/ .
 echo "$CONFIG_BUGGY" > Cargo.toml
 timeout -s 9 600 rustup run "${VERSION}" cargo run --release > ${OUTPUT_BUGGY} 2>&1
 if ! grep "panicked" "${OUTPUT_BUGGY}" >& /dev/null ; then
