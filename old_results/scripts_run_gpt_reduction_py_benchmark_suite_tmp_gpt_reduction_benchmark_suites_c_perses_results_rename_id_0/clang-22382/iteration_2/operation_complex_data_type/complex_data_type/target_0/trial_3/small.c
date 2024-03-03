@@ -1,1 +1,0 @@
-typedef struct {\n  int i;\n  long j;\n  unsigned k;\n} original_data_type;\n\nstatic unsigned fn1(unsigned p1, original_data_type p5) {\n  p5.k;\n  w:\n  goto w;\n}\n\nunsigned fn2() {\n  original_data_type p;\n  fn1(0, p);\n  while (1) {\n    original_data_type r;\n    p = r = p;\n  }\n}\n\nint main() {}

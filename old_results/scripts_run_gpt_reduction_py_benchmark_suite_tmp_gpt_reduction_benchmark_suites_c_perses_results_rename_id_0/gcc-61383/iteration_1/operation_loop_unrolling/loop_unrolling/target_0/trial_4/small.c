@@ -1,1 +1,0 @@
-int fn1(int p1, int p2) { return p2 == 0 ? p1 : p1 % p2; }\nint fn3(int p1, int p2) { return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1 : p1 + p2; }\nunsigned n;\nint o;\nshort fn6() {\n  for (; n < 12; n = fn3(n, 3)) {\n    if (n >= 12 || o <= 0xE3L) {\n      break;\n    }\n  }\n  return 0;\n}\nint main() { fn6(); }

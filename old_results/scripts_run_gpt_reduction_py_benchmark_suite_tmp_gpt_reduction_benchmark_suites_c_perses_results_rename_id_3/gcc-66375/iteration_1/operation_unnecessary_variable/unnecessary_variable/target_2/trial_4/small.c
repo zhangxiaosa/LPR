@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned v_value;\nunsigned u;\n\nint main() {\n  int d = 2;\n  \n  for (; u < 51; ++u)\n    d = d + 0x9EE7F9D1C772505BLL;\n  \n  printf("checksum = %x\n", d);\n  return 0;\n}

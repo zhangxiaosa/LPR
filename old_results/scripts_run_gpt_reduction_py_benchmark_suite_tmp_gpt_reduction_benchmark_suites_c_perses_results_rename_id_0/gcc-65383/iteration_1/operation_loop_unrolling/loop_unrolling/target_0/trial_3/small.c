@@ -1,1 +1,0 @@
-unsigned g;\nint h2 = 2453134317;\nstatic unsigned i = 175;\nunsigned fn2() {\n  int r[5][9][5];\n  \n  if (h2)\n    return 195;\n  \n  g = r[i][i][i];\n  \n  if (h2)\n    return 195;\n  \n  g = r[i][i][i];\n  \n  if (h2)\n    return 195;\n  \n  g = r[i][i][i];\n}\n\nint main() { fn2(); }\n.

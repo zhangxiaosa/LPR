@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nint main() {\n  short q;\n  q = 0;\n  int s = 1L;\n\n  // Loop unrolled by a factor of 6\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n\n  printf("checksum = %X\n", q);\n  return 0;\n}

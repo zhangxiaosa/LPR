@@ -1,1 +1,0 @@
-typedef unsigned e;\nint k;\ne l;\nvolatile unsigned m[5][8];\nunsigned fn3(p1) {\n  signed o;\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -27; k = k - 6)\n        p1 = o - p1;\n    p1 || m[2][5];\n  }\n}\nint main() {}

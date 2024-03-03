@@ -1,1 +1,0 @@
-#include <iostream>\n\nlong fn1 = 0;\n\ntypedef long d __attribute__((__vector_size__(sizeof(long))));\n\n\nd fn2() {\n  long c = fn1;\n  d f = {c};\n  return f;\n}\n\nint main() {\n  return 0;\n}

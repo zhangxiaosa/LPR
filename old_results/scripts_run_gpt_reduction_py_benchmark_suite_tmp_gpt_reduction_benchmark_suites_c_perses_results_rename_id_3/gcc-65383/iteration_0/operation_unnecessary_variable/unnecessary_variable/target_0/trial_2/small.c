@@ -1,1 +1,0 @@
-#include<stdio.h>\n\nunsigned g;\nint h2 = 0x92A1D2CDL;\nstatic unsigned i = 0x06D7L;\nunsigned fn2() {\n  for (;;) {\n    if (h2) {\n      g = r[i][i][i];\n      break;\n    }\n    g = r[i][i][i];\n  }\n}\nint main() {\n  fn2();\n}

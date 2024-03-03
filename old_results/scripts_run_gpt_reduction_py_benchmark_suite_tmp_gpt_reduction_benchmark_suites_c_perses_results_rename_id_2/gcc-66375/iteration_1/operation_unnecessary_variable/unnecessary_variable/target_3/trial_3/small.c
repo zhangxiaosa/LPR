@@ -1,2 +1,0 @@
-char fn2(char p1) { return p1; }\n
-unsigned v3;\nint main() {\n  int d = 2L;\n  for (; 0 < 51; ++u_opt) {\n    v3 = d;\n    d = fn2(v3) + 0x9EE7F9D1C772505BLL;\n  }\n  printf("checksum = %X\n", v3);\n  return 0;\n}

@@ -1,1 +1,0 @@
-char fn2(int p1, int p2) {\n  return p1;\n}\n\nshort fn3(short p1, short p2) {\n  return p2;\n}\n\nint u;\nint v3;\n\nint main() {\n  int checksum = 2;\n\n  for (; u < 51; ++u) {\n    v3 = fn3(4, checksum);\n    checksum = checksum;\n    checksum = checksum + 0x9EE7F9D1C772505B;\n  }\n\n  printf("checksum = %d\n", checksum);\n  return 0;\n}

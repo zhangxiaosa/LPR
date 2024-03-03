@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned int g;\n\nint main() {\n  unsigned int j_temp = 0x24F96B7B;\nq:\n  if (g) {\n    j_temp = j_temp << j_temp;\n    goto q;\n  }\n}

@@ -1,1 +1,0 @@
-#include <stdio.h>\n\ntypedef unsigned int e;\nint k;\ne l;\nvolatile unsigned int m[5][8];\n\nunsigned int fn3(unsigned int p1) {\n  signed int o;\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -27; k = k - 6)\n        p1 = o - p1;\n    p1 || m[2][5];\n  }\n}\n\nint main() {\n  return 0;\n}

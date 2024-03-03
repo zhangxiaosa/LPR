@@ -1,1 +1,0 @@
-int g;\nint main() {\n  unsigned k;\n  if (0x24F96B7BL)\n    goto q;\nq:\n  k = k >> 1;\n  if (g) {\n    k = k << 0x24F96B7BL;\n    goto q;\n  }\n}

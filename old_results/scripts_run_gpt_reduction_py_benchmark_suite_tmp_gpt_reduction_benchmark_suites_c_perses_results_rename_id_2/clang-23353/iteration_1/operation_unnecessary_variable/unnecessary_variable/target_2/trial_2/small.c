@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nchar fn1(char p1, char p2) {\n  return p1 * p2;\n}\n\nint i;\nint j_h;\nint *fn2(int *p2) {\n  j_h ^= fn1(6, i) && 1;\n  return p2;\n}\n\nint main() {\n  return 0;\n}

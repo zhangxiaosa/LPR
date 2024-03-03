@@ -1,1 +1,0 @@
-int fn3(int fn3_p1, int p2) {\n  return fn3_p1 && p2 && fn3_p1 > -p2 || fn3_p1 < 0 && p2 < 0 ? fn3_p1 : fn3_p1 + p2;\n}\n\nunsigned n;\nint o;\n\nint main() {\n  for (; n < 12; n = fn3(n, 3)) {\n    int temp;\n    temp = o == 0 ? o : o % o;\n    if (0x4F92L < temp) {\n    } else if (o <= 0xE3L) {\n    } else if (temp)\n      break;\n  }\n  return 0;\n}

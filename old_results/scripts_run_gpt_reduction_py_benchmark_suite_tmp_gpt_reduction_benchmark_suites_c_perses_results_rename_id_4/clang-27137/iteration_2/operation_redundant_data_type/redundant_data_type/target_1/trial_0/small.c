@@ -1,1 +1,0 @@
-int loop_var;\nint main() {\n  int q;\n  q = loop_var;\n  for (loop_var = 0; loop_var < 10; loop_var++)\n    while (q > 1L)\n      q -= 1;\n  printf("checksum = %X\n", q);\n  return 0;\n}

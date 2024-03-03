@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nchar fn2(char p1, char p2) { return p1 && p2 ? p1 : p1 % p2; }\n\nchar q = (w != 0) ? 0x41AEA787L : 0;\n\nunsigned w = 0xDC6F3D13L;\n\nunsigned assigned_value = ~((fn2(ap, 1L) != 0) + ak) && 0x57L;\nlong long ag3 = assigned_value;\nunsigned ao = assigned_value;\n\nint main() {\n  printf("checksum = %X\n", q);\n  return 0;\n}

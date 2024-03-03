@@ -1,4 +1,0 @@
-unsigned
-int
-j
-;

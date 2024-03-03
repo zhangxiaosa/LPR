@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nchar fn2(char p1, int p2) {\n  return p1;\n}\n\nunsigned v_value;\nint main() {\n  unsigned e = 0x9EE7F9D1C772505BLL;\n  int d = 2;\n  \n  d = fn2(v_value = d, 3) + e;\n  \n  printf("checksum = %x\n", v_value);\n  return 0;\n}

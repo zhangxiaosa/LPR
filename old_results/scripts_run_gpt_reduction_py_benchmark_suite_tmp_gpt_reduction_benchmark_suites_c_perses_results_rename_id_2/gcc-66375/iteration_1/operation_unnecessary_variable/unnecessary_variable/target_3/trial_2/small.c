@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nchar fn2(char p1) {\n    return p1;\n}\n\nunsigned v3;\n\nint main() {\n    int d = 2L;\n    v3 = d;\n    d = v3 + 0x9EE7F9D1C772505BLL;\n\n    v3 = d;\n    d = v3 + 0x9EE7F9D1C772505BLL;\n\n    // Repeat the above two lines 51 times\n\n    printf("checksum = %X\n", v3);\n    return 0;\n}

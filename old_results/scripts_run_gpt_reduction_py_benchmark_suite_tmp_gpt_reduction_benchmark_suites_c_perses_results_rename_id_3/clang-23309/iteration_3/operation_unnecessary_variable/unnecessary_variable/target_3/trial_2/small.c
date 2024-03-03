@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nlong v;\nshort w;\nshort ac_p = 1;\nshort fn6_p1(short p1, short p2) { return p1 - p2; }\n\nint main() {\n  int an;\n  short ao = 0xBCD1;\n\n  for (w = 3; w; w -= 1) {\n    if (250) {\n      if ((ao - fn6_p1(1, 250)) - 0 & 1)\n        v = 1;\n    }\n  }\n\n  printf("checksum = %lX\n", v);\n  return 0;\n}

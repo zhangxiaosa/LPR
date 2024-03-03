@@ -1,1 +1,0 @@
-#include <iostream>\n\nstatic int fn1(unsigned p1, int i, long j, unsigned k) {\n  k;\nw:\n  goto w;\n}\n\nunsigned fn2() {\n  int p_i;\n  long p_j;\n  unsigned p_k;\n\n  fn1(0, p_i, p_j, p_k);\n\n  while (1) {\n    int r_i;\n    long r_j;\n    unsigned r_k;\n\n    p_i = r_i = p_i;\n    p_j = r_j = p_j;\n    p_k = r_k = p_k;\n  }\n}\n\nint main() {}

@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned p;\nlong v;\nshort w;\nshort ac = 1L;\n\nint main() {\n  int an;\n  for (w = 3; w; w -= 1) {\n    if (an = 250UL) {\n      unsigned p2 = ac || (an = w);\n      short ao = 0xBCD1L;\n      if ((ao - (1L - an - 0xECL)) - ac & 1UL)\n        v = 1UL;\n    }\n  }\n\n  p = v;\n  printf("checksum = %X\n", p);\n  return 0;\n}

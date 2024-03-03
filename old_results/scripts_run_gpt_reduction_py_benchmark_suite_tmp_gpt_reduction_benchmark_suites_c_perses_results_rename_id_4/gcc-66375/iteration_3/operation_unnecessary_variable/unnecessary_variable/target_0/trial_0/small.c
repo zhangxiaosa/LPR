@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nint main() {\n  int temp_u = 0;\n  for (; temp_u < 51; ++temp_u)\n    ;\n  printf("checksum = 2\n");\n  return 0;\n}

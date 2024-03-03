@@ -1,1 +1,0 @@
-int g;\n\nint main() {\n  int j = 0x24F96B7B;\n  unsigned f = 0;\n  for (; f;)\n    for (; j; --j)\n      ;\nq:\n  if (g) {\n    k = k << j;\n    goto q;\n  }\n}

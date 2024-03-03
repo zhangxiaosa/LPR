@@ -1,9 +1,0 @@
-typedef char a;
-typedef int d;
-typedef unsigned f;
-typedef unsigned g;
-a fn2(a p1, int p2) {
-  return p1;
-}
-f p;g u;g v[1][4];int main() {int j;d d = 2L;
-g e[9];for (int i = 0; i < 9; i++) {e[i] = 0x9EE7F9D1C772505BLL;}d = fn2(v[0][3] = d, 3) + e[0];for (j = 0; j < 4; j++) {p = v[0][j];}printf("checksum = %X\n", p);return 0;}

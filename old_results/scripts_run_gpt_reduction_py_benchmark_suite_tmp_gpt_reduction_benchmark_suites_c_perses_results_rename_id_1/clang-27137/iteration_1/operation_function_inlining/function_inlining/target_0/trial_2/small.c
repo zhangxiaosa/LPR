@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nshort o;\nchar p;\n\nint main() {\n  int i;\n  short r = o;\n  for (i = 0; i < 10; i++)\n    while (r > 1L)\n      r -= 1;\n  if (p = r)\n    ;\n  printf("checksum = %X\n", p);\n  return 0;\n}

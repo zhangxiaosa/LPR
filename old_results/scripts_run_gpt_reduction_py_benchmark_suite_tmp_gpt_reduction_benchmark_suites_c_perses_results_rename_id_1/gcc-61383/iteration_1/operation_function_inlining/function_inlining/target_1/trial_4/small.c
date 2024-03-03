@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned m;\nunsigned n;\nint o;\n\nshort fn5(int p1) {\n  for (; n < 12; n = (p1 && n && p1 > 2147483647 - n || p1 < 0 && n < 0 && p1) ? p1 : p1 + n) {\n    int ab;\n    if (0x4F92L < (ab = p1 == 0 ? p1 : p1 % p1, 6))\n      ;\n    else if (p1 <= 0xE3L)\n      ;\n    else if (ab)\n      break;\n  }\n  return m;\n}\n\nint main() {\n  if (fn5(o))\n    ;\n}

@@ -1,1 +1,0 @@
-#include <stdint.h>\n\nint fn1(uint8_t p1, int32_t p2) {\n  if (p1) {\n    return p1;\n  } else {\n    return p2;\n  }\n}\n\nint fn3() {\n  return 0;\n}

@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned p;\nlong v;\nshort w;\nshort ac = 1L;\n\nint main() {\n  for (w = 3; w > 0; w -= 1) {\n    if (250UL) {\n      if ((0xBCD1L + w + 0x14FL - ac) & 1UL) {\n        ac = 1UL;\n      }\n    }\n  }\n\n  printf("checksum = %X\n", ac);\n  return 0x2F2F6D26L;\n}

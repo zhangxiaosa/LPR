@@ -1,1 +1,0 @@
-{"typedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\nb e;\nc f;\nd g;\nb h2 = 0x92A1D2CDL;\n\nsigned fn1(b m, c n, d o, signed p) {\n  for (;;) {\n    b r[5][9][5];\n    if (h2)\n      return 0xC3L;\n    g = r[0x06D7L][0x06D7L][0x06D7L];\n  }\n}\n\nint main() {\n  fn1(f, e, e, e);\n}\n"}

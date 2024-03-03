@@ -1,1 +1,0 @@
-typedef long d;\n\nlong fn2() {\n  long c = fn1();\n  long f = c;\n  return f;\n}\n\nmain() {}

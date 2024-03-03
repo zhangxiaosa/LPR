@@ -1,1 +1,0 @@
-int fn1(int p1, int p2) { return p2 == 0 ? p1 : p1 % p2; } int fn3(int p1, int p2) { return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1 : p1 + p2; } int o; short fn6() { unsigned n; for (; ; n = fn3(n, 3)) { short temp; if (0x4F92L < (temp = fn1(o, o), 6)) { } else { int temp2 = 0xE3L; } } return; } int main() { fn6(); }

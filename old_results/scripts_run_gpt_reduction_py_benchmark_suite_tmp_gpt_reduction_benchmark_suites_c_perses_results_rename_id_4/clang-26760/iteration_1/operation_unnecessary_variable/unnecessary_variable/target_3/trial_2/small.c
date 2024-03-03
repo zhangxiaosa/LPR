@@ -1,1 +1,0 @@
-int g;\n\nint main() {\n  unsigned k;\n  k = k >> 1;\n  return 0;\n}

@@ -1,1 +1,0 @@
-#include <iostream>\n\nstruct Data {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct Data fn1(struct Data p5) {\n  \n  goto w;\n}\n\nunsigned fn2() {\n  struct Data p;\n  fn1(p);\n  for (;;) {\n    struct Data r1;\n    p = r1 = p;\n  }\n}\n\nint main() {\n  return 0;\n}\n

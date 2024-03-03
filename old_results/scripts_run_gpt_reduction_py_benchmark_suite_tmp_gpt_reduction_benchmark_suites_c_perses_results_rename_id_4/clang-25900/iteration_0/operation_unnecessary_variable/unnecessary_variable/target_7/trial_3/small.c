@@ -1,1 +1,0 @@
-int fn1(unsigned p1, int p2) { return p2; }\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint r;\nstatic int s = -5L;\nunsigned t;\nint u;\nunsigned v;\n\nint fn4() {\n  struct m p2 = {1957};\n  p2.o = fn1(5);\n  int ae;\n  ae = p2.o;\n  p2.o = u;\n  r = t % (~s / ae);\n  p2.o;\n}\n\nint main() {\n  fn4();\n}.

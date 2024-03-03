@@ -1,1 +1,0 @@
-typedef long d __attribute__((__vector_size__(sizeof(long))));\n\nd fn2() {\n    return (d){};\n}

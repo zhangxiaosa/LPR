@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct p {\n  int ab;\n  signed q : 22;\n};\n\nint u;\n\nstruct p v[1];\n\nconst struct p w = {0x1C87E74FL, 816};\n\nint main() {\n  int j = w.q;\n\n  printf("checksum = %X\n", j);\n\n  return 0;\n}

@@ -1,1 +1,0 @@
-{"struct_p":{"ab": "int","q":"int"},"struct_r":{"ab": "int","s":"int"},"j":"unsigned","t":{"ab": "int","s":"int"},"u":"unsigned","v":[{"ab":"int","q":"int"}],"w":{"ab":"int","q":"int"},"fn5":{"p1":"unsigned","p2":"signed","p3":"unsigned","p4":"unsigned","p5":"unsigned"},"main":{"return_type":"int"}}

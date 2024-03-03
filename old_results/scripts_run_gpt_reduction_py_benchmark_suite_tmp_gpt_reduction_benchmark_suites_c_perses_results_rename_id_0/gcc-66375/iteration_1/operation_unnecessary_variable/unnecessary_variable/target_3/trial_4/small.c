@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nchar fn2(int p1) {\n  return p1;\n}\n\nint v3;\n\nint main() {\n  int checksum = 2;\n  for (; 2 < 51; ++2) {\n    v3 = 2;\n    checksum = fn2(checksum);\n    checksum += 0x9EE7F9D1C772505B;\n  }\n  printf("checksum = %d\n", v3);\n  return 0;\n}

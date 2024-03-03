@@ -1,1 +1,0 @@
-#include<iostream>\n\nchar fn1(char p1, char p2) {\n  p1 * p2;\n}\n\nint h;\nint i;\nint *fn2(unsigned p1, int *p2, unsigned p3) {\n  for (p3 = 6; p3 != -7; p3--)\n    h ^= p3 * i && 1L;\n  return p2;\n}\n\nint main() {\n  fn2(0, nullptr, 0);\n  return 0;\n}

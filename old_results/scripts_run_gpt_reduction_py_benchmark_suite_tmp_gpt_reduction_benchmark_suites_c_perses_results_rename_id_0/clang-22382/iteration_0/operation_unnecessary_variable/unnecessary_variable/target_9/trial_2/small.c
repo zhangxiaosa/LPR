@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct original_data_type {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct original_data_type fn1(unsigned p1, short p2,\n                                     struct original_data_type p5) {\n  // No statements remaining\n}\n\nunsigned fn2() {\n  // No local variable declarations\n}\n\nint main() {}\n

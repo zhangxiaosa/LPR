@@ -1,1 +1,0 @@
-#include <stdio.h>\n\ntypedef long d __attribute__((__vector_size__(sizeof(long))));\n\nlong fn1() {\n  // Function implementation here\n}\n\nlong optimizeC() {\n  long c = fn1();\n  d f = {c};\n  // Perform optimization calculations here using f or c\n  return c;\n}\n\nint main() {\n  long optimizedC = optimizeC();\n  // Use optimizedC as needed\n  return 0;\n}

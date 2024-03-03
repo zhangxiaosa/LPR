@@ -1,1 +1,0 @@
-typedef int b;\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\nstruct c i;\nstruct c j;\nint main() {\n  struct c l = {24, 6738, 165};\n  b m = j.e;\n  l.d = m;\n  b n = j.h && l.d;\n  b o = l.d;\n  signed p = o | -(l.f && l.d) - n;\n  i.g = p;\n}

@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct c {\n  int d : 18;\n  int e;\n  int f;\n  int g;\n  int h;\n};\n\nstruct c var1;\nstruct c var2;\n\nint main() {\n  struct c var3 = {24, 6738, 165};\n  var3.d = var2.e;\n  int var6 = var3.d;\n  signed var7 = var6 | -(var3.f && var3.d) - (var1.h && var3.d);\n  var1.g = var6 | -(var3.f && var3.d) - (var1.h && var3.d);\n}

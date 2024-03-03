@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct original_data_type {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct original_data_type fn1(unsigned p1, short p2) {\nw:\n  goto w;\n}\n\nunsigned fn2() {\n  struct original_data_type p;\n  int q;\n  fn1(q, 0);\n  for (;;) {\n    struct original_data_type r;\n    p = r = p;\n  }\n}\n\nint main() {}\n

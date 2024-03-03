@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nint main() {\n  int i;\n  short r = 0;\n\n  // Unroll the loop 5 times\n  while (r > 1L) {\n    r -= 1;\n    r -= 1;\n    r -= 1;\n    r -= 1;\n    r -= 1;\n  }\n\n  printf("checksum = %X\n", r);\n  return 0;\n}

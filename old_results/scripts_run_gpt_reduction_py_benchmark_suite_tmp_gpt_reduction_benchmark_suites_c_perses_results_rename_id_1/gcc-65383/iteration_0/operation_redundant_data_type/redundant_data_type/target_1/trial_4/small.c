@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nint g;\nint h[] = {2457258269, 2457258269, 2457258269};\n\nint fn2() {\n    for (;;) {\n        int q = 195;\n        int r[5][9][5];\n        if (h[2])\n            return q;\n        g = r[i][i][i];\n    }\n}\n\nint main() {\n    fn2();\n}

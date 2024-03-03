@@ -1,1 +1,0 @@
-#include <iostream>\n\nunsigned g;\nint h2 = 0x92A1D2CDL;\n\nint fn1() {\n  int r[5][9][5];\n\n  for (int i = 0; i < 4; i++) {\n    if (h2)\n      return 0xC3L;\n    g = r[0x06D7L][0x06D7L][0x06D7L];\n  }\n}\n\nint main() {\n  fn1();\n}

@@ -1,1 +1,0 @@
-unsigned f;\nint g;\nint main() {\n  int i;\n  int j = 0x24F96B7BL;\n  unsigned k;\n  for (f = 0;)\n    for (; j; --j) {\n    }\n  int l = 1L;\n  int n = g;\n  unsigned p = n;\n  while (p) {\n    k = k >> l;\n    i = p;\n    if (i)\n      k = k << j;\n  }\n}

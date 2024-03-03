@@ -1,1 +1,0 @@
-#include<stdio.h>\n\nunsigned f;\nint g;\n\nint main() {\n  int i;\n  int j = 0x24F96B7BL;\n  unsigned k;\n  for (f = 0;)\n    for (; j; --j) {\n    }\n  int m = j;\n  int n = g;\n  int o = n;\n  unsigned p = o;\n  while (p) {\n    k = k >> 1L;\n    i = p;\n    if (i)\n      k = k << m;\n  }\n}

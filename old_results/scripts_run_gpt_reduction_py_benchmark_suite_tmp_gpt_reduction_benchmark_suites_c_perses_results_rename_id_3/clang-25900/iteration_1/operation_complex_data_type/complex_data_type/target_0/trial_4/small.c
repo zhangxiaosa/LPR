@@ -1,1 +1,0 @@
-#include&lt;iostream&gt;\n\nunsigned fn1(unsigned p1, int p2) { return p2; }\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nint r;\nstatic signed s = -5L;\nint t;\nint u;\n\nint main() {\n  signed ad_n = 1957;\n  signed ad_o;\n\n  ad_o = fn1(5, 5);\n\n  signed ae;\n  ae = ad_o;\n\n  ad_o = u;\n  r = t % (~s / ae);\n\n  ad_o;\n}

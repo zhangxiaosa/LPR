@@ -1,1 +1,0 @@
-int h;\nint main() {\n  short ak[8];\n  unsigned short p3 = -7L;\n  unsigned p4;\n  for (unsigned p4 = 0; p4 <= 7; p4 += 1)\n    if (h < 0)\n      for (unsigned p4 = 0; p4 <= 7; p4 += 1)\n        if (ak[p3])\n          break;\n}

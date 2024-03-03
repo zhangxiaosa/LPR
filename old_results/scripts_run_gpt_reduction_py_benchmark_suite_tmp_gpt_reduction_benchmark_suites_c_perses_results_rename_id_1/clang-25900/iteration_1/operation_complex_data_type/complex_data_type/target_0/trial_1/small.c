@@ -1,1 +1,0 @@
-#include <stdint.h>\n\nint r;\nstatic signed s = -5L;\nint t;\nint v;\n\nsigned int ad_n = 1957;\nsigned int ad_o;\n\nint fn1(uint32_t p1, int p2) { return p2; }\n\nint main() {\n  ad_o = fn1(v, 5);\n  signed ae = ad_o;\n  ad_o = 0;\n  r = t % (~s / ae);\n  ad_o;\n}

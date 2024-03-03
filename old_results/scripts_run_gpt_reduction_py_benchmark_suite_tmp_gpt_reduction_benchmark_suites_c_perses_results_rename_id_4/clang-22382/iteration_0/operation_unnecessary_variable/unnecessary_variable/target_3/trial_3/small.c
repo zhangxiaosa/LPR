@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct h {\n  signed i;\n  long j;\n  unsigned k;\n};\n\nstatic struct h fn1(unsigned p3, struct h p5) {\n  p5; // Unused variable\nw:\n  goto w;\n}\n\nunsigned fn2() {\n  struct h p;\n  fn1(3, p);\n  for (;;) {\n    struct h r;\n    r = p; // Redundant assignment\n  }\n}\n\nint main() {}\n

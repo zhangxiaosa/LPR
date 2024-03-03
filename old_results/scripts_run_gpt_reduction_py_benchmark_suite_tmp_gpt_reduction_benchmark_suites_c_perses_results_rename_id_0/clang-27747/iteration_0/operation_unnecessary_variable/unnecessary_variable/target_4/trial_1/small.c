@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\n\nstruct c i;\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = j.e;\n  int n = j.h && l.d;\n  i.g = -(1 + n);\n}

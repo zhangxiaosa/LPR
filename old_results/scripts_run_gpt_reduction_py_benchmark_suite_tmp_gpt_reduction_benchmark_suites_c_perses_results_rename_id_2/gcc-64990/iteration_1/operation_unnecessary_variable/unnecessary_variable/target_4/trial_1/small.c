@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned fn1(int p1, short p2) {\n  return 2;\n}\n\nint fn2(p1) {\n  if (k)\n    break;\n  return j[g][g];\n\n  for (; p1;) {\n  }\n  return 0x709BFC8AL;\n}\n\nunsigned fn3() {\n  return 0;\n}\n\nint main() {\n  fn3();\n}

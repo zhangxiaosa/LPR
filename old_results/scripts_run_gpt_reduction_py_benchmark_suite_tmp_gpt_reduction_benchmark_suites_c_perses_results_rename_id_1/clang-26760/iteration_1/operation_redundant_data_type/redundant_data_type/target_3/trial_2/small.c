@@ -1,1 +1,0 @@
-#include <stdio.h>\n\ntypedef unsigned int e;\nunsigned int f;\nint g;\n\nint main() {\n  int i;\n  int j = 0x24F96B7BL;\n  unsigned int k;\n\n  for (f = 0; f;)\n    for (; j; --j)\n      ;\n\n  int l = 1L;\n  int m = j;\n  int n = g;\n  int o = n;\n  unsigned int p = o;\n\n  while (p) {\n    k = k >> l;\n    i = p;\n\n    if (i)\n      k = k << m;\n  }\n}

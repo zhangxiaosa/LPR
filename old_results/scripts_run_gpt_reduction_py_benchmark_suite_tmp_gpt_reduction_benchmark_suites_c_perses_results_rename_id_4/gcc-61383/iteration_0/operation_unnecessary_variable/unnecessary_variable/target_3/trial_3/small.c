@@ -1,1 +1,0 @@
-unsigned m;\nunsigned n;\nsigned o;\n\nint fn6() {\n  for (; n < 12; n = fn3(n, 3)) {\n    int ab;\n    if (0x4F92L < (ab = o == 0 ? o : o % o, 6))\n      ;\n    else {\n      if (o <= 0xE3L)\n        ;\n      else if (ab)\n        break;\n    }\n  }\n  return m;\n}\n\nint main() {\n  fn6();\n}

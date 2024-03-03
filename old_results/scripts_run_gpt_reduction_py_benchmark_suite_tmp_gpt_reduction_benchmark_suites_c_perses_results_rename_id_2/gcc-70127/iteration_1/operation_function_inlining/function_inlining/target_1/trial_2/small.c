@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct p {\n  int ab;\n  int q : 22;\n};\n\nunsigned j;\nint t_s;\nunsigned u = 0;\nstruct p v[1];\nstruct p w = {0x1C87E74Fu, 816u};\n\nint main() {\n  v[0] = w;\n  j = v[0].q;\n  return 0;\n}

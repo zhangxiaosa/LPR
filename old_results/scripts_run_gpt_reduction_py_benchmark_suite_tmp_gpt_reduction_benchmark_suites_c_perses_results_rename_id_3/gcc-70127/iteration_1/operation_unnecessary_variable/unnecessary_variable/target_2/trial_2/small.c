@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nunsigned u;\n\nsigned ab;\nsigned q;\n\n#define V_SIZE 1\nstruct p {\n  signed ab;\n  signed q : 22;\n};\n\nstruct p v[V_SIZE];\n\nint main() {\n  struct p a = {8, 666};\n\n  for (; u <= 1; u += 1) {\n    a = v[0] = {0x1C87E74FL, 816};\n    v[0] = a;\n  }\n\n  printf("checksum = %X\n", v[0].q);\n\n  return 0;\n}

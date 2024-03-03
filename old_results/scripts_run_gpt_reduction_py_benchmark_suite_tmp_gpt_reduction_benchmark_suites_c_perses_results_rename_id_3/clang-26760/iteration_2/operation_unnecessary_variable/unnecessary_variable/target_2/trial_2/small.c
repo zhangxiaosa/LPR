@@ -1,1 +1,0 @@
-#include <stdio.h>\nunsigned g;\nunsigned fn1() {\n  unsigned j = 0x24F96B7BL;\n  unsigned m = j;\n  unsigned n = g;\nq:\n  if (n) {\n    goto q;\n  }\n}\nint main() {}\n

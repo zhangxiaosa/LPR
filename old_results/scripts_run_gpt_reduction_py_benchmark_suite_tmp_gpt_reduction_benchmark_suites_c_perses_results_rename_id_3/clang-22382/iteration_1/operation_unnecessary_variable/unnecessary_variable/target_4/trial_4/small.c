@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n};\n\nstatic struct h fn1(struct h p5) {\nw:\n  goto w;\n}\n\nint fn2() {\n  struct h p;\n  for (;;) {\n    struct h r;\n  }\n}\n\nint main() {}\n

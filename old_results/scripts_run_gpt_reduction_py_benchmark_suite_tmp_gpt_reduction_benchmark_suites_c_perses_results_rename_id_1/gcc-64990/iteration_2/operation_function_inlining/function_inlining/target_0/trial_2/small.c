@@ -1,1 +1,0 @@
-\nstatic short g_new = 0x7EBA;\nint h = 0xCA;\nshort i;\nint j[5][5];\nint k = 0xAF7C65D6L;\n\nint fn3() {\n  if (i < 6) {\n    if (k)\n      break;\n    return v[g_new][0][0];\n  }\n  if (h) {\n    // Do nothing\n  } else {\n    return j[g_new][g_new];\n  }\n  for (; p1;) {\n    // Do nothing\n  }\n  return 0x709BFC8A;\n}\n\nint main() {\n  fn3();\n}\n

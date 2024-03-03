@@ -1,1 +1,0 @@
-#include <stdio.h>\n\nint fn6(int p1, int p2) { return p1 - p2; }\n\nint v;\nshort w;\nshort ac_value = 1;\n\nint main() {\n  int an;\n\n  for (w = 3; w; w -= 1) {\n    if (an = 250) {\n      t = 1;\n      short ao = 0xBCD1;\n\n      if ((ao - (fn6(1, an) - 0xECL)) - 1 & 1)\n        v = 1;\n    }\n  }\n\n  printf("checksum = %x\n", v);\n  return 0;\n}

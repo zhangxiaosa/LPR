@@ -1,1 +1,0 @@
-unsigned f;\nint g;\nint main() {\n\tint j = 0x24F96B7BL;\n\tint l = 1L;\n\tint m = j;\n\twhile (0) {\n\t\tunsigned k = 0;\n\t\tif (0) {\n\t\t\tk = 0;\n\t\t}\n\t}\n}
