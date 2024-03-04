@@ -6,7 +6,7 @@ def main():
     """
     check whether benchmarks satisfy their corresponding property
     """
-    utils.init_openai_api_key()
+    utils.init_client()
     parser = utils.initialize_parser()
     args = parser.parse_args()
 

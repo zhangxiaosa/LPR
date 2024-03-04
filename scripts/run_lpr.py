@@ -1,12 +1,10 @@
 import os
 import sys
-import shutil
 import time
-import openai
 import utils
 
 
-def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature, level):
+def call_llm_with_multi_level_prompt(client, prompts, transformation, output_folder, llm_version, trial_number, temperature, level):
     """
     call LLM with the multi-level prompt
     """
@@ -16,7 +14,8 @@ def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm
     transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
     transformation_script_path = os.path.join(transformation_folder, utils.SCRIPT_NAME)
 
-    prompt_from_system = prompts["prompt_from_system"]
+    prompt_system = prompts["prompt_system"]
+    prompt_to_generate_program = prompts["prompt_to_generate_program"]
     transformations = prompts["transformations"]
     questions = transformations[transformation]["multi_level_question"]
     primary_question = questions["primary_question"]
@@ -33,16 +32,17 @@ def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm
         # call llm
         prompt_from_user = f"{primary_question}. The program is {program}."
         messages = [
-            {"role": "system", "content": f"{prompt_from_system}"},
+            {"role": "system", "content": f"{prompt_system}"},
             {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
+        completion = call_llm(client, messages, llm_version=llm_version,
+                              trial_number=trial_number, temperature=temperature)
         end_time = time.time()
 
         # save prompt
         utils.save_json_file(transformation_folder, "primary_question_prompt.json", messages)
         # save response
-        utils.save_json_file(transformation_folder, "primary_question_response.json", completion)
+        utils.save_file(transformation_folder, "primary_question_response.json", completion.model_dump_json(indent=2))
         # save response time
         utils.save_file(transformation_folder, "primary_question_response_time.txt", f"{end_time - start_time:.2f}")
 
@@ -50,18 +50,14 @@ def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm
         target_list = []
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
-            response_json = utils.extract_json(response_text)
+            response_list = utils.extract_list_between_star_and_newline(response_text)
 
-            if "target_list" in response_json:
-                current_list = response_json["target_list"]
+            if len(response_list) != 0:
+                deduplicated_and_filtered_list = [item for item in set(response_list) if isinstance(item, str)]
 
-                # Check if current_list is a list, deduplicate and filter out non-string elements
-                if isinstance(current_list, list):
-                    deduplicated_and_filtered_list = [item for item in set(current_list) if isinstance(item, str)]
-
-                    # Use the deduplicated and filtered list from the current trial
-                    target_list = sorted(deduplicated_and_filtered_list)
-                    break  # Break the loop as we have found our list
+                # Use the deduplicated and filtered list from the current trial
+                target_list = sorted(deduplicated_and_filtered_list)
+                break
 
         utils.print_and_log(f"Primary question finished in {end_time - start_time:.2f} seconds", level=level)
         utils.save_file(transformation_folder, "finish", f"{end_time - start_time:.2f}")
@@ -91,28 +87,25 @@ def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm
             # load the program
             program = utils.load_file(transformation_program_path)
             messages = [
-                {"role": "system", "content": f"{prompt_from_system}"},
+                {"role": "system", "content": f"{prompt_system} {prompt_to_generate_program}"},
                 {"role": "user", "content": f"{followup_question}. The program is {program}. \
                 The target to be optimized is {target}."}
             ]
-            completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
+            completion = call_llm(client, messages, llm_version=llm_version,
+                                  trial_number=trial_number, temperature=temperature)
             end_time = time.time()
 
             # save prompt
             utils.save_json_file(target_folder, "followup_question_prompt.json", messages)
             # save response content
-            utils.save_json_file(target_folder, "followup_question_response.json", completion)
+            utils.save_file(target_folder, "followup_question_response.json", completion.model_dump_json(indent=2))
             # save response time
             utils.save_file(target_folder, "followup_question_response_time.txt", f"{end_time - start_time:.2f}")
 
             # save programs from followup_question_response.json
             for trial in range(trial_number):
                 response_text = completion.choices[trial].message.content
-                response_json = utils.extract_json(response_text)
-                if "program" in response_json and isinstance(response_json["program"], str):
-                    program = response_json["program"]
-                else:
-                    program = ""
+                program = utils.extract_string_from_docstring(response_text)
 
                 trial_path = os.path.join(target_folder, f"trial_{trial}")
                 utils.save_program_file(trial_path, program)
@@ -156,7 +149,8 @@ def call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm
     os.chdir(utils.ROOT_FOLDER)
 
 
-def call_llm_with_single_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature, level):
+def call_llm_with_single_level_prompt(client, prompts, transformation, output_folder, llm_version, trial_number,
+                                      temperature, level):
     """
     call LLM with the single-level prompt
     """
@@ -172,7 +166,8 @@ def call_llm_with_single_level_prompt(prompts, transformation, output_folder, ll
     utils.copy_file(output_program_path, transformation_program_path)
     utils.copy_file(output_script_path, transformation_script_path)
 
-    prompt_from_system = prompts["prompt_from_system"]
+    prompt_system = prompts["prompt_system"]
+    prompt_to_generate_program = prompts["prompt_to_generate_program"]
     transformations = prompts["transformations"]
     question = transformations[transformation]["single_level_question"]
 
@@ -187,17 +182,18 @@ def call_llm_with_single_level_prompt(prompts, transformation, output_folder, ll
         # call llm
         prompt_from_user = f"{question}. The program is {program}."
         messages = [
-            {"role": "system", "content": f"{prompt_from_system}"},
-            {"role": "user", "content": f"{prompt_from_user}. The program is {program}."}
+            {"role": "system", "content": f"{prompt_system} {prompt_to_generate_program}"},
+            {"role": "user", "content": f"{prompt_from_user}"}
         ]
-        completion = call_llm(messages, llm_version=llm_version, trial_number=trial_number, temperature=temperature)
+        completion = call_llm(client, messages, llm_version=llm_version, trial_number=trial_number,
+                              temperature=temperature)
         end_time = time.time()
         utils.print_and_log(f"Question finished in {end_time - start_time:.2f} seconds", level=level)
 
         # save prompt
         utils.save_json_file(transformation_folder, "question_prompt.json", messages)
         # save response
-        utils.save_json_file(transformation_folder, "question_response.json", completion)
+        utils.save_file(transformation_folder, "question_response.json", completion.model_dump_json(indent=2))
 
         # save program
         for trial in range(trial_number):
@@ -246,8 +242,8 @@ def call_llm_with_single_level_prompt(prompts, transformation, output_folder, ll
     utils.copy_file(transformation_program_path, output_program_path)
 
 
-def call_llm_based_reducer(prompts, transformation, output_folder, llm_version, trial_number, temperature, multi_level,
-                           level):
+def call_llm_based_reducer(client, prompts, transformation, output_folder, llm_version, trial_number, temperature,
+                           multi_level, level):
     """
     call LLM based reducer, with multi-level or single-level prompt.
     """
@@ -267,11 +263,11 @@ def call_llm_based_reducer(prompts, transformation, output_folder, llm_version, 
     utils.copy_file(output_script_path, transformation_script_path)
 
     if multi_level:
-        call_llm_with_multi_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature,
-                                         level)
+        call_llm_with_multi_level_prompt(client, prompts, transformation, output_folder, llm_version, trial_number,
+                                         temperature, level)
     else:
-        call_llm_with_single_level_prompt(prompts, transformation, output_folder, llm_version, trial_number, temperature,
-                                          level)
+        call_llm_with_single_level_prompt(client, prompts, transformation, output_folder, llm_version, trial_number,
+                                          temperature, level)
     end_time = time.time()
     utils.save_file(transformation_folder, "finish", f"{end_time - start_time:.2f}")
 
@@ -281,11 +277,11 @@ def call_llm_based_reducer(prompts, transformation, output_folder, llm_version, 
     utils.print_and_log(f"Finished llm ({transformation}): {final_program_size} tokens", level=level)
 
 
-def call_llm(message, llm_version, trial_number=1, temperature=1.0):
+def call_llm(client, message, llm_version, trial_number=1, temperature=1.0):
     """
     call LLM
     """
-    completion = openai.ChatCompletion.create(
+    completion = client.ChatCompletion.create(
         model=llm_version,
         n=trial_number,
         temperature=temperature,
@@ -298,7 +294,6 @@ def main():
     """
     run LPR
     """
-    utils.init_openai_api_key()
     parser = utils.initialize_parser()
     args = parser.parse_args()
     args_string = utils.get_args_string(parser)
@@ -310,7 +305,9 @@ def main():
     trial_number = args.trial
     temperature = args.temperature
     multi_level = not args.disable_multi_level
+    base_url = args.base_url
 
+    client = utils.init_client(base_url)
     utils.init_language(benchmark_suite_folder)
     utils.init_root_folder(os.getcwd())
 
@@ -392,11 +389,12 @@ def main():
                 transformation_program_path = os.path.join(transformation_folder, utils.PROGRAM_NAME)
 
                 utils.print_and_log(
-                    f"Start transformation {transformation}, current size: {utils.count_token(transformation_program_path)}", level=2)
+                    f"Start transformation {transformation}, "
+                    f"current size: {utils.count_token(transformation_program_path)}", level=2)
 
                 # call llm
                 program_before_transformation = utils.load_file(transformation_program_path)
-                call_llm_based_reducer(prompts=prompts, transformation=transformation,
+                call_llm_based_reducer(client=client, prompts=prompts, transformation=transformation,
                                        output_folder=transformation_folder, llm_version=llm_version,
                                        trial_number=trial_number, temperature=temperature, multi_level=multi_level,
                                        level=2)

@@ -126,7 +126,7 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 To get summarized information
 
 ```bash
-python ./scripts/summarize_llm.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/summarize_lpr.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
 ### Reproduce RQ3: Effectiveness of Each Transformation.
@@ -134,7 +134,7 @@ python ./scripts/summarize_llm.py ./results/1234567/scripts_run_LPR_py_benchmark
 To calculate the contribution of each transformation, run
 
 ```bash
-python ./scripts/analyze_lllm_size_change.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/analyze_lpr_size_change.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
 This script will save the size change of each transformation on each benchmark to csv files in the result folder "./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/".

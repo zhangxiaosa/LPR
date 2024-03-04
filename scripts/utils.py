@@ -1,3 +1,4 @@
+import ast
 import os
 import json
 import subprocess
@@ -156,7 +157,18 @@ def extract_code(text):
     result = re.findall(pattern, text, re.DOTALL)
     if result:
         return result[-1]
-    return text
+    return ""
+
+
+def extract_string_from_docstring(text):
+    """
+    extract a string between a pair of ```.
+    """
+    pattern = r"```(.*?)```"
+    result = re.findall(pattern, text, re.DOTALL)
+    if result:
+        return result[-1]
+    return ""
 
 
 def extract_json(text):
@@ -175,6 +187,26 @@ def extract_json(text):
             return {}
     else:
         return {}
+
+
+def parse_into_list(text):
+    """
+    parse a string into a list
+    """
+    try:
+        return ast.literal_eval(text)
+
+    except Exception as e:
+        return []
+
+
+def extract_list_between_star_and_newline(text):
+    """
+    extract a list of element written in a format like * A \n * B \n * C \n
+    """
+    pattern = r"\* (.*?)(?=\n\* |\n$)"
+    items = re.findall(pattern, text, re.DOTALL)
+    return items
 
 
 def get_current_version():
@@ -217,20 +249,26 @@ def initialize_parser():
     parser.add_argument("--max-jobs", type=int, required=False, default=1,
                         help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
+    parser.add_argument("--base-url", type=str, required=False, default="https://api.openai.com/v1",
+                        help="The url to connect, can be local host.")
     parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False,
                         help="Disable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
     return parser
 
 
-def init_openai_api_key():
+def init_client(base_url):
     """
     Initialize OpenAI API key or raise an error if it is not set.
     """
     openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
-        raise EnvironmentError("OPENAI_API_KEY is not set in the environment variables.")
-    openai.api_key = openai_api_key
+    if not openai_api_key and base_url.contains("openai"):
+        raise EnvironmentError("To invoke GPT, OPENAI_API_KEY must be set in the environment variables.")
+    client = openai.OpenAI(
+        api_key=openai_api_key,
+        base_url=base_url,
+    )
+    return client
 
 
 def init_root_folder(folder):
