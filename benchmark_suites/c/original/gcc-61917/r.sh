@@ -13,6 +13,11 @@ CFLAG="-o t"
 CLANGFC="clang-7.1.0 -m32 -O0 -Wall -fwrapv -ftrapv -fsanitize=undefined"
 CHECKCCOMP=1
 
+# check preprocessor directives
+if grep -qE "^[[:space:]]*#" "$CFILE"; then
+  exit 1
+fi
+
 #################################################################################
 
 ### check for undefined behaviors first (from creduce scripts) 

@@ -13,6 +13,11 @@ TIMEOUTCC=30
 
 rm -f out*.txt
 
+# check preprocessor directives
+if grep -qE "^[[:space:]]*#" "$CFILE"; then
+  exit 1
+fi
+
 #############################
 # iterate over the good ones
 #############################

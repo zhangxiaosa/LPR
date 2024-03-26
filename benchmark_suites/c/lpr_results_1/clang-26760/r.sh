@@ -21,6 +21,11 @@ readonly CFLAG="-o t"
 readonly CLANGFC="clang-7.1.0 -w -m64 -O0 -Wfatal-errors -fwrapv -ftrapv -fsanitize=undefined,address"
 readonly CLANG_MEM_SANITIZER="clang-7.1.0 -w -O0 -m64 -fsanitize=memory"
 
+# check preprocessor directives
+if grep -qE "^[[:space:]]*#" "$CFILE"; then
+  exit 1
+fi
+
 #################################################################################
 
 ### check for undefined behaviors first (from creduce scripts)
