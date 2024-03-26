@@ -204,7 +204,7 @@ def extract_list_between_star_and_newline(text):
     """
     extract a list of element written in a format like * A \n * B \n * C \n
     """
-    pattern = r"\* (.*?)(?=\n\* |\n$)"
+    pattern = r"\* (.*?)(?=\n\* |$)"
     items = re.findall(pattern, text, re.DOTALL)
     return items
 
