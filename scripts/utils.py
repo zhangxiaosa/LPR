@@ -200,12 +200,37 @@ def parse_into_list(text):
         return []
 
 
+def extract_list_between_newlines(text):
+    """
+    Extract a list of elements written between newlines (\n),
+    ignoring the content before the first newline.
+    """
+    # Pattern to match elements between newlines, ignoring content before the first newline
+    pattern = r"(?<=\n)(.*?)(?=\n|$)"
+    items = re.findall(pattern, text, re.DOTALL)
+    return items
+
+
 def extract_list_between_star_and_newline(text):
     """
-    extract a list of element written in a format like * A \n * B \n * C \n
+    Extract a list of elements written in a format like * A \n * B \n * C \n,
+    ignoring any amount of whitespace between the star and the elements.
     """
-    pattern = r"\* (.*?)(?=\n\* |$)"
+    # Adjusted pattern to match elements between a star (*) and a newline (\n)
+    pattern = r"\* \s*(.*?)(?=\n\* \s*|\n$|$)"
     items = re.findall(pattern, text, re.DOTALL)
+    items = [item.strip() for item in items]
+    return items
+
+
+def extract_list_between_dash_and_newline(text):
+    """
+    Extract a list of elements written in a format like - A \n - B \n - C \n,
+    ignoring any amount of whitespace between the dash and the elements.
+    """
+    pattern = r"- \s*(.*?)(?=\n- \s*|\n$|$)"
+    items = re.findall(pattern, text, re.DOTALL)
+    items = [item.strip() for item in items]
     return items
 
 

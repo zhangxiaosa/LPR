@@ -51,8 +51,15 @@ def call_llm_with_multi_level_prompt(client, prompts, transformation, output_fol
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
             response_list = utils.extract_list_between_star_and_newline(response_text)
+
+            if len(response_list) == 0:
+                response_list = utils.extract_list_between_dash_and_newline(response_text)
+
             if len(response_list) == 0:
                 response_list = utils.extract_list_from_brackets(response_text)
+
+            if len(response_list) == 0:
+                response_list = utils.extract_list_between_newlines(response_text)
 
             if len(response_list) != 0:
                 deduplicated_and_filtered_list = [item for item in set(response_list) if isinstance(item, str)]
