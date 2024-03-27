@@ -209,6 +209,20 @@ def extract_list_between_star_and_newline(text):
     return items
 
 
+def extract_list_from_brackets(text):
+    """
+    Extract a list of elements written in a format like [A, B, C].
+    """
+    # Find all occurrences of square-bracketed lists in the text
+    pattern = r"\[(.*?)\]"
+    matches = re.findall(pattern, text)
+
+    # Split each match by comma and strip whitespace, then flatten the list
+    items = [item.strip() for match in matches for item in match.split(',')]
+
+    return items
+
+
 def get_current_version():
     """
     get current version of git repo
