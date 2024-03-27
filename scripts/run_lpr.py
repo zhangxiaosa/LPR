@@ -281,7 +281,7 @@ def call_llm(client, message, llm_version, trial_number=1, temperature=1.0):
     """
     call LLM
     """
-    completion = client.ChatCompletion.create(
+    completion = client.chat.completion.create(
         model=llm_version,
         n=trial_number,
         temperature=temperature,
