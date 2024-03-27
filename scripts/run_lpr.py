@@ -327,7 +327,7 @@ def main():
     for case in case_list:
         # get main folder
         main_folder = os.path.normpath(
-            os.path.join("/tmp/llm_reduction/results/", code_version, args_string, case)
+            os.path.join("/tmp/LPR/results/", code_version, args_string, case)
         )
         os.makedirs(main_folder, exist_ok=True)
 
