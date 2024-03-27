@@ -262,7 +262,7 @@ def init_client(base_url):
     Initialize OpenAI API key or raise an error if it is not set.
     """
     openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key and base_url.contains("openai"):
+    if not openai_api_key and "openai" in base_url:
         raise EnvironmentError("To invoke GPT, OPENAI_API_KEY must be set in the environment variables.")
     client = openai.OpenAI(
         api_key=openai_api_key,
