@@ -14,6 +14,10 @@ To evaluate this artifact, a Linux machine with [docker](https://docs.docker.com
 
 - LPR generalizes well on C, Rust and JavaScript.
 
+- To evaluate LPR, access to LLMs is required. You need either use gpt-3.5-turbo APIs or run codellama-2 on your server.
+
+- The output of LLM is non-deterministic, so you may not exactly reproduce the previous results.
+
 ### Notes
 
 - All the experiments take long time to finish, so it is recommended to use tools like screen and tmux to manage sessions if the experiments are run on remote server. We also provide flags for multi-processing.
@@ -39,7 +43,7 @@ To evaluate this artifact, a Linux machine with [docker](https://docs.docker.com
    # You should be at /tmp after the above command finishes
    # Your user name should be `coq` and all the following command are executed in docker
 
-   # the root folder of the project is /tmp/LPR/
+   # the root folder of the project is /tmp/gpt_reduction/
    cd /tmp/LPR/
    ```
 
@@ -56,7 +60,7 @@ benchmark suite are in folder `./benchmark_suites`.
 
 ### Previous Results
 
-Some previous results on Benchmark-C are stored in `./old_results`.
+Some previous results used in the paper are stored in `./old_results`.
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce and LPR.
 
@@ -72,83 +76,93 @@ python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/orig
 
 Assume the current code version is 1234567 (github --version), then the results will be stored in:
 
-> ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
+> ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 2. Run Vulcan
 
 ```bash
 # Similar to how we run Perses:
-cd /tmp/LPR/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
+cd /tmp/gpt_reduction/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/original/ --max-jobs 8
 ```
 
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 3. Run C-Reduce
 
 ```bash
 # Similar to how we run Perses:
-cd /tmp/LPR/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
+cd /tmp/gpt_reduction/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/original/ --max-jobs 8
 ```
 
 To get summarized information
 
 ```bash
-python summarize_creduce.py ./results/1234567/scripts_run_creduce_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
+python summarize_creduce.py ./results/1234567/scripts_run_creduce_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 4. Run LPR
-   Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
+   
+Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
 
 ```bash
 export OPENAI_API_KEY=sk-xxxxxxx
 ```
 
 ```bash
-cd /tmp/LPR/
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0
+cd /tmp/gpt_reduction/
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_LPR.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0"
+./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
 ```
 
 To get summarized information
 
 ```bash
-python ./scripts/summarize_lpr.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
 ```
+
+5. Run Vulcan on LPR's results
+
+```bash
+# Similar to how we run Vulcan alone
+cd /tmp/gpt_reduction/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/lpr_result_0/ --max-jobs 8
+```
+
 
 ### Reproduce RQ3: Effectiveness of Each Transformation.
 
 To calculate the contribution of each transformation, run
 
 ```bash
-python ./scripts/analyze_lpr_size_change.py ./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/analyze_gpt_size_change.py ./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
-This script will save the size change of each transformation on each benchmark to csv files in the result folder "./results/1234567/scripts_run_LPR_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_results_rename_id_0/".
+This script will save the size change of each transformation on each benchmark to csv files in the result folder "./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/".
 
 ### Other Experiments
 
-To specify another version of LLM instead of the default "gpt-3.5-turbo-0613", use flag "--llm-version", for example:
+To specify another version of GPT instead of the default "gpt-3.5-turbo-0613", use flag "--llm-version", for example:
 
 ```bash
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
 ```
 
 To specify the temperature, use flag "--temperature", for example:
 
 ```bash
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
 ```
