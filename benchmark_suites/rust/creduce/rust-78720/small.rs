@@ -1,0 +1,2 @@
+fn a()->impl {                                    {                               ) . c ( || "" }                                    trait d {                 fn c< e >(self, e)->f< e >  }
+  struct f<b>{g : e} impl<e> d e {
