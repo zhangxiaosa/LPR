@@ -16,7 +16,8 @@ To evaluate this artifact, a Linux machine with [docker](https://docs.docker.com
 
 - To evaluate LPR, access to LLMs is required. You need either use gpt-3.5-turbo APIs or run codellama-2 on your server.
 
-- The output of LLM is non-deterministic, so you may not exactly reproduce the previous results.
+- The output of LLM is non-deterministic, so you may not exactly reproduce the previous results. 
+To ease the artifact evaluation, we include the previous results.
 
 ### Notes
 
@@ -57,6 +58,15 @@ benchmark suite are in folder `./benchmark_suites`.
 2. `./benchmark_suites/rust`: 20 benchmarks in Rust (Benchmark-Rust).
 
 3. `./benchmark_suites/js`: 10 benchmarks in JavaScript (Benchmark-JS).
+
+In each folder, there are several versions, including the original benchmark and results of each reducer.
+For example, in c benchmark suite:
+- `./benchmark_suites/c/original`: Original benchmarks
+- `./benchmark_suites/c/perses`: Results of Perses
+- `./benchmark_suites/c/perses_rename`: Results of Perses (variable renamed)
+- `./benchmark_suites/c/vulcan`: Results of Vulcan
+- `./benchmark_suites/c/creduce`: Results of C-Reduce
+- `./benchmark_suites/c/lpr_{i}`: Results of LPR (i-th run)
 
 ### Previous Results
 
