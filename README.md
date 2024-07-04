@@ -149,7 +149,7 @@ python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py
 ```bash
 # Similar to how we run Vulcan alone
 cd /tmp/LPR/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_result_0/ --max-jobs 8
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --max-jobs 8
 ```
 
 
