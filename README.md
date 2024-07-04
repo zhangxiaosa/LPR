@@ -44,7 +44,7 @@ To ease the artifact evaluation, we include the previous results.
    # You should be at /tmp after the above command finishes
    # Your user name should be `coq` and all the following command are executed in docker
 
-   # the root folder of the project is /tmp/gpt_reduction/
+   # the root folder of the project is /tmp/LPR/
    cd /tmp/LPR/
    ```
 
@@ -98,8 +98,8 @@ python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_perses_py_ben
 
 ```bash
 # Similar to how we run Perses:
-cd /tmp/gpt_reduction/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/original/ --max-jobs 8
+cd /tmp/LPR/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 ```
 
 To get summarized information
@@ -112,8 +112,8 @@ python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_ben
 
 ```bash
 # Similar to how we run Perses:
-cd /tmp/gpt_reduction/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/original/ --max-jobs 8
+cd /tmp/LPR/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 ```
 
 To get summarized information
@@ -131,10 +131,10 @@ export OPENAI_API_KEY=sk-xxxxxxx
 ```
 
 ```bash
-cd /tmp/gpt_reduction/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0
+cd /tmp/LPR/
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --id 0"
+./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
 ```
 
@@ -148,8 +148,8 @@ python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py
 
 ```bash
 # Similar to how we run Vulcan alone
-cd /tmp/gpt_reduction/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/lpr_result_0/ --max-jobs 8
+cd /tmp/LPR/
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_result_0/ --max-jobs 8
 ```
 
 
@@ -168,11 +168,11 @@ This script will save the size change of each transformation on each benchmark t
 To specify another version of GPT instead of the default "gpt-3.5-turbo-0613", use flag "--llm-version", for example:
 
 ```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
 ```
 
 To specify the temperature, use flag "--temperature", for example:
 
 ```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/gpt_reduction/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
 ```
