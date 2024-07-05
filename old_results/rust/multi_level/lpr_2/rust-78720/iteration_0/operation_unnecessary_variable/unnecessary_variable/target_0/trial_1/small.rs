@@ -1,0 +1,1 @@
+trait b {}                            struct f<c> {              	h: e,              }                            impl<e> b for e {}                            fn main() {              	{}.d(|| "")              }

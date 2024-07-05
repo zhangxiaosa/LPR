@@ -1,0 +1,1 @@
+const a: *const u32 = {\n    let b;\n    &b\n};\n\n{\n    let a = { let b; &b };\n}

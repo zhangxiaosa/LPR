@@ -1,0 +1,1 @@
+trait TypeVal<d>\n{\n    const c: d;\n}\n\nstruct Five;\n\nstruct b<e, f>\n{\n    h: g,\n}\n\nimpl<e, f> TypeVal<usize> for b<e, f> where e: TypeVal<c>{}\n\nfn main()\n{\n    let _ = 1; // Optimized out\n}

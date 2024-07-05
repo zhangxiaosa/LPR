@@ -1,0 +1,65 @@
+use std::ptr;
+
+unsafe fn b() -> ([u128; 7], *mut i8, *mut bool) {
+    let mut c = false;
+    let mut v8 = 13978819448286864680_u64;
+    let mut v9 = 0;
+    let mut v12;
+    let mut d;
+    let mut v20: [u8; 8] = Default::default();
+    let mut e;
+    let mut f: (bool, u8) = Default::default();
+    let mut ret = ([0; 7], ptr::null_mut(), ptr::null_mut());
+    let mut ret_2 = ([0; 7], ptr::null_mut(), ptr::null_mut());
+    'l0: loop {
+        v12 = ptr::addr_of_mut!(v20[v9]);
+        v20 = [197_u8; 8];
+        v9 = 2_usize;
+        loop {
+            match *v12 {
+                197 => {
+                    ret.2 = ptr::addr_of_mut!(c);
+                    match 0 {
+                        0 => 'l2: loop {
+                            *v12 = 22;
+                            loop {
+                                e = v20;
+                                match v8 {
+                                    13978819448286864680 => {
+                                        ret_2.2.0 = [2262110980_u32; 6];
+                                        v8 = 13152832795211590855_u64;
+                                        0 = 6;
+                                        d = ret.2;
+                                        ret.2 = ptr::addr_of_mut!(f.0);
+                                        f.1 = *v12;
+                                        *d = true;
+                                        v20 = e;
+                                        match 6 {
+                                            6 => {
+                                                println!("{{v}}", v = f.1);
+                                            }
+                                            0 => continue 'l2,
+                                            _ => return ret_2,
+                                        }
+                                    }
+                                    _ => continue 'l0,
+                                }
+                            }
+                        },
+                        _ => return ret_2,
+                    }
+                }
+                4 => {
+                    v12 = ptr::addr_of_mut!(v20[v9]);
+                }
+                _ => return ret_2,
+            }
+        }
+    }
+}
+
+fn main() {
+    unsafe {
+        b();
+    }
+}

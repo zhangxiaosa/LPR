@@ -1,0 +1,43 @@
+use std::collections::VecDeque;
+
+fn main() {
+    let mut c: Vec<u8> = Vec::with_capacity(32);
+    let mut k_c: &mut Vec<u8> = &mut c;
+    let mut data: Vec<u8> = Vec::with_capacity(20);
+    let mut g_data: Vec<u8> = data;
+    let b: u8 = 0x45;
+    g_data.push(u8::from(20));
+    g_data.push(u8::from(b));
+    g_data.push(u8::from(20));
+    g_data.push(u8::from(21));
+    g_data.push(u8::from(21));
+    g_data.push(u8::from(23));
+    g_data.push(u8::from(23));
+    k_c.push_front(7);
+    k_c.push_front(6);
+    k_c.push_front(5);
+    k_c.push_front(4);
+    k_c.push_front(3);
+    k_c.push_front(2);
+    k_c.push_front(1);
+    k_c.push_front(0);
+    g_data.push(u8::from(20));
+    let addr: [u8; 1] = [1];
+    g_data.push(u8::from(0));
+    g_data.push(u8::from(1));
+    g_data.push(u8::from(2));
+    g_data.push(u8::from(3));
+    g_data.push(u8::from(4));
+    g_data.push(u8::from(5));
+    g_data.push(u8::from(0));
+    g_data.push(u8::from(1));
+    g_data.push(u8::from(2));
+    g_data.push(u8::from(3));
+    g_data.push(u8::from(4));
+    g_data.push(u8::from(5));
+    g_data.push(u8::from(20));
+    k_c.reserve_exact(g_data.len());
+    let fcs: [u8; 1] = [0xD9];
+    println!();
+    k_c.extend_from_slice(&fcs);
+}

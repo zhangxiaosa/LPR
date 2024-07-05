@@ -1,0 +1,1 @@
+fn f(a: &[i64; 4], b: &[i64; 4], n: usize, g: usize, h: usize) -> [i64; 4] {\n    let mut l = [0; 4];\n    for i in 0..n {\n        for j in (0..h).step_by(2) {\n            l[j] = b[j + 1];\n        }\n    }\n    l\n}

@@ -1,0 +1,23 @@
+fn main() {
+  let x1: isize;
+  let x2: i8;
+  let x3: i16;
+  let x4: i32;
+  let x5: i64;
+  let x6: usize;
+  let x7: <data_type>;
+  let x8: <data_type>;
+  let x9: <data_type>;
+  let x10: <data_type>;
+  let x11: <data_type>;
+  let x12: <data_type>;
+  let x13: <data_type>;
+  let x14: <data_type>;
+  let x15: <data_type>;
+  let x16: <data_type>;
+  let x17: <data_type>;
+  let x18: <data_type>;
+  let x19: <data_type>;
+  let x20: <data_type>;
+  let x21: <data_type>;
+}

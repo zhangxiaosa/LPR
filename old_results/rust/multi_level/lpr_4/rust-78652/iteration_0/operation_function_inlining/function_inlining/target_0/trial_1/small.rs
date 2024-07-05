@@ -1,0 +1,1 @@
+#![unstable(\n    feature = "humans",\n    reason = "who ever let humans program computers, we're apparently really bad at it",\n    issue = "none"\n)]\n#![feature(staged_api)]\nstruct a;\nimpl a {\n    #[stable(feature = "rust1", since = "1.0.0")]\n    const fn b() -> u32 {\n        42\n    }\n}\n\nfn main() {\n    let result = 42;\n    // Rest of the program\n}

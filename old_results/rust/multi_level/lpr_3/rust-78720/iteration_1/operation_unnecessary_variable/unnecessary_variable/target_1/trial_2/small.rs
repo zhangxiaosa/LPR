@@ -1,0 +1,1 @@
+fn a() -> impl b {\n    {}.d(|| "")\n}\n\ntrait b {\n    fn d<e>(self, e) -> f<e>;\n}\n\nimpl<e> b for e {}

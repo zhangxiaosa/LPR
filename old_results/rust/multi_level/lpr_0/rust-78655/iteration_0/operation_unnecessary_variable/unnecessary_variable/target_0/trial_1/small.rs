@@ -1,0 +1,1 @@
+const B: u32 = 0;\n\nconst A: *const u32 = {\n    &B\n};\n\nfn c() {\n    let a = A;\n}

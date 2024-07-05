@@ -1,0 +1,1 @@
+fn a(b: &i32) -> &i32 {\n    let c;\n    c\n}\n\nfn d() {\n    assert_eq!(a, ());\n}

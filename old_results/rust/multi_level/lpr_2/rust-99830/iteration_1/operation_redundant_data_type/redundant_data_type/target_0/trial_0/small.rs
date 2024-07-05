@@ -1,0 +1,45 @@
+use std::ops::{Add, MulAssign};
+
+fn main() {
+    let b = 4;
+    let mut c = d(1);
+    (0..).take_while(|&e| primal_sieve::is_prime(e) && e < b as usize).for_each(|e| {
+        let e = e as u32;
+        let f = b / e;
+        c *= d(e).pow(2 * f) + d(1);
+    });
+    assert_eq!(c.0, 650);
+}
+
+#[derive(Clone, Copy)]
+struct d(u32);
+
+impl d {
+    const G: u32 = 10u32.pow(9);
+
+    fn pow(self, mut exp: u32) -> Self {
+        let mut base = self;
+        base *= base;
+        exp >>= 1;
+        let mut acc = base;
+        exp >>= 1;
+        base *= base;
+        if exp == 1 {
+            acc *= base;
+        }
+        acc
+    }
+}
+
+impl Add for d {
+    type Output = d;
+    fn add(self, h: d) -> d {
+        d(self.0 + h.0)
+    }
+}
+
+impl MulAssign for d {
+    fn mul_assign(&mut self, h: d) {
+        self.0 = (self.0 * h.0) % d::G;
+    }
+}

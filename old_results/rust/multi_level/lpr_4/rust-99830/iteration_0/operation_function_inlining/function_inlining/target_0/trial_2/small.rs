@@ -1,0 +1,59 @@
+use primal_sieve::Primes;
+
+fn main() {
+    assert_eq!(a(4), 650);
+}
+
+fn a(b: u32) -> u32 {
+    let mut c = d(1);
+    Primes::all().take_while(|&e| e < b as usize).for_each(|e| {
+        let e = e as u32;
+        let f = b / e;
+        let pow_result = {
+            let mut base = d(e);
+            for _ in 0..(2 * f) {
+                base *= base;
+            }
+            base + d(1)
+        };
+        c *= pow_result;
+    });
+    c.0
+}
+
+#[derive(Clone, Copy)]
+struct d(u32);
+
+impl d {
+    const g: u32 = 10u32.pow(9);
+}
+
+impl Add for d {
+    type Output = d;
+
+    fn add(mut self, h: d) -> d {
+        self.0 += h.0;
+        self
+    }
+}
+
+impl MulAssign for d {
+    fn mul_assign(&mut self, h: d) {
+        self.0 *= h.0;
+    }
+}
+
+impl d {
+    fn pow(mut self, mut exp: u32) -> Self {
+        let mut base = self;
+        base *= base;
+        exp /= 2;
+        let mut acc = base;
+        exp /= 2;
+        base *= base;
+        if exp == 1 {
+            acc *= base;
+        }
+        acc
+    }
+}

@@ -1,0 +1,61 @@
+#![feature(const_hash)]
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::ptr;
+
+fn main() {
+    let mut a: DefaultHasher = DefaultHasher::new();
+
+    fn b(f: i64, x: u8, y: u8, g: i32) {
+        unsafe {
+            f.hash(&mut a);
+            x.hash(&mut a);
+            y.hash(&mut a);
+            g.hash(&mut a);
+        }
+    }
+
+    fn ac(p: [i64; 7]) -> *mut i64 {
+        let mut ae = (0, [0], 0);
+        let q = (0, [0; 3]);
+        b(p[0], p[0], 0, 0);
+        unsafe {
+            q.hash(&mut a);
+            ae.hash(&mut a);
+        }
+        ptr::addr_of_mut!(ae.2)
+    }
+
+    fn o(z: [i64; 2], n: [i64; 7], mut af: [i64; 7], _: [i64; 7], ag: *mut i64) {
+        let mut t: (*const usize, (usize, u8), (char, i32, (i64,), u64), char, ((f64, i64, i8), [f32; 1], (usize, u8), i8, (i64, i64), [f32; 1]), *const u8) = (ptr::null(), (0, 0), ('a', 0, (0,), 0), 'a', ((0., 1102345069964335552, 9), [0.], (0, 0), 0, (0, 0), [0.]), ptr::null());
+        loop {
+            af = n;
+            t.0 = ptr::addr_of!(t.1 .0);
+            b(0, 0, n[0], 0);
+            match t.4 .0 .2 {
+                9 => {
+                    b(af, 0, -9223372036854775808, 0);
+                    b(z, [56; 7], n, 0);
+                    return;
+                }
+                _ => unsafe {
+                    *ag = 88;
+                }
+            }
+        }
+    }
+
+    fn h(z_decomposed: [i64; 7]) -> [i64; 2] {
+        let n = ac(z_decomposed);
+        o([13; 2], z_decomposed, z_decomposed, z_decomposed, n);
+        b(652623562, 18399139786288871729, 0, 0);
+        b([112; 6], 1, 0, 4);
+        b((), (), [0], [0]);
+        [13; 2]
+    }
+
+    println!("{:?}", h([56; 7]));
+    unsafe {
+        println!("hash: {}", a.finish());
+    }
+}

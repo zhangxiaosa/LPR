@@ -1,0 +1,1 @@
+trait b {\n    fn d<e>(self, e) -> f<e>;\n}\n\nstruct f<c> {\n    h: e,\n}\n\nimpl<e> b for e {}\n\nfn a() -> impl b {\n    {}.d(|| "")\n}

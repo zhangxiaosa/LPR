@@ -1,0 +1,25 @@
+fn main() {
+    const d: usize = 4;
+    
+    fn f(a: &[i64], b: &[i64], n: usize, g: usize, h: usize) -> [i64; 4] {
+        let mut l = [0; 4];
+
+        let mut j = 0;
+        while j < h {
+            l[j] = b[1];
+
+            if j + 1 < h {
+                l[j + 1] = b[1];
+            }
+
+            j += 2;
+        }
+
+        l
+    }
+
+    const p: [[i64; 4]; 4] = [[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 2, 2, 2]];
+    let mut l = [0, 1, 0, 0];
+    l = f(&p[0], &l, d, d, d);
+    println!("{:?}", l);
+}

@@ -1,0 +1,1 @@
+fn c() -> bool {\n\tlet a_3 = false;\n\tlet a: (*mut f32, f64, bool) = (core::ptr::null_mut(), 0.0, a_3);\n\tlet i = core::ptr::addr_of!(a.2) as *mut bool;\n\t*i = true;\n\ta;\n\ta.2\n}\n\nfn main() {\n\tprintln!(\"{}\", c());\n}

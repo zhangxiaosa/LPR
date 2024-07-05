@@ -1,0 +1,7 @@
+fn a(_: &i32) -> &i32 {
+    b
+}
+
+fn d() {
+    assert_eq!(a, e);
+}

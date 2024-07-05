@@ -1,0 +1,1 @@
+impl a {\n    fn b() -> std::result::Result<(), ()> {\n        Err(())\n    }\n}

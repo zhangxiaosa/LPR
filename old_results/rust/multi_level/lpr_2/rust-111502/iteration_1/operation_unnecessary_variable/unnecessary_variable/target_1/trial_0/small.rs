@@ -1,0 +1,1 @@
+fn c() -> bool {\n    let b_1 = false;\n    unsafe { f(&mut (0., true), (&mut (0., true), (0., b_1)), true, true) }\n}\n\nunsafe fn f(k: *mut (f32, bool), d: (*mut (f32, bool), (f64, bool)), g: bool, h: bool) -> bool {\n    let i = core::ptr::addr_of!(d.1 .1) as *mut bool;\n    *i = g;\n    d;\n    return d.1 .1;\n}\n\nfn main() {\n    println!("{}", c());\n}

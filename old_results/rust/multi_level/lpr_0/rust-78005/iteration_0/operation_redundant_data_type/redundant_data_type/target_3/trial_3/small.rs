@@ -1,0 +1,22 @@
+fn main() {
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: usize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+    let x: isize;
+}

@@ -1,0 +1,1 @@
+fn main() {\n    let h = 5;\n    let arg = 4;\n    let i = 2;\n    let j = 0;\n    \n    let mut k;\n    k = arg;\n    \n    let mut l;\n    l = 0;\n    l |= 1 << j;\n    l = ((i as u64 * l as u64) % h as u64) as u32;\n    k = ((k as u64 * l as u64) % h as u64) as u32;\n\n    assert_eq!(k, 3);\n}

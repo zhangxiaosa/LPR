@@ -1,0 +1,71 @@
+#![feature(const_hash)]
+
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::ptr;
+
+static mut a: DefaultHasher = DefaultHasher::new();
+
+fn b<T1: Hash, T2: Hash, T3: Hash, T4: Hash>(f: T1, x: T2, y: T3, g: T4) {
+    unsafe {
+        f.hash(&mut a);
+        x.hash(&mut a);
+        y.hash(&mut a);
+        g.hash(&mut a);
+    }
+}
+
+fn main() {
+    let z = [56_isize; 7];
+    let i = 15_609_822_513_776_909_592_usize;
+    let j = 652_623_562_i32;
+    let k = 18_399_139_786_288_871_729_u64;
+
+    let aa = [0];
+    let mut af = [0; 7];
+
+    let mut t: (
+        *const usize,
+        (usize, u8),
+        (char, i32, (i64,), u64),
+        char,
+        ((f64, i64, i8), [f32; 1], (usize, u8), (isize, i64), [f32; 1]),
+        *const u8,
+    ) = (
+        ptr::null(),
+        (0, 0),
+        ('a', 0, (0,), 0),
+        'a',
+        ((0., 0, 0), [0.], (0, 0), (0, 0), [0.]),
+        ptr::null(),
+    );
+
+    loop {
+        af = z;
+        let ae = 0;
+        t.0 = ptr::addr_of!(t.1 .0);
+        t.4 .0 = (f64::NAN, 1102345069964335552_i64, 9_i8);
+        b(0, 0, z, 0);
+
+        match t.4 .0 .2 {
+            9 => {
+                b(af, ae, 0, j);
+                b(z, z, af, i);
+                break;
+            }
+            _ => unsafe {
+                {
+                    *aa.get_unchecked_mut(0) = 88_isize;
+                }
+            },
+        }
+    }
+
+    b(j, k, 0, 0);
+    b([112; 6], 1, 0, 4);
+    b((), (), [0], aa);
+
+    unsafe {
+        println!("hash: {}", a.finish());
+    }
+}

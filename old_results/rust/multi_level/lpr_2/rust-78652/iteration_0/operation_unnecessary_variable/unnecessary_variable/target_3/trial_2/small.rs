@@ -1,0 +1,1 @@
+#![unstable(\n\tfeature = "humans",\n\tissue = "none"\n)]\n#![feature(staged_api)]\nstruct a;\n\nimpl a {\n\t#[stable(feature = "rust1", since = "1.0.0")]\n\tconst fn b() -> u32 {\n\t\t42\n\t}\n}

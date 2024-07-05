@@ -1,0 +1,56 @@
+extern crate core;
+
+use core::ptr;
+
+unsafe fn a() -> *const *mut i64 {
+    let mut isize_min;
+    let mut _46;
+    let mut _47;
+    let mut _31;
+    let mut _33;
+    let mut _177 = ptr::null_mut();
+    let mut _44: ((u64, u64, u8), u32, f32) = Default::default();
+    let mut _tup_0: (((u64, u64, u8), u32, f32), bool) = Default::default();
+    let mut _95: (((u64, u64, u8), u32, f32), bool) = Default::default();
+
+    _31 = ptr::addr_of_mut!(_44.0 .2);
+    *_31 = 1;
+    isize_min = isize::MIN;
+
+    'bb65_0: loop {
+        let tup_ptr = ptr::addr_of_mut!(_tup_0);
+        _31 = ptr::addr_of_mut!((*tup_ptr).0 .0 .2);
+        let mut _95_val: (((u64, u64, u8), u32, f32), bool) = Default::default();
+        _95_val.0 = Default::default();
+        _95.0 = _95_val.0;
+
+        _46 = 42;
+        _31 = isize_min.wrapping_offset(isize::MIN);
+
+        loop {
+            let tup_ptr2 = ptr::addr_of_mut!(_tup_0);
+            *tup_ptr2 = _95;
+
+            isize_min = 0;
+            _47 = *_31;
+
+            match 18215089233857363959 {
+                18215089233857363959 => {
+                    let mut _33_val = ptr::addr_of_mut!(_46);
+                    *_33 = _33_val;
+
+                    println!("{_47}");
+                    return ptr::addr_of!(_177);
+                }
+                0 => continue,
+                _ => continue 'bb65_0,
+            }
+        }
+    }
+}
+
+fn main() {
+    unsafe {
+        a();
+    }
+}

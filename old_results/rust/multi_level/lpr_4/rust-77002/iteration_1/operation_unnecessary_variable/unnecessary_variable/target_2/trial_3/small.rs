@@ -1,0 +1,50 @@
+fn main() {
+    let l_0_1 = 0i64;
+    let l_0_2 = 0i64;
+    let l_0_3 = 0i64;
+    let l_1_0 = 0i64;
+    let l_1_1 = 1i64;
+    let l_1_2 = 0i64;
+    let l_1_3 = 0i64;
+    let l_2_0 = 0i64;
+    let l_2_1 = 0i64;
+    let l_2_2 = 1i64;
+    let l_2_3 = 0i64;
+    let l_3_0 = 0i64;
+    let l_3_1 = 0i64;
+    let l_3_2 = 0i64;
+    let l_3_3 = 1i64;
+    let mut l = [
+        [1i64, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
+    ];
+    l = f(&l);
+    println!("{:?}", l);
+}
+
+fn f(b: &[[i64; 4]]) -> [[i64; 4]; 4] {
+    let result_0_1 = 0i64;
+    let result_0_3 = 0i64;
+    let result_1_0 = 0i64;
+    let result_1_1 = 0i64;
+    let result_1_2 = 0i64;
+    let result_1_3 = 0i64;
+    let result_2_0 = 0i64;
+    let result_2_1 = 0i64;
+    let result_2_2 = 0i64;
+    let result_2_3 = 0i64;
+    let result_3_0 = 0i64;
+    let result_3_1 = 0i64;
+    let result_3_2 = 0i64;
+    let result_3_3 = 0i64;
+    let mut result = [
+        [0i64, result_0_1, 0, result_0_3],
+        [result_1_0, result_1_1, result_1_2, result_1_3],
+        [result_2_0, result_2_1, result_2_2, result_2_3],
+        [result_3_0, result_3_1, result_3_2, result_3_3],
+    ];
+    result[0] = b[0];
+    result
+}

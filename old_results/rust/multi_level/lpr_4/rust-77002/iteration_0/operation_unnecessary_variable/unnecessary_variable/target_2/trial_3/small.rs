@@ -1,0 +1,1 @@
+fn main() {\n    let p = [];\n    let mut l = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];\n    l = f(&p, &l, 4, 4);\n    println!("{:?}", l);\n}\n\nfn f(a: &[i64], b: &[[i64; 4]], _n: usize, h: usize) -> [[i64; 4]; 4] {\n    let mut result = [[0; 4]; 4];\n    for j in 0..h {\n        result[0][j] = b[0][j];\n    }\n    result\n}

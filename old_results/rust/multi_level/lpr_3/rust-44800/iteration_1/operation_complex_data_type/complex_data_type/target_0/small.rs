@@ -1,0 +1,32 @@
+use std::collections::VecDeque;
+fn main() {
+    let mut k: VecDeque<u8> = VecDeque::with_capacity(32);
+    let k_0: u8 = 0;
+    let k_1: u8 = 1;
+    let k_2: u8 = 1;
+    let k_3: u8 = 2;
+    let k_4: u8 = 3;
+    let k_5: u8 = 4;
+    let k_6: u8 = 5;
+    let k_7: u8 = 6;
+    let k_8: u8 = 1;
+    let k_9: u8 = 2;
+    let k_10: u8 = 3;
+    let k_11: u8 = 4;
+    k.push_front(k_0);
+    k.push_front(k_1);
+    k.push_front(k_2);
+    k.push_front(k_3);
+    k.push_front(k_4);
+    k.push_front(k_5);
+    k.push_front(k_6);
+    k.push_front(k_7);
+    k.push_front(k_8);
+    k.push_front(k_9);
+    k.push_front(k_10);
+    k.push_front(k_11);
+    k.reserve_exact(20);
+    println!();
+    let k_12: u8 = 0xD9;
+    k.extend(&[k_12]);
+}

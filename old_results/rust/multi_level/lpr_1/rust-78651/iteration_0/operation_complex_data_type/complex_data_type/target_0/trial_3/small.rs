@@ -1,0 +1,1 @@
+use std::result;\n\nimpl a {}\n\nfn b() -> Err {}

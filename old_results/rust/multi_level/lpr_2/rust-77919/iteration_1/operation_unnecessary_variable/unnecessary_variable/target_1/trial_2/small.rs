@@ -1,0 +1,1 @@
+trait TypeVal<d> {}\nstruct Five;\nstruct b<e> {\n  h: g,\n}\nimpl<e> TypeVal<usize> for b<e> {}\nfn main() {\n  []\n}

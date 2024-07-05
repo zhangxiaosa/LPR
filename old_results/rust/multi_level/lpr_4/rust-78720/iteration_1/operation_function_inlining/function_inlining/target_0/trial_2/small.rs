@@ -1,0 +1,1 @@
+fn a() -> impl b {\n    f { h: || "" }\n}\n\nstruct f<c> {\n    h: e,\n}

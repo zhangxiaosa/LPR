@@ -1,0 +1,1 @@
+fn c() -> f64 {\n    unsafe {\n        let mut f = 0.0;\n        let mut t1 = 0.0;\n        let mut t2 = 0.0;\n        f((&mut f, (t1, t2)))\n    }\n}\n\nunsafe fn f(d: (*mut f64, (f64, f64))) -> f64 {\n    let i = core::ptr::addr_of!((*d.1).1) as *mut f64;\n    *i = 1.0;\n    d;\n    return (*d.1).1;\n}\n\nfn main() {\n    println!("{}", c());\n}

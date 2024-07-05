@@ -1,0 +1,1 @@
+fn a() -> impl b {\n    let empty_struct = {};\n    empty_struct.d(|| "")\n}\n\nfn main() {\n    let result: impl b = a();\n}

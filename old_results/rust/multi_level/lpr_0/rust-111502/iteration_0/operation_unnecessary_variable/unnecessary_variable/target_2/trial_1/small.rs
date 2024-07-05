@@ -1,0 +1,1 @@
+fn c() -> bool {\n    let mut a = (0., true);\n    let e = unsafe { f(&mut a, (0., false), true, true) };\n    return e;\n}\n\nunsafe fn f(k: *mut (f32, bool), _: (f64, bool), g: bool, _: bool) -> bool {\n    let i = k;\n    let j = g;\n    *i = (0., j);\n    return j;\n}\n\nfn main() {\n    println!("{}", c());\n}

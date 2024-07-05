@@ -1,0 +1,81 @@
+fn main() {
+    const e: i32 = 7;
+    const f: i32 = 1 << 12;
+    const w: usize = f as _;
+
+    fn n(aa: i32, o: &[[i32; 2]], p: i32, q: i32, ab: i32, ac: &mut [bool], ad: &mut [i32]) -> (u64, i32, ()) {
+        if ab == aa {
+            let mut ae = String::new();
+            for i in (0..ab).rev() {
+                ae += &ad[1 << i].to_string();
+            }
+
+            return if let Ok(r) = ae.parse() {
+                (r, 0, ())
+            } else {
+                (0, 0, ())
+            };
+        }
+
+        let mut t = 0;
+        let y = q;
+        t = t.max(o[2 + 1][1] - o[2 + 1][0]);
+
+        let mut u = t;
+
+        while u < y {
+            let mut af = true;
+            let ag = 1 << ab;
+            let mut ah = 0;
+
+            for i in 0..ag {
+                let s = ad[i] + u;
+
+                if ac[s as usize] {
+                    af = false;
+                    break;
+                }
+
+                ad[ag + i] = s;
+                ac[s as usize] = true;
+                ah += 1;
+            }
+
+            if af {
+                let mut z: [[i32; 2]; 16] = Default::default();
+                z[ab as usize + 2][0] = std::i32::MAX;
+
+                for i in 1..ab + 2 {
+                    z[i as usize][0] = o[i as usize][0].min(u + o[i as usize - 1][0]);
+                    z[i as usize][1] = o[i as usize][1].max(u + o[i as usize - 1][1]);
+                }
+
+                let af = n(aa, &z, p, u, ab + 1, ac, ad);
+
+                match af {
+                    (r, 0, ()) => return (r, 0, ()),
+                    (0, 0, ()) => {}
+                    (_, v, ()) => {}
+                }
+            }
+
+            for i in 0..ah {
+                ac[ad[ag + i] as usize] = false;
+            }
+
+            u += 1;
+        }
+
+        (0, p, ())
+    }
+
+    let mut ac = [false; w];
+    let mut ad = [0i32; 1 << e];
+    let mut o: [[i32; 2]; 16] = Default::default();
+    o[1][0] = std::i32::MAX;
+
+    match n(e, &o, f, f, 0, &mut ac, &mut ad) {
+        (s, _, ()) => assert_eq!(Some(s), Some(20_313_839_404_245)),
+        _ => panic!(),
+    }
+}

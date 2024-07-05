@@ -1,0 +1,45 @@
+extern crate core;
+
+use core::ptr;
+
+unsafe fn a() -> *const *mut i64 {
+  let mut isize_min;
+  let mut _46;
+  let mut _47;
+  let mut _88;
+  let mut result = ptr::null_mut();
+  let mut tup: (((u64, u64, u8), u32, f32), bool) = (((0, 0, 0), 0, 0.0), false);
+  *_31 = 1;
+  isize_min = isize::MIN;
+  'bb65: loop {
+    _90 = _31.wrapping_offset(isize::MIN);
+    _46 = 42;
+    _88 = 18215089233857363959_usize;
+    loop {
+      tup = (((0, 0, 0), 0, 0.0), false);
+      isize_min = 0;
+      _47 = *_31;
+      match _88 {
+        18215089233857363959 => {
+          _88 = 0;
+          match _46 {
+            42 => {
+              result = ptr::addr_of_mut!(_46);
+              println!("{_47}");
+              return ptr::addr_of!(result);
+            }
+            _ => continue,
+          }
+        }
+        0 => continue,
+        _ => continue 'bb65,
+      }
+    }
+  }
+}
+
+fn main() {
+  unsafe {
+    a();
+  }
+}

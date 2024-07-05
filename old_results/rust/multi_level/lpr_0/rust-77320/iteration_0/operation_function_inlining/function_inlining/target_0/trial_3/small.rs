@@ -1,0 +1,1 @@
+const a: isize = 10;\nconst b: &() = std::mem::transmute(a);\n\nmatch &() {\n    b => 9,\n};

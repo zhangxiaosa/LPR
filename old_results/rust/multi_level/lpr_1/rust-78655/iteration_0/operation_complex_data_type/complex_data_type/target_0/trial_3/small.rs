@@ -1,0 +1,1 @@
+let a_ptr: *const u32 = {    \n    let mut b: u32 = 0;    \n    let b_ptr: *mut u32 = &mut b;    \n    a = b_ptr as *const u32;    \n    a    \n};    \n    \nfn c() {    \n    let a = a_ptr;    \n}

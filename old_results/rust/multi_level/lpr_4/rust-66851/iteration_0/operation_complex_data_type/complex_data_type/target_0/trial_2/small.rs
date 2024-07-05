@@ -1,0 +1,75 @@
+fn d() -> u64 {
+    const e: i32 = 7;
+    const f: i32 = 1 << 12;
+    const w: usize = f as usize;
+    let ac: [bool; w] = [false; w];
+    let mut ad: [i32; 1 << e] = [0i32; 1 << e];
+    let mut o: [[i32; 2]; 16] = [[0; 2]; 16];
+    o[1][0] = std::i32::MAX;
+
+    fn n(aa: i32, o: &[[i32; 2]; 16], p: i32, q: i32, ab: i32, ac: &mut [bool; w], ad: &mut [i32]) -> u64 {
+      if ab == aa {
+        let mut ae = String::new();
+        for i in (0..ab).rev() {
+          ae += &ad[1 << i].to_string();
+        }
+        return if let Ok(r) = ae.parse() {
+          r as u64
+        } else {
+          0u64
+        };
+      }
+
+      let mut t = 0;
+      let y = q;
+      for i in 0..ab {
+        let index = i as usize;
+        t = t.max(o[index + 1][1] - o[index + 1][0]);
+      }
+
+      let mut u = t;
+      while u < y {
+        let mut af = true;
+        let ag = 1 << ab;
+        let mut ah = 0;
+        for i in 0..ag {
+          let s = ad[i] + u;
+          if ac[s as usize] {
+            af = false;
+            break;
+          }
+          ad[ag + i] = s;
+          ac[s as usize] = true;
+          ah += 1;
+        }
+        if af {
+          let mut z: [[i32; 2]; 16] = [[0; 2]; 16];
+          z[ab as usize + 2][0] = std::i32::MAX;
+          for i in 1..ab + 2 {
+            z[i as usize][0] = o[i as usize][0].min(u + o[(i - 1) as usize][0]);
+            z[i as usize][1] = o[i as usize][1].max(u + o[(i - 1) as usize][1]);
+          }
+          let af = n(aa, &z, p, u, ab + 1, ac, ad);
+          match af {
+            k => return af as u64,
+            m => return 0u64,
+            l(_) => {}
+          }
+        }
+        for i in 0..ah {
+          ac[ad[ag + i] as usize] = false;
+        }
+        u += 1;
+      }
+      p as u64
+    }
+
+    match n(e, &o, f, f, 0, &mut ac, &mut ad) {
+      k(s) => s,
+      _ => 0
+    }
+  }
+
+  fn main() {
+    assert_eq!(d(), 20_313_839_404_245);
+  }

@@ -1,0 +1,1 @@
+struct f<c> {    h: e,}trait b {    fn d<e>(self, e) -> f<e> {}}impl<e> b for e {}fn a() -> impl b {    "".d(|| "")}fn main() {    let var1: String = "".to_string();    let var2: &str = "";    let var3: f<str> = var1.d(|| var2);    let var4: impl b = var3;    let target: e = /* Specify the desired value for target */;}

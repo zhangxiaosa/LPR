@@ -1,0 +1,30 @@
+fn main() {
+    let mut k = Vec::new();
+    k.insert(0, 0);
+    k.insert(0, 1);
+    k.insert(0, 1);
+    k.insert(0, 2);
+    k.insert(0, 3);
+    k.insert(0, 4);
+    k.insert(0, 5);
+    k.insert(0, 6);
+    k.insert(0, 1);
+    k.insert(0, 2);
+    k.insert(0, 3);
+    k.insert(0, 4);
+    k.insert(0, 5);
+    k.insert(0, 6);
+    k.insert(0, 1);
+    k.insert(0, 2);
+    k.insert(0, 3);
+    k.insert(0, 4);
+    k.insert(0, 5);
+    k.insert(0, 6);
+    k.insert(0, 55);
+    k.insert(0, 55);
+    let hw = 0b1000_10_00;
+    k.insert(0, hw);
+    k.insert(0, hw);
+    k.reserve(g.data.len());
+    println!();
+}

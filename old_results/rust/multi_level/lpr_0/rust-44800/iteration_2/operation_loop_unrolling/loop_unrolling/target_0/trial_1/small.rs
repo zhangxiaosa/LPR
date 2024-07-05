@@ -1,0 +1,1 @@
+use std::collections::VecDeque;\n\nstruct a {\n    c: VecDeque<u8>,\n}\n\nfn main() {\n    let mut k = a {\n        c: {\n            let mut temp = VecDeque::with_capacity(18);\n            temp.push_front(0);\n            temp\n        },\n    };\n\n    k.c.reserve_exact(20);\n    \n    print!("\n");\n\n    k.c.extend(&[0xAA, 0xAA, 0xAA, 0xAA]);\n}

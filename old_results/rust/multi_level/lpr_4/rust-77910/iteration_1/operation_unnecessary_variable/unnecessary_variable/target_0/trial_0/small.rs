@@ -1,0 +1,3 @@
+fn d() {
+    // Empty function
+}

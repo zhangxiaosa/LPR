@@ -1,0 +1,104 @@
+use std::ptr;
+
+unsafe fn b() -> ([u128; 7], *mut i8, *mut bool) {
+    let mut c = false;
+    let mut v8 = 13978819448286864680_u64;
+    let mut v9 = 0;
+    let mut v20 = [0; 8];
+    let mut f = (false, 0);
+    let mut v33_2_ptr;
+    let mut v39: (usize, [u128; 7], ([u32; 6], usize, *mut u32), [u32; 2]) =
+        (0, [0; 7], ([0; 6], 0, ptr::null_mut()), [0; 2]);
+    let mut ret = ([0; 7], ptr::null_mut(), ptr::null_mut());
+    ret.2 = ptr::addr_of_mut!(c);
+
+    v20[0] = 197;
+    v20[1] = 197;
+    v20[2] = 22;
+    v20[3] = 22;
+    v20[4] = 22;
+    v20[5] = 22;
+    v20[6] = 22;
+    v20[7] = 22;
+
+    v33_2_ptr = ret.2;
+    match v39.0 {
+        0 => {
+            *ptr::addr_of_mut!(v20[2]) = 22;
+            let e = v20;
+            match v8 {
+                13978819448286864680 => {
+                    v39.2 .0 = [2262110980_u32; 6];
+                    v8 = 13152832795211590855_u64;
+                    v39.0 = 6;
+                    let d = v33_2_ptr;
+                    v33_2_ptr = ptr::addr_of_mut!(f.0);
+                    f.1 = 22;
+                    *d = true;
+                    v20 = e;
+                    match v39.0 {
+                        6 => {
+                            println!("{:?}", f);
+                        }
+                        0 => {
+                            *ptr::addr_of_mut!(v20[2]) = 22;
+                            let e = v20;
+                            match v8 {
+                                13978819448286864680 => {
+                                    v39.2 .0 = [2262110980_u32; 6];
+                                    v8 = 13152832795211590855_u64;
+                                    v39.0 = 6;
+                                    let d = v33_2_ptr;
+                                    v33_2_ptr = ptr::addr_of_mut!(f.0);
+                                    f.1 = 22;
+                                    *d = true;
+                                    v20 = e;
+                                    match v39.0 {
+                                        6 => {
+                                            println!("{:?}", f);
+                                        }
+                                        0 => {
+                                            *ptr::addr_of_mut!(v20[2]) = 22;
+                                            let e = v20;
+                                            match v8 {
+                                                13978819448286864680 => {
+                                                    v39.2 .0 = [2262110980_u32; 6];
+                                                    v8 = 13152832795211590855_u64;
+                                                    v39.0 = 6;
+                                                    let d = v33_2_ptr;
+                                                    v33_2_ptr = ptr::addr_of_mut!(f.0);
+                                                    f.1 = 22;
+                                                    *d = true;
+                                                    v20 = e;
+                                                    match v39.0 {
+                                                        6 => {
+                                                            println!("{:?}", f);
+                                                        }
+                                                        0 => return ret,
+                                                        _ => return ret,
+                                                    }
+                                                }
+                                                _ => return ret,
+                                            }
+                                        }
+                                        _ => return ret,
+                                    }
+                                }
+                                _ => return ret,
+                            }
+                        }
+                        _ => return ret,
+                    }
+                }
+                _ => return ret,
+            }
+        }
+        _ => return ret,
+    }
+}
+
+fn main() {
+    unsafe {
+        b();
+    }
+}

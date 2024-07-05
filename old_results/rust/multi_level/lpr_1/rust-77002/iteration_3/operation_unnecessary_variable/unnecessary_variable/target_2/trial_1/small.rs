@@ -1,0 +1,1 @@
+fn main() {\n    const p: [[i64; 4]; 4] = [[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 2, 2, 2]];\n    let mut l = [0, 1, 0, 0];\n    {\n        let b = &l;\n        let mut result = [0; 4];\n        result[0] = 1;\n        l = result;\n    }\n    println!("{:?}", l);\n}

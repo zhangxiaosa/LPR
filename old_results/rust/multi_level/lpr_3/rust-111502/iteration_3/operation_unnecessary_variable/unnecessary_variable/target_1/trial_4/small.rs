@@ -1,0 +1,16 @@
+fn c() -> bool {
+    let a_2 = 0.0;
+    let a_3 = false;
+    unsafe { f((core::ptr::null_mut(), true, a_2, a_3), true) }
+}
+
+unsafe fn f(a: (*mut f32, bool, f64, bool), b: bool) -> bool {
+    let i = core::ptr::addr_of!(a.3) as *mut bool;
+    *i = b;
+    a;
+    a.3
+}
+
+fn main() {
+    println!("{}", c());
+}

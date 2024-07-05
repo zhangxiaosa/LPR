@@ -1,0 +1,1 @@
+fn main() {\n    fn f(l: &[i64]) -> [i64; 4] {\n        let mut l_inner = [0, 0, 0, 0];\n        l_inner[0] = l[0];\n        l_inner\n    }\n\n    let mut l = [1, 0, 0, 0];\n    l = f(&l);\n    println!("{:?}", l);\n}

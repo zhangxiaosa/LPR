@@ -1,0 +1,1 @@
+use std::result;\n\nimpl a {\n    fn b() -> result::Result<(), ()> {\n        Err(())\n    }\n}

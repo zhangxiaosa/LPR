@@ -1,0 +1,21 @@
+fn main() {
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+    let x: i16;
+}

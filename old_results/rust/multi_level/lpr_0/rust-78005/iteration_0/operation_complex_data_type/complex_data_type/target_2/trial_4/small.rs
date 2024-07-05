@@ -1,0 +1,20 @@
+fn main() {
+	let x_i64: i64;
+	let x_isize: isize;
+	let x_isize_1: isize;
+	let x_isize_2: isize;
+	let x_isize_3: isize;
+	let x_isize_4: isize;
+	let x_isize_5: isize;
+	let x_isize_6: isize;
+	let x_isize_7: isize;
+	let x_isize_8: isize;
+	let x_isize_9: isize;
+	let x_isize_10: isize;
+	let x_isize_11: isize;
+	let x_isize_12: isize;
+	let x_isize_13: isize;
+	let x_isize_14: isize;
+	let x_isize_15: isize;
+	let x_isize_16: isize;
+}

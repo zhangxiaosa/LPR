@@ -1,0 +1,19 @@
+use std::collections::VecDeque;
+
+struct a {
+    c: VecDeque<u8>,
+}
+
+fn main() {
+    let mut k = a {
+        c: {
+            let mut temp = VecDeque::with_capacity(18);
+            k.c.push_front(0);
+            temp
+        },
+    };
+
+    k.c.reserve(20);
+    print!("\n");
+    k.c.extend(&[0xAA]);
+}

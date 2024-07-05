@@ -1,0 +1,22 @@
+fn main() {
+
+    let x1: i16 = 0;
+    let x2: i16 = 0;
+    let x3: i16 = 0;
+    let x4: i16 = 0;
+    let x5: i16 = 0;
+    let x6: i16 = 0;
+    let x7: i16 = 0;
+    let x8: i16 = 0;
+    let x9: i16 = 0;
+    let x10: i16 = 0;
+    let x11: i16 = 0;
+    let x12: i16 = 0;
+    let x13: i16 = 0;
+    let x14: i16 = 0;
+    let x15: i16 = 0;
+    let x16: i16 = 0;
+    let x17: i16 = 0;
+    let x18: i16 = 0;
+    let x19: i16 = 0;
+}
