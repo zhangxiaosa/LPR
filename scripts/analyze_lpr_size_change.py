@@ -3,11 +3,13 @@ import sys
 import csv
 import utils
 import shutil
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import multiprocessing
 
 
 def extract_transformations(case_path):
     """
-    extract transformations used on a benchmark 
+    extract transformations used on a benchmark
     """
     transformations = set()
     for root, dirs, files in os.walk(case_path):
@@ -86,6 +88,24 @@ def compute_size_changes_of_transformation_with_perses(case_path, transformation
     return total_diff
 
 
+def process_target(target, case_path, all_transformations):
+    row_without_perses = [target]
+    row_with_perses = [target]
+
+    if not os.path.exists(case_path):
+        row_without_perses.extend([None] * len(all_transformations))
+        row_with_perses.extend([None] * len(all_transformations))
+        return row_without_perses, row_with_perses
+
+    for transformation in sorted(all_transformations):
+        diff_without_perses = compute_size_changes_of_transformation_without_perses(case_path, transformation)
+        diff_with_perses = compute_size_changes_of_transformation_with_perses(case_path, transformation)
+        row_without_perses.append(diff_without_perses)
+        row_with_perses.append(diff_with_perses)
+
+    return row_without_perses, row_with_perses
+
+
 def main():
     """
     analyze the size changes after each transformation, with or without the followup Perses execution
@@ -94,48 +114,43 @@ def main():
     benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
     utils.init_language(RESULT_PATH)
 
-    with open(os.path.join(RESULT_PATH, 'size_change_without_perses.csv'), 'w', newline='') as csvfile_without_perses, \
-            open(os.path.join(RESULT_PATH, 'size_change_with_perses.csv'), 'w', newline='') as csvfile_with_perses:
-        csv_writer_without_perses = csv.writer(csvfile_without_perses)
-        csv_writer_with_perses = csv.writer(csvfile_with_perses)
+    all_transformations = set()
+    for target in benchmark_suite:
+        case_path = os.path.join(RESULT_PATH, target)
+        transformations = extract_transformations(case_path)
+        all_transformations.update(transformations)
 
-        # First pass to extract and add transformations to header
-        all_transformations = set()
-        for target in benchmark_suite:
-            case_path = os.path.join(RESULT_PATH, target)
-            transformations = extract_transformations(case_path)
-            all_transformations.update(transformations)
+    header = ["target"] + sorted(all_transformations)
+    print(header)
 
-        header = ["target"] + sorted(all_transformations)
-        csv_writer_without_perses.writerow(header)
-        csv_writer_with_perses.writerow(header)
-        print(header)
+    # Set the maximum number of threads based on the number of CPU cores
+    max_threads = multiprocessing.cpu_count()
 
-        # Second pass to process each target
-        for target in benchmark_suite:
-            row_without_perses = [target]
-            row_with_perses = [target]
-            case_path = os.path.join(RESULT_PATH, target)
+    with ThreadPoolExecutor(max_workers=max_threads) as executor:
+        future_to_target = {
+            executor.submit(process_target, target, os.path.join(RESULT_PATH, target), all_transformations): target for
+            target in benchmark_suite}
 
-            if not os.path.exists(case_path):
-                row_without_perses.extend([None] * len(all_transformations))
-                row_with_perses.extend([None] * len(all_transformations))
-                csv_writer_without_perses.writerow(row_without_perses)
-                csv_writer_with_perses.writerow(row_without_perses)
-                print(f"{target}: not available")
-                continue
+        for future in as_completed(future_to_target):
+            target = future_to_target[future]
+            try:
+                row_without_perses, row_with_perses = future.result()
+                without_perses_csv = os.path.join(RESULT_PATH, f'{target}_size_change_without_perses.csv')
+                with_perses_csv = os.path.join(RESULT_PATH, f'{target}_size_change_with_perses.csv')
 
-            for transformation in sorted(all_transformations):
-                diff_without_perses = compute_size_changes_of_transformation_without_perses(case_path, transformation)
-                diff_with_perses = compute_size_changes_of_transformation_with_perses(case_path, transformation)
-                row_without_perses.append(diff_without_perses)
-                row_with_perses.append(diff_with_perses)
+                with open(without_perses_csv, 'w', newline='') as csvfile_without_perses:
+                    csv_writer_without_perses = csv.writer(csvfile_without_perses)
+                    csv_writer_without_perses.writerow(header)
+                    csv_writer_without_perses.writerow(row_without_perses)
 
-            csv_writer_without_perses.writerow(row_without_perses)
-            csv_writer_with_perses.writerow(row_with_perses)
+                with open(with_perses_csv, 'w', newline='') as csvfile_with_perses:
+                    csv_writer_with_perses = csv.writer(csvfile_with_perses)
+                    csv_writer_with_perses.writerow(header)
+                    csv_writer_with_perses.writerow(row_with_perses)
 
-            print(f"without Perses: {row_without_perses}")
-            print(f"with Perses: {row_with_perses}")
+                print(f"Processed {target}")
+            except Exception as e:
+                print(f"Exception for {target}: {e}")
 
 
 if __name__ == "__main__":
