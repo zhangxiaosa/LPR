@@ -31,8 +31,8 @@ def process_target_csv(result_path, target):
 
     for operation in operations_oldname:
         if operation in without_perses_df.columns and operation in with_perses_df.columns:
-            size_changes_before[operations_name_map[operation]] = without_perses_csv[operation].tolist()
-            size_changes_after[operations_name_map[operation]] = with_perses_csv[operation].tolist()
+            size_changes_before[operations_name_map[operation]] = without_perses_df[operation].tolist()
+            size_changes_after[operations_name_map[operation]] = with_perses_df[operation].tolist()
 
     return size_changes_before, size_changes_after
 
