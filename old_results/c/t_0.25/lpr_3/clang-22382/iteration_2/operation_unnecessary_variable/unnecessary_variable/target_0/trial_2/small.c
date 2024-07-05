@@ -1,0 +1,20 @@
+struct h {
+  int i;
+  long j;
+  int k;
+};
+unsigned l;
+static struct h fn1(unsigned p1, short p2, struct h p5) {
+  // Removed unused variable p5_k
+w:
+  goto w;
+}
+int fn2() {
+  struct h p;
+  fn1(0, l, p);
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+int main() {}

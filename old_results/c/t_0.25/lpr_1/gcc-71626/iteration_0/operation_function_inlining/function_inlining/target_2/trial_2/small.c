@@ -1,0 +1,8 @@
+typedef long a;
+main() {
+  a c = fn1;
+  typedef a d __attribute__((__vector_size__(sizeof(a))));
+  d f = {c};
+  // Original return statement of fn2()
+  // return f;
+}

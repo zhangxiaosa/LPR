@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned int g;\nint h0 = 2453191021;\nint h1 = 2453191021;\nint h2 = 2453191021;\nstatic unsigned int i = 215;\n\nunsigned int fn2() {\n  for (;;) {\n    unsigned int q = 195;\n    int r[5][9][5];\n    if (h2)\n      return q;\n    g = r[i][i][i];\n  }\n}\n\nint main() {\n  fn2();\n  return 0;\n}

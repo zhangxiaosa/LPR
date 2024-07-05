@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint fn1(unsigned p1, int p2) {\n  return p2;\n}\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nint main() {\n  struct m ad = {1957};\n  unsigned v;\n  int af;\n  signed ae;\n  int r;\n  signed s = -5L;\n  unsigned t;\n  int u;\n\n  ad.o = fn1(v, 5);\n  ae = ad.o;\n  ad.o = u;\n  r = af % (~s / ae);\n\n  printf("ad.o: %d\n", ad.o);\n\n  return 0;\n}

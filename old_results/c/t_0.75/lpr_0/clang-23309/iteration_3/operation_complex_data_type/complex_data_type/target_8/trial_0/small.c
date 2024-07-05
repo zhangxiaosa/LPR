@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nshort v;\n\nshort fn11(short p1, short p2) {\n  int an = 250;\n\n  short ao = 0xBCD1;\n  if (ao - p1 - p2 & 1)\n    v = 1;\n\n  return 1;\n}\n\nint main() {\n  short ag = 248;\n  fn11(1, ag);\n  printf("checksum = %hx\n", v);\n  return 0;\n}

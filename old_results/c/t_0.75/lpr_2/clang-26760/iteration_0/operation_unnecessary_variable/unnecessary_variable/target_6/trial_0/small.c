@@ -1,0 +1,1 @@
+typedef unsigned d;\ntypedef signed a;\ntypedef short b;\ntypedef int c;\ntypedef unsigned e;\nd f;\na g;\nb fn1() {\n  a i;\n  c j = 0x24F96B7BL;\n  e k;\n  for (f = 0;)\n    for (; j; --j)\n      ;\n  c l = 1L;\n  c m = j;\n  c o = g;\n  e p = o;\nq:;\n  k = k >> l;\n  i = p;\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n}\nint main() {}

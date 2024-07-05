@@ -1,0 +1,15 @@
+int k;
+unsigned l;
+volatile unsigned m22;
+unsigned fn3() {
+  int o;
+  for (;;) {
+    while (l) {
+      for (k = 0; k >= -27; k = k - 6)
+        o = o - o;
+      l--;
+    }
+    m22;
+  }
+}
+int main() {}

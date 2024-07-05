@@ -1,0 +1,15 @@
+int f;
+
+int fn1() {
+  int h = 6L;
+  if (f)
+    goto i;
+  fn1();
+  return 0xEEACFBBF;
+i:
+  f = h;
+  fn1();
+  return 0xEEACFBBF;
+}
+
+int main() {}

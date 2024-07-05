@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned fn1(unsigned p2) {\n    return p2;\n}\n\nint main() {\n    int ad_n = 1957;\n    int ad_o;\n    int ae;\n    int r;\n    signed s = -5L;\n    unsigned t;\n    int u;\n\n    ad_o = fn1(5);\n    ae = ad_o;\n    ad_o = u;\n    r = t % (~s / ae);\n    ad_o;\n\n    return 0;\n}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  unsigned int k;\n  k = k >> 1;\n  if (k)\n    k = k << 0x24F96B7B;\n}

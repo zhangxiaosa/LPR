@@ -1,0 +1,1 @@
+struct hjson {\n  int i;\n  long j;\n  unsigned k;\n};\nunsigned l;\nstatic struct hjson fn1(unsigned p1, short p2, unsigned p3, unsigned p4,\n                        struct hjson p5) {\n  p5.k;\nw:\n  goto w;\n}\nunsigned fn2(p1) {\n  struct hjson p;\n  int q;\n  fn1(q, l, p1, 3, p);\n  struct hjson r1;\n  for (;;)\n    p = r1 = p;\n}\nint main() {}\n

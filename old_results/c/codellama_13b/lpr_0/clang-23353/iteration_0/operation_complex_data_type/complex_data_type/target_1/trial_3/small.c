@@ -1,0 +1,4 @@
+
+struct g {
+  int h;
+};

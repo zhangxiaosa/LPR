@@ -1,0 +1,1 @@
+#include<iostream> \nusing namespace std;\nunsigned j[5][5];\nunsigned k = 0xAF7C65D6L;\nstatic unsigned l;\nunsigned m[9][2][3];\nint n;\nunsigned fn3() {\n  j[g][g] = 0;\n  return n;\n}\nint main() {\n  fn3();\n  cout << j[g][g] << endl;\n  return 0;\n}\n

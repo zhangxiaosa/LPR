@@ -1,0 +1,39 @@
+#include <stddef.h>
+
+typedef signed a;
+typedef short b;
+typedef int c;
+typedef unsigned d;
+typedef short e;
+typedef unsigned f;
+
+a fn1(a p1, a p2) { return p2 == 0 ? p1 : p1 % p2; }
+
+b fn2(b p1, int p2) { return p1; }
+
+c fn4(a p1, d p2, f p3) {
+  if (fn1(p1, p1))
+    ;
+  return p2;
+}
+
+e fn6() {
+  b u = 0L;
+  for (n = n && 3 && n > 2147483647 - 3 || n < 0 && 3 < 0 && n ? n : n + 3; n < 12; n = n && 3 && n > 2147483647 - 3 || n < 0 && 3 < 0 && n ? n : n + 3) {
+    c ab;
+    if (0x4F92L < fn2(p | (ab = fn1(o, o)), 6))
+      ;
+    else {
+      a ac = 0xE3L;
+      if (o <= ac)
+        ;
+      else if (ab)
+        break;
+    }
+  }
+  return m;
+}
+
+int main() {
+  fn6();
+}

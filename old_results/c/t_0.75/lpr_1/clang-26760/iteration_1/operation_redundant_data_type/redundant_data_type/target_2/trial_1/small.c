@@ -1,0 +1,17 @@
+signed int g;
+
+short fn1() {
+  int j = 0x24F96B7BL;
+  unsigned int k;
+  if (j)
+    --j;
+  int m = j;
+q:
+  k = k >> 1L;
+  if (g) {
+    k = k << m;
+    goto q;
+  }
+}
+
+int main() {}

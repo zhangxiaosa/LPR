@@ -1,0 +1,17 @@
+unsigned
+i
+;
+int
+main
+(
+)
+{
+if
+(
+fn3
+(
+1
+)
+)
+;
+}

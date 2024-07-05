@@ -1,0 +1,16 @@
+long v;
+short w;
+short ac = 1;
+int main() {
+  long am = 1;
+  int an;
+  for (w = 3; w; w -= 1)
+    if (an = 250UL) {
+      unsigned p2 = ac || (an = w);
+      short ao = 0xBCD1L;
+      if (fn3(ao, fn4(am - an, 0xECL)) - ac & 1UL)
+        v = 1UL;
+    }
+  printf("checksum = %lX\n", v);
+  return 0;
+}

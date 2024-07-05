@@ -1,0 +1,1 @@
+int fn2(int p1, int p2) {\n  return p1 - p2;\n}\n\nunsigned i;\n\nunsigned fn3(p1) {\n  short m = 0x809C;\n  unsigned o1 = 0xE576516E;\n  \n  if (i)\n    printf("l_1179=%lld\n", (long long)l);\n  \n  p1 = fn2(0x60781BCD >= m ^ 4294967287UL, o1);\n  \n  if (i)\n    printf("l_1179=%lld\n", (long long)l);\n  \n  return p1;\n}\n\nint main() {\n  fn3(1);\n}

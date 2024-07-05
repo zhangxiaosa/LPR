@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nunsigned l;\n\nstatic struct h fn1() {\n  while (1) {\n    // Loop body\n  }\n}\n\nint fn2() {\n  struct h p;\n  int q;\n  fn1();\n  fn1();\n  fn1();\n  fn1();\n  // Repeat the loop body multiple times\n\n  return 0;\n}\n\nint main() {\n  fn2();\n  return 0;\n}

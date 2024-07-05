@@ -1,0 +1,49 @@
+int k;
+unsigned l;
+volatile unsigned m_2_5;
+unsigned fn3(p1) {
+  signed o;
+  for (;;) {
+    for (; l; l++) {
+      // Unrolled loop iteration 1
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+
+      // Unrolled loop iteration 2
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+
+      // Unrolled loop iteration 3
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+
+      // Unrolled loop iteration 4
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+
+      // Unrolled loop iteration 5
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+      p1 = o - p1;
+
+      l++;
+    }
+    p1 || m_2_5;
+  }
+}
+
+int main() {}

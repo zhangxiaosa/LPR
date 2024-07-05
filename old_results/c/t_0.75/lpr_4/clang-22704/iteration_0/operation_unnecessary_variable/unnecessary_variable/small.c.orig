@@ -1,0 +1,18 @@
+struct {
+  int d;
+  int e;
+} f;
+char fn1() {
+  int h = 6;
+  if (f.e)
+    goto i;
+  fn1();
+  char j;
+  return j;
+i:
+  f.d = h;
+  fn1();
+  j = 537164773;
+  return j;
+}
+int main() {}

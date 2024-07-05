@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+unsigned fn2() {
+  struct h p;
+  for (;;) {
+    p.k;
+w:
+    goto w;
+  }
+}
+
+int main() {}

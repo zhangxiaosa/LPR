@@ -1,0 +1,63 @@
+typedef int c;
+typedef unsigned d;
+typedef unsigned f;
+static short g = 0x7EBAL;
+d h = 0xCAL;
+int j_0_0;
+int j_0_1;
+int j_0_2;
+int j_0_3;
+int j_0_4;
+int j_1_0;
+int j_1_1;
+int j_1_2;
+int j_1_3;
+int j_1_4;
+int j_2_0;
+int j_2_1;
+int j_2_2;
+int j_2_3;
+int j_2_4;
+int j_3_0;
+int j_3_1;
+int j_3_2;
+int j_3_3;
+int j_3_4;
+int j_4_0;
+int j_4_1;
+int j_4_2;
+int j_4_3;
+int j_4_4;
+f k = 0xAF7C65D6L;
+static d l;
+unsigned m[9][2][3];
+c n;
+d fn1(signed, short, c, signed);
+signed fn2(c);
+f fn3() {
+  fn1(fn2(0), 7, 7, 0);
+  return n;
+}
+d fn1(signed p1, short p2, c p3, signed p4) {
+  p1 || (m[1][0][1] = p1);
+  return 2;
+}
+signed fn2(p1) {
+  f v[6][3][2];
+  c w = 0x709BFC8AL;
+  for (;;) {
+    if (k)
+      break;
+    return v[g][l + 1][l];
+  }
+  if (h)
+    ;
+  else
+    return j[g][g];
+  if (h)
+    ;
+  else
+    return g;
+  return w;
+}
+int main() { fn3(); }

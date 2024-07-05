@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint t;\nint v;\nshort w;\nshort ac = 1;\nshort fn4(short p1, short p2) { return p1; }\n\nint main() {\n  int an;\n  for (w = 3; w; w -= 1) {\n    an = 250;\n    t = ac || (an = w) == 0x294A85636008822D;\n    if ((0xBCD1 - fn4(1 - an, 0xEC)) - t & 1)\n      v = 1;\n  }\n  int p = v;\n  printf("checksum = %d\n", p);\n  return 0;\n}

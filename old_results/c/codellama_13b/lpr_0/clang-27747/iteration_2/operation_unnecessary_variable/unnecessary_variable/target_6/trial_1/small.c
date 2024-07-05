@@ -1,0 +1,14 @@
+
+struct c {
+  int d : 18;
+  int e;
+};
+
+struct c i, j;
+
+int main() {
+  struct c l = {24, 6738};
+  l.d = j.e;
+  int n = 0;
+  i.d = l.d | -(l.d && l.d) - n;
+}

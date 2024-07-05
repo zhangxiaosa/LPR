@@ -1,0 +1,11 @@
+int k;
+unsigned l = 1;
+volatile unsigned m_25;
+signed o;
+void fn3() {
+  for (; l; l++)
+    for (k = 0; k >= -27; k = k - 6)
+      ;
+  m_25;
+}
+int main() {}

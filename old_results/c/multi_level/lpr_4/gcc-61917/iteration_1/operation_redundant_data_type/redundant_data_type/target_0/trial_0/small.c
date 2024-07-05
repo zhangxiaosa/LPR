@@ -1,0 +1,1 @@
+volatile unsigned m[5][8];\nint fn3(p1) {\n  int o;\n  for (;;) {\n    int unroll_count = 4;\n    for (; unroll_count; unroll_count--)\n      for (int = 0; int >= -27; int = int - 6)\n        p1 = o - p1;\n    p1 || m[2][5];\n  }\n}\nint main() {}\n

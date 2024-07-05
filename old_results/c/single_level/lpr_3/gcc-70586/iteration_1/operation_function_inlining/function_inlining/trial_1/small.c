@@ -1,0 +1,1 @@
+typedef unsigned d;\nd fn2(d p1, d p2) { return p1 - p2; }\nunsigned i;\nd fn3(d p1) {\n  d m = 0x809C;\n  d n;\n  for (n = 0; n <= 49; n = n + 8) {\n    d o = 0xE576516E;\n    if (i)\n      printf("l_1179=%lld\n", (long long)0);\n    p1 = (0x60781BCD >= m ^ 4294967287UL) - o;\n  }\n  return p1;\n}\nint main() {\n  if (fn3(1))\n    ;\n}

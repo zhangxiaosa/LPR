@@ -1,0 +1,13 @@
+char multiplyChars(char char1, char char2) {
+  return char1 * char2;
+}
+
+int i;
+unsigned j_h;
+
+int main() {
+  char p3;
+  for (p3 = 6; p3 != -7; p3--)
+    j_h ^= multiplyChars(p3, i) && 1L;
+  return 0;
+}

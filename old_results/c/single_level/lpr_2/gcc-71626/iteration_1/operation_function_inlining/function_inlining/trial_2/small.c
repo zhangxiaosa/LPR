@@ -1,0 +1,1 @@
+#include <iostream>\n\ntypedef long d __attribute__((__vector_size__(sizeof(long))));\n\nvoid fn1() {}\n\nint main() {\n    d f = {fn1};\n    return 0;\n}

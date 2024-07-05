@@ -1,0 +1,1 @@
+short fn4(short p1) {\n  return p1;\n}\n\nshort p;\nshort t;\nshort w;\nint ac = 1;\n\nint main() {\n  for (w = 3; w; w -= 1) {\n    t = ac || (fn4(1L - 250UL) == 0x294A85636008822D);\n    short ao = 0xBCD1L;\n    if ((ao - fn4(1L - 250UL)) - t & 1)\n      p = 1UL;\n  }\n  printf("checksum = %hd\n", p);\n  return 0;\n}

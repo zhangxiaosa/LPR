@@ -1,0 +1,18 @@
+
+struct m {
+  int n : 18;
+  int o : 1;
+};
+
+int r;
+static int s = -5;
+unsigned t;
+int u;
+unsigned v;
+
+int main() {
+  struct m ad = {1957};
+  ad.o = u;
+  r = t % (5 / u);
+  ad.o = u;
+}

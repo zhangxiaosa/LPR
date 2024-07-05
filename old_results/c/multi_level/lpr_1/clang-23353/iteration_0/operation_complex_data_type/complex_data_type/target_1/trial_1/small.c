@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nchar fn1(char p1, char p2) {\n  char result = p1 * p2;\n  return result;\n}\n\nstruct g {\n  signed int h;\n};\n\nint i;\nstruct g j;\n\nint *fn2(unsigned int p1, int *p2, unsigned int p3) {\n  for (p3 = 6; p3 != -7; p3--) {\n    j.h ^= fn1(p3, i) && 1L;\n  }\n  return p2;\n}\n\nint main() {\n  int result = 0;\n  return result;\n}

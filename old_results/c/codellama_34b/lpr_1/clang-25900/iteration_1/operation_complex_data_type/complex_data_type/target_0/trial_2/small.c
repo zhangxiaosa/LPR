@@ -1,0 +1,31 @@
+
+#include <stdio.h>
+
+typedef unsigned uint;
+
+uint fn1(uint p1, int p2) {
+    return p2;
+}
+
+struct m {
+    int n;
+    int o;
+};
+
+int r;
+static int s = -5;
+int u;
+
+int fn4() {
+    struct m ad = {1957, 0};
+    ad.o = fn1(0, 5);
+    int ae = ad.o;
+    ad.o = u;
+    r = (u % (~s / ae));
+    ad.o;
+}
+
+int main() {
+    fn4();
+    return 0;
+}

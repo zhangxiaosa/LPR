@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint i;\nint h;\n\nvoid *fn2(unsigned p1, int *p2, char p3) {\n    for (p3 = 6; p3 != -7; p3--)\n        h ^= p3 * i && 1;\n    return p2;\n}\n\nint main() {\n    return 0;\n}

@@ -1,0 +1,13 @@
+typedef long int a;
+
+void fn1() {}
+
+typedef a d __attribute__((__vector_size__(sizeof(a))));
+
+d fn2() {
+  a c = (a)fn1;
+  d f = {(d)c};
+  return f;
+}
+
+int main() {}

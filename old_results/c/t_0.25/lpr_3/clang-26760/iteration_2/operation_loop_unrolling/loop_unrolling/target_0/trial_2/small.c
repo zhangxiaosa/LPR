@@ -1,0 +1,18 @@
+int f;
+int g;
+int main() {
+  int i;
+  int j = 0x24F96B7B;
+  unsigned k;
+  
+  int l = 1;
+  int m = j * 4;
+  unsigned p = g;
+q:
+  k = k >> l;
+  i = p;
+  if (i) {
+    k = k << m;
+    goto q;
+  }
+}

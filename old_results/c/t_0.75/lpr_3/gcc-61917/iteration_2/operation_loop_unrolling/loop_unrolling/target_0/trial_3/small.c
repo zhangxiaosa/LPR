@@ -1,0 +1,19 @@
+int k;
+unsigned l;
+volatile unsigned m22;
+unsigned fn3(p1) {
+  int o;
+  while (1) {
+    while (l) {
+      for (k = 0; k >= -24; k = k - 24) {
+        p1 = o - p1;
+        p1 = o - p1;
+        p1 = o - p1;
+        p1 = o - p1;
+      }
+      l--;
+    }
+    p1 || m22;
+  }
+}
+int main() {}

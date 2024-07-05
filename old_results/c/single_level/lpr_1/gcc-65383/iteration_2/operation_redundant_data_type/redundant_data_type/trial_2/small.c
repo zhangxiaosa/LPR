@@ -1,0 +1,17 @@
+int e;
+unsigned g;
+int h2 = 0x92A1D2CD;
+static unsigned i = 0x06D7;
+
+signed fn1(unsigned n, unsigned o, signed p) {
+  for (;;) {
+    int r[5][9][5];
+    if (h2)
+      return 0xC3;
+    g = r[i][i][i];
+  }
+}
+
+signed main() {
+  fn1(e, e, e);
+}

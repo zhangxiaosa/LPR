@@ -1,0 +1,22 @@
+
+int i;
+int j;
+int p1;
+
+int fn1(int p1, int p2) {
+  return p1 * p2;
+}
+
+int fn2(int *p2, int p3) {
+  for (p3 = 6; p3 != -7; p3--)
+    j ^= fn1(p3, i) && 1L;
+  return p2;
+}
+
+int main() {
+  i = 0;
+  j = 0;
+  p1 = 0;
+  fn2(&p1, i);
+  return 0;
+}

@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned g;\nstatic unsigned i = 0x06D7L;\n\nunsigned fn2() {\n  for (;;) {\n    int r_flat[225];\n\n    return 0x92A1D2CDL;\n\n    g = r_flat[0x06D7L];\n  }\n}\n\nint main() { fn2(); }\n

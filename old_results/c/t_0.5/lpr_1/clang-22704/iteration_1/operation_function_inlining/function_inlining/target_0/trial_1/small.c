@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  int d;\n  int e;\n};\n\nstruct c f;\n\nchar fn1() {\n  if (f.e) {\n    f.d = 6L;\n    fn1();\n  }\n}\n\nint main() {\n  fn1();\n  return 0;\n}

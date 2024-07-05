@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct H {\n  short i;\n  long j;\n  unsigned k;\n};\n\nunsigned fn2() {\n  struct H p;\n  p.k;\nw:\n  goto w;\n}\n\nint main() {\n  fn2();\n  return 0;\n}

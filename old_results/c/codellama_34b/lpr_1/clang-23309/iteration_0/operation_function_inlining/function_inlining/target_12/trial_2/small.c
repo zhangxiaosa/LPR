@@ -1,0 +1,8 @@
+
+int main() {
+  int ap = 0;
+  fn13();
+  fn9(v, "g_170", ap);
+  fn1(p, ap);
+  return 0;
+}

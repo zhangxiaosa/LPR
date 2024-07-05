@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+unsigned h;
+
+void fn2(int p1) {
+  h = p1;
+}
+
+short o;
+
+int main() {
+  short q = o;
+  while (q > 1) {
+    q -= 1;
+  }
+
+  while (q > 1) {
+    q -= 1;
+  }
+
+  while (q > 1) {
+    q -= 1;
+  }
+
+  while (q > 1) {
+    q -= 1;
+  }
+
+  while (q > 1) {
+    q -= 1;
+  }
+
+  while (q > 1) {
+    q -= 1;
+  }
+
+  fn2(q);
+  printf("checksum = %X\n", h);
+  return 0;
+}

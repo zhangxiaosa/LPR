@@ -1,0 +1,1 @@
+#include <stdint.h>\n\ntypedef int32_t a;\ntypedef int32_t c;\n\nint main() {\n  c j = 0x24F96B7B;\n  c m = j;\n  c l = 1;\n  c o = j;\n  c p = o;\n  c i = p;\n  e k;\n\n  k = k >> l;\n  if (i) {\n    k = k << m;\n  }\n}

@@ -1,0 +1,1 @@
+typedef int b;\nchar fn1(char p1, char p2) { return p1 * p2; }\nsigned j_h;\nb i;\nint main() {\n  char p3;\n  for (p3 = 6; p3 != -7; p3--)\n    j_h ^= fn1(6, i) && 1L;\n  return 0;\n}

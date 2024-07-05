@@ -1,0 +1,21 @@
+#include <cstdlib>
+
+struct c {
+  int d;
+  int e;
+};
+
+struct c f;
+
+char fn1() {
+  if (f.e) {
+    f.d = 6L;
+    fn1();
+  } else {
+    f.d = 6L;
+    fn1();
+  }
+  return 0xEEACFBBFL;
+}
+
+int main() {}

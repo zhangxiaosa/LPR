@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint l_d;\nint l_e;\nint l_f;\nint l_g;\nint l_h;\n\nint i_d;\nint i_e;\nint i_f;\nint i_g;\nint i_h;\n\nint j_d;\nint j_e;\nint j_f;\nint j_g;\nint j_h;\n\nint main() {\n  int l_d = 24;\n  int l_e = 6738;\n  int l_f = 165;\n\n  l_d = j_e;\n\n  int n = j_h && l_d;\n  int o = l_d;\n  int p = o | -(l_f && l_d) - n;\n  i_g = p;\n\n  return 0;\n}

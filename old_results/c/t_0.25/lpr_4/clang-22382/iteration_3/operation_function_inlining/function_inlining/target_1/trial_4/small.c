@@ -1,0 +1,2 @@
+unsigned fn2() {
+}

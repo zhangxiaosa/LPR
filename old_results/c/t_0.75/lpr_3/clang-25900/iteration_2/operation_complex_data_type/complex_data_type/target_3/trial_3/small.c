@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned fn1(unsigned p1, int p2) {\n  return static_cast<unsigned>(p2);\n}\n\nunsigned q_l;\nint r;\nunsigned t;\nint u;\nunsigned v;\n\nint fn2(unsigned p3_l) {\n  int n = 1957;\n  int o = static_cast<int>(fn1(v, 5));\n  int ae = o;\n  o = u;\n  r = t % (5 / ae);\n}\n\nint main() {\n  fn2(q_l);\n}

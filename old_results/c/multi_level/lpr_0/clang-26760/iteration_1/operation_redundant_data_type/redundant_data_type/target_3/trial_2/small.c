@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef int a;\na g;\n\nint main() {\n  a i;\n  int j = 0x24F96B7B;\n  unsigned k;\n\n  for(unsigned f = 0; f;)\n    for(; j; --j)\n      ;\n\n  int l = 1L;\n  int m = j;\n  int n = g;\n\nq:\n  k = k >> l;\n  i = n;\n\n  if(i != 0) {\n    k = k << m;\n    goto q;\n  }\n}

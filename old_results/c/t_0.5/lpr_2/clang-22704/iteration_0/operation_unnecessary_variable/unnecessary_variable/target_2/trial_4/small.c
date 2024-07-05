@@ -1,0 +1,16 @@
+struct {
+  int d;
+  int e;
+} f;
+char fn1() {
+  if (f.e) {
+    f.d = 6L;
+    fn1();
+    char j = 0xEEACFBBFL;
+    return j;
+  } else {
+    fn1();
+    char j;
+    return j;
+  }
+}

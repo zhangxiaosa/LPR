@@ -1,0 +1,48 @@
+
+#include <stdio.h>
+
+// The original program
+char fn1(char p1, char p2) {
+  return p1 * p2;
+}
+
+struct g {
+  signed h;
+};
+
+int i;
+struct g j;
+
+int *fn2(int *p2, char p3) {
+  for (p3 = 6; p3 != -7; p3--)
+    j.h ^= fn1(p3, i) && 1L;
+  return p2;
+}
+
+int main() {
+  return 0;
+}
+
+// The modified program with the optimized `char` data type
+typedef unsigned char uchar;
+
+uchar fn1(uchar p1, uchar p2) {
+  return p1 * p2;
+}
+
+struct g {
+  unsigned h;
+};
+
+int i;
+struct g j;
+
+int *fn2(int *p2, uchar p3) {
+  for (p3 = 6; p3 != -7; p3--)
+    j.h ^= fn1(p3, i) && 1L;
+  return p2;
+}
+
+int main() {
+  return 0;
+}

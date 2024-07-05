@@ -1,0 +1,2 @@
+
+unsigned short h[3] = {0x92A1, 0x92A1, 0x92A1};

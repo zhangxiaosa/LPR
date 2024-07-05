@@ -1,0 +1,69 @@
+int fn2(int p1, int p2) { return p1; }
+
+short fn3(short p1, short p2) { return p1; }
+
+int fn4(int p1, int p2) { return p1 % p2; }
+
+unsigned fn5(unsigned p1, unsigned p2) { return p1; }
+
+int s = 0;
+unsigned u = 0;
+int v = 0;
+static unsigned w = 254U;
+
+int ad0_0 = 8;
+int ad0_1 = 0;
+int ad0_2 = 0;
+int ad0_3 = 0;
+int ad0_4 = 0;
+int ad0_5 = 0;
+int ad0_6 = 0;
+
+int ad1_0 = 8;
+int ad1_1 = 0;
+int ad1_2 = 0;
+int ad1_3 = 0;
+int ad1_4 = 0;
+int ad1_5 = 0;
+int ad1_6 = 0;
+
+int ad2_0 = 8;
+int ad2_1 = 0x98;
+int ad2_2 = 0;
+int ad2_3 = 0;
+int ad2_4 = 0;
+int ad2_5 = 0;
+int ad2_6 = 0;
+
+int af = 0;
+
+int ai[2];
+ai[0] = 8;
+ai[1] = 8;
+
+int i = 0;
+int j = 0;
+int k = 0;
+
+int fn9() {
+  for (i = 0; i < 2; i++)
+    ai[i] = 8;
+  for (w = 1;;) {
+    for (; i < 5; i++)
+      ;
+    for (af = 6; af >= 0; af -= 1)
+      v = ai[0] ^= ad[w + 1][w][af] =
+          fn4(fn3(1, fn5(255U, fn2(3U, u--))), 4294967295U);
+    return 0;
+  }
+}
+
+int main() {
+  fn9();
+  for (i = 0; i < 7; i++)
+    for (j = 0; j < 5; j++)
+      for (k = 0; k < 7; k++)
+        s = s ^ ad[i][j][k];
+  printf("checksum = %X\n", s);
+  return 0;
+}

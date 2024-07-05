@@ -1,0 +1,17 @@
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(struct h p) {
+  p.k;
+}
+
+unsigned fn2() {
+  struct h p;
+  p.k;
+}
+
+int main() {}

@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+unsigned p;
+long v;
+short w;
+unsigned ab;
+short ac = 1L;
+
+int main() {
+  unsigned an;
+  for (w = 3; w; w -= 1)
+    if (an = 250U) {
+      ab = ac || (an = w) == 0x294A85636008822DL;
+      short ao = 0xBCD1L;
+      if ((ao - an) - ab & 1U)
+        v = 1L;
+    }
+  p = v;
+  printf("checksum = %X\n", p);
+  return 0;
+}

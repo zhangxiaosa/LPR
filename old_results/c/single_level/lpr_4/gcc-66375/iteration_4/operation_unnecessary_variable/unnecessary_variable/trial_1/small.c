@@ -1,0 +1,29 @@
+void fn1(unsigned p1, int p2) {
+  printf("checksum = %X\n", p1);
+}
+
+char fn2(char p1, int p2) {
+  return p1;
+}
+
+short fn3(short p1, short p2) {
+  return p2;
+}
+
+unsigned p;
+unsigned u;
+unsigned v_3;
+
+int main() {
+  for (; u < 51; ++u) {
+    unsigned e[9];
+    e[0] = 0x9EE7F9D1C772505B;
+    v_3 = fn3(4L, 2L);
+    v_3 = fn2(v_3, 3);
+    v_3 = v_3 + e[0];
+  }
+
+  p = v_3;
+  fn1(p, 0);
+  return 0;
+}

@@ -1,0 +1,1 @@
+#include <iostream>\n\ntypedef signed a;\ntypedef short b;\ntypedef int c;\ntypedef unsigned d;\ntypedef unsigned e;\nd f;\na g;\n\nint main() {\n  c j = 0x24F96B7BL;\n\n  for (f = 0u; ; ) {\n    for (; j; --j)\n      ;\n  }\n\n  return 0;\n}

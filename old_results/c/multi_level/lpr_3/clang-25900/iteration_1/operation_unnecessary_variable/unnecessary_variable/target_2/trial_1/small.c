@@ -1,0 +1,12 @@
+unsigned fn1(unsigned p1, int p2) { return p2; }
+
+int r;
+static signed s = -5L;
+int t;
+int u;
+int main() {
+  struct m ad = {1957};
+  ad.o = fn1(5, 5);
+  ad.o = u;
+  r = t % (~s);
+}

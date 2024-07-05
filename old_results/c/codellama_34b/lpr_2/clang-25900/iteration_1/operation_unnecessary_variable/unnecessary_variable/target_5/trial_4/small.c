@@ -1,0 +1,19 @@
+
+#include <stdio.h>
+
+struct m {
+  int n : 18;
+  int o : 1;
+};
+
+int r;
+static int s = -5L;
+
+int fn4_inlined(p1) {
+  struct m ad = {1957};
+  ad.o = p1;
+  r = ad.o % (~s / ad.o);
+  return ad.o;
+}
+
+int main() { fn4_inlined(5); }

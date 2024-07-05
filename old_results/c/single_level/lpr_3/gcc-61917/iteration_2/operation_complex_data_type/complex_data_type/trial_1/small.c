@@ -1,0 +1,18 @@
+unsigned fn3(p1, k, l, m2_5) {
+  for (;;) {
+    for (; l; l++)
+      for (k = 0; k >= -27; k = k - 6)
+        p1 = 0x4F - p1;
+    p1 || m2_5;
+  }
+}
+
+int main() {
+  int k;
+  unsigned l;
+  volatile unsigned m2_5;
+
+  // Rest of the program
+
+  return 0;
+}

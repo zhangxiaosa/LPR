@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+typedef int c;
+typedef unsigned d;
+typedef unsigned e;
+typedef unsigned f;
+
+void fn1(p1) {
+    printf("checksum = %X\n", p1);
+}
+
+f j;
+
+void fn2(p1) {
+    j = p1;
+}
+
+struct p {
+    c ab;
+    signed q : 22;
+};
+
+struct r {
+    unsigned ab;
+    unsigned s;
+};
+
+struct r t;
+f u;
+struct p v[1];
+struct p w = {0x1C87E74FL, 816};
+
+d fn5(e p1, signed p2, d p3, f p4, f p5) {
+    struct p a = {8L, 666};
+
+    // Unrolled loop iterations
+    a = v[0] = w;
+    v[0] = a;
+    a = v[1] = w;
+    v[1] = a;
+    a = v[2] = w;
+    v[2] = a;
+    // Add more unrolled iterations if needed
+
+    return p3; // Return p3 or the desired return value
+}
+
+int main() {
+    int i;
+
+    fn5(t.ab, 3, 2, t.s, 9);
+
+    for (i = 0; i < 1; i++) {
+        fn2(v[i].q);
+    }
+
+    fn1(j);
+
+    return 0;
+}

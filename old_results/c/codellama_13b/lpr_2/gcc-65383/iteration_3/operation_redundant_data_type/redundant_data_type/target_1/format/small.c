@@ -1,0 +1,11 @@
+
+int g;
+int h2 = 0xA1D2CDL;
+int main() {
+  for (;;) {
+    unsigned int r[3][3];
+    if (h2)
+      return g;
+    g = r[0x06D7L][0x06D7L];
+  }
+}

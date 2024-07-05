@@ -1,0 +1,13 @@
+int g;
+int main() {
+  int j = 0x24F96B7AL;
+  unsigned k;
+  if (j)
+    --j;
+q:
+  k = k >> 1L;
+  if (g) {
+    k = k << j;
+    goto q;
+  }
+}

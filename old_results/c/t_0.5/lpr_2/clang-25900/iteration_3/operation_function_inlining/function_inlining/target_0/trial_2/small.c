@@ -1,0 +1,15 @@
+struct m {
+  signed n : 18;
+  signed o : 1;
+};
+unsigned r;
+static signed s = -5L;
+unsigned t;
+
+int main() {
+  struct m ad = {1957, 5};
+  signed ae;
+  ad.o = ad.o;
+  r = t % (~s / ad.o);
+  ad.o;
+}

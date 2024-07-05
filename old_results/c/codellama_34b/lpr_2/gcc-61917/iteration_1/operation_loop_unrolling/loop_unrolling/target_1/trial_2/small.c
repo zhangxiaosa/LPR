@@ -1,0 +1,25 @@
+
+#include <stdio.h>
+
+int k;
+unsigned l;
+volatile int m[5][8];
+
+int fn3(int p1) {
+    int o;
+    for (;;) {
+        for (; l; l++) {
+            p1 = o - p1;
+            p1 = o - p1;
+            p1 = o - p1;
+            p1 = o - p1;
+            p1 = o - p1;
+            p1 = o - p1;
+        }
+        p1 || m[2][5];
+    }
+}
+
+int main() {
+    return 0;
+}

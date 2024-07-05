@@ -1,0 +1,1 @@
+#include <stdint.h>\n\nint32_t f;\nint32_t g;\n\nint main() {\n  int32_t i;\n  int32_t j = 0x24F96B7B;\n  uint32_t k;\n\n  for (f = 0; ;) {\n    --j;\n  }\n\n  int32_t l = 1;\n  int32_t m = j;\n  int32_t n = g;\n  uint32_t p = n;\n\nq:\n  k = k >> l;\n  i = p;\n\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n\n  int32_t o = n;\n\n  // Rest of the code...\n\n  return 0;\n}

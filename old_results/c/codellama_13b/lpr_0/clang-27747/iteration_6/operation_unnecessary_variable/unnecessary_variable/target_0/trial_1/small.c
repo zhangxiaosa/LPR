@@ -1,0 +1,6 @@
+
+int main() {
+  struct c l;
+  l.d = i_d;
+  i_d = l.d;
+}

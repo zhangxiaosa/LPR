@@ -1,0 +1,61 @@
+
+int f;
+int fn1() {
+  unsigned j = 0x24F96B7BL;
+  for (f = 0; f;) {
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+    if (j) {
+      j--;
+    }
+  }
+  int m = j;
+q:;
+  j = j >> 1L;
+  j = j << m;
+  goto q;
+}
+int main() {}

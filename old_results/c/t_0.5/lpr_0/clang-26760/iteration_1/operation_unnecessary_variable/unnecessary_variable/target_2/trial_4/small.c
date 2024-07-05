@@ -1,0 +1,20 @@
+int g;
+int main() {
+  int i;
+  int j = 0x24F96B7B;
+  unsigned k;
+  for (unsigned f; f;)
+    for (; 0x24F96B7B; --0x24F96B7B)
+      ;
+  int m = 0x24F96B7B;
+  int n = g;
+  int o = n;
+  unsigned p = o;
+q:
+  k = k >> 1;
+  i = p;
+  if (i) {
+    k = k << m;
+    goto q;
+  }
+}

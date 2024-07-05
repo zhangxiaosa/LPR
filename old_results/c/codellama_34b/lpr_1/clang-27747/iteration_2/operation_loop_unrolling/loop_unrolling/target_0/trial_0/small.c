@@ -1,0 +1,22 @@
+
+struct c {
+  int d : 18;
+  int e;
+  int g;
+};
+struct c i;
+int main() {
+  struct c l;
+  l.d = i.e;
+  int n = i.d && l.d;
+  int p = l.d | -(l.d && l.d) - n;
+  i.g = p;
+}
+
+// Optimized loop
+for (int j = 0; j < 2; j++) {
+  l.d = i.e;
+  int n = i.d && l.d;
+  int p = l.d | -(l.d && l.d) - n;
+  i.g = p;
+}

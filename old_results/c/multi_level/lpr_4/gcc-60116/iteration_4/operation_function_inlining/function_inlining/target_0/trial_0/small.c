@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int v;
+unsigned w = 0xDC6F3D13L;
+long long ag[4];
+int ah;
+int aj;
+long ak;
+int al;
+int ao;
+int ap;
+
+int fn12() {
+  long au_0;
+  for (ak = 0;;) {
+    for (ah = 0; ah <= 3; ah += 1) {
+      au_0 = (~(aj) + 1) % 1 != 0 ? (~(aj) + 1) : (~(aj) + 1) % 1 > ak ? (~(aj) + 1) % 1 : ak;
+      if (w) {
+        v = 0x41AEA787L;
+        ag[3] = au_0;
+      } else
+        ao = au_0;
+    }
+    return al;
+  }
+}
+
+int main() {
+  fn12();
+  printf("checksum = %d\n", v);
+  return 0;
+}

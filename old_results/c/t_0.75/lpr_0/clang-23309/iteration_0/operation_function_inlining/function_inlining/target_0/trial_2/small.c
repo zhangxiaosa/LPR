@@ -1,0 +1,117 @@
+typedef short a;
+typedef int b;
+typedef long c;
+typedef unsigned char d;
+typedef short e;
+typedef unsigned f;
+typedef unsigned g;
+
+typedef struct {
+  f p1;
+  int p2;
+} Fn1Args;
+
+typedef struct {
+  b p1;
+  b p2;
+} Fn2Args;
+
+typedef struct {
+  c p1;
+  c p2;
+} Fn3Args;
+
+typedef struct {
+  d p1;
+  d p2;
+} Fn4Args;
+
+typedef struct {
+  f p1;
+  f p2;
+} Fn5Args;
+
+typedef struct {
+  f p1;
+  f p2;
+} Fn6Args;
+
+typedef struct {
+  g p1;
+  char *p2;
+  int p3;
+} Fn9Args;
+
+typedef struct {
+  g p1;
+  e p2;
+} Fn10Args;
+
+typedef struct {
+  d p1;
+  f p2;
+  b p3;
+  e p4;
+} Fn11Args;
+
+typedef struct {
+  b p1;
+  b p2;
+  d p3;
+  a p4;
+  g p5;
+} Fn12Args;
+
+int main() {
+  int ap = 0;
+  f p;
+  void fn7(p1) { p = p1; }
+  void fn8(p1) { fn7(p1); }
+  void fn9(g p1, char *p2, int p3) { fn8(p1); }
+  b t;
+  f u;
+  c v;
+  a w;
+  f ab;
+  a ac = 1L;
+  d fn10(g, e);
+  d fn11(d, f, b, e);
+  a fn12(b, b, d, a, g);
+  b fn13() {
+    e ae = 1UL;
+    b af = 0x2F2F6D26L;
+    d ag = 248UL;
+    c ai = 7L;
+    e aj = 1UL;
+    b al = 3L;
+    c am = 1L;
+    b an;
+    for (w = 3; w; w -= 1)
+      if (an = 250UL) {
+        p2 = fn5(ab, ac) || (an = w) == 0x294A85636008822DLL;
+        a ao = 0xBCD1L;
+        if (fn2(fn3(ao, fn4(fn6(am, an), 0xECL)), p2) & 1UL)
+          v = 1UL;
+      }
+    return al;
+  }
+
+  Fn13Args fn13Args;
+  fn13Args.ae = 1UL;
+  b fn13Result = fn13();
+  b fn13InlineResult = fn13Result;
+  b fn13InlineExpr1 = fn3(ao, fn4(fn6(am, an), 0xECL));
+  b fn13InlineExpr2 = fn2(fn13InlineExpr1, p2);
+  b fn13InlineExpr3 = fn13InlineExpr2 & 1UL;
+  v = 1UL;
+
+  Fn9Args fn9Args;
+  fn9Args.p1 = v;
+  fn9Args.p2 = "g_170";
+  fn9Args.p3 = ap;
+  fn9(fn9Args.p1, fn9Args.p2, fn9Args.p3);
+
+  printf("checksum = %X\n", p);
+
+  return 0;
+}

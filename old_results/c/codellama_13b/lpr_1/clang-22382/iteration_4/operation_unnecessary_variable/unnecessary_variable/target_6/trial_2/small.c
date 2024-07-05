@@ -1,0 +1,21 @@
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(struct h p4) {
+  while (1)
+    p4 = p4;
+}
+
+int fn2() {
+  fn1(fn1());
+  while (1)
+    ;
+}
+
+int main() {
+  // No optimizations made
+}

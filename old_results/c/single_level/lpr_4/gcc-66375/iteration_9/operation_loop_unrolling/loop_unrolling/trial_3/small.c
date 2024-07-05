@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned p;\nunsigned u;\n\nint main() {\n  int d = 2L;\n\n  p = d;\n  d = (char)p;\n  d = d + 0x9EE7F9D1C772505B;\n\n  p = d;\n  d = (char)p;\n  d = d + 0x9EE7F9D1C772505B;\n\n  // ... Repeat the above two statements 49 more times ...\n\n  printf("checksum = %X\n", p);\n  return 0;\n}

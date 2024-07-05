@@ -1,0 +1,36 @@
+
+typedef unsigned d;
+typedef short e;
+typedef unsigned g;
+long fn3(long p1, long p2) { return p1 - p2; }
+unsigned fn5(unsigned p1, unsigned p2) { return p2; }
+unsigned fn6(unsigned p1, unsigned p2) { return p2 - p1; }
+unsigned p;
+unsigned v;
+short w = 3;
+short ac = 1L;
+d fn10(g, e);
+short fn12(int, int, d, short);
+int fn13() {
+  fn10(248, 248);
+  return 2;
+}
+d fn10(g p1, short p2) {
+  short an = 1;
+  fn12(7, 7, p1, 0);
+  return an;
+}
+int main() {
+  fn13();
+  p = v;
+  printf("checksum = %X\n", p);
+  return 0;
+}
+short fn12(int p1, int p2, d p3, short p4) {
+  while (w) {
+    if (fn3(48873, fn6(1, 250)) - p2 & 1)
+      v = 1;
+    w--;
+  }
+  return 0;
+}

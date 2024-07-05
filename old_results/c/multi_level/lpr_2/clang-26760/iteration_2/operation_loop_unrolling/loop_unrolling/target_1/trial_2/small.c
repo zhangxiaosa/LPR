@@ -1,0 +1,1 @@
+int g;\nint main() {\n  int j = 0x24F96B7BL;\n  unsigned k;\n  if (j) {\n    --j;\n    unsigned shift = 1 << j;\n    k = k >> 1;\n    k = k << shift;\n  }\n}

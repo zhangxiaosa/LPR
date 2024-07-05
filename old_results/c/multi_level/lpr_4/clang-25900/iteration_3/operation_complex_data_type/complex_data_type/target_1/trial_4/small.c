@@ -1,0 +1,13 @@
+int r;
+static char s = -5L;
+int ae;
+int p1 = 5;
+int p2 = 5;
+int p2_n = 1957;
+int p2_o;
+p2_o = fn1(p1, p2);
+ae = p2_o;
+p2_o = 0;
+int temp_var = ~s / ae;
+r = r % temp_var;
+p2_o;

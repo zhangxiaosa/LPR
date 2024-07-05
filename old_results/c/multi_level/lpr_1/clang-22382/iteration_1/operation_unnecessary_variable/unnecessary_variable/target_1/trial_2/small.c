@@ -1,0 +1,1 @@
+#include <iostream>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nstatic struct h fn1(struct h p5) {\n  // Optimized out: p5.k;\n  return p5;\n}\n\nunsigned fn2() {\n  struct h p;\n  fn1(p);\n  struct h r;\n  p = r = p;\n  return 0;\n}\n\nint main() {\n  return 0;\n}\n

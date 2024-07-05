@@ -1,0 +1,43 @@
+typedef short a;
+typedef int b;
+typedef long c;
+typedef unsigned char d;
+typedef short e;
+typedef unsigned f;
+typedef unsigned g;
+void fn1(f p1, int p2) { printf("checksum = %X\n", p1); }
+b fn2(b p1, b p2) { return p1 - p2; }
+c fn3(c p1, c p2) { return p1 - p2; }
+d fn4(d p1, d p2) { return p1; }
+f p;
+b t;
+f u;
+c v;
+a w;
+a ac = 1L;
+d fn10(g, e);
+b fn13() {
+  e ae = 1UL;
+  fn10(u, t);
+  return ae;
+}
+d fn10(g p1, e p2) {
+  b af = 0x2F2F6D26L;
+  c am = 1L;
+  b an;
+  for (w = 3; w; w -= 1)
+    if (an = 250UL) {
+      p2 = ac || (an = w) == 0x294A85636008822DLL;
+      a ao = 0xBCD1L;
+      if (fn2(fn3(ao, fn4(am - an, 0xECL)), p2) & 1UL)
+        v = 1UL;
+    }
+  return af;
+}
+int main() {
+  int ap = 0;
+  fn13();
+  p = v;
+  fn1(p, ap);
+  return 0;
+}

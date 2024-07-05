@@ -1,0 +1,19 @@
+c
+int f;
+int g;
+int fn1() {
+  int i;
+  unsigned j = 0x24F96B7BL;
+  unsigned k;
+  int l = 1L;
+  int m = j;
+  int n = g;
+q:;
+  k = k >> l;
+  i = n;
+  if (i) {
+    k = k << m;
+    goto q;
+  }
+}
+int main() {}

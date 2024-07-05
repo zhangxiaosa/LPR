@@ -1,0 +1,22 @@
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(struct h p5) {
+  // No changes to this function
+  int p5_i = p5.i;
+w:
+  goto w;
+}
+
+unsigned fn2() {
+  struct h p;
+  struct h r;
+  fn1(p);
+  for (;;)
+    p = p = p;
+}
+
+int main() {}

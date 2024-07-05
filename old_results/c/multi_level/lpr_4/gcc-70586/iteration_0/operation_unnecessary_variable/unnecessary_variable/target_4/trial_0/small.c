@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned fn3(void) {\n  unsigned o = 0xE576516E;\n  unsigned p1 = (0x60781BCD >= 0x809C ^ 4294967287UL) - o;\n  return p1;\n}\n\nint fn4(void) {\n  fn3();\n  return 0;\n}\n\nint main(void) {\n  fn4();\n  return 0;\n}\n

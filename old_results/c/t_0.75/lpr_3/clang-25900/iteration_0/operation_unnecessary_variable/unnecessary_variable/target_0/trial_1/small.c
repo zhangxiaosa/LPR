@@ -1,0 +1,33 @@
+#include <iostream>
+
+unsigned fn1(unsigned p1, int p2) {
+  return p2;
+}
+
+struct m {
+  int n : 18;
+  int o : 1;
+};
+
+int p;
+unsigned q_l;
+int r;
+static int s = -5L;
+unsigned t = 0;
+int u;
+unsigned v;
+
+int fn2(int p1, struct m p2, unsigned p3_l, unsigned p4_l, int p5) {
+  struct m ad = {1957};
+  ad.o = 5;
+  int af = 0;
+  int ae = ad.o;
+  ad.o = u;
+  r = af % (~(-5) / ae);
+  ad.o;
+}
+
+int main() {
+  struct m z;
+  fn2(p, z, q_l, q_l, q_l);
+}

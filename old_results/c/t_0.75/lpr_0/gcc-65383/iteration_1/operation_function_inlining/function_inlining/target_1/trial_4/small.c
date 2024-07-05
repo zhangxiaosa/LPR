@@ -1,0 +1,11 @@
+unsigned g;
+
+int main() {
+  unsigned g;
+  for (;;) {
+    int r[5][9][5];
+    if (0x92A1D2CDL)
+      break;
+    g = r[0x06D7L][0x06D7L][0x06D7L];
+  }
+}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned k;\nunsigned m[4];\nunsigned n0;\n\nunsigned fn3(p1) {\n  unsigned r;\n  unsigned s;\n  unsigned v;\n  unsigned w;\n\n  for (; w; w += 1)\n    for (s = 0; s <= 39; ++s)\n      for (r = 0; r <= 2; r += 1) {\n        n0 = v;\n        v = m[r];\n        w = n0 && k;\n      }\n\n  return p1;\n}\n\nint main() {}\n

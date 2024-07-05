@@ -1,0 +1,1 @@
+struct c {\n  int d : 18;\n  int e;\n  int f;\n  int g;\n  int h;\n};\nstruct c i;\nstruct c j;\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = j.e;\n  int n = j.h && l.d;\n  i.g = l.d | -(l.f && l.d) - n;\n}

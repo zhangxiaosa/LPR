@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  unsigned int e;\n  signed int h;\n};\n\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  int m = j.e;\n  l.d = m;\n  int n = j.h && l.d;\n  int o = l.d;\n  signed int p = o | -(l.f && l.d) - n;\n  i.g = p;\n\n  return 0;\n}

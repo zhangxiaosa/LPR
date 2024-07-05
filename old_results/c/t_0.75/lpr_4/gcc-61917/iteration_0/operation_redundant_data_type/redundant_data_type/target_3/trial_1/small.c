@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint k;\nint l;\nvolatile unsigned m[5][8];\n\nunsigned fn3(e p1) {\n  unsigned o;\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -27; k = k - 6)\n        p1 = o - p1;\n    p1 || m[2][5];\n  }\n}\n\nint main() {}\n

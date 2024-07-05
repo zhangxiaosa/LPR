@@ -1,0 +1,24 @@
+
+struct c {
+  int d : 18;
+  int e;
+  unsigned int f_hi;
+  unsigned int f_lo;
+  int g;
+  int h;
+};
+
+struct c i;
+struct c j;
+
+int fn1() {
+  struct c l = {24, 6738, 165};
+  int m = j.e;
+  l.d = m;
+  int n = j.h && l.d;
+  int o = l.d;
+  int p = o | -(l.f_hi && l.f_lo) - n;
+  i.g = p;
+}
+
+int main() {}

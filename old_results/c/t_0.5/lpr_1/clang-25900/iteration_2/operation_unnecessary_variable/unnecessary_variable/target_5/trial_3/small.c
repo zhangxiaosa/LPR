@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned fn1(unsigned p1) {\n  return p1;\n}\n\nint r;\nstatic signed s = -5L;\nunsigned t;\nint u;\n\nint main() {\n  struct {\n    signed n : 18;\n    signed o : 1;\n  } ad = {1957};\n\n  ad.o = fn1(5);\n  signed ae;\n  ae = ad.o;\n  ad.o = u;\n  r = t % (~s / ae);\n  ad.o;\n}

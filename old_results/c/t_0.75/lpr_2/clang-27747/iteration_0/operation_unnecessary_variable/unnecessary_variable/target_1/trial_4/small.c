@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  int d : 18;\n  int f;\n  int g;\n};\n\nstruct c i;\nunsigned j_e;\nsigned j_h;\n\nint main() {\n  j_e = j_e;\n  int n = j_h && j_e;\n  signed p = j_e | -(6738 && j_e) - n;\n  i.g = p;\n}

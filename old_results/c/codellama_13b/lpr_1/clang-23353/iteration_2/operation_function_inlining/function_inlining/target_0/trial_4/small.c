@@ -1,0 +1,19 @@
+
+char fn1(char p1, char p2) {
+  return p1 * p2;
+}
+
+int i;
+char j;
+char *fn2(int p1, char *p2, char p3) {
+  char temp;
+  for (p3 = 6; p3 != -7; p3--) {
+    temp = p3 ^ p2;
+    j ^= fn1(p3, temp) && 1L;
+  }
+  return p2;
+}
+
+int main() {
+  return 0;
+}

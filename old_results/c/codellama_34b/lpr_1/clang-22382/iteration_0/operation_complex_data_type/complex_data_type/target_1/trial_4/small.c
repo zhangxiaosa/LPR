@@ -1,0 +1,30 @@
+
+#include <stdio.h>
+
+int i;
+long j;
+unsigned k;
+
+long fn1(long p1, short p2, long p3, long p4, struct h p5) {
+  i = p5.i;
+  j = p5.j;
+  k = p5.k;
+  w:;
+  goto w;
+}
+
+long fn2(p1) {
+  int q;
+  long l;
+  struct h p;
+  p.i = q;
+  p.j = l;
+  p.k = q;
+  fn1(q, l, p1, 3, p);
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+
+int main() {}

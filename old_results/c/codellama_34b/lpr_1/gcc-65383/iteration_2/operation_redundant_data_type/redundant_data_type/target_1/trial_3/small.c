@@ -1,0 +1,16 @@
+
+#include <stdio.h>
+
+int g;
+static int i = 0x06D7;
+
+int fn2() {
+  for (;;) {
+    int r[5][9][5];
+    if (i)
+      return 0xC3;
+    g = r[i][i][i];
+  }
+}
+
+int main() { fn2(); }

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint fn1(int p2) { return p2; }\n\nint r;\nstatic int s = -5;\nint t;\nint u;\n\nint main() {\n  int ad = 1957;\n  int ae;\n  ad = fn1(5);\n  ae = ad;\n  ad = u;\n  r = t % (~s / ae);\n  ad;\n}

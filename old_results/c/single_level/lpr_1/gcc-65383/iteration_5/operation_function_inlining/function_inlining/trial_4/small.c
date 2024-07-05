@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned g;\nint h2 = 0x92A1D2CDL;\nstatic unsigned i = 0x06D7L;\n\nsigned main() {\n  for (;;) {\n    int r[5][9][5];\n    if (h2)\n      return 0xC3L;\n    g = r[i][i][i];\n  }\n}

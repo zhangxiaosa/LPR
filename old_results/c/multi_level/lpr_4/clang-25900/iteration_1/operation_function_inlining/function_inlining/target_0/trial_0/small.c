@@ -1,0 +1,1 @@
+#include <iostream>\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint r;\nstatic int s = -5L;\nunsigned t;\nint u;\n\nint fn4() {\n  struct m p2 = {1957};\n  p2.o = 5;\n  r = t % (~s / p2.o);\n}\n\nint main() {\n  fn4();\n}

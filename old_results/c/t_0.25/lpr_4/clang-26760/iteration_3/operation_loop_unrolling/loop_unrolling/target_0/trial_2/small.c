@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nsigned g;\n\nint main() {\n  signed i;\n  int j = 0x24F96B7B;\n  unsigned f;\n  unsigned k;\n\n  // Unrolled loop\n  j = 0; // Set loop counter to zero\n\n  signed n = g;\n  int o = n;\n\nq:\n  k = k >> 1;\n  i = o;\n  if (i) {\n    k = k << j;\n    goto q;\n  }\n\n  return 0;\n}

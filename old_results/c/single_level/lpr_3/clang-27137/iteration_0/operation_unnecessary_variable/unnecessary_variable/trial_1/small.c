@@ -1,0 +1,30 @@
+char h;
+void fn2(p1) { h = p1; }
+short o;
+char p;
+char fn5() {
+  short q;
+  short r = o;
+  q = r;
+  while (q > 1L)
+    q -= 1;
+  while (q > 1L)
+    q -= 1;
+  while (q > 1L)
+    q -= 1;
+  while (q > 1L)
+    q -= 1;
+  while (q > 1L)
+    q -= 1;
+  while (q > 1L)
+    q -= 1;
+  if (p = q)
+    ;
+}
+int main() {
+  fn5();
+  fn2(p);
+  printf("checn%d sum = %X
+", h);
+  return 0;
+}

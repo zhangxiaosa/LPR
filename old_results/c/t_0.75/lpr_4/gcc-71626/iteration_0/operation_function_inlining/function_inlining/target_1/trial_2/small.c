@@ -1,0 +1,1 @@
+typedef long a;\ntypedef a d __attribute__((__vector_size__(sizeof(a))));\nd fn2() {\n  d f = {0};\n}

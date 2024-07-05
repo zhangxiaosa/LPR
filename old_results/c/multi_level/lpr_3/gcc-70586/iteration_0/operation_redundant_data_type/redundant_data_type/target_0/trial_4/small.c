@@ -1,0 +1,1 @@
+typedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\nc i;\nc fn3(short);\nb fn4() {\n  if (fn3(1))\n    ;\n}\nc fn3(short p1) {\n  int l;\n  short m = 0x809CL;\n  if (i)\n    printf("l_1179=%d\n", l);\n  unsigned o = 0xE576516EL;\n  if (i)\n    printf("l_1179=%d\n", l);\n  p1 = (0x60781BCDL >= m ^ 4294967287UL) - o;\n  return p1;\n}\nint main() { fn4(); }

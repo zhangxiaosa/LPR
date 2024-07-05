@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+unsigned g;
+int h0 = 2453191021;
+int h1 = 2453191021;
+int h2 = 2453191021;
+static unsigned i = 215;
+
+unsigned fn2() {
+  for (;;) {
+    unsigned q = 195;
+    int r0[5][9][5];
+
+    if (h2)
+      return q;
+
+    g = r0[i][i][i];
+  }
+}
+
+int main() { fn2(); }

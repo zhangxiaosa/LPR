@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned f;\nsigned g;\n\nint main() {\n  signed i;\n  int j = 0x24F96B7BL;\n  unsigned k;\n\n  int l = 1L;\n  signed n = g;\n  int o = n;\nq:\n  k = k >> l;\n  i = o;\n  if (i) {\n    k = k << j;\n    goto q;\n  }\n}

@@ -1,0 +1,1 @@
+#include <iostream>\n\nint r;\n\nint fn1(int p2) {\n  return p2;\n}\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint fn4() {\n  struct m ad = {1957};\n  ad.o = fn1(5);\n  int ae;\n  ae = ad.o;\n  ad.o = 0;\n  r = r % (5 / ae);\n  return ad.o;\n}\n\nint main() {\n  fn4();\n}

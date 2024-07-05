@@ -1,0 +1,1 @@
+typedef int c;\ntypedef unsigned f;\nf j;\nstruct p {\n  c ab;\n  signed q : 22;\n};\nf u;\nstruct p v[1];\nstruct p w = {0x1C87E74FL, 816};\nint main() {\n  int i;\n  struct p a = {8L, 666};\n\n  // Loop unrolled code\n  a = v[0] = w;\n  v[0] = a;\n\n  for (i = 0; i < 1; i++)\n    j = v[i].q;\n  printf("checksum = %X\n", j);\n  return 0;\n}

@@ -1,0 +1,2 @@
+
+d fn4(d p1) { return p1; }

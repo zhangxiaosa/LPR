@@ -1,0 +1,14 @@
+short t;
+short v;
+short ac = 1;
+
+int main() {
+  short an;
+  if (an = 250) {
+    t = ac || (an = 2) == 0x294A85636008822LL;
+    if (0xBCD1LL - (1 - an) - t & 1UL)
+      v = 1;
+  }
+  printf("checksum = %hx\n", v);
+  return 0;
+}

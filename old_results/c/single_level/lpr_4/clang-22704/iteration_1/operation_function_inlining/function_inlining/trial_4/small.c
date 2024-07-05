@@ -1,0 +1,1 @@
+typedef int a;\nstruct c {\n  a d;\n  a e;\n};\nstruct c f;\nchar fn1() {\n  if (f.e)\n    goto i;\n\n  // Inlined code of fn1()\n  if (f.e)\n    goto i;\n  // Recursive call\n  char j;\n  return j;\ni:\n  f.d = 6L;\n  // Inlined code of fn1()\n  if (f.e)\n    goto i;\n  // Recursive call\n  j = 0xEEACFBBFL;\n  return j;\n}\nint main() {}

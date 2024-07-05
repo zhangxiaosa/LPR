@@ -1,0 +1,1 @@
+typedef int c;\ntypedef unsigned d;\ntypedef unsigned f;\nc k;\nunsigned l;\nvolatile f m[5][8];\nd fn3(f p1) {\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -108; k = k - 24)\n        p1 = p1 - 0x4FL;\n    p1 || m[2][5];\n  }\n}\nint main() {}\n

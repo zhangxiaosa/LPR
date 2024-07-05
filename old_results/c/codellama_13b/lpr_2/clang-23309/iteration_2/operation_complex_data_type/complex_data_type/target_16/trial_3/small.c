@@ -1,0 +1,35 @@
+
+short fn2(short p1, short p2) { return p1 - p2; }
+
+short fn3(short p1, short p2) { return p1 - p2; }
+
+unsigned char fn4(unsigned char p1, unsigned char p2) { return p1; }
+
+short fn5(short p1, short p2) { return p2; }
+
+short fn6(short p1, short p2) { return p1 - p2; }
+
+short p;
+short t;
+short v;
+short w;
+short ab;
+short ac = 1;
+short fn10(short p1, short p2) {
+  return 0x2F2F6D26;
+}
+short fn12(short p1, short p2, short p3, short p4, short p5) {
+  for (w = 3; w; w -= 1) {
+    short an = 250;
+    p2 = fn5(ab, ac) || (an = w) == 0x294A85636008822D;
+    if (fn2(fn3(0xBCD1, fn4(fn6(1, an), 0xEC)), p2) & 1)
+      v = 1;
+  }
+  return 3;
+}
+int main() {
+  fn13();
+  p = v;
+  printf("checksum = %X\n", p);
+  return 0;
+}

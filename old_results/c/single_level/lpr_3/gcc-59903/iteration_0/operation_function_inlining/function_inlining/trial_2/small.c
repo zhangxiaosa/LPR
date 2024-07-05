@@ -1,0 +1,79 @@
+typedef signed a;
+
+typedef short b;
+
+typedef int c;
+
+typedef unsigned char d;
+
+typedef unsigned e;
+
+struct i {
+
+  a j;
+
+  a k;
+
+c l;
+
+};
+
+d fn3(p1) {
+
+  d q[7][7];
+
+  struct i r;
+
+  e s;
+
+  struct i v = {0x15L, -5L};
+
+  c w;
+
+  c a;
+
+  struct i b;
+
+  if (p4 ^ v.k) {
+
+  } else {
+
+    v = n[1];
+
+  }
+
+  for (; w; w += 1) {
+
+    for (p3 = 0; p3 <= 39; ++p3) {
+
+      for (p2.j = 0; p2.j <= 2; p2.j += 1) {
+
+        n[0] = v;
+
+        v.l = m[p2.j];
+
+        if (!n[0].j) {
+
+        } else {
+
+          w = (n[0].l > 2 ? n[0].l : n[0].l << 2) && p2.k;
+
+          for (; a; a += 1) {
+
+            n[0] = b;
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return p2;
+
+}
+
+int main() {}

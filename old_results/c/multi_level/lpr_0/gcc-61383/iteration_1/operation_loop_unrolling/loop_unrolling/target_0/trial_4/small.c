@@ -1,0 +1,31 @@
+int fn1(int p1, int p2) { return p2 == 0 ? p1 : p1 % p2; }
+
+int fn3(int p1, int p2) {
+  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1
+                                                                    : p1 + p2;
+}
+
+unsigned n;
+int o;
+
+signed fn6() {
+  int ab1 = fn1(o, o);
+  if (o <= 0xE3L) {
+    int ab2 = fn1(o, o);
+    if (o <= 0xE3L) {
+      int ab3 = fn1(o, o);
+      if (o <= 0xE3L) {
+        int ab4 = fn1(o, o);
+        if (o <= 0xE3L) {
+          // Loop body iteration 4
+          // Do something with ab4
+        }
+      }
+    }
+  }
+  return 0;
+}
+
+int main() {
+  fn6();
+}

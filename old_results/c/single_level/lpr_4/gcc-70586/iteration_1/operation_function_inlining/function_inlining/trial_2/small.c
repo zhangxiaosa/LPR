@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned fn1(unsigned p1, unsigned p2) { return p1 + p2; }\nunsigned i;\nunsigned fn3(p1) {\n  int l;\n  short m = 0x809C;\n  unsigned n;\n  for (n = 0; n <= 48; n = fn1(n, 32)) {\n    if (i)\n      printf("l_1179=%lld\n", (long long)l);\n    p1 = (0x60781BCD >= m ^ 4294967287UL) - 0xE576516E;\n  }\n  return p1;\n}\n\nint main() {\n  if (fn3(1))\n   ;\n}

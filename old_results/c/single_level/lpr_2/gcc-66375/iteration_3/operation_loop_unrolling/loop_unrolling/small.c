@@ -1,0 +1,25 @@
+char fn2(char p1, int p2) { return p1; }
+short fn3(short p1, short p2) { return p2; }
+unsigned fn4(unsigned p1, unsigned p2) { return p1 + p2; }
+unsigned p;
+unsigned u;
+unsigned v[1][4];
+short fn11() {
+  int d = 2L;
+  for (; u < 51; ++u) {
+    unsigned e[9];
+    e[0] = 0x9EE7F9D1C772505BLL;
+    d = fn4(fn2(v[0][3] = fn3(4L, d), 3), e[0]);
+  }
+  return 0;
+}
+int main() {
+  int i, j;
+  fn11();
+  p = v[0][0];
+  p = v[0][1];
+  p = v[0][2];
+  p = v[0][3];
+  printf("checksum = %X\n", p);
+  return 0;
+}

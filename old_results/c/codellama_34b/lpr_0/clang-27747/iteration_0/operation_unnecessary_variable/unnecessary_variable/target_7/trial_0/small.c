@@ -1,0 +1,13 @@
+
+struct c {
+  int d : 18;
+  int f;
+};
+struct c i;
+int j;
+int main() {
+  struct c l = {24, 6738};
+  l.d = j;
+  int o = l.d;
+  i.d = o | -(l.f && l.d) - 1;
+}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef signed int a;\ntypedef int c;\ntypedef unsigned int d;\ntypedef unsigned int e;\n\nd f;\na g;\n\nint main() {\n  a i;\n  c j = 0x24F96B7BL;\n  e k;\n\n  for (f = 0;) {\n    --j;\n  }\n\n  c l = 1L;\n  c m = j;\n  a n = g;\n  c o = n;\n  e p = o;\n\nq:\n  k = k >> l;\n  i = p;\n\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n\n  return 0;\n}

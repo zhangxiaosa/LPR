@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nstatic struct h fn1(unsigned p1, unsigned p3, struct h p5);\n\nunsigned fn2() {\n  struct h p;\n  int q;\n  fn1(q, 3, p);\n\n  struct h r;\n  p = r = p;\n\n  p = r = p;\n\n  return 0;\n}\n\nstruct h fn1(unsigned p1, unsigned p3, struct h p5) {\nw:\n  goto w;\n}\n\nint main() {\n  fn2();\n  return 0;\n}

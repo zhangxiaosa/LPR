@@ -1,0 +1,1 @@
+#include <stdint.h>\n\nstruct h {\n  signed i;\n  long j;\n  unsigned k;\n};\n\nuint32_t fn2() {\n  struct h p;\n  p.k;\n  for (;;) {\n    struct h r;\n    p = r = p;\n  }\n}\n\nint main() {}\n

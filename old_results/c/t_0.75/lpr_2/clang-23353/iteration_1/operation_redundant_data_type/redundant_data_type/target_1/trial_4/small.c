@@ -1,0 +1,17 @@
+char fn1(char p1, char p2) { return p1 * p2; }
+
+struct g {
+  signed h;
+};
+
+struct g j;
+
+int *fn2(unsigned p1, int *p2, int p3) {
+  for (p3 = 6; p3 >= -7; p3 -= 7) {
+    j.h ^= fn1(p3 - 2, i) && 1L;
+    j.h ^= fn1(p3 - 3, i) && 1L;
+  }
+  return p2;
+}
+
+int main() { return 0; }.

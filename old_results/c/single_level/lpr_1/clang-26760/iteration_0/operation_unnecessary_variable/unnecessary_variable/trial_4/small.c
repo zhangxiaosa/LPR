@@ -1,0 +1,1 @@
+typedef int c;\ntypedef unsigned d;\ntypedef unsigned e;\nc j = 0x24F96B7BL;\nd k;\nfor (f = 0;)\n    for (; j; --j)\n        ;\nc l = 1L;\nsigned n = g;\ne p = n;\nwhile (p) {\n    k >>= l;\n    k <<= j;\n}

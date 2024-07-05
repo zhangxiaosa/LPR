@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int p_i;\n  long p_j;\n  int p_k;\n  \n  // Optimization code here\n  \n  return 0;\n}

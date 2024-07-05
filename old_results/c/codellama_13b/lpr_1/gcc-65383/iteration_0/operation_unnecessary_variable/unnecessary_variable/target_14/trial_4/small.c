@@ -1,0 +1,12 @@
+
+unsigned g;
+unsigned h[] = {0x92A1D2CDL, 0x92A1D2CDL, 0x92A1D2CDL};
+static unsigned i = 0x06D7L;
+int fn1(int p) {
+  for (;;) {
+    unsigned q = 0xC3L;
+    int r[5][9][5];
+    return q;
+  }
+}
+int main() { fn1(0); }

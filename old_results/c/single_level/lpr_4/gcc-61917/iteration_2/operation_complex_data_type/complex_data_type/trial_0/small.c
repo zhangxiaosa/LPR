@@ -1,0 +1,1 @@
+int k;\nunsigned l;\nvolatile unsigned m_linear[40];\nunsigned fn3(p1) {\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -27; k = k - 6)\n        p1 = 79 - p1;\n    p1 || m_linear[2];\n  }\n}\nint main() {}\n

@@ -1,0 +1,35 @@
+
+<SYS>
+
+#include <stdio.h>
+
+struct h {
+  int i;
+  long j;
+  unsigned k;
+};
+
+static struct h fn1(struct h p5) {
+  p5.k;
+  goto w;
+}
+
+long fn2() {
+  struct h p;
+  fn1(p);
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+
+int main() {
+  struct h p;
+  p.i = 10;
+  p.j = 20;
+  p.k = 30;
+  fn1(p);
+  return 0;
+}
+
+</SYS>

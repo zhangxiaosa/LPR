@@ -1,0 +1,11 @@
+signed fn1(signed p1, signed p2) { return p1 * p2; }
+
+signed i;
+signed j;
+
+int main() {
+  long p3;
+
+  for (p3 = 6; p3 != -7; p3--)
+    j ^= fn1((signed)p3, i) && 1L;
+}

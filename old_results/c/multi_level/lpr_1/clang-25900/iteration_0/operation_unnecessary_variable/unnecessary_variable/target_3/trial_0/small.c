@@ -1,0 +1,1 @@
+#include <stdint.h>\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nint r;\nstatic signed s = -5L;\nint u;\nint v;\n\nint fn1(uint32_t p1, int p2) { return p2; }\n\nint fn4() {\n  struct m ad = {1957, 0};\n  ad.o = fn1(v, 5);\n  signed ae;\n  ae = ad.o;\n  ad.o = u;\n  r = t % (~s / ae);\n  ad.o;\n}\n\nint main() {\n  fn4();\n}

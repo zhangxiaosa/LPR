@@ -1,0 +1,3 @@
+
+int temp = r[0x06D7][0x06D7][0x06D7];
+g = temp;

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nstatic struct h fn1(struct h p5) {\n  p5.k;\n  while (1) {\n  }\n}\n\nunsigned fn2() {\n  int p_i;\n  long p_j;\n  int p_k;\n  \n  struct h p;\n  p.i = p_i;\n  p.j = p_j;\n  p.k = p_k;\n  \n  fn1(p);\n  \n  while (1) {\n    struct h r;\n    p = r = p;\n  }\n}\n\nint main() {}\n

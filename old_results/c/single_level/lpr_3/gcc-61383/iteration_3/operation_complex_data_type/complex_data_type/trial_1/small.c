@@ -1,0 +1,1 @@
+int fn3(int p1, int p2) {\n  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1 : p1 + p2;\n}\n\nunsigned m;\nunsigned n;\nint o;\n\nint main() {\n  for (; n < 12; n = fn3(n, 3)) {\n    int p1 = o;\n    int result = o == 0 ? p1 : p1 % o;\n    int ac = 0xE3;\n    if (o <= ac)\n      ;\n    else if (result)\n      break;\n  }\n  return m;\n}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nchar h;\nshort o;\n\nint main() {\n  short q = o;\n\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n  q -= 1;\n\n  h = q;\n  printf("checksum = %X\n", h);\n  return 0;\n}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint f_d;\nint f_e;\n\nchar fn1() {\n  int h = 6;\n  \n  if (f_e)\n    goto i;\n  \n  fn1();\n  \n  char j;\n  return j;\ni:\n  f_d = h;\n  fn1();\n  \n  j = (char)0xEEACFBBF;\n  return j;\n}\n\nint main() {\n  char optimized_j = fn1();\n  printf("%c\n", optimized_j);\n  return 0;\n}

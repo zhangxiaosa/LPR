@@ -1,0 +1,1 @@
+struct h {\n  signed i;\n  long j;\n  unsigned k;\n};\n\nunsigned fn2(unsigned p1) {\n  struct h p;\n  int q;\n  // Inlined fn1 function\n  p5.k;\nw:\n  goto w;\n  // End of inlined fn1 function\n\n  for (;;) {\n    struct h r;\n    p = r = p;\n  }\n}\n\nint main() {}\n

@@ -1,0 +1,1 @@
+#include <stdbool.h>\n\nint d;\nunsigned e;\nunsigned f;\nint g;\nint h;\n\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\n\nstruct c i;\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  d = j.e;\n  int n = j.h && d;\n  int o = d;\n  i.g = o | -(l.f && l.d) - n;\n}

@@ -1,0 +1,3 @@
+typedef signed a;
+
+// Rest of the code here...

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+struct c {
+  signed d : 18;
+  unsigned e;
+  unsigned f;
+  signed g;
+  signed h;
+};
+
+struct c i;
+
+int main() {
+  struct c l = {24, 6738, 165};
+
+  l.d = i.e;
+
+  signed p = l.d | -(l.f && l.d);
+  i.g = p;
+}

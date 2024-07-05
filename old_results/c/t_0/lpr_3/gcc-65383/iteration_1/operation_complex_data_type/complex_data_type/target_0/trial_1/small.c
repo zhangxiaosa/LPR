@@ -1,0 +1,23 @@
+typedef int b;
+typedef unsigned d;
+b e;
+unsigned f;
+d g;
+b h_decomposed_0 = 0x92A1D2CDL;
+b h_decomposed_1 = 0x92A1D2CDL;
+b h_decomposed_2 = 0x92A1D2CDL;
+b j;
+signed fn1(b, unsigned, d, signed);
+d fn2() {
+  fn1(f, e, e, e);
+  return j;
+}
+signed fn1(b m, unsigned n, d o, signed p) {
+  for (;;) {
+    b r[5][9][5];
+    if (h_decomposed_2)
+      return 0xC3L;
+    g = r[0x06D7L][0x06D7L][0x06D7L];
+  }
+}
+int main() { fn2(); }

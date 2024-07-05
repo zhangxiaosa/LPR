@@ -1,0 +1,9 @@
+int h2 = 3737691021;
+int fn2() {
+  for (;;) {
+    int r0[5][9][5];
+    if (h2)
+      return 195;
+  }
+}
+int main() { fn2(); }

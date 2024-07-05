@@ -1,0 +1,1 @@
+typedef short b;\ntypedef int c;\ntypedef unsigned d;\ntypedef unsigned e;\ntypedef unsigned f;\nb fn1(b p1, b p2) { return p1 - p2; }\nc k;\ne l;\nvolatile unsigned m[5][8];\nd fn3(f p1) {\n  for (;;) {\n    for (; l; l++)\n      for (k = 0; k >= -27; k = fn1(k, 6))\n        p1 = p1 - 79;\n    p1 || m[2][5];\n  }\n}\nint main() {}\n

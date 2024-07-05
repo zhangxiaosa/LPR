@@ -1,0 +1,19 @@
+typedef int c;
+typedef long d;
+struct m {
+  signed n : 18;
+  signed o : 1;
+};
+c r;
+static signed s = -5L;
+c t;
+d fn4() {
+  struct m p2 = {1957};
+  signed ae;
+  ae = 5;
+  p2.o = r;
+  r = t % (~s / ae);
+}
+int main() {
+  fn4();
+}

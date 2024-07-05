@@ -1,0 +1,23 @@
+
+int g;
+int fn1() {
+  unsigned j_high_low_low = 0x24F96B7B;
+  unsigned j_high_low_high = 0x00000000;
+  unsigned k;
+  for (g = 0; g;) {
+    unsigned j_low;
+    for (; j_low; --j_low)
+      ;
+    j_high_low_low = j_low;
+    j_high_low_high = 0;
+  }
+  unsigned m = j_high_low_low;
+  unsigned o = g;
+q:;
+  k = k >> 1L;
+  if (o) {
+    k = k << m;
+    goto q;
+  }
+}
+int main() {}

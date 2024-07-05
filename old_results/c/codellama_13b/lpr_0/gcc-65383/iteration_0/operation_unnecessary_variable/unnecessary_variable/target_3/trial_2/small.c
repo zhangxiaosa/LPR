@@ -1,0 +1,15 @@
+
+int e;
+unsigned g;
+unsigned h2 = 0x92A1D2CDL;
+int fn1(void) {
+  for (;;) {
+    unsigned q = 0xC3L;
+    int r[5][9][5];
+    if (h2)
+      return q;
+    g = r[0x06D7L][0x06D7L][0x06D7L];
+  }
+}
+void fn2() { fn1(); }
+int main() { fn2(); }

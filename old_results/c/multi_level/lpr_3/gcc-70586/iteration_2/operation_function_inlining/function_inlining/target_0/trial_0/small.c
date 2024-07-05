@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  printf("l_1179=%d\n", 0x809C);\n  printf("l_1179=%d\n", 0x809C);\n  return (0x60781BCDL >= 0x809C ^ 4294967287UL) - 0xE576516E;\n}

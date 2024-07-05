@@ -1,0 +1,33 @@
+typedef signed a;
+typedef int c;
+typedef unsigned d;
+typedef unsigned e;
+d f;
+a g;
+int main() {
+  a i;
+  c j = 0x24F96B7BL;
+  e k;
+  for (f = 0;) {
+    // Unrolled loop 1
+    ;
+    // Unrolled loop 2
+    ;
+    // Unrolled loop 3
+    ;
+    // Unrolled loop 4
+    ;
+    j = 0; // Set j to 0 to exit the loop
+  }
+  c l = 1L;
+  c m = j;
+  a n = g;
+  c o = n;
+  e p = o;
+  while (p) {
+    k = k >> l;
+    i = p;
+    if (i)
+      k = k << m;
+  }
+}

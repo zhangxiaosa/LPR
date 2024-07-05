@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned l;\n\nstatic unsigned fn1(unsigned, short, unsigned, unsigned, unsigned);\n\nunsigned fn2(unsigned p1) {\n  unsigned p;\n  int q;\n  fn1(q, l, p1, 3, p);\n  for (;;) {\n    unsigned r;\n    p = r = p;\n  }\n}\n\nunsigned fn1(unsigned p1, short p2, unsigned p3, unsigned p4, unsigned p5) {\n  p5;\n\nw:;\n  goto w;\n}\n\nint main() {}\n

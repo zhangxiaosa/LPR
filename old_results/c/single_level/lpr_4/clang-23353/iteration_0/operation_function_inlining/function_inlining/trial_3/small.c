@@ -1,0 +1,1 @@
+typedef char a;\ntypedef int b;\ntypedef unsigned c;\n\na fn1(a p1, a p2) {\n  return p1 * p2;\n}\n\nstruct g {\n  signed h;\n};\n\nb i;\nstruct g j;\n\nint main() {\n  for (a p3 = 6; p3 != -7; p3--) {\n    j.h ^= fn1(p3, i) && 1L;\n  }\n  return 0;\n}

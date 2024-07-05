@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  signed d = 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n  signed i_d;\n  unsigned i_e;\n  unsigned i_f;\n  signed i_g;\n  signed i_h;\n  \n  signed l_d = 24;\n  unsigned l_e = 6738;\n  unsigned l_f = 165;\n  \n  int m = i_e;\n  l_d = m;\n  \n  int n = i_h && l_d;\n  \n  signed p = l_d | -(l_f && l_d) - n;\n  i_g = p;\n}

@@ -1,0 +1,51 @@
+int fn1(int p1, int p2) { return p2 == 0 ? p1 : p1 % p2; }
+
+int fn3(int p1, int p2) {
+  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1 ? p1
+                                                                    : p1 + p2;
+}
+
+unsigned m;
+unsigned n;
+int o;
+short fn6() {
+  int ab;
+
+  // Unrolled iteration 1
+  if (n < 12 && n + 3 < 12 && n + 6 < 12 && n + 9 < 12) {
+    if (0x4F92L < (ab = fn1(o, o), 6))
+      ;
+    else if (o <= 0xE3L)
+      ;
+    else if (ab)
+      break;
+  }
+
+  // Unrolled iteration 2
+  if (n + 3 < 12 && n + 6 < 12 && n + 9 < 12) {
+    if (0x4F92L < (ab = fn1(o, o), 6))
+      ;
+    else if (o <= 0xE3L)
+      ;
+    else if (ab)
+      break;
+  }
+
+  // Unrolled iteration 3
+  if (n + 6 < 12 && n + 9 < 12) {
+    if (0x4F92L < (ab = fn1(o, o), 6))
+      ;
+    else if (o <= 0xE3L)
+      ;
+    else if (ab)
+      break;
+  }
+
+  // Remaining loop iteration
+  n = fn3(fn3(fn3(n, 3), 3), 3);
+  return m;
+}
+
+int main() {
+  fn6();
+}

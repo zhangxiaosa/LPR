@@ -1,0 +1,24 @@
+#include <stdint.h>
+
+typedef signed a;
+
+int main() {
+  a i;
+  int32_t j = 0x24F96B7BL;
+  unsigned k;
+
+  for (unsigned f; f;)
+    for (; j; --j)
+      ;
+
+  int32_t l = 1L;
+  int32_t m = j;
+
+q:;
+  k = k >> l;
+
+  if (i) {
+    k = k << m;
+    goto q;
+  }
+}

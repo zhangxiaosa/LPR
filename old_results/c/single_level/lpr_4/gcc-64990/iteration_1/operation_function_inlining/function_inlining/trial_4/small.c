@@ -1,0 +1,26 @@
+typedef short b;
+typedef int c;
+typedef unsigned d;
+typedef unsigned f;
+static b g = 0x7EBAL;
+d h = 0xCAL;
+c j[5][5];
+f k = 0xAF7C65D6L;
+static d l;
+unsigned m[9][2][3];
+c n;
+d fn1(signed, b, c, signed);
+
+f fn3() {
+  fn1(0xAF7C65D6L ? v[0x7EBAL][(2 * l) + 1][2 * l] : 0x709BFC8AL ? (h ? j[0x7EBAL][0x7EBAL] : g) : w, 7, 7, 0);
+  return n;
+}
+
+d fn1(signed p1, b p2, c p3, signed p4) {
+  p1 || (m[1][0][1] = p1);
+  return 2;
+}
+
+int main() {
+  fn3();
+}

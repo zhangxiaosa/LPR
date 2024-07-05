@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+unsigned fn6(unsigned p1, unsigned p2) { return p1 - p2; }
+
+unsigned p;
+int t;
+long v;
+short w;
+unsigned ab;
+short ac_value = 1;
+
+int fn13() {
+  int an;
+  for (w = 3; w; w -= 1)
+    if (an = 250) {
+      t = ac_value || (an = w) == 0x294A85636008822DLL;
+      short ao = 0xBCD1;
+      if ((ao - (fn6(1, an) - 0xECL)) - t & 1)
+        v = 1;
+    }
+  return 1;
+}
+
+int main() {
+  fn13();
+  putchar('c');
+  putchar('h');
+  putchar('e');
+  putchar('c');
+  putchar('k');
+  putchar('s');
+  putchar('u');
+  putchar('m');
+  putchar(' ');  
+  putchar('=');  
+  putchar(' ');  
+  printf("%X", v);
+  putchar('\n');
+  return 0;
+}

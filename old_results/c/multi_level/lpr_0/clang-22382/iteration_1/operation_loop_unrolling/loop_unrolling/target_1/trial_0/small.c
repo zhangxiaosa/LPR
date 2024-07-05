@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+struct original_data_type {
+  int i;
+  long j;
+  unsigned k;
+};
+
+static struct original_data_type fn1(unsigned p1, short p2,
+                                     struct original_data_type p5) {
+  p5.k;
+}
+
+unsigned fn2() {
+  struct original_data_type p;
+  fn1(0, 0, p);
+  {
+    struct original_data_type r;
+    p = r = p;
+  }
+}

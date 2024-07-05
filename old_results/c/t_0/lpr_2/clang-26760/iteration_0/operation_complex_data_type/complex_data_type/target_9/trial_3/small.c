@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int j = 0x24F96B7B;\n  unsigned int k;\n  \n  while (k) {\n    k = k >> 1;\n    k = k << 0;\n  }\n  \n  return 0;\n}

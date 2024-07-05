@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nlong ac = 1L;\nlong fn4(long p1, long p2) { return p1; }\n\nunsigned long p;\nlong v;\n\nint main() {\n  int an;\n  for (long w = 3; w; w -= 1L) {\n    if (an = 250) {\n      ac || (an = w);\n      long ao = 0xBCD1L;\n      if ((ao - fn4(1L - an, 0xECL)) - ac & 1L)\n        v = 1L;\n    }\n  }\n  p = v;\n  printf("checksum = %lX\n", p);\n  return 0;\n}

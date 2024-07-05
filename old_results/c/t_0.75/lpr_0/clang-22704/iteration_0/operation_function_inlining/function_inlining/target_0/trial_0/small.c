@@ -1,0 +1,1 @@
+typedef int a;\ntypedef char b;\nstruct c {\n  a d;\n  a e;\n};\nstruct c f;\nb fn1() {\n  a h = 6L;\n  if (f.e) {\n    f.d = h;\n    fn1();\n    return 0xEEACFBBFL;\n  }\n}\nint main() {}\n

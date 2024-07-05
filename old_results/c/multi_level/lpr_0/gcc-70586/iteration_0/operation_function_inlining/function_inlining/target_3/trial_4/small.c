@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef short a;\ntypedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\n\nc fn3(a p1) {\n  a m = 0x809CL;\n  d o = 0xE576516EL;\n  p1 = 0x60781BCDL >= m ^ 4294967287UL - (49 << 3) * o;\n  return p1;\n}\n\nint main() {\n  b l;\n  fn3(1);\n}

@@ -1,0 +1,1 @@
+int main() { fn4(); }\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nd fn4() {\n  struct m ad = {1957};\n  ad.o = fn1(5);\n  ad.o = 0;\n  r = t % (~s / ad.o);\n}

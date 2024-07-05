@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned i;\n\nunsigned int fn3(unsigned int p1) {\n  unsigned int unsigned_int = 0xE576516E;\n  printf("l_1179=%d\n", 0);\n  p1 = (0x60781BCD >= 0x809C ^ 4294967287UL) - unsigned_int;\n  if (i)\n    printf(0);\n  return p1;\n}\n\nint fn4() {\n  if (fn3(1))\n    ;\n}\n\nint main() { fn4(); }\n

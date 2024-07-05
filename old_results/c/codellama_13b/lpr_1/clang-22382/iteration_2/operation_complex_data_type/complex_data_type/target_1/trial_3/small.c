@@ -1,0 +1,25 @@
+
+struct h {
+  long i;
+  long j;
+  long k;
+};
+
+static struct h fn1(int p1, int p2, int p3, long p4) {
+  p4.k;
+w:;
+  goto w;
+}
+
+int fn2(p1) {
+  struct h p;
+  struct h r;
+  fn1(0, p1, p1, p);
+  while (1)
+    p = r = p;
+}
+
+int main() {
+  // call fn2 with a value for p1
+  fn2(10);
+}

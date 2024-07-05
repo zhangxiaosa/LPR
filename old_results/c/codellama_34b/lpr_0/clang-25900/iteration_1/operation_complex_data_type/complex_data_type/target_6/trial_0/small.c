@@ -1,0 +1,48 @@
+
+#include <stdint.h>
+
+int32_t g(int32_t p1, int32_t p2) { return p2; }
+
+struct m {
+  int32_t n : 18;
+  int32_t o : 1;
+};
+
+int32_t r;
+static int32_t s = -5L;
+int32_t t;
+int32_t v;
+
+int main() {
+  struct m ad = {1957};
+  int32_t p1 = v;
+  int32_t p2 = 5;
+  ad.o = g(p1, p2);
+  int32_t ae = ad.o;
+  ad.o = 5;
+  r = t % (~s / ae);
+  ad.o;
+}
+
+// Decomposition of the program into variables with primary data type
+
+int32_t s;
+int32_t t;
+int32_t v;
+int32_t p1;
+int32_t p2;
+int32_t ae;
+int32_t r;
+
+// Optimization of the program to eliminate the variable `s`
+
+int main() {
+  struct m ad = {1957};
+  p1 = v;
+  p2 = 5;
+  ad.o = g(p1, p2);
+  ae = ad.o;
+  ad.o = 5;
+  r = t % (~5 / ae);
+  ad.o;
+}

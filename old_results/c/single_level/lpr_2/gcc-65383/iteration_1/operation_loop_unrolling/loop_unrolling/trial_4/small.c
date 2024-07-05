@@ -1,0 +1,1 @@
+#include <iostream>\n\nint g;\nint h[] = {0x92A1D2CDL, 0x92A1D2CDL, 0x92A1D2CDL};\nstatic unsigned i = 0x06D7L;\n\nunsigned fn2() {\n  int r[5][9][5];\n\n  if (h[2])\n    return 0xC3L;\n\n  g = r[i][i][i];\n\n  if (h[2])\n    return 0xC3L;\n\n  g = r[i][i][i];\n}\n\nint main() {\n  fn2();\n}

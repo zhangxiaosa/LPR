@@ -1,0 +1,16 @@
+
+int fn1(p2) { return p2; }
+
+int r;
+static int s = -5;
+int t_high;
+struct m {
+  int n : 18;
+  int o_prime_2 : 1;
+};
+int fn3() {
+  struct m ad = {1957};
+  ad.o_prime_2;
+  r = t_high % (~s / ad.n);
+}
+int main() { fn3(); }

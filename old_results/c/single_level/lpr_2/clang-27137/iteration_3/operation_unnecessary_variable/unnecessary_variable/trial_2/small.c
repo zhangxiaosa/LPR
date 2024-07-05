@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  short q;\n  while (q > 1L)\n    q -= 1;\n  while (q > 1L)\n    q -= 1;\n  while (q > 1L)\n    q -= 1;\n  while (q > 1L)\n    q -= 1;\n  while (q > 1L)\n    q -= 1;\n  while (q > 1L)\n    q -= 1;\n  printf("checksum = %X\n", q);\n  return 0;\n}

@@ -1,0 +1,1 @@
+int fn1(unsigned p1, int p2) {\n  return p1 + p2;\n}\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint r;\nstatic int s = -5L;\nint t;\nint u;\n\nint main() {\n  struct m p2 = {1957, 0};\n  int ae;\n  ae = fn1(5, 5);\n  ae = ae;\n  r = t % (-s / ae);\n}

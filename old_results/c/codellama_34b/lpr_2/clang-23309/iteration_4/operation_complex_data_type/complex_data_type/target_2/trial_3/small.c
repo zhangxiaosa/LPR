@@ -1,0 +1,23 @@
+
+#include <stdio.h>
+
+int fn2(int p1, int p2) {
+  return p1 - p2;
+}
+
+int main() {
+  int t;
+  int v_int;
+  short w;
+  unsigned int ac = 1;
+  short an;
+  short ao;
+
+  w = 0;
+  an = 0x294A;
+  t = ac || (an = w);
+  ao = 0xBCD1;
+  v_int = fn2(ao - (1 - an), t) & 1;
+  printf("checksum = %d\n", v_int);
+  return 0;
+}

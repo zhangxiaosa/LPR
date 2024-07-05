@@ -1,0 +1,19 @@
+char fn4(char p1, char p2) { return p1; }
+
+unsigned p;
+int t;
+long v;
+short w;
+short ac = 1L;
+int main() {
+  int an;
+  for (w = 3; w; w -= 1)
+    if (250UL) {
+      t = ac || (w) == 0x294A85636008822DLL;
+      if ((0xBCD1L - (1L - w)) - t & 1)
+        v = 1UL;
+    }
+  p = 0UL;
+  printf("checksum = %d\n", p);
+  return 0;
+}

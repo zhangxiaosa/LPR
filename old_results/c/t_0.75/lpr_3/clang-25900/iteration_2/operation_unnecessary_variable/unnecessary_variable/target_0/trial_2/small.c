@@ -1,0 +1,1 @@
+unsigned fn1(unsigned p1, int p2) { return p2; }\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nunsigned q_l;\nint r;\nunsigned t;\nint u;\nunsigned v;\nint fn2(p3_l) {\n  int ae;\n\n  ae = 5;\n  ae = u;\n  r = t % (5 / ae);\n}\n\nint main() {\n  fn2(q_l);\n}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef signed a;\ntypedef short b;\ntypedef int c;\ntypedef unsigned d;\ntypedef unsigned e;\ntypedef unsigned f;\n\nc k;\ne l;\nvolatile f m[5][8];\n\nint main() {\n  a o = 0x4FL;\n  while (1) {\n    l = 0;\n    while (l < 20) {\n      k = 0;\n      while (k >= -27) {\n        p1 = 0x4FL - p1;\n        k = k - 6;\n      }\n      l++;\n    }\n  }\n}

@@ -1,0 +1,18 @@
+unsigned int i;
+int l;
+short m = 32796;
+unsigned int o = 3854607982;
+
+unsigned int fn3(unsigned int p1) {
+  printf("l_1179=%lld\n", (long long)l);
+
+  p1 = 1614298413 >= m ^ (4294967287 - o);
+  return p1;
+}
+
+int main() {
+  unsigned int result = fn3(1);
+  int optimized_p1 = result != 0;
+  // continue with optimized_p1
+  return 0;
+}

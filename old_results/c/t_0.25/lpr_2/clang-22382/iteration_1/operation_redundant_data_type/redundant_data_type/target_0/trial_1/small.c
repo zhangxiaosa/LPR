@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+unsigned l;
+
+unsigned fn2(unsigned p1) {
+  int p_i;
+  long p_j;
+  int p_k;
+  fn1(0, l, p_i, p_j, p_k);
+  for (;;) {
+    int r_i;
+    long r_j;
+    int r_k;
+    p_i = r_i = p_i;
+    p_j = r_j = p_j;
+    p_k = r_k = p_k;
+  }
+}
+
+void fn1(unsigned p1, short p2, int p_i, long p_j, int p_k) {
+w:
+  goto w;
+}
+
+int main() {}

@@ -1,0 +1,1 @@
+unsigned fn1(unsigned p2) {\n  return p2;\n}\n\nint r;\nunsigned t;\n\nint main() {\n  struct {\n    signed n : 18;\n    signed o : 1;\n  } ad = {1957};\n\n  ad.o = fn1(5);\n  ad.o = 0;\n  r = t % (5 / 5);\n  ad.o;\n}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+unsigned int i;
+int l;
+short m = 32796;
+unsigned int o = 3854607982;
+
+unsigned int fn3(unsigned int p1) {
+  if (i)
+    printf("l_1179=%lld\n", (long long)l);
+
+  p1 = (m >= 1614298413) ^ (4294967287 - o);
+  return p1;
+}
+
+int main() {
+  if (fn3(1))
+    ;
+}

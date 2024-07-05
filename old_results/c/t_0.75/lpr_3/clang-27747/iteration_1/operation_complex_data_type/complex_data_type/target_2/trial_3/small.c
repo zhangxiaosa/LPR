@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nsigned int l_d;\nunsigned int l_e;\nunsigned int l_f;\nsigned int l_g;\nsigned int l_h;\n\nsigned int j_e;\nsigned int j_h;\n\nint main() {\n  l_d = 24;\n  l_e = 6738;\n  l_f = 165;\n\n  l_d = j_e;\n  int n = j_h && l_d;\n  signed int i_g = l_d | -(l_f && l_d) - n;\n\n  j_e = l_d;\n  j_h = n;\n\n  return 0;\n}

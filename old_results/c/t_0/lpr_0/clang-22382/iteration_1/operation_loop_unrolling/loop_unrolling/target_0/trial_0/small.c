@@ -1,0 +1,35 @@
+typedef short a;
+typedef long c;
+typedef unsigned d;
+typedef unsigned e;
+typedef unsigned f;
+typedef unsigned g;
+struct h {
+  int i;
+  c j;
+  int k;
+};
+d l;
+static struct h fn1(f p1, a p2, g p3, d p4, struct h p5) {
+  p5.k;
+w:
+  goto w;
+}
+e fn2() {
+  struct h p;
+  fn1(3, l, 3, 3, p);
+  {
+    struct h r;
+    p = r = p;
+  }
+  {
+    struct h r;
+    p = r = p;
+  }
+  {
+    struct h r;
+    p = r = p;
+  }
+  // Continue duplicating the loop body as needed
+}
+int main() {}

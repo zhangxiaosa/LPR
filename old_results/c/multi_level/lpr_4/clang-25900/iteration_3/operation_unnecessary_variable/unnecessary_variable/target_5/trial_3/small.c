@@ -1,0 +1,1 @@
+int fn1(unsigned p1, int p2) {\n  return p2;\n}\n\nint r;\nint ae = 5;\n\nint main() {\n  struct {\n    int n : 18;\n    int o : 1;\n  } p2 = {1957};\n\n  p2.o = fn1(5, 5);\n  ae = p2.o;\n  p2.o = 0;\n  r = r % (~0 / ae);\n}

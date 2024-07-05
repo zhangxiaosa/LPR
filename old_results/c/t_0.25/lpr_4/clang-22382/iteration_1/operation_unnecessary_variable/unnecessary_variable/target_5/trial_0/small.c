@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nunsigned l;\n\nunsigned fn2() {\n  struct h p;\n  for (;;) {\n    p = p;\n  }\n}\n\nint main() {}\n

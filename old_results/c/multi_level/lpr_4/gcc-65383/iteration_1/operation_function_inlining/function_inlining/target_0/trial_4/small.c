@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned g;\nint h_2 = 0x92A1D2CDL;\nstatic unsigned i = 0x06D7L;\n\nint main() {\n  if (!h_2)\n    g = r[i][i][i];\n}

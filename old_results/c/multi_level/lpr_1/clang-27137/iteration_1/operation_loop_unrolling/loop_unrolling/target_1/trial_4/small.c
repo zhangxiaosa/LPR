@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int i;\n  short r = 0;\n\n  for (i = 0; i < 10; i++) {\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n    r -= 10;\n  }\n\n  printf("checksum = %X\n", r);\n  return 0;\n}

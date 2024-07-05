@@ -1,0 +1,28 @@
+int g;
+int h;
+unsigned fn4(int, unsigned short, unsigned short, unsigned, unsigned short);
+int fn5() {
+  unsigned o = 0x5A683F60L;
+  int ad = -7L;
+  if (fn4(ad, 4294967287UL, ad, g, g))
+    ;
+  return o;
+}
+unsigned fn4(int p1, unsigned short p2, unsigned short p3, unsigned p4, unsigned short p5) {
+  short ak0;
+  short ak1;
+  short ak2;
+  short ak3;
+  short ak4;
+  short ak5;
+  short ak6;
+  short ak7;
+  for (p2 = 0; p2 <= 7; p2 += 1)
+    for (p4 = 0; p4 <= 7; p4 += 1)
+      if (h < 0)
+        for (p4 = 0; p4 <= 7; p4 += 1)
+          if (ak0 || ak1 || ak2 || ak3 || ak4 || ak5 || ak6 || ak7)
+            break;
+  return g;
+}
+int main() { fn5(); }

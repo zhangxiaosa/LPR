@@ -1,0 +1,1 @@
+char fn1(char p1, char p2) {\n  return p1 * p2;\n}\n\nint i;\n\nint main() {\n  char p3;\n  for (p3 = 6; p3 != -7; p3--)\n    fn1(p3, i);\n  return 0;\n}

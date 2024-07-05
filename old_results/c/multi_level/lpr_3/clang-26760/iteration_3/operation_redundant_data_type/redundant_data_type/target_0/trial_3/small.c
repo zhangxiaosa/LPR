@@ -1,0 +1,1 @@
+#include <stdint.h>\n\nint main() {\n  int i;\n  int j = 0x24F96B7B;\n  uint32_t k;\n  for (f = 0;)\n    --j;\n  int l = 1;\n  int m = j;\n  int n = g;\n  int o = n;\n  uint32_t p = o;\nq:\n  k = k >> l;\n  i = p;\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n}

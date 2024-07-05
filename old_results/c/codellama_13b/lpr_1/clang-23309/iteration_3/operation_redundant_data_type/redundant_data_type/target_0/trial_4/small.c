@@ -1,0 +1,29 @@
+
+unsigned fn4(unsigned p1, unsigned p2) { return p1; }
+
+long fn6(long p1, long p2) { return p1 - p2; }
+
+void fn9(unsigned v, char *s_170, int ap) { printf("checksum = %X\n", v); }
+
+unsigned v;
+short w;
+short ab;
+long ac = 3L;
+
+long fn13() {
+  long an;
+  for (w = 3; w; w -= 1)
+    if (an = 250UL) {
+      long p2 = fn6(ab, ac) || (an = w) == 0x294A85636008822DLL;
+      long ao = 0xBCD1L;
+      if (fn3(ao, fn4(fn6(1UL, an), 0xECL)) - p2 & 1UL)
+        v = 1UL;
+    }
+  return 3L;
+}
+
+int main() {
+  fn13();
+  fn9(v, "g_170", 0);
+  return 0;
+}

@@ -1,0 +1,13 @@
+unsigned h2 = 0x92A1D2CDL;
+static unsigned i = 0x06D7L;
+unsigned fn2() {
+  for (;;) {
+    unsigned q = 0xC3L;
+    int r_flat[225];
+    g = r_flat[i];
+  }
+}
+
+int main() {
+  fn2();
+}

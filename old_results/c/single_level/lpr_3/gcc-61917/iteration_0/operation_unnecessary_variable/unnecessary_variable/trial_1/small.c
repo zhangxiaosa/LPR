@@ -1,0 +1,21 @@
+int fn1(int p1, int p2) {
+    return p1 - p2;
+}
+
+unsigned fn2(unsigned p1, unsigned p2) {
+    return p1 - p2;
+}
+
+int k;
+unsigned l;
+int fn3(unsigned p1) {
+    int o = 0x4F;
+    for (;;) {
+        for (l = 0; l < 20; l++)
+            for (k = 0; k >= -27; k = fn1(k, 6))
+                p1 = fn2(o, p1);
+        p1;
+    }
+}
+
+int main() {}

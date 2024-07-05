@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+typedef int b;
+typedef long c;
+typedef char d;
+typedef short e;
+typedef unsigned f;
+typedef unsigned g;
+
+short fn4(char p1, char p2) {
+  return p1;
+}
+
+f p;
+b t;
+f u;
+c v;
+short w;
+short ac = 1L;
+
+short fn10(g p1, e p2) {
+  b af = 0x2F2F6D26L;
+  c am = 1L;
+  b an;
+  for (w = 3; w; w -= 1)
+    if (an = 250UL) {
+      p2 = ac || (an = w) == 0x294A85636008822DLL;
+      short ao = 0xBCD1L;
+      if ((ao - fn4(am - an, 0xECL)) - p2 & 1UL)
+        v = 1UL;
+    }
+  return af;
+}
+
+int main() {
+  fn10(u, t);
+  p = v;
+  printf("checksum = %X\n", p);
+  return 0;
+}

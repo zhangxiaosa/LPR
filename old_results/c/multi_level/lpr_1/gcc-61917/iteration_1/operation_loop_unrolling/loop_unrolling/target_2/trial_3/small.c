@@ -1,0 +1,1 @@
+#include<iostream>\nint k;\nunsigned l;\nvolatile unsigned m[5][8];\n\nunsigned fn3(p1) {\n  for (;;) {\n    for (; l; l++) {\n      // Unrolled loop body\n      p1 = 24 - p1;\n      p1 = 24 - p1;\n      p1 = 24 - p1;\n      p1 = 24 - p1;\n      p1 = 24 - p1;\n    }\n\n    if (p1)\n      m[2][5];\n    if (l >= 0)\n      l -= 1;\n  }\n}\n\nint main() {}\n

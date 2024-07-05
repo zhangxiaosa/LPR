@@ -1,0 +1,11 @@
+
+unsigned ac = 1;
+int main() {
+  short an = 0x294A;
+  int tmp1 = ac || (an = 0);
+  short ao = 0xBCD1;
+  int tmp3 = ao - an & 1;
+  int v_int = tmp3;
+  printf("checksum = %d\n", v_int);
+  return 0;
+}

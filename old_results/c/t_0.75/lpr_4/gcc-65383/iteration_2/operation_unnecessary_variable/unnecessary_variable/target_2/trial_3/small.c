@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint g;\n\nint h2 = 0x92A1D2CDL;\n\nint fn2() {\n  if (h2)\n    return 0xC3L;\n\n  g = 0x06D7L;\n}\n\nint main() {\n  fn2();\n}

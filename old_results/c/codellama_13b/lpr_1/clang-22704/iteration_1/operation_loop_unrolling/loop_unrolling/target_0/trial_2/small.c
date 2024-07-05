@@ -1,0 +1,23 @@
+
+struct c {
+  int e;
+};
+struct c f;
+int fn1() {
+  if (f.e)
+    goto i;
+  fn1();
+  return 0xEEACFBBF;
+i:
+  f.e = 5;
+  fn1();
+  return 0xEEACFBBF;
+}
+int main() {
+  for (int i = 0; i < 5; i++) {
+    if (f.e)
+      break;
+    f.e = 5;
+  }
+  return 0xEEACFBBF;
+}

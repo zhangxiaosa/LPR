@@ -1,0 +1,31 @@
+
+#include <stdio.h>
+
+long fn3(long p1, long p2) { return p1 - p2; }
+
+unsigned fn6(unsigned p1, unsigned p2) { return p2 - p1; }
+
+unsigned p;
+unsigned v;
+signed w = 3;
+
+short fn12(int p1_int, int p2_int, long p3_long, signed p4_int) {
+  int an;
+  while (w) {
+    an = 250L;
+    if (p2_int || (an = w)) {
+      short ao = 48873;
+      if (fn3(ao, fn6(1L, an)) - p2_int & 1L)
+        v = 1L;
+    }
+    w--;
+  }
+  return 0;
+}
+
+int main() {
+  fn12(7L, 7L, 248L, 0);
+  p = v;
+  printf("checksum = %X\n", p);
+  return 0;
+}

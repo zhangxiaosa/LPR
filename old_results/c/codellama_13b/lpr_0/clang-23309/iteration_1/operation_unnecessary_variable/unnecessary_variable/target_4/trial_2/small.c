@@ -1,0 +1,27 @@
+
+unsigned fn2(unsigned p1, short p2) { return p1 - p2; }
+unsigned fn5(short p1, short p2) { return p2; }
+unsigned fn6(unsigned p1, short p2) { return p2; }
+unsigned p;
+void fn9(unsigned p1, char *p2, unsigned p3) { p = p1; }
+unsigned t;
+int u;
+unsigned v;
+short w;
+short ac = 1L;
+unsigned fn10(unsigned p1, short p2) {
+  if (fn2(w - (fn6(1L, w) & 1UL) << 8, p2) & 1UL)
+    v = 1UL;
+  return 3L;
+}
+unsigned fn13() {
+  fn10(u, t);
+  return 1UL; // return any value since ae is not used
+}
+int main() {
+  unsigned ap = 0;
+  fn13();
+  fn9(v, "g_170", ap);
+  printf("checksum = %X\n", p);
+  return 0;
+}

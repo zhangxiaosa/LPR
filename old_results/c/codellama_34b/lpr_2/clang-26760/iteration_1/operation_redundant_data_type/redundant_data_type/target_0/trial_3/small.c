@@ -1,0 +1,15 @@
+
+#include <stdint.h>
+
+int main() {
+  int32_t m = 0x24F96B7BL;
+  uint32_t k;
+  for (uint32_t f; f;)
+    m -= 8;
+q:;
+  k = k >> 1L;
+  if (m) {
+    k = k << m;
+    goto q;
+  }
+}

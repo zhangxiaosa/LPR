@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  int l;\n  int o = 3854607982;\n\n  printf("l_1179=%d\n", l);\n  return 1614298413 >= l ^ 4294967287 - o;\n}

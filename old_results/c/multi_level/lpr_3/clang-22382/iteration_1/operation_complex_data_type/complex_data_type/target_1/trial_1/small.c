@@ -1,0 +1,1 @@
+#include <stdio.h>\n\n\nstruct h {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct h fn1(int p5_i, long p5_j, unsigned p5_k) {\n  unsigned p5_k_local = p5_k;\n  // Rest of the code\n}\n\nint fn2() {\n  int p_i;\n  long p_j;\n  unsigned p_k;\n  // Rest of the code\n  fn1(p_i, p_j, p_k);\n}\n\nint main() {}

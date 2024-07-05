@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+unsigned fn1(unsigned p1, int p2) { return p2; }
+
+struct m {
+  signed o : 1;
+};
+
+int r;
+static signed s = -5L;
+unsigned t;
+int u;
+unsigned v;
+
+int main() {
+  struct m ad = {1957};
+  ad.o = 5;
+  ad.o = u;
+  r = 0;
+  ad.o;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+typedef signed a;
+typedef int c;
+typedef unsigned d;
+typedef unsigned e;
+d f;
+a g;
+
+int main() {
+  a i;
+  c j = 0x24F96B7BL;
+  e k;
+
+  if (j >= 4) {
+    --j;
+    --j;
+    --j;
+    --j;
+  } else if (j == 3) {
+    --j;
+    --j;
+    --j;
+  } else if (j == 2) {
+    --j;
+    --j;
+  } else if (j == 1) {
+    --j;
+  }
+
+  c l = 1L;
+  c m = j;
+  a n = g;
+  c o = n;
+  e p = o;
+
+  k = k >> l;
+  i = p;
+  if (i) {
+    k = k << m;
+  }
+}

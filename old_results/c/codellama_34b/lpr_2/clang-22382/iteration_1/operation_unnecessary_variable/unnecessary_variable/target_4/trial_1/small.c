@@ -1,0 +1,19 @@
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+static struct h fn1(int p1, int p4, struct h p5) {
+  p5.k;
+  return p5;
+}
+int fn2(p1) {
+  struct h p;
+  fn1(p1, 3, p);
+  for (;;) {
+    struct h r;
+    r = p;
+  }
+}
+int main() {}

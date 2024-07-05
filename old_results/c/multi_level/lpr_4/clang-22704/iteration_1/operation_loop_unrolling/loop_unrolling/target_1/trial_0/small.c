@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nstruct c {\n  int d;\n  int e;\n};\n\nstruct c f;\n\nchar fn1() {\n  if (f.e) {\n    goto i;\n  }\n\n  if (f.e) {\n    goto i;\n  }\n\n  return 0xEEACFBBFL;\n\ni:\n  f.d = 6L;\n\n  if (f.e) {\n    goto i;\n  }\n\n  return 0xEEACFBBFL;\n}\n\nint main() {\n  return 0;\n}

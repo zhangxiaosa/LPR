@@ -1,0 +1,1 @@
+int fn2(int p1, int p2) {\n  return p1 - p2;\n}\n\nint i;\n\nint fn3(p1) {\n  short m = 0x809C;\n  \n  p1 = fn2(0x60781BCD >= m ^ 4294967287, 0xE576516E);\n  \n  return p1;\n}\n\nint main() {\n  if (fn3(1))\n    ;\n}

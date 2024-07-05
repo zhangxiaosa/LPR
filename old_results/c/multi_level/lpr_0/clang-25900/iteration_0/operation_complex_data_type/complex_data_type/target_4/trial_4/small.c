@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int r;
+static int s;
+unsigned int t;
+int u;
+unsigned int v;
+int fn1(unsigned int p1, int p2);
+
+struct m {
+  int n;
+  int o;
+};
+
+int fn4() {
+  struct m ad = {1957};
+  ad.o = fn1(v, 5);
+  int ae;
+  int af = t;
+  ae = ad.o;
+  ad.o = u;
+  r = af % (~s / ae);
+  ad.o;
+}
+
+int main() {
+  fn4();
+}

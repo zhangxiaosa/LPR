@@ -1,0 +1,6 @@
+
+<SYS>
+
+void main() {}
+
+</SYS>

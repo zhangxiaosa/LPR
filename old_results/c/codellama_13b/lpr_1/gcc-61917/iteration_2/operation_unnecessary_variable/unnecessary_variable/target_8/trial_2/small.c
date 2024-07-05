@@ -1,0 +1,19 @@
+
+int fn1(int p1) { return p1; }
+
+int k = 0;
+int l;
+volatile int m[5][8] = {0};
+
+int fn3(p1) {
+  for (;;) {
+    for (; l; l++) {
+      k = 0;
+      while (k >= -27) {
+        k = k - 6;
+        p1 = k - p1;
+      }
+    }
+    p1 || m[2][5];
+  }
+}

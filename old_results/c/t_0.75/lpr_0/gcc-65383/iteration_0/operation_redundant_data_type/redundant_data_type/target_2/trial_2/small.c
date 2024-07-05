@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef unsigned d;\nunsigned g;\nint h[] = {0x92A1D2CDL, 0x92A1D2CDL, 0x92A1D2CDL};\nstatic unsigned i = 0x06D7L;\n\nunsigned fn2() {\n  for (;;) {\n    unsigned q = 0xC3L;\n    int r[5][9][5];\n    if (h[2] != 0)\n      return q;\n    g = r[(int)i][(int)i][(int)i];\n  }\n}\n\nint main() {\n  fn2();\n}

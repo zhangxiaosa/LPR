@@ -1,0 +1,1 @@
+int *fn2(unsigned p1, int *p2, char p3) {\n  p3 = -7;\n  for (; p3 != -7; p3--)\n    j_h ^= 1L;\n  return p2;\n}\n\nint main() { return 0; }\n

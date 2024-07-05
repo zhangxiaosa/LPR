@@ -1,0 +1,4 @@
+
+int main() {
+  return r[0x06D7L][0x06D7L][0x06D7L];
+}

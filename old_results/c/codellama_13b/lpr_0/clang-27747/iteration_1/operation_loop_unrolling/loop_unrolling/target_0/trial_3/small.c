@@ -1,0 +1,25 @@
+
+struct c {
+  int d : 18;
+  int e;
+  int h;
+};
+struct c i;
+struct c j;
+int main() {
+  struct c l = {24, 6738, 165};
+  int m = j.e;
+  l.d = m;
+  int n = j.h && l.d;
+  i.d = l.d | -(l.h && l.d) - n;
+
+  // Optimized loop using loop unrolling
+  int k = 1;
+  while (k <= 10) {
+    int m = j.e;
+    l.d = m;
+    int n = j.h && l.d;
+    i.d = l.d | -(l.h && l.d) - n;
+    k++;
+  }
+}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint g;\n\nint fn2() {\n  for (;;) {\n    int r_flat[225];\n\n    if (0x92A1D2CDL)\n      return 0xC3L;\n  }\n}\n\nint main() {\n  fn2();\n}\n

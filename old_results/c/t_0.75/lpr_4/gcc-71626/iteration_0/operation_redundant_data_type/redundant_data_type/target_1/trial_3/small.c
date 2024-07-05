@@ -1,0 +1,1 @@
+typedef long a;\n\nvoid fn1() {}\n\nlong fn2() {\n  long c = (long)fn1;\n  long f = c;\n  return f;\n}\n\nint main() {}

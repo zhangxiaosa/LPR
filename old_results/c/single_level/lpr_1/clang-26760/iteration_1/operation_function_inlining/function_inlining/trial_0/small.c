@@ -1,0 +1,1 @@
+typedef int c;\ntypedef unsigned d;\ntypedef unsigned e;\nd f;\nsigned g;\n\nint main() {\n  signed i;\n  c j = 0x24F96B7BL;\n  e k;\n\n  for (f = 0;;) {\n    for (; j; --j)\n      ;\n    k = k >> 1L;\n    i = (c)g;\n    if (i) {\n      k = k << j;\n      continue;\n    }\n    break;\n  }\n}

@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int fn2(int p1, int p2) {
+    return p1 && p2 ? p1 : p1 % p2;
+}
+
+int fn5(int p1, int p2) {
+    return 1110486715;
+}
+
+unsigned fn6(unsigned p1, unsigned p2) {
+    return 0xDC6F3D13L;
+}
+
+long long fn8(long p1, long long p2) {
+    return p1 + p2;
+}
+
+unsigned f;
+unsigned w = 0xDC6F3D13L;
+int ah;
+int ak;
+int am = 0x41AEA787L;
+int ao;
+unsigned ap;
+
+int fn12() {
+    int au_4_1_5;
+    for (ak = 0;;) {
+        for (ah = 0; ah <= 3; ah += 1) {
+            unsigned constant_expr_result = 0xDC6F3D13L;  // Evaluating constant expression
+            if (w >= constant_expr_result > 2) {
+                f = am;
+                ao = fn8(~(fn2(ap, 1L) != 0), ak) && 0x57L;
+            } else {
+                ao = fn8(~(fn2(ap, 1L) != 0), ak) && 0x57L;
+            }
+        }
+        return f;
+    }
+}
+
+int main() {
+    fn12();
+    printf("checksum = %X\n", f);
+    return 0;
+}

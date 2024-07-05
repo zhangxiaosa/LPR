@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nlong fn1() {}\ntypedef long d __attribute__((__vector_size__(sizeof(long))));\nlong fn2() {\n  long c = fn1();\n  long f = c;\n  return f;\n}\nint main() {}\n

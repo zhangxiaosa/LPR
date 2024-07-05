@@ -1,0 +1,1 @@
+The given program remains unchanged as the variable p3 cannot be optimized out.

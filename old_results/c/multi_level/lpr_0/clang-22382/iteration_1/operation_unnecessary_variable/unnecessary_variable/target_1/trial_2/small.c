@@ -1,0 +1,1 @@
+#include <iostream>\n\nstruct original_data_type {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct original_data_type fn1(short p2, struct original_data_type p5) {\nw: goto w;\n}\n\nunsigned fn2() {\n  struct original_data_type r;\n  for (;;) {\n    r = r;\n  }\n}\n\nint main() {}\n

@@ -1,0 +1,1 @@
+static short g = 0x7EBA;\nunsigned h = 0xCA;\nshort i;\nint j[5][5];\nunsigned k = 0xAF7C65D6L;\nstatic unsigned l;\nunsigned m1;\nint n;\nunsigned fn1(signed, short, signed);\nsigned fn2();\nunsigned fn3() {\n  fn1(0, 7, 0);\n  return n;\n}\nunsigned fn1(signed p1, short p2, signed p4) {\n  p1 || (m1 = p1);\n  return 2;\n}\nint main() {\n  fn1(v[g][l][l], 7, 0);\n  return n;\n}

@@ -1,0 +1,1 @@
+typedef long a;\nfn1() {}\ntypedef a d __attribute__((__vector_size__(sizeof(a))));\nmain() {\na c = fn1;\nd f = {c};\n\n// Inlined code from fn2\n// a c = fn1;\n// d f = {c};\n\n// Inlined code ends here\n\n\n// Rest of the code\nreturn f;\n}

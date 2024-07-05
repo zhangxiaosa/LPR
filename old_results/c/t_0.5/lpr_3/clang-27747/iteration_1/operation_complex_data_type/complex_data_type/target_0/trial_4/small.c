@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+struct c {
+  signed int d : 18;
+  unsigned int e;
+  unsigned int f;
+  signed int g;
+  signed int h;
+};
+
+signed int i_d;
+unsigned int i_e;
+unsigned int i_f;
+signed int i_g;
+signed int i_h;
+
+signed int j_d;
+unsigned int j_e;
+unsigned int j_f;
+signed int j_g;
+signed int j_h;
+
+int main() {
+  struct c l = {24, 6738, 165};
+
+  l.d = j_e;
+
+  int n = j_h && l.d;
+
+  signed int p = l.d | -(l.f && l.d) - n;
+
+  i_g = p;
+
+  return 0;
+}

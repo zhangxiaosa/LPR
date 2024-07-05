@@ -1,0 +1,1 @@
+typedef int b;\ntypedef long c;\ntypedef unsigned d;\ntypedef unsigned e;\ntypedef unsigned f;\ntypedef unsigned g;\nstruct h {\n  signed i;\n  c j;\n  unsigned k;\n};\ne fn2(p1) {\n  struct h p;\n  b q;\n  p.k;\n  w:\n    goto w;\n  for (;;) {\n    struct h r;\n    p = r = p;\n  }\n}\nint main() {}

@@ -1,0 +1,31 @@
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(unsigned p1, int p2, unsigned p3, unsigned p4,
+                    struct h p5) {
+  p5.k;
+w:;
+  goto w;
+}
+
+unsigned fn2(p1) {
+  struct h p;
+  fn1(3, 3, p1, 3, p);
+  for (;;) {
+    struct h r;
+    p = r;
+  }
+}
+
+int main() {
+  // constant propagation:
+  p1 = 3;
+  p3 = 3;
+  p4 = 3;
+  // copy propagation:
+  p = r;
+}

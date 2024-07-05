@@ -1,0 +1,1 @@
+#include<iostream>\n\nvoid fn1() {}\ntypedef long a_vector;\n\nlong fn2() {\n  long f = fn1;\n  return f;\n}\n\nint main() {\n  fn2();\n  return 0;\n}

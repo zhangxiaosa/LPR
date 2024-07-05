@@ -1,0 +1,19 @@
+
+a = short
+b = int
+c = long
+d = unsigned char
+e = short
+g = unsigned
+p1 = int
+p2 = short
+p3 = b
+p4 = unsigned char
+p5 = a
+p = unsigned long
+t = e
+u = e
+v = c
+w = a
+ab = e
+ac = a

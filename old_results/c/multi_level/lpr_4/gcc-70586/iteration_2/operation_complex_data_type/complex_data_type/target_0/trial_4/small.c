@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nint fn4(unsigned i) {\n  printf("l_1179=%u\n", 0);\n  unsigned p1 = (0x60781BCD >= 0x809C ^ 4294967287UL) - 0xE576516E;\n  if (i)\n    printf(0);\n  return p1;\n}\n\nint main() {\n  unsigned i = 0;\n  fn4(i);\n  return 0;\n}

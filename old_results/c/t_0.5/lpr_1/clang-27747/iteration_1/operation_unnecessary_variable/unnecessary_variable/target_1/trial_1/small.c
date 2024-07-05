@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\n\nstruct c i;\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = 0; // Optimized assignment: j.e is unused\n  int n = 0; // Optimized assignment: j.h is unused\n\n  // Optimized assignment\n  i.g = l.d | -(l.f && l.d) - n;\n\n  return 0;\n}

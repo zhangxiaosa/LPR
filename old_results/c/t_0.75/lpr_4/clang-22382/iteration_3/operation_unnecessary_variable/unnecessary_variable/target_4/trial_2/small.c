@@ -1,0 +1,22 @@
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(struct h p5) {
+  // No optimization here, as p5 is unused.
+  w:
+  goto w;
+}
+
+unsigned fn2() {
+  struct h p;
+  fn1(p);
+  for (;;) {
+    struct h r;
+    r = p;
+  }
+}
+
+int main() {}

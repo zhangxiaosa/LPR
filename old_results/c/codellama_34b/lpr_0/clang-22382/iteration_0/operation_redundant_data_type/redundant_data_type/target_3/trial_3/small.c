@@ -1,0 +1,36 @@
+
+#include <stdio.h>
+
+typedef short a;
+typedef long c;
+typedef unsigned d;
+typedef unsigned e;
+typedef unsigned f;
+typedef unsigned g;
+
+struct h {
+  int i;
+  c j;
+  d k;
+};
+
+d l;
+static struct h fn1(f p1, a p2, g p3, d p4, struct h p5);
+
+e fn2(p1) {
+  struct h p;
+  f q;
+  p = fn1(q, l, p1, 3, p);
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+
+struct h fn1(f p1, a p2, g p3, d p4, struct h p5) {
+  p5.k;
+w:;
+  goto w;
+}
+
+int main() {}

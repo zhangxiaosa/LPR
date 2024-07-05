@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned i;\n\nunsigned fn3(unsigned p1) {\n  int l;\n  short m = 0x809C;\n  unsigned o = 0xE576516E;\n  if (i)\n    printf("l_1179=%d\n", l);\n  p1 = (0x60781BCD >= m ^ 4294967287UL) - o;\n  if (i)\n    printf("l_1179=%d\n", l);\n  return p1;\n}\n\nint fn4() {\n  if (fn3(1))\n    ;\n}\n\nint main() { fn4(); }\n

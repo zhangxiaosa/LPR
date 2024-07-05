@@ -1,0 +1,1 @@
+typedef int c;\ntypedef long d;\ntypedef unsigned e;\ntypedef unsigned g;\n\ne fn1(e p1, int p2) { return p2; }\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nc r;\nstatic signed s = -5L;\ng t;\nc u;\ng v;\n\nd fn4() {\n  struct m ad = {1957};\n  ad.o = fn1(v, 5);\n  c af = t;\n  ad.o = u;\n  r = af % (~s / ad.o);\n}\n\nint main() {\n  fn4();\n}

@@ -1,0 +1,1 @@
+unsigned fn1() { return 5; }

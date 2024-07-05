@@ -1,0 +1,7 @@
+
+int main() {
+  struct c_new l;
+  l.h_low = j.h_low;
+  int n = l.h_low && j.h_low;
+  i.h_low = l.h_low | -(165 && l.h_low) - n;
+}

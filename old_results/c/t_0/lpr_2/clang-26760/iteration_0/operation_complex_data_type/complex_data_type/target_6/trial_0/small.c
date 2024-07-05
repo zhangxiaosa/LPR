@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nsigned int g;\n\nint main() {\n  int j = 0x24F96B7B;\n  unsigned int k;\n\n  j = 0; // Remove the outer for loop\n\n  int m = j;\n  unsigned int p = j;\n\n  k = k >> 1;\n  if (p)\n    k = k << m;\n\n  return 0;\n}

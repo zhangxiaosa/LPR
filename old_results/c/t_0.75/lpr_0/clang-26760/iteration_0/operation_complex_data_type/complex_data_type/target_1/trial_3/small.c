@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned g;\n\nint main() {\n  signed i;\n  int j = 0x24F96B7B;\n  unsigned k;\n  for (unsigned f; f;)\n    for (; j; --j)\n      ;\n  signed n = g;\n  int o = n;\n  while (1) {\n    k = k >> 1;\n    i = o;\n    if (i) {\n      k = k << j;\n      continue;\n    }\n    break;\n  }\n}

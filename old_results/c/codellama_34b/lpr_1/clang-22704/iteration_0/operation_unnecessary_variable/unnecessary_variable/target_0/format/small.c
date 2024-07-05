@@ -1,0 +1,17 @@
+
+typedef char b;
+int d;
+int e;
+b fn1(h) {
+  if (e)
+    goto i;
+  fn1(h);
+  b j;
+  return j;
+i:
+  d = h;
+  fn1(h);
+  j = 0xEEACFBBFL;
+  return j;
+}
+int main() {}

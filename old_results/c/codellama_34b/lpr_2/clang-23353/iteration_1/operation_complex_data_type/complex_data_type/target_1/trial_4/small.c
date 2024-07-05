@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+
+int main() {
+    char p1 = 1;
+    char p2 = 2;
+    int i = 3;
+    int *p2_ptr = (int *)&p2;
+    int result = fn2(p2_ptr, i);
+    printf("%d", result);
+    return 0;
+}
+
+int fn2(int *p2, char p3) {
+    for (p3 = 6; p3 != -7; p3--) {
+        j.h ^= fn1(p3, i) && 1L;
+    }
+    return p2;
+}
+
+char fn1(char p1, char p2) {
+    return p1 * p2;
+}
+
+struct g {
+    signed h;
+};
+int i;
+struct g j;

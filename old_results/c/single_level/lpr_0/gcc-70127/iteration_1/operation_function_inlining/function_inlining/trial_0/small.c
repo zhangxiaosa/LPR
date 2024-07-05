@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+typedef int c;
+typedef unsigned d;
+typedef unsigned e;
+typedef unsigned f;
+typedef unsigned g;
+
+void fn1(f p1, int p2) {
+    printf("checksum = %X\n", p1);
+}
+
+f j;
+
+void fn2(f p1) {
+    j = p1;
+}
+
+void fn3(f p1) {
+    j = p1;
+}
+
+struct p {
+  c ab;
+  signed q : 22;
+};
+
+struct r {
+  unsigned ab;
+  unsigned s;
+};
+
+struct r t;
+f u;
+struct p v[1];
+struct p w = {0x1C87E74F, 816};
+
+d fn5(e p1, signed p2, d p3, f p4, f p5) {
+    for (p2 = 0; ; p2 -= 1) {
+        struct p a = {8L, 666};
+        while (u <= 1) {
+            v[p2] = w;
+            u += 1;
+        }
+        if (p2 < 0) break;
+    }
+}
+
+int main() {
+    int i;
+    int b = 0;
+    fn5(t.ab, 3, 2, t.s, 9);
+    for (i = 0; i < 1; i++) {
+        fn3(v[i].q);
+    }
+    fn1(j, b);
+    return 0;
+}

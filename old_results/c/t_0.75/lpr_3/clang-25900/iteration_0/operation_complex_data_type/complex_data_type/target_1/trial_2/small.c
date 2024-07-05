@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+unsigned fn1(unsigned p1, int p2) {
+    return p2;
+}
+
+struct k {
+    unsigned l;
+};
+
+struct m {
+    int n;
+    int o;
+};
+
+int p;
+struct k q;
+int r;
+static int s = -5L;
+unsigned t;
+int u;
+unsigned v;
+
+int fn2(int p1, struct m p2, struct k p3, struct k p4, int p5) {
+    int ad_n = p2.n;
+    int ad_o = p2.o;
+  
+    struct m ad = {1957};
+    ad.o = fn1(v, 5);
+    int ae;
+    int af = t;
+    ae = ad.o;
+    ad.o = u;
+    r = af % (~s / ae);
+    // ad.o; // Removed unused expression
+}
+
+int main() {
+    struct m z;
+    fn2(p, z, q, q, q.l);
+}

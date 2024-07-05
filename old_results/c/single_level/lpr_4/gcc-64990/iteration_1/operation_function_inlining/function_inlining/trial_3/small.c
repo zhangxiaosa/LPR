@@ -1,0 +1,1 @@
+typedef short b;typedef int c;typedef unsigned d;typedef unsigned f;static b g = 0x7EBAL;d h = 0xCAL;c j[5][5];f k = 0xAF7C65D6L;static d l;unsigned m[9][2][3];c n;d fn1(signed, b, c, signed);f fn3() {  signed p1 = v[g][l + 1][l];  p1 || (m[1][0][1] = p1);  return n;}d fn1(signed p1, b p2, c p3, signed p4) {  p1 || (m[1][0][1] = p1);  return 2;}int main() { fn3(); }

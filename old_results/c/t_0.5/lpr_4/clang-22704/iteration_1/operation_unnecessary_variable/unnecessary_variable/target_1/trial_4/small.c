@@ -1,0 +1,1 @@
+int f_d;\nchar fn1() {\n  fn1();\n  char j;\n  return j;\n}\nint main() {}\n

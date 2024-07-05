@@ -1,0 +1,1 @@
+int fn1(p2) {\n  return p2;\n}\n\nstruct m {\n  signed n : 18;\n  signed o : 1;\n};\n\nint r;\nstatic int s = -5;\nint t;\nint u;\n\nint main() {\n  struct m ad = {1957};\n  ad.o = fn1(5);\n  ad.o = u;\n  r = t % (~s / ad.o);\n  ad.o;\n}

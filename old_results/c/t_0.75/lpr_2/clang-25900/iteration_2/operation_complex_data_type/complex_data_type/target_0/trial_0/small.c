@@ -1,0 +1,26 @@
+int r;
+static int s = -5;
+unsigned int t;
+int n;
+int o;
+int fn1_p2;
+int main()
+{
+    int ad_n;
+    int ad_o;
+    int ae;
+
+    ad_n = 1957;
+
+    ad_o = fn1(5);
+
+    ae = ad_o;
+
+    ad_o = ad_o;
+
+    r = t % (~s / ae);
+
+    ad_o;
+
+    return 0;
+}

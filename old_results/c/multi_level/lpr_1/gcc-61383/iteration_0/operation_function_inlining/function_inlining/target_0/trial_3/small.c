@@ -1,0 +1,45 @@
+typedef signed a;
+typedef int c;
+typedef unsigned d;
+typedef unsigned int f;
+a l;
+d n;
+a o;
+static f p = 0x01B28DB7L;
+c q;
+c fn2(int p1, int p2) {
+  return p1;
+}
+c fn3(c p1, c p2) {
+  return p1 && p2 && p1 > 2147483647 - p2 || p1 < 0 && p2 < 0 && p1
+             ? p1
+             : p1 + p2;
+}
+c fn4(a p1, d p2, unsigned int p3) {
+  if (fn5(o))
+    ;
+  return p2;
+}
+c fn5(a p1) {
+  for (; n < 12; n = fn3(n, 3)) {
+    c ab;
+    if (0x4F92L < fn2(p | (ab = p1 == 0 ? p1 : p1 % 0), 6))
+      ;
+    else {
+      if (p1 <= 0xE3L)
+        ;
+      else if (ab)
+        break;
+    }
+  }
+  return m;
+}
+c fn6() {
+  int u = 0L;
+  if (fn4(u, l, u))
+    ;
+  return q;
+}
+int main() {
+  fn6();
+}

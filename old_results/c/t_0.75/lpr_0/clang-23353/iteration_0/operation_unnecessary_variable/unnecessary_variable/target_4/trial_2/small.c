@@ -1,0 +1,1 @@
+char fn1(char p1, char p2) {\n  return p1 * p2;\n}\n\nint i;\nsigned j_h;\nint *fn2(unsigned p1, int *p2, char p3) {\n  p3 = 6;\n  j_h ^= fn1(p3, i) && 1L;\n  \n  return p2;\n}\n\nint main() { return 0; }\n

@@ -1,0 +1,30 @@
+#include <stdint.h>
+
+struct h {
+  signed i;
+  long j;
+  unsigned k;
+};
+
+uint32_t l;
+
+static struct h fn1(unsigned, short, unsigned, uint32_t, struct h);
+
+uint32_t fn2(p1) {
+  struct h p;
+  int q;
+  fn1(q, l, p1, 3, p);
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+
+struct h fn1(unsigned p1, short p2, unsigned p3, uint32_t p4, struct h p5) {
+  // p5.k is removed as it is an unused variable
+  goto w;
+w:
+  goto w;
+}
+
+int main() {}

@@ -1,0 +1,1 @@
+typedef int a;\nstruct c {\n  a d;\n  a e;\n};\nstruct c f;\nint main() {}

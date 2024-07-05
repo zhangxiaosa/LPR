@@ -1,0 +1,52 @@
+int k;
+unsigned l;
+volatile unsigned m22;
+
+unsigned fn3(p1) {
+  int o;
+
+  // Unrolled loop: execute the loop body 4 times in sequence
+  for (; l >= 16; l -= 16) {
+    // First iteration
+    for (k = 0; k >= -27; k = k - 18)
+      p1 = o - p1;
+
+    // Second iteration
+    for (k = -18; k >= -45; k = k - 18)
+      p1 = o - p1;
+
+    // Third iteration
+    for (k = -36; k >= -63; k = k - 18)
+      p1 = o - p1;
+
+    // Fourth iteration
+    for (k = -54; k >= -81; k = k - 18)
+      p1 = o - p1;
+  }
+
+  // Handle the remaining iterations (less than 16)
+  for (; l >= 4; l -= 4) {
+    // First iteration
+    for (k = 0; k >= -27; k = k - 18)
+      p1 = o - p1;
+
+    // Second iteration
+    for (k = -18; k >= -45; k = k - 18)
+      p1 = o - p1;
+
+    // Third iteration
+    for (k = -36; k >= -63; k = k - 18)
+      p1 = o - p1;
+  }
+
+  // Handle the remaining iterations (less than 4)
+  for (; l; l--) {
+    // Single iteration
+    for (k = 0; k >= -27; k = k - 18)
+      p1 = o - p1;
+  }
+
+  return p1;
+}
+
+int main() {}

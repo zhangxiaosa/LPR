@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint fn1(int p1, int p2) {\n    return p1 * p2;\n}\n\nint main() {\n    int i;\n    int j_h;\n    int p3;\n    for (p3 = 6; p3 != -7; p3--)\n        j_h ^= fn1(p3, i) & 1;\n}\n

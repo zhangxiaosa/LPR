@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned g;\nint h2 = 2453191021;\n\nint main() {\n  for (;;) {\n    int r0[5][9][5];\n    if (h2 != 0)\n      return 195;\n    g = r0[215][215][215];\n  }\n}

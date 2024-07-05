@@ -1,0 +1,1 @@
+#include <iostream>\n\nint main() {\n  unsigned ak[8];\n  unsigned short p2;\n  unsigned short p3 = 4294967289L;\n  unsigned p4;\n  for (p2 = 0; p2 <= 7; p2 += 1)\n    for (p4 = 0; p4 <= 7; p4 += 1)\n      if (g < 0)\n        for (p4 = 0; p4 <= 7; p4 += 1)\n          if (ak[p3])\n            break;\n}\n

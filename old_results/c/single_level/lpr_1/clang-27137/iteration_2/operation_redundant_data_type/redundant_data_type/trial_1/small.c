@@ -1,0 +1,21 @@
+unsigned int h = 0;
+short o = 0;
+int main() {
+  short q = o;
+  int s = 1L;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  h = q;
+  printf("checksum = %X\n", h);
+  return 0;
+}

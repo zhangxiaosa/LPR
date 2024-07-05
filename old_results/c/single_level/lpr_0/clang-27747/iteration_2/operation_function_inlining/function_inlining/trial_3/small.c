@@ -1,0 +1,1 @@
+struct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\nstruct c i;\nstruct c j;\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = j.e;\n  int n = j.h && l.d;\n  signed p = l.d | -(l.f && l.d) - n;\n  i.g = p;\n}

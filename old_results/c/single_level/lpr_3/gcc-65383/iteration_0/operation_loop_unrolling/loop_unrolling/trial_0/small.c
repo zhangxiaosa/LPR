@@ -1,0 +1,1 @@
+typedef signed a;\ntypedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\nd g;\nb h[] = {0x92A1D2CDL, 0x92A1D2CDL, 0x92A1D2CDL};\nstatic d i = 0x06D7L;\na fn2() {\n  c q = 0xC3L;\n  b r[5][9][5];\n  if (h[2])\n    return q;\n  g = r[i][i][i];\n}\n\nint main() {\n  fn2();\n}

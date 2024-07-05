@@ -1,0 +1,25 @@
+struct {
+  int d;
+  int e;
+} f;
+
+int main() {
+  if (f.e) {
+    f.d = 6L;
+    if (f.e) {
+      f.d = 6L;
+      if (f.e) {
+        f.d = 6L;
+        // ... continue inlining recursively
+      }
+      return 0xEEACFBBFL;
+    }
+    return 0xEEACFBBFL;
+  } else {
+    if (f.e) {
+      f.d = 6L;
+      // ... continue inlining recursively
+    }
+    return 0xEEACFBBFL;
+  }
+}

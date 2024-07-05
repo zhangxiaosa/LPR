@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  short q = 0;\n  char h;\n\n  while (q > 1) {\n    q -= 1;\n    q -= 1;\n    q -= 1;\n    q -= 1;\n    q -= 1;\n    q -= 1;\n  }\n\n  h = (char)q;\n\n  printf("checksum = %X\n", h);\n\n  return 0;\n}

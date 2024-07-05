@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nvoid optimize_f() {\n  int g;\n  int i;\n  int j = 0x24F96B7B;\n  int k;\n  while (true)\n    for (; j; j--)\n      ;\n  int l = 1;\n  int m = j;\n  int n = g;\n  int o = n;\n  int p = o;\nq:\n  k = k >> l;\n  i = p;\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n}\n\nint main() {\n  optimize_f();\n  return 0;\n}

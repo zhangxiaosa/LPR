@@ -1,0 +1,33 @@
+#include<stdio.h>
+
+void fn2(unsigned p1) {
+  unsigned h = p1;
+}
+
+void fn3(unsigned p1) {
+  fn2(p1);
+}
+
+int main() {
+  short o;
+  unsigned h;
+  short q;
+  short r = o;
+  q = r;
+  unsigned int s = 1L;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  while (q > s)
+    q -= 1;
+  fn3(q);
+  printf("checksum = %X\n", h);
+  return 0;
+}

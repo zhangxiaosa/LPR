@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  short p;\n  short v = 0;\n  short ag = 248;\n\n  if (ag == 248) {\n    v = 1;\n  }\n\n  p = v;\n  printf("checksum = %X\n", p);\n\n  return 0;\n}

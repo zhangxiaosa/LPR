@@ -1,0 +1,26 @@
+typedef short a;
+typedef int b;
+typedef long c;
+typedef unsigned d;
+typedef unsigned e;
+typedef unsigned f;
+typedef unsigned g;
+struct h {
+  signed i;
+  c j;
+  unsigned k;
+};
+
+static struct h fn1(f p1, struct h p5) {
+  p5.k;
+w:;
+goto w;
+}
+
+e fn2(p1) {
+  struct h p;
+  fn1(p1, p);
+  for (;;) {
+    p = p;
+  }
+}

@@ -1,0 +1,57 @@
+
+#include <stdio.h>
+
+typedef short a;
+typedef int b;
+typedef long c;
+typedef unsigned char d;
+typedef short e;
+typedef int f;
+typedef int g;
+
+b fn2(b p1, b p2) { return p1 - p2; }
+c fn3(c p1, c p2) { return p1 - p2; }
+d fn4(d p1, d p2) { return p1; }
+f fn5(f p1, f p2) { return p2; }
+f fn6(f p1, f p2) { return p1 - p2; }
+f p;
+void fn7(f p1) { p = p1; }
+void fn9(unsigned long p1, char *p2, int p3) { fn7(p1); }
+b t;
+f u;
+c v;
+a w;
+f ab;
+a ac = 1L;
+e fn10(unsigned long p1, e p2) {
+  b af = 0x2F2F6D26L;
+  e ag = 248UL;
+  fn11(2L, ag, p2, 1);
+  return af;
+}
+e fn11(d p1, f p2, b p3, e p4) {
+  c ai = 7L;
+  e aj = 1UL;
+  fn12(ai, ai, p1, 0, p1);
+  return aj;
+}
+a fn12(b p1, b p2, e p3, a p4, unsigned long p5) {
+  b al = 3L;
+  c am = 1L;
+  b an;
+  for (w = 3; w; w -= 1)
+    if (an = 250UL) {
+      p2 = fn5(ab, ac) || (an = w) == 0x294A85636008822DLL;
+      e ao = 0xBCD1L;
+      if (fn2(fn3(ao, fn4(fn6(am, an), 0xECL)), p2) & 1UL)
+        v = 1UL;
+    }
+  return al;
+}
+int main() {
+  int ap = 0;
+  fn13();
+  fn9(v, "g_170", ap);
+  printf("checksum = %X\n", p);
+  return 0;
+}

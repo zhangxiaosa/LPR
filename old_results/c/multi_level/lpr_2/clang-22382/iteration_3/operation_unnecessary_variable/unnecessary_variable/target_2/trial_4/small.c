@@ -1,0 +1,1 @@
+#include <stdbool.h>\n\nstruct Data {\n  int i;\n  long j;\n  unsigned k;\n};\n\nstatic struct Data fn1(struct Data p5) {\n  p5.k;\n\tw:\n  goto w;\n}\n\nunsigned fn2() {\n  struct Data p;\n  fn1(p);\n  for (;;) {\n    p = p;\n  }\n}\n\nint main() {}\n

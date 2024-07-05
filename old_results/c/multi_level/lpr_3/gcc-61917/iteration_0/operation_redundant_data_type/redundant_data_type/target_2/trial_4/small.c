@@ -1,0 +1,1 @@
+#include <iostream>\n\ntypedef unsigned e;\ntypedef unsigned f;\nint k;\ne l;\nvolatile f m[5][8];\n\nunsigned fn3(unsigned p1) {\n  for (;;) {\n    for (; l; l++) {\n        for (k = 0; k >= 27; k = k - 6)\n            p1 = -p1;\n    }\n  }\n}\n\nint main(void) {}

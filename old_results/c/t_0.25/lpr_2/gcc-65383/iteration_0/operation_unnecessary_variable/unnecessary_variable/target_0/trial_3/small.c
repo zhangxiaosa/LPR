@@ -1,0 +1,11 @@
+unsigned h2 = 0x92A1D2CDL;
+static unsigned i = 0x06D7L;
+
+int main() {
+    for (;;) {
+        int r[225];
+        if (h2)
+            break;
+        g = r[0x06D7L];
+    }
+}

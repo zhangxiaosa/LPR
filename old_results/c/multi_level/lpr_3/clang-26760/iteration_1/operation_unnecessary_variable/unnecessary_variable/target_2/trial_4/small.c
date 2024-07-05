@@ -1,0 +1,32 @@
+#include <stdint.h>
+
+typedef int32_t a;
+typedef int32_t c;
+typedef uint32_t d;
+typedef uint32_t e;
+
+d f;
+a g;
+
+int main() {
+  a i;
+  c j = 0x24F96B7B;
+  e k;
+
+  for (f = 0;)
+    --j;
+
+  c m = j;
+  a n = g;
+  c o = n;
+  e p = o;
+
+q:
+  k = k >> 0x24F96B7B;
+  i = p;
+
+  if (i) {
+    k = k << m;
+    goto q;
+  }
+}

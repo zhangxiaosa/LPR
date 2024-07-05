@@ -1,0 +1,1 @@
+unsigned j;\nint ab;\nsigned q;\nunsigned u;\nint v_ab[1];\nint v_q[1];\nint w_ab;\nint w_q;\nint main() {\nint i;\nint a_ab;\nint a_q;\nj = v_q[i];\nprintf("checksum = %X\n", j);\nreturn 0;\n}

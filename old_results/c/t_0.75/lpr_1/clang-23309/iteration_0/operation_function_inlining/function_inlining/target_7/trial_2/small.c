@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+typedef short a;
+typedef int b;
+typedef long c;
+typedef unsigned char d;
+typedef short e;
+typedef unsigned f;
+typedef unsigned g;
+
+f p;
+
+f fn5(f p1, f p2) { return p2; }
+
+f fn6(f p1, f p2) { return p1 - p2; }
+
+void fn7(b p1) { p = p1; }
+
+void fn8(b p1) { fn7(p1); }
+
+void fn9(g p1, char *p2, int p3) { fn8(p1); }
+
+f fn12(b p1, b p2, d p3, a p4, g p5) {
+  b al = 3L;
+  c am = 1L;
+  b an;
+  for (a w = 3; w; w -= 1)
+    if (an = 250UL) {
+      p2 = fn5(ab, ac) || (an = w) == 0x294A85636008822DLL || p1;
+      a ao = 0xBCD1L;
+      if ((ao - (fn6(am, an)) - p2) & 1UL)
+        v = 1UL;
+    }
+  return al;
+}
+
+int main() {
+  int ap = 0;
+  {
+    b af = 0x2F2F6D26L;
+    d ag = 248UL;
+    fn12(2L, ag, t, 1, ae);
+    return af;
+  }
+  fn9(v, "g_170", ap);
+  printf("checksum = %X\n", p);
+  return 0;
+}

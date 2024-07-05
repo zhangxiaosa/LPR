@@ -1,0 +1,1 @@
+#include <iostream>\n\nunsigned fn1(unsigned p1, int p2) {\n  return p2;\n}\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nunsigned q_l;\nint r;\nunsigned t;\nint u;\nunsigned v;\n\nint fn2(p3_l) {\n  struct m ad = {1957};\n  ad.o = fn1(v, 5);\n  ad.o = u;\n  r = t % (5 / ad.o);\n}\n\nint main() {\n  fn2(q_l);\n}

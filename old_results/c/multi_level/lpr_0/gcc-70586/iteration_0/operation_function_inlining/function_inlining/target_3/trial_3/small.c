@@ -1,0 +1,1 @@
+#include <stdio.h>\n\ntypedef short a;\ntypedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\n\nc i;\n\nc fn4() {\n  {\n    a m = 0x809CL;\n    for (d n = 0; n <= 49; n = n + 8) {\n      d o = 0xE576516EL;\n      1 = 0x60781BCDL >= m ^ 4294967287UL - o;\n    }\n  }\n}\n

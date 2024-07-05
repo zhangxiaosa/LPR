@@ -1,0 +1,1 @@
+int j;\nstruct p {\n  int ab;\n  int q : 22;\n};\nunsigned u;\nstruct p v[1];\nstruct p w = {0x1C87E74FL, 816};\nint main() {\n  int i;\n  int p2;\n  struct p a = {8L, 666};\n  for (p2 = 0; p2 >= 0; p2 -= 1)\n    for (; u <= 1; u += 1) {\n      a = v[p2] = w;\n      v[p2] = a;\n    }\n  for (i = 0; i < 1; i++)\n    j = v[i].q;\n  printf("checksum = %X\n", j);\n  return 0;\n}

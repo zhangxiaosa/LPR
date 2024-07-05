@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+struct h {
+  int i;
+  long j;
+  int k;
+};
+
+static struct h fn1(unsigned p1, struct h p5) {
+  p5.k;
+w:
+  goto w;
+}
+
+unsigned fn2() {
+  struct h p;
+  fn1(0, p);
+
+  // Unrolled iterations
+  struct h r;
+
+  // Unrolled iteration 1
+  p = r = p;
+
+  // Unrolled iteration 2
+  p = r = p;
+
+  // Unrolled iteration 3
+  p = r = p;
+
+  // Unrolled iteration 4
+  p = r = p;
+
+  // Remaining iterations in the original loop without unrolling
+  for (;;) {
+    struct h r;
+    p = r = p;
+  }
+}
+
+int main() {
+  // Main program code
+  return 0;
+}

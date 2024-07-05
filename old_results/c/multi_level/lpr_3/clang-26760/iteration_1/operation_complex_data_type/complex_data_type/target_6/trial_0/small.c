@@ -1,0 +1,1 @@
+typedef signed int a;\ntypedef int c;\ntypedef unsigned int d;\ntypedef unsigned int e;\nd f;\na g;\nint main() {\n\ta i;\n\tc j = 0x24F96B7BL;\n\te k;\n\tfor (f = 0; ;)\n\t	--j;\n\tc l = 1L;\n\tc m = j;\n\ta n = g;\n\tc o = n;\n\te p = o;\nq:\n\tk = k >> l;\n\ti = p;\n\tif (i) {\n\t\tk = k << m;\n\t\tgoto q;\n\t}\n}

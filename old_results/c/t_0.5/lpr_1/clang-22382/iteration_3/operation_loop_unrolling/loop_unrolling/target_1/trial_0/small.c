@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct h {\n  int i;\n  long j;\n  int k;\n};\n\nstatic int fn1_k();\nunsigned fn2() {\n  struct h p;\n  fn1_k(p);\n  \n  // Unrolled loop body\n  p = p;\n  p = p;\n  p = p;\n  p = p;\n\n  // Rest of the program\n  return 0;\n}\n\nint fn1_k(struct h p5) {\nw:;\n  goto w;\n}\n\nint main() {\n  // Main program\n  return 0;\n}

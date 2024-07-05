@@ -1,0 +1,1 @@
+#include<stdio.h>\n\nunsigned f;\nsigned g;\n\nint main() {\n  signed i;\n  int j = 0x24F96B7BL;\n  unsigned k;\n\n  for (f = 0;) {\n    for (; j; --j)\n      ;\n  }\n\n  int l = 1L;\n  int m = j;\n  i = g;\n\nq:\n  k = k >> l;\n\n  if (i) {\n    k = k << m;\n    goto q;\n  }\n}

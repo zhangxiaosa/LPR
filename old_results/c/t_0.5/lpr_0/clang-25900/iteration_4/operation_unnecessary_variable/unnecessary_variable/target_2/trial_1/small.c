@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint r;\nstatic int s = -5L;\n\nunsigned fn1(unsigned p1, int p2) { return p2; }\n\nint main() {\n  fn1(0, 5);\n\n  return 0;\n}

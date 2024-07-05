@@ -1,0 +1,17 @@
+int h;
+int main() {
+  unsigned p2;
+  unsigned short p3 = -7L;
+  unsigned p4;
+  short ak0, ak1, ak2, ak3, ak4, ak5, ak6, ak7;
+  
+  for (p2 = 0; p2 <= 7; p2 += 4)
+    for (p4 = 0; p4 <= 7; p4 += 4)
+      if (h < 0)
+        for (p4 = 0; p4 <= 7; p4 += 4) {
+          if (ak0)
+            break;
+          if (ak1)
+            break;
+        }
+}

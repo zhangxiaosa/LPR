@@ -1,0 +1,1 @@
+#include <iostream>\n\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\n\nstruct c i;\nstruct c j;\n\nint main() {\n  j.e = 6738;\n  j.h = 1;\n\n  signed p = j.e | -(j.h && (j.e)) - (j.h && (j.e));\n  i.g = p;\n}

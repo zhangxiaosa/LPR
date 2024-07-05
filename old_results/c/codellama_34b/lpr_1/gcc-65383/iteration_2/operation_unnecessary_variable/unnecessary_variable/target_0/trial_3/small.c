@@ -1,0 +1,9 @@
+
+int g;
+int h0 = 0x92A1D2CD;
+int fn2() {
+  for (;;) {
+    g = 0x92A1D2CD;
+  }
+}
+int main() { fn2(); }

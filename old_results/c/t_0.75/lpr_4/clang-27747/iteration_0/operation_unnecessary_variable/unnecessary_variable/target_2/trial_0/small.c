@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  int d : 18;\n  int e;\n  int f;\n  int g;\n  int h;\n};\n\nstruct c i;\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = j.e;\n  int n = j.h && l.d;\n  signed p = -(l.f && l.d) - n;\n  i.g = p;\n\n  // Optimized code\n  int optimized_n = (j.h && l.d) ? 0 : -n;\n  i.g = p;\n\n  return 0;\n}

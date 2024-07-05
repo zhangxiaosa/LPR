@@ -1,0 +1,1 @@
+typedef unsigned c;\nchar fn1(char p1, char p2) { return p1 * p2; }\nstruct g {\n  signed h;\n};\nint i;\nstruct g j;\nint *fn2(c p1, int *p2, char p3) {\n  for (p3 = 6; p3 != -7; p3--)\n    j.h ^= fn1(p3, i) && 1L;\n  return p2;\n}\nint main() { return 0; }

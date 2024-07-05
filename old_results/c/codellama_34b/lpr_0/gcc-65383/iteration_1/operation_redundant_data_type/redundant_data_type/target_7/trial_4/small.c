@@ -1,0 +1,17 @@
+c
+#include <stdint.h>
+
+uint32_t g;
+uint32_t h2 = 0x92A1D2CD;
+uint32_t fn2() {
+  for (;;) {
+    uint32_t r[5];
+    if (h2) {
+      break;
+    }
+    g = r[0x06D7];
+  }
+  return 0xC3;
+}
+
+int main() { fn2(); }

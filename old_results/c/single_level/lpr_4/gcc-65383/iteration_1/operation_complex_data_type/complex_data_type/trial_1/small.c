@@ -1,0 +1,1 @@
+unsigned g;\nint h[] = {0x92A1D2CDL, 0x92A1D2CDL, 0x92A1D2CDL};\nstatic unsigned i = 0x06D7L;\nunsigned fn2() {\n  for (;;) {\n    int r_0_0_0;\n    int r_0_0_1;\n    // ...\n    int r_4_8_3;\n\n    if (h[2])\n      return 0xC3L;\n    g = r[i][i][i];\n  }\n}\nint main() { fn2(); }\n

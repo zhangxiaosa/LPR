@@ -1,0 +1,1 @@
+typedef char b;\n\nint d;\nint e;\n\nb fn1() {\n  int h = 6L;\n  if (e)\n    goto i;\n  fn1();\n  b j;\n  return j;\ni:\n  d = h;\n  fn1();\n  j = 0xEEACFBBFL;\n  return j;\n}\n\nint main() {}\n

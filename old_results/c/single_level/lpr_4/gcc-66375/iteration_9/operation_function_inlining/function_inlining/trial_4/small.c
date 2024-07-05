@@ -1,0 +1,1 @@
+unsigned p;\nunsigned u;\nint main() {\n  int d = 2L;\n  for (; u < 51; ++u) {\n    p = d;\n    d = (char)p;\n    d = d + 0x9EE7F9D1C772505B;\n  }\n  printf("checksum = %X\n", p);\n  return 0;\n}

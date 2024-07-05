@@ -1,0 +1,18 @@
+
+typedef int c;
+typedef unsigned int d;
+typedef unsigned int e;
+typedef unsigned int f;
+c k;
+e l;
+volatile f m[5][8];
+d fn3(signed int p1) {
+  signed int o;
+  for (;;) {
+    for (; l; l--)
+      for (k = 0; k >= -27; k -= 6)
+        p1 = o - p1;
+    p1 || m[2][5];
+  }
+}
+int main() {}

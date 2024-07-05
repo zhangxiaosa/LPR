@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+unsigned h;
+void fn2(p1) { h = p1; }
+void fn3(p1) { fn2(p1); }
+
+short o;
+
+int main() {
+  int t = 0;
+  short q;
+  short r = o;
+  q = r;
+  int s = 1L;
+  
+  while (q > s)
+    q -= 1;
+  
+  while (q > s)
+    q -= 1;
+  
+  while (q > s)
+    q -= 1;
+  
+  while (q > s)
+    q -= 1;
+  
+  while (q > s)
+    q -= 1;
+  
+  while (q > s)
+    q -= 1;
+  
+  fn3(q); //  Function call fn4(q, "g_4689", t) is replaced with fn3(q)
+
+  printf("checksum = %X\n", h);
+  return 0;
+}

@@ -1,0 +1,1 @@
+struct c {\n  int d;\n  int e;\n};\nstruct c f;\nchar fn1() {\n  if (f.e)\n    goto i;\n  fn1();\n  char j;\n  return j;\ni:\n  f.d = 6L;\n  fn1();\n  j = 0xEEACFBBFL;\n  return j;\n}\nint main() {}

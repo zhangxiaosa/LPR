@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nint main() {\n  unsigned p1;\n  unsigned o;\n\n  for (;;) {\n    p1 = o - p1;\n  }\n\n  return 0;\n}

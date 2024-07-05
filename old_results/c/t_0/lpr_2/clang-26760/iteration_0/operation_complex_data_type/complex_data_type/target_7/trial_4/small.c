@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nsigned int g;\n\nint main() {\n  signed int n = g;\n  return 0;\n}

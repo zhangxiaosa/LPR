@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint r;\nstatic int s = -5L;\nint u;\n\nint main() {\n  struct m ad = {1957};\n  ad.o = 5;\n  int ae = 5;\n  ad.o = u;\n  r = r % (~s / ae);\n\n  printf("r: %d\n", r);\n\n  return 0;\n}

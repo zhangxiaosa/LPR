@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nunsigned g;\nint h_2 = 0x92A1D2CDL;\n\nint main() {\n  for (;;) {\n    int r[5][9][5];\n    g = r[0x06D7L][0x06D7L][0x06D7L];\n  }\n}

@@ -1,0 +1,12 @@
+int k;
+int l_temp;
+int m[5][8];
+int fn3(p1) {
+  for (;;) {
+    for (k = 0; k >= -27; k -= 6)
+      p1 = 24 - p1;
+    if (p1)
+      m[2][5];
+  }
+}
+int main() {}

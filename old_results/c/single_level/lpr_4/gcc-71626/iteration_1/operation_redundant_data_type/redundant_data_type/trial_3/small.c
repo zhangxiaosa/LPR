@@ -1,0 +1,1 @@
+#include <iostream>\n\nvoid fn1() {}\n\nlong fn2() {\n  long f = {fn1};\n  return f;\n}\n\nint main() {\n  return 0;\n}

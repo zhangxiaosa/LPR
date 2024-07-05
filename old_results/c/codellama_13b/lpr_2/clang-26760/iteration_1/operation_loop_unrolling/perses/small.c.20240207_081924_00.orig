@@ -1,0 +1,15 @@
+
+int f;
+int fn1() {
+  unsigned j = 0x24F96B7BL;
+  for (f = 0; f;) {
+    j = j >> 1L;
+    j = j << 32L;
+  }
+  int m = j;
+q:;
+  j = j >> 1L;
+  j = j << m;
+  goto q;
+}
+int main() {}

@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nsigned int i;\nlong j;\nunsigned int k;\nunsigned int l;\n\nstatic signed int fn1_i;\nstatic long fn1_j;\nstatic unsigned int fn1_k;\n\nunsigned int fn2_p;\nsigned int fn2_p1;\nshort fn2_p2;\nunsigned int fn2_p3;\nunsigned int fn2_p4;\nsigned int fn2_p5_i;\nlong fn2_p5_j;\nunsigned int fn2_p5_k;\n\nint main() {\n    return 0;\n}

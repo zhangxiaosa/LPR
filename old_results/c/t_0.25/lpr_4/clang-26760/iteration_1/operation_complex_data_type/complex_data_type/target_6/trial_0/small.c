@@ -1,0 +1,1 @@
+unsigned int p = (unsigned int)g;

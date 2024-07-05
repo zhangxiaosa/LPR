@@ -1,0 +1,1 @@
+int g;\nint h0 = 0x92A1D2CDL;\nint h1 = 0x92A1D2CDL;\nint h2 = 0x92A1D2CDL;\nstatic int i = 0x06D7L;\nunsigned fn2() {\n  for (;;) {\n    int r[5][9][5];\n    if (h2)\n      return 0xC3L;\n    g = r[i][i][i];\n  }\n}\nint main() {\n  fn2();\n}

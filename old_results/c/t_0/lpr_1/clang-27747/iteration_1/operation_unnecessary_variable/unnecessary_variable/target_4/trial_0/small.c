@@ -1,0 +1,1 @@
+#include <stdio.h>\n\nstruct c {\n  signed d : 18;\n  unsigned e;\n  unsigned f;\n  signed g;\n  signed h;\n};\n\nstruct c j;\n\nint main() {\n  struct c l = {24, 6738, 165};\n  l.d = j.e;\n  int n = j.h && j.e;\n  signed p = j.e | (~j.f + 1) - n;\n  j.g = p;\n\n  printf("p = %d\n", p);\n\n  return 0;\n}

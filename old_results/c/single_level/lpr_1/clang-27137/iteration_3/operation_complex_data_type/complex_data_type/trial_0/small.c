@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+unsigned int h;
+short int o;
+
+int main() {
+  short int q = o;
+
+  while (q > 1)
+    q -= 1;
+  while (q > 1)
+    q -= 1;
+  while (q > 1)
+    q -= 1;
+  while (q > 1)
+    q -= 1;
+  while (q > 1)
+    q -= 1;
+  while (q > 1)
+    q -= 1;
+
+  h = q;
+
+  printf("checksum = %X\n", h);
+
+  return 0;
+}

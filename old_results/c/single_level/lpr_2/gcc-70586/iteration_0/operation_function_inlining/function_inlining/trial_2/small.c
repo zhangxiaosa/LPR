@@ -1,0 +1,1 @@
+typedef short a;\ntypedef int b;\ntypedef unsigned c;\ntypedef unsigned d;\nc i;\n\nd fn1(d p1, d p2) {\n  return p1 + p2;\n}\nd fn2(d p1, d p2) {\n  return p1 - p2;\n}\n\nc main() {\n  if (1)\n    ;\n}

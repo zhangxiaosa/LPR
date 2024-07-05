@@ -1,0 +1,10 @@
+int l_d = 24;
+unsigned l_e = 6738;
+unsigned l_f = 165;
+int j_e = i.e;
+l_d = j_e;
+int j_h = i.h;
+int n = j_h && l_d;
+int o = l_d;
+int p = o | -(l_f && l_d) - n;
+i.g = p;

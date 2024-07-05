@@ -1,0 +1,1 @@
+struct h {\n  signed i;\n  long j;\n  unsigned k;\n};\nunsigned l;\nstatic struct h fn1(unsigned, short, unsigned, unsigned, struct h);\nunsigned fn2(p1) {\n  struct h p;\n  int q;\n  fn1(q, l, p1, 3, p);\n  for (;;) {\n    struct h r;\n    p = r = p;\n  }\n}\nstruct h fn1(unsigned p1, short p2, unsigned p3, unsigned p4, struct h p5) {\n  p5.k;\nw:;\n  goto w;\n}\nint main() {}

@@ -1,0 +1,1 @@
+typedef char a;\ntypedef int d;\ntypedef unsigned g;\n\na fn2(a p1, int p2) { return p1; }\n\ng v[4];\n\nint main() {\n  d d = 2L;\n  for (; 0 < 51; ++u) {\n    v[3] = d;\n    d = fn2(v[3], 3) + 0x9EE7F9D1C772505BLL;\n  }\n  printf("checksum = %X\n", v[3]);\n  return 0;\n}

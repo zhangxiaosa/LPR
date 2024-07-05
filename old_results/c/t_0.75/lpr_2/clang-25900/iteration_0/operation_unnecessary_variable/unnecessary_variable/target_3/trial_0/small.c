@@ -1,0 +1,1 @@
+#include <iostream>\n\nint r;\nstatic int s = -5L;\nunsigned t;\nint u;\nunsigned v;\nstruct m {\n  int n : 18;\n  int o : 1;\n};\n\nint fn1(int p2) {\n  return p2;\n}\n\nint main() {\n  struct m ad = {1957};\n  ad.o = fn1(v, 5);\n  int ae;\n  ae = ad.o;\n  ad.o = u;\n  r = t % (~s / ae);\n  ad.o;\n}

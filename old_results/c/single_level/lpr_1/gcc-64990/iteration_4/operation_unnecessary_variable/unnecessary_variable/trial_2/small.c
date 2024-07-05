@@ -1,0 +1,37 @@
+static short g = 0x7EBA;
+int h = 0xCA;
+short i;
+int j[5][5];
+int k = 0xAF7C65D6L;
+static unsigned l;
+unsigned m1;
+unsigned fn1(signed, signed);
+signed fn2();
+unsigned fn3() {
+  fn1(fn2(0), 7, 0);
+  return 0;  // Remove unused variable "n"
+}
+unsigned fn1(signed p1, signed p4) {  // Remove unused variable "p2"
+  p1 || (m1 = p1);
+  return 2;
+}
+signed fn2(p1) {
+  unsigned v[6][3][2];
+  int w = 0x709BFC8A;
+  for (i = 0;;) {
+    if (k)
+      break;
+    return v[g][l][l];
+  }
+  if (h)
+    ;
+  else
+    return j[g][g];
+  for (; p1;) {
+  }
+  return w;
+}
+int main() {
+  fn1(fn2(0), 7, 0);
+  return 0;  // Remove unused variable "n"
+}

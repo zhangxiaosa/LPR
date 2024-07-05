@@ -1,0 +1,14 @@
+char fn1(char p1, char p2) {
+  return p1 * p2;
+}
+
+int i;
+signed h;
+int *fn2(unsigned p1, int *p2, char p3) {
+  h = 0; // Copy propagation: Replace XOR operation with h = 0;
+  return p2;
+}
+
+int main() {
+  return 0;
+}

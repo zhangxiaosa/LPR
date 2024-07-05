@@ -1,0 +1,1 @@
+int g;\nint main() {\n  int i;\n  int j = 0x24F96B7BL;\n  unsigned k;\n  int f;\n  for (; f;)\n    for (; j; j -= 2) {\n    }\nq:\n  k = k >> 1L;\n  i = g;\n  if (i) {\n    k = k << j;\n    goto q;\n  }\n}

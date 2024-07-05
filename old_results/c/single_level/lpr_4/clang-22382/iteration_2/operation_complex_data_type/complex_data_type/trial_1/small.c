@@ -1,0 +1,1 @@
+#include <stdint.h>\nstruct h {\nsigned int i;\nlong j;\nunsigned int k;\n};\nstatic struct h fn1();\nuint32_t fn2(uint32_t p1) {\nstruct h p;\nint q;\nfn1(q, p1, 3, p);\nfor (;;) {\nstruct h r;\np = r = p;\n}\n}\nstruct h fn1(unsigned int p1, unsigned int p3, uint32_t p4, struct h p5) {\np5.k;\nw:\ngoto w;\n}\nint main() {}\n
