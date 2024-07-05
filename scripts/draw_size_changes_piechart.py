@@ -18,8 +18,8 @@ with open(json_path, 'r') as f:
 operations = all_data['operations']
 operations_short = all_data['operations_short']
 operations_full = all_data['operations_full']
-size_changes_total = all_data['size_changes_total']
-size_changes_total = [-1 * data / 5 for data in size_changes_total]
+size_changes_average = all_data['size_changes_average']
+size_changes_average = [-1 * data for data in size_changes_average]
 
 # Choosing a color palette
 colors = plt.cm.Paired(range(len(operations)))
@@ -29,7 +29,7 @@ custom_position_multipliers = [0.6, 0.4, 0.65, 0.5, 0.7]  # Adjust this list as 
 
 # Plotting the pie chart without the default percentage display
 fig, ax = plt.subplots(figsize=(10, 5))
-wedges, texts = ax.pie(size_changes_total, startangle=45, colors=colors, radius=1)
+wedges, texts = ax.pie(size_changes_average, startangle=45, colors=colors, radius=1)
 
 bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
 
@@ -44,8 +44,8 @@ for i, p in enumerate(wedges):
     connectionstyle = f"angle,angleA=0,angleB={ang}"
     kw["arrowprops"].update({"connectionstyle": connectionstyle})
 
-    percentage = f'{1.0 * size_changes_total[i] / sum(size_changes_total) * 100:.2f}%'
-    value = f'{size_changes_total[i] * 1.0 / 20:.1f}'  # Transformation value divided by 20
+    percentage = f'{1.0 * size_changes_average[i] / sum(size_changes_average) * 100:.2f}%'
+    value = f'{size_changes_average[i] * 1.0 / 20:.1f}'  # Transformation value divided by 20
     text = f'{operations[i]}\n {percentage}, {value} tokens'
 
     ax.annotate(text, xy=(x, y), xytext=(1.15*np.sign(x), 1.1*y),

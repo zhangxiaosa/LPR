@@ -16,6 +16,7 @@ def merge_json_files(result_path):
             'after': {}
         },
         'size_changes_total': [],
+        'size_changes_average': [],
         'iteration_numbers': []
     }
 
@@ -49,6 +50,10 @@ def merge_json_files(result_path):
     for operation in merged_data['operations']:
         total = sum(merged_data['size_changes_details']['after'][operation])
         merged_data['size_changes_total'].append(total)
+    # Calculate size_changes_average
+    for operation in merged_data['operations']:
+        average = sum(merged_data['size_changes_details']['after'][operation]) / len(merged_data['size_changes_details']['after'][operation])
+        merged_data['size_changes_average'].append(average)
 
     # Normalize size_changes_details
     for key in ['before', 'after']:

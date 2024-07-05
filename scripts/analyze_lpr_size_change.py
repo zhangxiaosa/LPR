@@ -119,6 +119,8 @@ def main():
     benchmark_suite = utils.determine_benchmark_suite(RESULT_PATH)
     utils.init_language(RESULT_PATH)
 
+    print(f"processing {RESULT_PATH}")
+
     all_transformations = set()
     for target in benchmark_suite:
         case_path = os.path.join(RESULT_PATH, target)
@@ -126,7 +128,6 @@ def main():
         all_transformations.update(transformations)
 
     header = ["target"] + sorted(all_transformations)
-    print(header)
 
     # Set the maximum number of threads based on the number of CPU cores
     max_threads = multiprocessing.cpu_count()
