@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 json_path = sys.argv[1]
+
+os.environ['LC_ALL'] = 'C.UTF-8'
+os.environ['LANG'] = 'C.UTF-8'
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['pdf.fonttype'] = 42
 fontsize = 22
@@ -16,6 +19,7 @@ operations = all_data['operations']
 operations_short = all_data['operations_short']
 operations_full = all_data['operations_full']
 size_changes_total = all_data['size_changes_total']
+size_changes_total = [-1 * data / 5 for data in size_changes_total]
 
 # Choosing a color palette
 colors = plt.cm.Paired(range(len(operations)))
@@ -46,24 +50,6 @@ for i, p in enumerate(wedges):
 
     ax.annotate(text, xy=(x, y), xytext=(1.15*np.sign(x), 1.1*y),
                 horizontalalignment=horizontalalignment, **kw)
-
-# Manually adding custom text with percentages and operation values
-# for text, size_change, operation, operations_short, multiplier in zip(texts, size_changes_total, operations, operations_short, custom_position_multipliers):
-#     percentage = f'{1.0 * size_change/sum(size_changes_total)*100:.2f}%'
-#     value = f'{size_change * 1.0 / 20:.1f}'  # Transformation value divided by 20
-#     text.set_text(f'{operations_short}: {percentage}\n{value} tokens')
-#     text.set_horizontalalignment('center')
-#     text.set_verticalalignment('center')
-#     text.set_size(fontsize)
-#     # Move labels by the custom multiplier towards the center
-#     text.set_position((text.get_position()[0] * multiplier, text.get_position()[1] * multiplier))
-
-# Creating a legend with operations and corresponding colors
-# legend = ax.legend(wedges, operations_full, loc="best")
-# plt.setp(legend.get_texts(), fontsize=fontsize_legend)
-
-# Manually adjusting the margins to fit the legend
-# fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
 
 plt.tight_layout()
 # Saving the adjusted plot as a PDF file

@@ -1,23 +1,30 @@
-import numpy as np
-import data
+import os, sys
+import json
 import matplotlib.pyplot as plt
+import numpy as np
 
+json_path = sys.argv[1]
+
+os.environ['LC_ALL'] = 'C.UTF-8'
+os.environ['LANG'] = 'C.UTF-8'
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['pdf.fonttype'] = 42
+fontsize = 22
+fontsize_legend = 18
+
+with open(json_path, 'r') as f:
+    all_data = json.load(f)
 
 # draw barchart
-operations = data.operations
+operations = all_data["operations"]
 # operations_short = data.operations_short
 operations_short = ['Data Type\nSimplification', 'Function\nInlining',
                     'Loop\nUnrolling',
                     'Data Type\nElimination',
                     'Variable\nElimination']
 
-operations_full = data.operations_full
-size_changes_details = data.size_changes_details
-
-fontsize = 22
-fontsize_legend = 18
+operations_full = all_data["operations_full"]
+size_changes_details = all_data["size_changes_details"]
 
 # Choosing a color palette
 colors = plt.cm.Paired(range(len(operations)))
@@ -57,10 +64,6 @@ plt.xticks(fontsize=fontsize, rotation=0)
 plt.yticks(fontsize=fontsize)
 plt.yticks(np.arange(0, 22, 5))
 ax.set_ylim(0, 22)
-
-# Creating a legend with operations and corresponding colors
-# legend = ax.legend(bars, operations_full_sorted, loc="lower center", ncol=2)
-# plt.setp(legend.get_texts(), fontsize=fontsize_legend)
 
 # Manually adjusting the margins to fit the legend
 fig.subplots_adjust(left=0.14, right=0.99, top=0.99, bottom=0.1)
