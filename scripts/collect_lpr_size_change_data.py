@@ -77,15 +77,11 @@ def main(result_path):
             print(f"Error processing {target}: {e}")
             continue
 
-    # Example: size_changes_total data, you can modify this to your needs
-    size_changes_total = [156, 1763, 95, 415, 409]
-
     result_json = {
         'operations': operations,
         'operations_short': operations_short,
         'operations_full': operations_full,
         'size_changes_details': size_changes_details,
-        'size_changes_total': size_changes_total,
         'iteration_numbers': iteration_numbers
     }
 
