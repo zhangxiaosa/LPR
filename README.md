@@ -1,6 +1,5 @@
 # Artifact for "LPR: Large Language Models-Aided Program Reduction"
 
-## Introduction
 
 Thank you for evaluating this artifact!
 
@@ -26,6 +25,22 @@ To ease the artifact evaluation, we include the previous results.
 - The evaluation results of LPR may not exactly the same as shown in the paper, because LLMs have internal randomness. Replicating the experiments for multiple times will mitigate such impact. However, the deviation should be trivial, and the results should still support the original claims in the paper.
 
 - It is possible for remote calls to LLMs to lose connection and raise exceptions, because the resource for user to invoke LLMs might be limited. Therefore, we add logics and scripts for quick restart from the intermediate results.
+
+### Folder Structure
+In github repository, the folder structure is as follows:
+- README.md: The readme file
+- scripts: scripts and programs to run the experiments and analyze the results
+- prompts: prompt files to guide the LLMs
+- benchmark_suites: benchmarks used for evaluation
+  - c: 20 C programs
+  - rust: 20 rust programs
+  - js: 10 JavaScript programs
+- tools: tools used in LPR or for evaluation
+  - perses_deploy.jar: Perses tool
+  - vulcan_deploy.jar: Vulcan tool
+  - token_counter_deploy.jar: a token counter
+- precomputed_results: precomputed results for artifact evaluation 
+(it is time-consuming and LLM-required to rerun the results, so we prepare some results)
 
 ### Docker Environment Setup
 
@@ -59,7 +74,7 @@ benchmark suite are in folder `./benchmark_suites`.
 
 3. `./benchmark_suites/js`: 10 benchmarks in JavaScript (Benchmark-JS).
 
-In each folder, there are several versions, including the original benchmark and results of each reducer.
+In each folder, there are several versions, including the original benchmarks and precomputed results of each reducer.
 For example, in C benchmark suite:
 - `./benchmark_suites/c/original`: Original benchmarks
 - `./benchmark_suites/c/perses`: Results of Perses
@@ -71,7 +86,7 @@ For example, in C benchmark suite:
 ### Previous Results
 
 Besides some previous results in `./benchmark_suites`, 
-more detailed outputs of LPR are stored in `./old_results`.
+more detailed outputs of LPR are stored in `./precomputed_results`.
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce and LPR.
 
@@ -168,7 +183,7 @@ To reproduce the size change analysis displayed in Figure 4, Figure 5 and Figure
 # This script may take 2-3 minutes
 ./scripts/analyze_and_draw.sh
 ```
-This script collects and analyzes data in the folder `./old_results/c/multi_level/`,
+This script collects and analyzes data in the folder `./precomputed_results/c/multi_level/`,
 which consists of logs and intermediate results from LPR in 5 runs under the default setting. 
 While these results are not exactly the same as those used in the paper, the differences are minimal. 
 This is due to the fact that these results are from reruns, as the original results were unfortunately misplaced. 
@@ -176,7 +191,7 @@ Nevertheless, this also demonstrates the robustness of LPR despite of the nondet
 as the rerun results closely align with the original outcomes.
 
 After the execution of the above command, pdf files is saved under 
-`./old_results/c/multi_level/`, you can compare such files with Figures in the paper.
+`./precomputed_results/c/multi_level/`, you can compare such files with Figures in the paper.
 - Figure 4: `size_changes_boxplot_*.pdf`
 - Figure 5: `size_changes_piechart.pdf`
 - Figure 6: `size_changes_barchart.pdf`
