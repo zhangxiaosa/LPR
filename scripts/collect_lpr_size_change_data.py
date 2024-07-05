@@ -5,7 +5,7 @@ import sys
 
 # Define the transformations
 operations_oldname = ['complex_data_type', 'function_inlining', 'loop_unrolling', 'redundant_data_type',
-              'unnecessary_variable']
+                      'unnecessary_variable']
 operations_name_map = {
     'complex_data_type': 'Data Type Simplification',
     'function_inlining': 'Function Inlining',
@@ -33,9 +33,18 @@ def process_target_csv(result_path, target):
     for operation in operations_oldname:
         if operation in without_perses_df.columns and operation in with_perses_df.columns:
             size_changes_before[operations_name_map[operation]] = without_perses_df[operation].tolist()
-            size_changes_after[operations_name_map[operation]] = with_perses_df[operation].tolist()
+            size_changes_after[operations_name_map[operation]] = with_perses_csv[operation].tolist()
 
     return size_changes_before, size_changes_after
+
+
+def count_iterations(case_path):
+    iteration_count = 0
+    for root, dirs, files in os.walk(case_path):
+        for dir in dirs:
+            if dir.startswith("iteration_"):
+                iteration_count += 1
+    return iteration_count
 
 
 def main(result_path):
@@ -45,6 +54,8 @@ def main(result_path):
         'before': {},
         'after': {}
     }
+
+    iteration_numbers = []
 
     for target in benchmark_suite:
         try:
@@ -58,6 +69,11 @@ def main(result_path):
                 size_changes_details['before'][operation].extend(size_changes_before.get(operation, []))
                 size_changes_details['after'][operation].extend(size_changes_after.get(operation, []))
 
+            # Count iterations and append to the list
+            case_path = os.path.join(result_path, target)
+            iteration_count = count_iterations(case_path)
+            iteration_numbers.append(iteration_count)
+
         except Exception as e:
             print(f"Error processing {target}: {e}")
             continue
@@ -70,7 +86,8 @@ def main(result_path):
         'operations_short': operations_short,
         'operations_full': operations_full,
         'size_changes_details': size_changes_details,
-        'size_changes_total': size_changes_total
+        'size_changes_total': size_changes_total,
+        'iteration_numbers': iteration_numbers
     }
 
     output_file = os.path.join(result_path, 'size_changes.json')
