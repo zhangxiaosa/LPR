@@ -162,13 +162,24 @@ python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_ben
 
 ### Reproduce RQ3: Effectiveness of Each Transformation.
 
-To calculate the contribution of each transformation, run
+To reproduce the size change analysis displayed in Figure 4, Figure 5 and Figure 6 in the paper, please run:
 
 ```bash
-python ./scripts/analyze_lpr_size_change.py ./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
+# This script may take 2-3 minutes
+./scripts/analyze_and_draw.sh
 ```
+This script collects and analyzes data in the folder `./old_results/c/multi_level/`,
+which consists of logs and intermediate results from LPR in 5 runs under the default setting. 
+While these results are not exactly the same as those used in the paper, the differences are minimal. 
+This is due to the fact that these results are from reruns, as the original results were unfortunately misplaced. 
+Nevertheless, this also demonstrates the robustness of LPR despite of the nondeterministic nature of LLMs, 
+as the rerun results closely align with the original outcomes.
 
-This script will save the size change of each transformation on each benchmark to csv files in the result folder "./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/".
+After the execution of the above command, pdf files is saved under 
+`./old_results/c/multi_level/`, you can compare such files with Figures in the paper.
+- Figure 4: `size_changes_boxplot_*.pdf`
+- Figure 5: `size_changes_piechart.pdf`
+- Figure 6: `size_changes_barchart.pdf`
 
 ### Other Experiments
 
