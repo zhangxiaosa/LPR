@@ -12,8 +12,8 @@ def extract_transformations(case_path):
     transformations = set()
     for root, dirs, files in os.walk(case_path):
         for dir in dirs:
-            if dir.startswith("transformation_"):
-                transformation = dir.replace("transformation_", "")
+            if dir.startswith("operation_"):
+                transformation = dir.replace("operation_", "")
                 transformations.add(transformation)
     return sorted(transformations)
 
@@ -27,7 +27,7 @@ def compute_size_changes_of_transformation_without_perses(case_path, transformat
     # Recursively search for all folders named transformation_{transformation}
     for root, dirs, files in os.walk(case_path):
         for directory in dirs:
-            if directory == f"transformation_{transformation}":
+            if directory == f"operation_{transformation}":
                 transformation_folder = os.path.join(root, directory)
                 program_file = os.path.join(transformation_folder, transformation, utils.PROGRAM_NAME)
                 orig_file = os.path.join(transformation_folder, transformation, utils.PROGRAM_NAME + ".orig")
@@ -61,7 +61,7 @@ def compute_size_changes_of_transformation_with_perses(case_path, transformation
     # Recursively search for all folders named transformation_{transformation}
     for root, dirs, files in os.walk(case_path):
         for dir in dirs:
-            if dir == f"transformation_{transformation}":
+            if dir == f"operation_{transformation}":
                 transformation_folder = os.path.join(root, dir)
                 program_file = os.path.join(transformation_folder, "perses", utils.PROGRAM_NAME)
                 orig_file = os.path.join(transformation_folder, transformation, utils.PROGRAM_NAME + ".orig")
