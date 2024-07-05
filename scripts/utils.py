@@ -288,25 +288,33 @@ def initialize_parser():
     parser.add_argument("--max-jobs", type=int, required=False, default=1,
                         help="The maximum number of concurrent tasks allowed")
     parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
-    parser.add_argument("--base-url", type=str, required=False, default="https://api.openai.com/v1",
-                        help="The url to connect, can be local host.")
     parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False,
                         help="Disable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
     return parser
 
 
-def init_client(base_url):
+def init_client(llm_version):
     """
     Initialize OpenAI API key or raise an error if it is not set.
     """
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key and "openai" in base_url:
-        raise EnvironmentError("To invoke GPT, OPENAI_API_KEY must be set in the environment variables.")
-    client = openai.OpenAI(
-        api_key=openai_api_key,
-        base_url=base_url,
-    )
+    if "gpt" in llm_version:
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+        base_url = "https://api.openai.com/v1"
+        if not openai_api_key:
+            raise EnvironmentError("To invoke GPT, OPENAI_API_KEY must be set in the environment variables.")
+        client = openai.OpenAI(
+            api_key=openai_api_key,
+            base_url=base_url,
+        )
+    else:
+        # codellama
+        openai_api_key = "EMPTY"
+        base_url = "http://localhost:8000/v1"
+        client = openai.OpenAI(
+            api_key=openai_api_key,
+            base_url=base_url,
+        )
     return client
 
 

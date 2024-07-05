@@ -314,9 +314,8 @@ def main():
     trial_number = args.trial
     temperature = args.temperature
     multi_level = not args.disable_multi_level
-    base_url = args.base_url
 
-    client = utils.init_client(base_url)
+    client = utils.init_client(llm_version)
     utils.init_language(benchmark_suite_folder)
     utils.init_root_folder(os.getcwd())
 
