@@ -5,6 +5,7 @@ import utils
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import multiprocessing
+import uuid
 
 
 def extract_transformations(case_path):
@@ -38,10 +39,12 @@ def compute_size_changes_of_transformation_without_perses(case_path, transformat
                 if os.path.exists(program_file) and os.path.exists(orig_file):
                     program_count = utils.count_token(program_file)
 
-                    # Copy and rename .orig file
-                    tmp_folder = os.path.join("/tmp", transformation)
+                    # Create a unique temporary directory
+                    tmp_folder = os.path.join("/tmp", str(uuid.uuid4()))
                     os.makedirs(tmp_folder, exist_ok=True)
                     tmp_orig_file = os.path.join(tmp_folder, utils.PROGRAM_NAME)
+
+                    # Copy and rename .orig file
                     utils.copy_file(orig_file, tmp_orig_file)
 
                     orig_count = utils.count_token(tmp_orig_file)
@@ -56,7 +59,7 @@ def compute_size_changes_of_transformation_without_perses(case_path, transformat
 
 def compute_size_changes_of_transformation_with_perses(case_path, transformation):
     """
-        compute the size changes brought about by the transformation + followup Perses
+    compute the size changes brought about by the transformation + followup Perses
     """
     total_diff = 0
 
@@ -72,10 +75,12 @@ def compute_size_changes_of_transformation_with_perses(case_path, transformation
                 if os.path.exists(program_file) and os.path.exists(orig_file):
                     program_count = utils.count_token(program_file)
 
-                    # Copy and rename .orig file
-                    tmp_folder = os.path.join("/tmp", transformation)
+                    # Create a unique temporary directory
+                    tmp_folder = os.path.join("/tmp", str(uuid.uuid4()))
                     os.makedirs(tmp_folder, exist_ok=True)
                     tmp_orig_file = os.path.join(tmp_folder, utils.PROGRAM_NAME)
+
+                    # Copy and rename .orig file
                     utils.copy_file(orig_file, tmp_orig_file)
 
                     orig_count = utils.count_token(tmp_orig_file)
