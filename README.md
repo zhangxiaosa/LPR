@@ -139,7 +139,14 @@ python summarize_creduce.py ./results/1234567/scripts_run_creduce_py_benchmark_s
 ```
 
 4. Run LPR
-   
+
+Note that running LPR is time-consuming and LLM-dependent, we provide precomputed results in `./precomputed_results`
+for quick evaluation.
+
+If you want to rerun LPR, there are 2 options.
+
+##### Option1: Invoke OpenAI API: gpt-3.5-turbo-0613
+
 Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
 
 ```bash
@@ -148,10 +155,28 @@ export OPENAI_API_KEY=sk-xxxxxxx
 
 ```bash
 cd /tmp/LPR/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --id 0"
+./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
+# flag "--llm-version" specify the version OpenAI API or your local LLMs
+```
+
+##### Option2: Deploy CodeLlama: CodeLlama-7b-Instruct-hf
+
+Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
+
+```bash
+export OPENAI_API_KEY=sk-xxxxxxx
+```
+
+```bash
+cd /tmp/LPR/
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
+# In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
+./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
+# flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
+# flag "--llm-version" specify the version OpenAI API or your local LLMs
 ```
 
 To get summarized information
