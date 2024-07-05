@@ -11,7 +11,6 @@ def merge_json_files(result_path):
             'before': {},
             'after': {}
         },
-        'size_changes_total': [],
         'iteration_numbers': []
     }
 
@@ -39,8 +38,6 @@ def merge_json_files(result_path):
                                 data['size_changes_details'][key][operation]
                             )
 
-                    # Merge size_changes_total and iteration_numbers
-                    merged_data['size_changes_total'].extend(data['size_changes_total'])
                     merged_data['iteration_numbers'].extend(data['iteration_numbers'])
 
     output_file = os.path.join(result_path, 'merged_size_changes.json')
