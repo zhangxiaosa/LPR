@@ -70,6 +70,4 @@ fig.subplots_adjust(left=0.14, right=0.99, top=0.99, bottom=0.1)
 
 plt.tight_layout()
 # Saving the adjusted plot as a PDF file
-plt.savefig('./size_changes_barchart.pdf')
-
-plt.show()
+plt.savefig(os.path.join(os.path.dirname(json_path), 'size_changes_barchart.pdf'))

@@ -1,16 +1,14 @@
+import os, sys
+import json
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-import os
-import data
 
+json_path = sys.argv[1]
+
+os.environ['LC_ALL'] = 'C.UTF-8'
+os.environ['LANG'] = 'C.UTF-8'
 plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['pdf.fonttype'] = 42
-
-# import data
-operations = data.operations
-data = data.size_changes_details
-
 fontsize = 25
 tick_label_size = 25
 markersize = 20
@@ -19,8 +17,15 @@ plt.rcParams.update({'font.size': fontsize})
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 
+with open(json_path, 'r') as f:
+    all_data = json.load(f)
+
+# import data
+operations = all_data["operations"]
+data = all_data["size_changes_details"]
+
 # Directory to save plots
-save_dir = './'
+save_dir = os.path.dirname(json_path)
 
 # Modified function to create and save individual plots with corrected upper and lower boundaries
 def create_and_save_plots(data, operations, save_dir):
@@ -51,24 +56,11 @@ def create_and_save_plots(data, operations, save_dir):
         lower_boundary = min(bp_before['whiskers'][0].get_ydata()[1], bp_after['whiskers'][0].get_ydata()[1])
         margin = (upper_boundary - lower_boundary) * 0.12
 
-        # if operation == "Loop Unrolling":
-        #     ax.set_ylim(-19, 40)
-        # else:
         ax.set_ylim(lower_boundary - 4*margin, upper_boundary + 1.5*margin)
 
         ax.set_xticklabels([])
 
         ax.tick_params(axis='y', labelsize=tick_label_size)
-
-        # y_min, y_max = ax.get_ylim()
-        # y_ticks = np.linspace(y_min, y_max, 8)
-        # y_ticks = [ int(tick) for tick in y_ticks ]
-        # ax.set_yticks(y_ticks)
-
-        # ax.set_xticks([1, 2])
-        # ax.set_xticklabels(['Transformation', 'Transformation+Perses'])
-
-        # plt.subplots_adjust(left=0.17, right=0.99, top=0.99, bottom=0.01)
 
         # compute average
         avg_before = np.mean(data['before'][operation])
@@ -83,7 +75,6 @@ def create_and_save_plots(data, operations, save_dir):
         file_path = os.path.join(save_dir, f'size_changes_{operation.lower().replace(" ", "_")}.pdf')
         plt.savefig(file_path)
         file_paths.append(file_path)
-        plt.show()
         plt.close()
 
     return file_paths

@@ -54,5 +54,3 @@ for i, p in enumerate(wedges):
 plt.tight_layout()
 # Saving the adjusted plot as a PDF file
 plt.savefig(os.path.join(os.path.dirname(json_path), 'size_changes_piechart.pdf'))
-
-plt.show()
