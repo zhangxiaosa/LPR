@@ -88,7 +88,7 @@ For example, in C benchmark suite:
 Besides some previous results in `./benchmark_suites`, 
 more detailed outputs of LPR are stored in `./precomputed_results`.
 
-### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce and LPR.
+### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce, LPR and LPR+Vulcan.
 
 1. Run Perses.
 
@@ -160,10 +160,10 @@ To get summarized information
 python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
-5. Run Vulcan on LPR's results
+5. Run LPR + Vulcan
 
 ```bash
-# Similar to how we run Vulcan alone
+# Just run Vulcan on precomputed LPR's results
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --max-jobs 8
 ```
