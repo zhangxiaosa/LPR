@@ -13,10 +13,10 @@ To evaluate this artifact, a Linux machine with [docker](https://docs.docker.com
 
 - LPR generalizes well on C, Rust and JavaScript.
 
-- To evaluate LPR, access to LLMs is required. You need either use gpt-3.5-turbo APIs or run codellama-2 on your server.
+- To evaluate LPR, access to LLMs is required. You need either use gpt-3.5-turbo APIs or run CodeLlama on your server.
 
 - The output of LLM is non-deterministic, so you may not exactly reproduce the previous results. 
-To ease the artifact evaluation, we include the previous results.
+To ease the artifact evaluation, we include the precomputed results.
 
 ### Notes
 
@@ -86,7 +86,21 @@ For example, in C benchmark suite:
 ### Previous Results
 
 Besides some previous results in `./benchmark_suites`, 
-more detailed outputs of LPR are stored in `./precomputed_results`.
+more detailed outputs of LPR under various settings are stored in `./precomputed_results`.
+- c
+  - multi_level: default settings (temperature=1, multi-level prompt, gpt-3.5-turbo-0613)
+  - single_level: single-level prompt
+  - t_0: temperature=0
+  - t_0.25: temperature=0.25
+  - t_0.5: temperature=0.5
+  - t_0.75: temperature=0.75
+  - codellama_13b: CodeLlama-13b-Instruct-hf
+  - codellama_34b: CodeLlama-34b-Instruct-hf
+- rust
+  - multi_level: same as above
+- js
+  - multi_level: same as above
+  
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce, LPR and LPR+Vulcan.
 
@@ -162,21 +176,21 @@ python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/
 # flag "--llm-version" specify the version OpenAI API or your local LLMs
 ```
 
-##### Option2: Deploy CodeLlama: CodeLlama-7b-Instruct-hf
+##### Option2: Deploy CodeLlama: CodeLlama-13b-Instruct-hf
 
-Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
+Before running LPR, we need to deploy CodeLlama.
+First, [download](https://huggingface.co/codellama/CodeLlama-7b-Instruct-hf) `CodeLlame-13b-Instruct-hf` to `/tmp/LPR/llms`.
 
+Then, create a new terminal with tmux, and run the following commands to start the LLM.
 ```bash
-export OPENAI_API_KEY=sk-xxxxxxx
+cd /tmp/LPR/llms
+python -m vllm.entrypoints.openai.api_server --model CodeLlama-13b-Instruct-hf
 ```
-
+Then, detach this terminal and run LPR.
 ```bash
+# detach tmux via Ctrl-B + d.
 cd /tmp/LPR/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
-# In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
-# flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
-# flag "--llm-version" specify the version OpenAI API or your local LLMs
+python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-34b-Instruct-hf --id 0
 ```
 
 To get summarized information
