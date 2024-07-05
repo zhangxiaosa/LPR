@@ -47,7 +47,7 @@ def count_iterations(case_path):
 
 
 def main(result_path):
-    benchmark_suite = [d for d in os.listdir(result_path) if os.path.isdir(os.path.join(result_path, d))]
+    benchmark_suite = ["clang_22382", "clang_22704", "clang_23309", "clang_23353", "clang_25900", "clang_26760", "clang_27137", "clang_27747", "clang_31259", "gcc_59903", "gcc_60116", "gcc_61383", "gcc_61917", "gcc_64990", "gcc_65383", "gcc_66186", "gcc_66375", "gcc_70127", "gcc_70586", "gcc_71626"]
 
     size_changes_details = {
         'before': {},
