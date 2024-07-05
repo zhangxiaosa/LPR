@@ -4,6 +4,8 @@ import json
 import sys
 
 # Define the transformations
+operations_oldname = ['complex_data_type', 'function_inlining', 'loop_unrolling', 'redundant_data_type',
+              'unnecessary_variable']
 operations = ['Data Type Simplification', 'Function Inlining', 'Loop Unrolling', 'Data Type Elimination',
               'Variable Elimination']
 operations_short = ['DTS', 'FI', 'LU', 'DTE', 'VE']
@@ -21,7 +23,7 @@ def process_target_csv(result_path, target):
     size_changes_before = {}
     size_changes_after = {}
 
-    for operation in operations:
+    for operation in operations_oldname:
         if operation in without_perses_df.columns and operation in with_perses_df.columns:
             size_changes_before[operation] = without_perses_df[operation].tolist()
             size_changes_after[operation] = with_perses_df[operation].tolist()
