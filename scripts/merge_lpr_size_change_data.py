@@ -11,6 +11,11 @@ def merge_json_files(result_path):
             'before': {},
             'after': {}
         },
+        'size_changes_details_normalized': {
+            'before': {},
+            'after': {}
+        },
+        'size_changes_total': [],
         'iteration_numbers': []
     }
 
@@ -40,12 +45,28 @@ def merge_json_files(result_path):
 
                     merged_data['iteration_numbers'].extend(data['iteration_numbers'])
 
+    # Calculate size_changes_total
+    for operation in merged_data['operations']:
+        total = sum(merged_data['size_changes_details']['after'][operation])
+        merged_data['size_changes_total'].append(total)
+
+    # Normalize size_changes_details
+    for key in ['before', 'after']:
+        for operation in merged_data['operations']:
+            normalized_values = []
+            for i, value in enumerate(merged_data['size_changes_details'][key][operation]):
+                if i < len(merged_data['iteration_numbers']) and merged_data['iteration_numbers'][i] != 0:
+                    normalized_value = round(value / merged_data['iteration_numbers'][i], 2)
+                else:
+                    normalized_value = 0.0
+                normalized_values.append(normalized_value)
+            merged_data['size_changes_details_normalized'][key][operation] = normalized_values
+
     output_file = os.path.join(result_path, 'merged_size_changes.json')
     with open(output_file, 'w') as f:
         json.dump(merged_data, f, indent=4)
 
     print(f"Merged size changes saved to {output_file}")
-
 
 if __name__ == "__main__":
     result_path = sys.argv[1] if len(sys.argv) > 1 else '.'
