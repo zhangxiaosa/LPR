@@ -22,7 +22,7 @@ with open(json_path, 'r') as f:
 
 # import data
 operations = all_data["operations"]
-data = all_data["size_changes_details"]
+data = all_data["size_changes_details_normalized"]
 
 # Directory to save plots
 save_dir = os.path.dirname(json_path)

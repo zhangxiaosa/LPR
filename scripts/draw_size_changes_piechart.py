@@ -45,7 +45,7 @@ for i, p in enumerate(wedges):
     kw["arrowprops"].update({"connectionstyle": connectionstyle})
 
     percentage = f'{1.0 * size_changes_average[i] / sum(size_changes_average) * 100:.2f}%'
-    value = f'{size_changes_average[i] * 1.0 / 20:.1f}'  # Transformation value divided by 20
+    value = f'{size_changes_average[i] * 1.0:.1f}'  # Transformation value divided by 20
     text = f'{operations[i]}\n {percentage}, {value} tokens'
 
     ax.annotate(text, xy=(x, y), xytext=(1.15*np.sign(x), 1.1*y),
