@@ -72,7 +72,7 @@ def create_and_save_plots(data, operations, save_dir):
 
         plt.tight_layout()
         # Save plot
-        file_path = os.path.join(save_dir, f'size_changes_{operation.lower().replace(" ", "_")}.pdf')
+        file_path = os.path.join(save_dir, f'size_changes_boxplot_{operation.lower().replace(" ", "_")}.pdf')
         plt.savefig(file_path)
         file_paths.append(file_path)
         plt.close()
