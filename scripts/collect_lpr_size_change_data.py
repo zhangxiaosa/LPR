@@ -47,7 +47,7 @@ def count_iterations(case_path):
 
 
 def main(result_path):
-    benchmark_suite = ["clang_22382", "clang_22704", "clang_23309", "clang_23353", "clang_25900", "clang_26760", "clang_27137", "clang_27747", "clang_31259", "gcc_59903", "gcc_60116", "gcc_61383", "gcc_61917", "gcc_64990", "gcc_65383", "gcc_66186", "gcc_66375", "gcc_70127", "gcc_70586", "gcc_71626"]
+    benchmark_suite = ["clang-22382", "clang-22704", "clang-23309", "clang-23353", "clang-25900", "clang-26760", "clang-27137", "clang-27747", "clang-31259", "gcc-59903", "gcc-60116", "gcc-61383", "gcc-61917", "gcc-64990", "gcc-65383", "gcc-66186", "gcc-66375", "gcc-70127", "gcc-70586", "gcc-71626"]
 
     size_changes_details = {
         'before': {},
