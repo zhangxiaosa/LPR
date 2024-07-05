@@ -19,7 +19,6 @@ operations_short = ['DTS', 'FI', 'LU', 'DTE', 'VE']
 operations_full = ['Data Type Simplification (DTS)', 'Function Inlining (FI)', 'Loop Unrolling (LU)',
                    'Data Type Elimination (DTE)', 'Variable Elimination (VE)']
 
-
 def process_target_csv(result_path, target):
     without_perses_csv = os.path.join(result_path, f'{target}_size_change_without_perses.csv')
     with_perses_csv = os.path.join(result_path, f'{target}_size_change_with_perses.csv')
@@ -32,7 +31,7 @@ def process_target_csv(result_path, target):
 
     for operation in operations_oldname:
         if operation in without_perses_df.columns and operation in with_perses_df.columns:
-            size_changes_before[operations_name_map[operation]] = without_perses_df[operation].tolist()
+            size_changes_before[operations_name_map[operation]] = without_perses_csv[operation].tolist()
             size_changes_after[operations_name_map[operation]] = with_perses_csv[operation].tolist()
 
     return size_changes_before, size_changes_after
