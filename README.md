@@ -112,6 +112,9 @@ cd /tmp/LPR/
 python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 # "--max_jobs" enables running multiple benchmarks concurrently
 # "--benchmark-suite" specifies the benchmark suite to evaluate on
+
+# run on single benchmark: clang-23353
+python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
 Assume the current code version is 1234567 (github --version), then the results will be stored in:
@@ -130,6 +133,9 @@ python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_perses_py_ben
 # Similar to how we run Perses:
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
+
+# run on single benchmark: clang-23353
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
 To get summarized information
@@ -144,6 +150,9 @@ python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_ben
 # Similar to how we run Perses:
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
+
+# run on single benchmark: clang-23353
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
 To get summarized information
@@ -169,11 +178,14 @@ export OPENAI_API_KEY=sk-xxxxxxx
 
 ```bash
 cd /tmp/LPR/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
+./scripts/keep_running.sh "python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
 # flag "--llm-version" specify the version OpenAI API or your local LLMs
+
+# run on single benchmark: clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --case clang-23353
 ```
 
 ##### Option2: Deploy CodeLlama: CodeLlama-13b-Instruct-hf
@@ -190,7 +202,10 @@ Then, detach this terminal and run LPR.
 ```bash
 # detach tmux via Ctrl-B + d.
 cd /tmp/LPR/
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-34b-Instruct-hf --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-34b-Instruct-hf --id 0
+
+# run on single benchmark: clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --case clang-23353
 ```
 
 To get summarized information
@@ -205,6 +220,9 @@ python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py
 # Just run Vulcan on precomputed LPR's results
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --max-jobs 8
+
+# run on single benchmark: clang-23353
+python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --case clang-23353
 ```
 
 To get summarized information
@@ -237,14 +255,11 @@ After the execution of the above command, pdf files is saved under
 
 ### Other Experiments
 
-To specify another version of GPT instead of the default "gpt-3.5-turbo-0613", use flag "--llm-version", for example:
-
-```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-1106 --id 0
-```
-
 To specify the temperature, use flag "--temperature", for example:
 
 ```bash
-python scripts/run_gpt_reduction.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+
+# run on single benchmark: clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --case clang-23353
 ```
