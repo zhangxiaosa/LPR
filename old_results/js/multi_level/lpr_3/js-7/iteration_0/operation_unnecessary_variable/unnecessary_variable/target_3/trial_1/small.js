@@ -1,0 +1,1 @@
+function opt() {\n    const b_proxy = new Proxy([], Proxy);\n    const result = isFinite(b_proxy);\n    return result;\n}

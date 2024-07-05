@@ -1,0 +1,1 @@
+function opt() {\n    function a() {}\n    let e = a;\n    const g = a;\n    return g;\n}

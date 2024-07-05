@@ -1,0 +1,1 @@
+const optResult = Uint8Array.prototype.toLocaleString().padStart([].__proto__.unshift(Uint8Array));

@@ -1,0 +1,1 @@
+const b = function a() {};   let c = {};   let d = Proxy;   let e = new d(b, c);   let f;   e.prototype = f;   ({ "prototype": a } = b);   const g = function a() {};   return g;

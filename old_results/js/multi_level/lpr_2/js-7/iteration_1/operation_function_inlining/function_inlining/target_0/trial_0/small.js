@@ -1,0 +1,1 @@
+const opt = function() {\n  const a = [];\n  const b = new Proxy(a, Proxy);\n  b.valueOf = function() {};\n  const d = (typeof b === 'number' && (typeof b !== 'object' || b !== null && isFinite(b)));\n  return d;\n};

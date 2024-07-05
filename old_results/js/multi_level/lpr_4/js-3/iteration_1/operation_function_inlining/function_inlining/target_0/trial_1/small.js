@@ -1,0 +1,1 @@
+const f = Function.prototype.toString.apply(Function).padEnd(Array.prototype.unshift('undefined')); return f;

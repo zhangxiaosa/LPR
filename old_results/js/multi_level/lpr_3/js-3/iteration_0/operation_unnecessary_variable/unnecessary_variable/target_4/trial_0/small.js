@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Object.getPrototypeOf(a);\n    const c = b.unshift(undefined);\n    \n    function d() {}\n    const f = ''.padEnd(String(c));\n    return f;\n}

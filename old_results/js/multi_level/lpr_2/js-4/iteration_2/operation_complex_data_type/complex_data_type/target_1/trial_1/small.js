@@ -1,0 +1,1 @@
+function opt() {\n\tconst b = [4294967297];\n\tconst g = 4294967297;\n\treturn g;\n}

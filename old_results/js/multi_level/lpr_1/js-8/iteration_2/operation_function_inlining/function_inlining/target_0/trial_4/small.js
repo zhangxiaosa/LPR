@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        [].unshift.apply(Object.getPrototypeOf([]), [Object.getPrototypeOf([]).toLocaleString()]);\n    } catch {\n        // Inlined content of eContent function\n    }\n    return undefined; // The catch block is empty, so we can remove the return statement altogether\n}

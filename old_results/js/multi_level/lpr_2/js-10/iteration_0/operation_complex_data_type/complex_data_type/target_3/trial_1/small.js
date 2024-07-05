@@ -1,0 +1,1 @@
+"use strict";\n\nfunction opt() {\n    const v1 = Array.prototype;\n    const v2 = v1.unshift(3848398693);\n    const v3 = Number(v2);\n    const v4 = v3.toString();\n    const v5 = v4.toLocaleString();\n    const v6 = Number(v5);\n    const v7 = v6.localeCompare(v4);\n    return Number(v7);\n}\n"

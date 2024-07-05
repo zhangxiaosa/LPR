@@ -1,0 +1,1 @@
+function opt() {\n\t[].__proto__.unshift([].__proto__.toLocaleString());\n\treturn;\n}

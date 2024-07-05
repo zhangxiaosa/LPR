@@ -1,0 +1,1 @@
+function opt() {\n    function a() {}\n    const b = a;\n    let primitiveC = {};\n    let d = Proxy;\n    let e = new d(b, primitiveC);\n    e.prototype = undefined;\n    ({\n        \"prototype\": a\n    } = b);\n    // Variable `g` is not used, so it can be removed.\n\n    // No return statement needed as it was only returning `g`.\n}

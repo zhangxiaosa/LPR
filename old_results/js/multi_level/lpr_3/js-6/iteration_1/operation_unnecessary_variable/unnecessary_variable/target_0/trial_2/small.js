@@ -1,0 +1,1 @@
+function opt() {\n    let a = [];\n    let bPrototype = Object.getPrototypeOf(a);\n    let bShifted = 2689987270;\n    let optimizedB = bShifted;\n    return optimizedB;\n}

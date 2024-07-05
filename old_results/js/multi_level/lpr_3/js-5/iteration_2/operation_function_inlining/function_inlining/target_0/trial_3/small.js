@@ -1,0 +1,1 @@
+function opt() {\n    const b = function() {};\n    let e = new Proxy(b, {});\n    const tempObj = {};\n    tempObj.prototype = b;\n    b = tempObj;\n    return function() {};  // Replace "return a;" with the inlined code of "a"\n}

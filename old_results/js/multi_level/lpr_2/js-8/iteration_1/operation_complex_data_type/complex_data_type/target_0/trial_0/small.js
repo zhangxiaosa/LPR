@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const b = [];\n        b.unshift(b.toLocaleString());\n    } catch {\n        function e() {}\n    }\n    return e;\n}

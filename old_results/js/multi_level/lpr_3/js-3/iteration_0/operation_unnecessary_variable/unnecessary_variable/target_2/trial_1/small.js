@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = [];\n\tconst b = Object.getPrototypeOf(a);\n\n\tfunction d() {}\n\tconst e = d.toLocaleString();\n\tconst f = e.padEnd("1");\n\treturn f;\n}

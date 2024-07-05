@@ -1,0 +1,1 @@
+function opt() {\n    let v1 = [];\n    let v2 = Object.getPrototypeOf(v1);\n    let v3 = v2.slice(0);\n    v3.unshift(3848398693);\n    let v5 = v3[0];\n    let v6 = v5.toString();\n    let v7 = v6.localeCompare(v3[0]);\n    return v7;\n}

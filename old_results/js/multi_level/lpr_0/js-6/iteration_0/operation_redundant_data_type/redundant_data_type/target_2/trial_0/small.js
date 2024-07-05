@@ -1,0 +1,1 @@
+function opt() {\n    const a = new Array();\n    const b = a.__proto__;\n    const c = b.unshift(2689987270);\n    const g = c >>> 2689987270;\n    return g;\n}

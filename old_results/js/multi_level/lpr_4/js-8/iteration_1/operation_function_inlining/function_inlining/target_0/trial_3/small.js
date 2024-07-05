@@ -1,0 +1,1 @@
+[].unshift(Object.prototype.toLocaleString);

@@ -1,0 +1,1 @@
+function opt() {\n  const f = Function.toLocaleString().padEnd(Array.prototype.unshift(undefined));\n  return f;\n}

@@ -1,0 +1,1 @@
+function inlinedOpt() {\n    let ePrimitive = new Proxy(function() {}, {});\n    ePrimitive.prototype = undefined;\n    ({\n        \"prototype\": ePrimitive\n    } = ePrimitive);\n    return ePrimitive;\n}

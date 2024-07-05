@@ -1,0 +1,1 @@
+let eContent;\ntry {\n  [].unshift.apply(Object.getPrototypeOf([]), [Object.getPrototypeOf([]).toLocaleString()]);\n} catch {\n  eContent = function () {};\n}\neContent;

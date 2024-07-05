@@ -1,0 +1,1 @@
+function opt() {\n  function a() {}\n  const b = a;\n  ({\n    "prototype": a\n  } = b);\n  return a;\n}

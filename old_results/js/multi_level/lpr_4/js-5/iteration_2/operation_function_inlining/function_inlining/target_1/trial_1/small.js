@@ -1,0 +1,1 @@
+function a() {}\nnew Proxy(a, {}).prototype = undefined;\n({\n    \"prototype\": a\n} = a);\nreturn a;

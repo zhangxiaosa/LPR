@@ -1,0 +1,1 @@
+const optResult = (new Uint8Array()).toLocaleString().padStart(0, Uint8Array);

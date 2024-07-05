@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Object.getPrototypeOf(Array);\n    const c = b.unshift(b);\n    const d = c.toString();\n    const e = d.replace(c);\n    return e;\n}

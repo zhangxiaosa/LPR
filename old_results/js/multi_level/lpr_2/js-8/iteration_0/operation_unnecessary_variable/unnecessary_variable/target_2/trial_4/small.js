@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const {\n            \"__proto__\": b\n        } = [];\n        return b.toLocaleString();\n    } catch {\n        function e() {}\n    }\n    return e;\n}

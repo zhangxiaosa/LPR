@@ -1,0 +1,1 @@
+function opt() {\n    return ''.padEnd(String([].unshift(undefined)));\n}

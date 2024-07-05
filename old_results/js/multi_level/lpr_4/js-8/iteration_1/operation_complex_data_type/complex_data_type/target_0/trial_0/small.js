@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const array = [];\n\n        // Decomposed variables\n        const proto = array.__proto__;\n        const protoToString = proto.toLocaleString();\n\n        proto.unshift(protoToString); // Method call using decomposed variables\n    } catch {\n        function e() {}\n    }\n\n    return e;\n}

@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = [];\n\treturn a;\n}

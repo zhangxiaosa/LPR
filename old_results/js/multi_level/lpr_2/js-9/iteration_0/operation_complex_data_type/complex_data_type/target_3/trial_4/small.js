@@ -1,0 +1,1 @@
+function opt() {\n  const c = Array.prototype;\n  const d = c.unshift(9007199254740991);\n  return d;\n}

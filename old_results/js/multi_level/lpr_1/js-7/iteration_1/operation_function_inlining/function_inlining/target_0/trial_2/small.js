@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = new Proxy(a, Proxy);\n  b.valueOf = () => {};\n  const isFiniteInline = (value) => {\n    return typeof value === 'number' && isFinite(value);\n  };\n  return isFiniteInline(b);\n}

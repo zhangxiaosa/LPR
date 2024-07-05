@@ -1,0 +1,1 @@
+function opt() {\n  return Array.prototype.toLocaleString().padStart([].__proto__.unshift(Array));\n}

@@ -1,0 +1,1 @@
+function opt() {\n  const v1 = [];\n  const v3 = v1.unshift(3848398693);\n  const v5 = v3;\n  return typeof v5;\n}

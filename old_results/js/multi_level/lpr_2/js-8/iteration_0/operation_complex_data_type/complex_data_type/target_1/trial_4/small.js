@@ -1,0 +1,1 @@
+function opt() {\n    let d;\n    try {\n        const a = [];\n        const b = Object.getPrototypeOf(a);\n        const c = b.toLocaleString();\n        d = b.unshift(c);\n    } catch {\n        // Optional: Handle the error if needed\n    }\n    return d;\n}

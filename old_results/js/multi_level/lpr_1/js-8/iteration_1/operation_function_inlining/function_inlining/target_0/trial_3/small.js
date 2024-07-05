@@ -1,0 +1,1 @@
+function opt() {\n\ttry {\n\t\tconst a = [];\n\t\tconst b = a.__proto__;\n\t\tconst c = b.toLocaleString();\n\t\tconst d = b.unshift(c);\n\t} catch {\n\t\t// Content of function eContent()\n\t}\n\treturn /* Content of function eContent() */;\n}

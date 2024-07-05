@@ -1,0 +1,1 @@
+function opt() {\n    let e;\n    try {\n        const b = [];\n        b.unshift(b.toLocaleString());\n    } catch {\n        // Empty catch block, no need to define `e`\n        // If you want to have a default value for `e`, you can assign it here.\n    }\n    return e;\n}

@@ -1,0 +1,1 @@
+function opt() {\n    // Initialize an empty array\n    let b = [];\n\n    // Add the value as the first element of the array\n    b.unshift(4294967297);\n\n    // Set the length of the array\n    b.length = 256;\n\n    // Remove and store the last element\n    let g = b.pop();\n\n    // Return the value\n    return g;\n}

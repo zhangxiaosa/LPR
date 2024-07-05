@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = Array.prototype;\n  const c = 0;\n  const d = c.toLocaleString();\n  const e = d.replace(c);\n  return e;\n}

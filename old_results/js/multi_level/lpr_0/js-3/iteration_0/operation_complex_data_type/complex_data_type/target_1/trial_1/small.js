@@ -1,0 +1,1 @@
+function opt() {\n    const b = [];\n    b.unshift(undefined);\n    const c = b.length;\n\n    function d() {}\n    const e = d.toString();\n    const f = e.padEnd(c);\n    return f;\n}

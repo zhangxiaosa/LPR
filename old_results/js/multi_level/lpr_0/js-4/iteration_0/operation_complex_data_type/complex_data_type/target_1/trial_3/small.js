@@ -1,0 +1,1 @@
+function opt() {\n    let d = [];\n    return d;\n}

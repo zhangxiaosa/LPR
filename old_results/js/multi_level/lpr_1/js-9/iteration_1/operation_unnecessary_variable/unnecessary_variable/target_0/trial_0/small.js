@@ -1,0 +1,1 @@
+function opt() {\n  return Reflect.get([], 127);\n}

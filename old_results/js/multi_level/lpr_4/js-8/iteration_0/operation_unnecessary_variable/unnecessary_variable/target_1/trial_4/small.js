@@ -1,0 +1,1 @@
+function opt() {\n\ttry {\n\t\tconst array = [];\n\t\tconst string = array.__proto__.toLocaleString();\n\t\tarray.__proto__.unshift(string);\n\t} catch {\n\t\tfunction e() {}\n\t}\n\treturn e;\n}

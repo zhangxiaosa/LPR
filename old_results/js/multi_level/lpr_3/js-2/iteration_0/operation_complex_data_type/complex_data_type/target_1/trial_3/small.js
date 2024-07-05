@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Object.getPrototypeOf(a);\n\n    return b;\n}

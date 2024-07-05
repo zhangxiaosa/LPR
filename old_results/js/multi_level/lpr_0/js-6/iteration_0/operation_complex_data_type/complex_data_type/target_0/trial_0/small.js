@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const c = Array.prototype.unshift.call(a, 2689987270);\n  const g = c >>> 2689987270;\n  return g;\n}

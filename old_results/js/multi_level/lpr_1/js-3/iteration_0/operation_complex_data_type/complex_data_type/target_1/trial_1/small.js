@@ -1,0 +1,1 @@
+function opt() {\n    const b = Array.prototype;\n    return b;\n}

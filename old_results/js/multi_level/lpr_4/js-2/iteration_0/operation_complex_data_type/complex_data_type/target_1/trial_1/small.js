@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const bPrototype = Object.getPrototypeOf(a);\n    const bLength = bPrototype.length;\n    const c = bLength + 1;\n    Object.defineProperty(bPrototype, 'length', { value: c });\n    const e = c.toLocaleString().toString().replace(c, '');\n    return e;\n}

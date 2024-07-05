@@ -1,0 +1,1 @@
+function opt() {\n    let ePrimitive = new Proxy(function() {}, {});\n    ePrimitive.prototype = undefined;\n    return ePrimitive;\n}

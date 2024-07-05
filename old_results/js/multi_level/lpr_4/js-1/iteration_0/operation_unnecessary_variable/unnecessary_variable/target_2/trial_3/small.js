@@ -1,0 +1,1 @@
+function opt() {\n  const a = [Uint8Array];\n  const c = a.__proto__.unshift(a);\n  const e = '1,2,3,4'.padStart(c);\n  return e;\n}

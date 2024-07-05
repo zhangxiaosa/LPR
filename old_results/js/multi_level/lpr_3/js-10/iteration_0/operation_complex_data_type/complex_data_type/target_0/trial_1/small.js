@@ -1,0 +1,1 @@
+function opt() {\n    const v1 = Array.prototype.unshift(3848398693);\n    const v2 = v1.toLocaleString();\n    const v4 = v2.localeCompare(v1);\n    return v4;\n}

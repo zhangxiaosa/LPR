@@ -1,0 +1,1 @@
+function opt() {\n    const b = new Proxy([], Proxy);\n    return false;\n}

@@ -1,0 +1,1 @@
+function opt() {\n\tfunction a() {}\n\tconst d = Proxy;\n\tlet f;\n\tconst e = new d(a, {});\n\tconst prototypeValue = a;\n\te.prototype = prototypeValue;\n\tconst g = prototypeValue;\n\treturn g;\n}

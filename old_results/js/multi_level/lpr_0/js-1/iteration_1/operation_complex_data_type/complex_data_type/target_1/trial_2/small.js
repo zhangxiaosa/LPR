@@ -1,0 +1,1 @@
+function opt() {\n    let arrayPrototype = Array.prototype;\n    let uint8Array = Uint8ClampedArray;\n    let toLocaleStringResult = uint8Array.toLocaleString();\n    let unshiftResult = arrayPrototype.unshift(uint8Array);\n    let padStartResult = unshiftResult.toString().padStart(toLocaleStringResult.length, '0');\n\n    let result = padStartResult;\n\n    return result;\n}

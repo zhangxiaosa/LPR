@@ -1,0 +1,1 @@
+function opt() {\n    function a() {}\n    const bFunction = a;\n    const bString = bFunction.toString();\n    let e = new Proxy(bString, {});\n    e.prototype = undefined;\n    ({\n        \"prototype\": bFunction\n    } = bString);\n    return bFunction;\n}

@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = new Array();\n\tconst b = Array.prototype;\n\tconst c = b.unshift('2689987270');\n\tconst g = parseInt(c) >>> 0;\n\treturn g;\n}

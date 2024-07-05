@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const d = isFinite(a);\n    return d;\n}

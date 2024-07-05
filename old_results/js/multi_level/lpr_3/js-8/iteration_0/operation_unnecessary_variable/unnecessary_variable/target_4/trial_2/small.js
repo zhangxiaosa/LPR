@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        let {\n            \"__proto__\": b\n        } = [];\n        Array.prototype.unshift(Array.prototype.toLocaleString());\n    } catch {}\n}

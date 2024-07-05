@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const a = [];\n        let b = Array.prototype;\n        const c = '';\n        b = c;\n    } catch {\n        function e() {}\n    }\n\n    return e;\n}

@@ -1,0 +1,1 @@
+function opt() {\n\tconst v1 = Array;\n\tconst v2 = v1.prototype;\n\tconst v3 = v2.unshift(3848398693);\n\tconst v5 = v3;\n\tconst v6 = v5.toLocaleString();\n\tconst v7 = v6.localeCompare(v3);\n\treturn v7;\n}

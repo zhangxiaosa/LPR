@@ -1,0 +1,1 @@
+function opt() {\n	const c = 4294967297;\n	const b = Array.prototype;\n	b.unshift(c);\n	b.length = 256;\n	const e = Array.prototype;\n	const f = e.pop();\n	const g = f;\n	return g;\n}

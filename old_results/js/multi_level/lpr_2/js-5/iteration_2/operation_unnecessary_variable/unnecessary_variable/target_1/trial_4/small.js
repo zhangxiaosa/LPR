@@ -1,0 +1,1 @@
+function opt() {\n    function a() {}\n    const e = new Proxy(a, {});\n    e.prototype = undefined;\n    ({\n        \"prototype\": a\n    } = a);\n    const g = a;\n    return g;\n}

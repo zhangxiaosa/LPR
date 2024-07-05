@@ -1,0 +1,1 @@
+function opt() {\n    const a = []\n    const b_target = a\n    const b_handler = Proxy\n    const b_valueOf = () => {}\n\n    const b = new b_handler(b_target, b_handler)\n    b.valueOf = b_valueOf\n\n    return isFinite(b)\n}

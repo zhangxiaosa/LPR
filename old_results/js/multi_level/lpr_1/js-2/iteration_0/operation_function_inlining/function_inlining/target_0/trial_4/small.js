@@ -1,0 +1,1 @@
+const a = []; const b = [].__proto__; const c = [].__proto__.unshift([].__proto__); const d = [].__proto__.unshift([].__proto__).toLocaleString(); const e = [].__proto__.unshift([].__proto__).toLocaleString().replace([].__proto__.unshift([].__proto__)); e;

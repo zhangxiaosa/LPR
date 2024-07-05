@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Object.getPrototypeOf(a);\n    const c = b.length + 1;\n\n    function d() {}\n    const e = d.toLocaleString();\n    const f = e.padEnd(String(c));\n    return f;\n}

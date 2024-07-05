@@ -1,0 +1,1 @@
+function opt() {\n    const arr = [];\n    let proto = arr.__proto__;\n    \n    proto.unshift(4294967297);\n    proto.length = 256;\n    \n    const d = 42;\n    let e = d.__proto__;\n    \n    const f = e.pop();\n    let g = f;\n    \n    return g;\n}

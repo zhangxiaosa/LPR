@@ -1,0 +1,1 @@
+function opt() {\n    let a = [];\n    let b = Object.getPrototypeOf(a);\n    b = [4294967297, ...b];\n    b.length = 256;\n    let d = [];\n    let e = Object.getPrototypeOf(d);\n    let f = e.pop();\n    let g = f;\n    return g;\n}

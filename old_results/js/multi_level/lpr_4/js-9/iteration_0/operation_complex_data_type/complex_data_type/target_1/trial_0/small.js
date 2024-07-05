@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const newArray = [9007199254740991];\n  newArray.unshift(9007199254740991);\n  return a[127];\n}

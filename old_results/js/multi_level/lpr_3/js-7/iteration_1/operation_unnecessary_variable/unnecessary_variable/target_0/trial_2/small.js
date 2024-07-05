@@ -1,0 +1,1 @@
+function opt() { return isFinite([]); }

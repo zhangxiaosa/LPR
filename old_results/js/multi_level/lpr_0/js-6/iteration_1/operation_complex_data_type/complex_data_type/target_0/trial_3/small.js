@@ -1,0 +1,1 @@
+function opt() {\n  // Decompose b into separate variables\n  const proto = Object.getPrototypeOf([]);\n  const constructor = proto.constructor;\n  const length = proto.length;\n  const toString = proto.toString;\n  const valueOf = proto.valueOf;\n  \n  const cLength = constructor.unshift(2689987270);\n  const g = cLength >>> 2689987270;\n  \n  return g;\n}

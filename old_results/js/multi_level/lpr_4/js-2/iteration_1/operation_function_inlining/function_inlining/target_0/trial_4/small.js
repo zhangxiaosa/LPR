@@ -1,0 +1,1 @@
+function opt() {\n\tlet a = [];\n\tlet c = a.length + 1;\n\ta.length = c;\n\treturn (c).toLocaleString().replace(c.toString(), '');\n}

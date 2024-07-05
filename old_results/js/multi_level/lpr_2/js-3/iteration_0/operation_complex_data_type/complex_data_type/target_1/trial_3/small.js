@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const arrayPrototype = Array.prototype;\n    const c = arrayPrototype.unshift.call(a, undefined);\n\n    function d() {}\n    const functionToString = d.toString();\n    const f = functionToString.padEnd(c);\n    return f;\n}

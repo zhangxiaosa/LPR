@@ -1,0 +1,1 @@
+function opt() { return "1".localeCompare(1); }

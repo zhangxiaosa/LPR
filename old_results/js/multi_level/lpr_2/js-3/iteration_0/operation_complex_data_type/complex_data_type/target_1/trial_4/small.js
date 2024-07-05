@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = [];\n\tconst b = a.__proto__;\n\tconst c = b.unshift(undefined);\n\n\tfunction d() {}\n\tconst e = d.toString();\n\tconst f = e.padEnd(c);\n\n\treturn f;\n}

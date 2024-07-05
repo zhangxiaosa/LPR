@@ -1,0 +1,1 @@
+function opt() {\n    const b = Object.getPrototypeOf([]);\n    const cLength = b.unshift(2689987270);\n    const cValue = 2689987270;\n    const g = cLength >>> cValue;\n    return g;\n}

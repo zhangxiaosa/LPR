@@ -1,0 +1,8 @@
+function opt() {
+    let b = Array.prototype;
+    b.length = 256;
+    let e = Array.prototype;
+    let f = e.pop();
+    let g = f;
+    return g;
+}

@@ -1,0 +1,1 @@
+try {\n    Array.prototype.unshift(Array.prototype.toLocaleString());\n} catch (err) {\n    var e = function() {};\n} return e;\n

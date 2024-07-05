@@ -1,0 +1,1 @@
+function opt() {\n    let b = Array.prototype;\n    b.unshift(4294967297);\n    b.length = 256;\n    let e = Array.prototype;\n    let f = e.pop();\n    let g = f;\n    return g;\n}

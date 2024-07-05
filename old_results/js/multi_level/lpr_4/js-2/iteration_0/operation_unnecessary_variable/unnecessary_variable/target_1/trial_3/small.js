@@ -1,0 +1,1 @@
+function opt() {\n  let a = [];\n  let c = a.__proto__.length + 1;\n  a.__proto__.length = c;\n  const cStr = c.toLocaleString();\n  const e = cStr.replace(c);\n  return e;\n}

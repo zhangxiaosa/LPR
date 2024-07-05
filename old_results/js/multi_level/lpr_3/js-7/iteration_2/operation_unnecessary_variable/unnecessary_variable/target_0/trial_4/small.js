@@ -1,0 +1,1 @@
+function opt() {\n    return isFinite(undefined);\n}

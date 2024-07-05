@@ -1,0 +1,1 @@
+function opt() {\n    let a = 0;\n    let bLength = Object.getPrototypeOf(a).unshift(2689987270);\n    let optimizedB = bLength >>> 2689987270;\n    return optimizedB;\n}

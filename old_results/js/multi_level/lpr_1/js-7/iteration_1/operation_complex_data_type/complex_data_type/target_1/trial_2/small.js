@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = new Proxy(a, Proxy);\n    b.valueOf = () => {};\n    return isFinite(b);\n}

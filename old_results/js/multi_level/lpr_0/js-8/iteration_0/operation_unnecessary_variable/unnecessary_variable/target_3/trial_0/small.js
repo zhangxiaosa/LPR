@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  Array.prototype.unshift(Array.prototype.toLocaleString());\n  return undefined;\n}

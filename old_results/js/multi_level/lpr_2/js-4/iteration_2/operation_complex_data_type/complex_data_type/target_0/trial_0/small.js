@@ -1,0 +1,1 @@
+function opt() {\n  const b = [4294967297];\n  const bLength = 256;\n  const g = b.pop();\n  return g;\n}

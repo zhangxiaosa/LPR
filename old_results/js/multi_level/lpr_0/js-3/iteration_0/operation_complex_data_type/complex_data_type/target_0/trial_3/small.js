@@ -1,0 +1,1 @@
+const a = [];\nconst b = a.__proto__;\nconst c = b.unshift(undefined);\nconst e = d.toLocaleString();\nconst f = e.padEnd(c);

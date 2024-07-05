@@ -1,0 +1,1 @@
+function() { return new Uint8Array().toLocaleString().padStart(Array.prototype.unshift.call(new Uint8Array())); }

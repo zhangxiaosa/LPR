@@ -1,0 +1,1 @@
+function opt() {\n    new Proxy(function() {}, {});\n    return function a() {};\n}

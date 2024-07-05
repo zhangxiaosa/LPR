@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const c = a.unshift(2689987270);\n    const g = c >>> 2689987270;\n    const b = Object.getPrototypeOf(a);\n    return g;\n}

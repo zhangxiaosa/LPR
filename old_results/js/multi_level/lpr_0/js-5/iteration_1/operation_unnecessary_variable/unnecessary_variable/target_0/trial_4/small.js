@@ -1,0 +1,1 @@
+function opt() {\n    let ePrimitive = new Proxy(function a() {}, {});\n    a = ePrimitive;\n    return a;\n}

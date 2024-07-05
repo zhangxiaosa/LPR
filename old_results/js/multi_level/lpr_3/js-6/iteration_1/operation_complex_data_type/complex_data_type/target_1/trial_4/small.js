@@ -1,0 +1,1 @@
+function opt() {\n    let a = [];\n    let b = a.__proto__;\n    let g = (Array.prototype.unshift.call(b, 2689987270)) >>> 2689987270;\n    return g;\n}

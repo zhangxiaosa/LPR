@@ -1,0 +1,1 @@
+function opt() {\n    const aElement = a[0];\n    const c = aElement.__proto__.unshift(aElement);\n    const e = aElement.toLocaleString().padStart(c);\n    return e;\n}

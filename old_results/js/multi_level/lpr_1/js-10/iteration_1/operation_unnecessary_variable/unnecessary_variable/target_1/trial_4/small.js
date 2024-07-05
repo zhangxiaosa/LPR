@@ -1,0 +1,1 @@
+function opt() {\n    const v7 = 1.toLocaleString().localeCompare(1);\n    return v7;\n}

@@ -1,0 +1,1 @@
+function opt() {\n  return Uint8Array.toLocaleString().padStart("");\n}

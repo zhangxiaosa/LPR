@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = [Uint8Array];\n\tconst c = a.__proto__.unshift(a);\n\tconst d = a.toLocaleString();\n\tconst e = d.padStart(c);\n\treturn e;\n}

@@ -1,0 +1,1 @@
+function opt() {\n  const a = [Uint8Array];\n  const c = 1; // Replace with the constant value of c\n  const d = a.toLocaleString();\n  const e = d.padStart(c);\n  return e;\n}

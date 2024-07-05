@@ -1,0 +1,1 @@
+function opt() {\n    const v1 = new Array();\n    const v2 = Object.getPrototypeOf([]);\n    const v3 = ({}).unshift.call(v2, 3848398693);\n    const v5 = Number(v3);\n    const v6 = v5.toString();\n    const v7 = v6.localeCompare(v5.toString());\n    return Number(v7);\n}

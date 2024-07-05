@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b_target = a;\n  const b_constructor = Proxy;\n  const b_valueOf = function() {};\n  const b = new b_constructor(b_target, b_constructor);\n  const d = isFinite(b);\n  return d;\n}

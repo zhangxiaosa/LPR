@@ -1,0 +1,1 @@
+function opt() { [].unshift.apply(Object.getPrototypeOf([]), [Object.getPrototypeOf([]).toLocaleString()]); // Inline the code of eContent here }

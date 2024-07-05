@@ -1,0 +1,1 @@
+[].__proto__.unshift(4294967297);\n[].__proto__.length = 256;\nreturn Array.prototype.pop();

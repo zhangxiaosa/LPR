@@ -1,0 +1,1 @@
+function opt() {\n    return new Uint8ClampedArray().toLocaleString().padStart(Array.prototype.unshift(new Uint8ClampedArray()));\n}

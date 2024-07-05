@@ -1,0 +1,1 @@
+function opt() {\n\tconst c = 4294967297;\n\tconst b_length = 256;\n\tconst f = {complex value of `e.pop()`};\n\tconst g = f;\n\treturn g;\n}

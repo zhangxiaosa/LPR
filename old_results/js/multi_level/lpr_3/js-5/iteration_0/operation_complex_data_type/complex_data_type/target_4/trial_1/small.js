@@ -1,0 +1,1 @@
+function opt() {\n    const b = a;\n    let e = new Proxy(b, {});\n    return e;\n}

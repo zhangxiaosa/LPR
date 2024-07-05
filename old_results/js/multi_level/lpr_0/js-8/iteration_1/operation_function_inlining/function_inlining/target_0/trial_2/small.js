@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        Array.prototype.unshift(Array.prototype.toLocaleString());\n    } catch {}\n\n    return function inlineOpt() {};\n}

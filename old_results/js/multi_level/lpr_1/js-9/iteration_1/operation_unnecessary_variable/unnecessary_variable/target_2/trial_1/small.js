@@ -1,0 +1,1 @@
+function opt() { 9007199254740991; return 127; }

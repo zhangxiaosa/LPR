@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Array.prototype;\n    const bLength = b.length + 1;\n    b.length = bLength;\n    const c = bLength;\n    const cString = c.toLocaleString().toString();\n    const e = cString.replace(c);\n    return e;\n}

@@ -1,0 +1,1 @@
+function opt() {\n    const a = [Uint8ClampedArray];\n    const b = Array.prototype;\n    const c = b.unshift(a);\n    const e = c.toString();\n    return e;\n}

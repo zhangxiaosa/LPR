@@ -1,0 +1,8 @@
+function opt() {
+  const a = [Uint8Array];
+  const b = Object.getPrototypeOf(a);
+  const c = b.length;
+  const d = a.toLocaleString();
+  const e = d.padStart(Number(c));
+  return e;
+}

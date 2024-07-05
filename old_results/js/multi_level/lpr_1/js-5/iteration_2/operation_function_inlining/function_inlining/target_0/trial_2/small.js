@@ -1,0 +1,1 @@
+function opt() {\n    let a = function() {};\n    ({\n        \"prototype\": a\n    } = a);\n    return a;\n}

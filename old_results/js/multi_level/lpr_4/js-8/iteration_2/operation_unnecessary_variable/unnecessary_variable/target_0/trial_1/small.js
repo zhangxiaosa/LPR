@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        [].__proto__.unshift([].__proto__.toLocaleString());\n    } catch {}\n    return;\n}

@@ -1,0 +1,1 @@
+function opt() {\n  const length = Array.prototype.unshift.call([], Uint8Array);\n  return Array.prototype.toLocaleString.call(Uint8Array).padStart(length);\n}

@@ -1,0 +1,1 @@
+function opt() {\n    [].__proto__.unshift(3848398693);\n    return 0;\n}

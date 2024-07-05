@@ -1,0 +1,1 @@
+function opt() {\n    const b = Object.getPrototypeOf([]);\n    const c = b.unshift(undefined);\n    function d() {}\n    const e = d.toLocaleString();\n    const f = e.padEnd(String(c));\n    return f;\n}

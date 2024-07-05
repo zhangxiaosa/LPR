@@ -1,0 +1,1 @@
+function opt() {\n    let proto = [].__proto__;\n    proto.unshift(4294967297);\n    proto.length = 256;\n    let g = Array.prototype.pop();\n    return g;\n}

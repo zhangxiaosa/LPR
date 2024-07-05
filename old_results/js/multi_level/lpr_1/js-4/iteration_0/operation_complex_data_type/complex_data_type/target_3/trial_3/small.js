@@ -1,0 +1,1 @@
+function opt() {\n    const d = [];\n    d.length = 256;\n\n    return d;\n}

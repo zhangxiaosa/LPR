@@ -1,0 +1,1 @@
+function opt() {\n    const e = Array.prototype.pop();\n    const f = e;\n    return f;\n}

@@ -1,0 +1,1 @@
+const b = Array.prototype;\nb.unshift(4294967297);\nb.length = 256;\nconst f = b.pop();\nconst g = f;\nreturn g;

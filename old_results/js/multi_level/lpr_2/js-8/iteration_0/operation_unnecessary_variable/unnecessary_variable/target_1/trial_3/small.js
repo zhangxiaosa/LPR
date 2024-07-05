@@ -1,0 +1,1 @@
+function opt() {\n   try {\n       const c = [\"__proto__\"][0].toLocaleString();\n       const d = [\"__proto__\"][0].unshift(c);\n   } catch {\n       function e() {}\n   }\n   return e;\n}

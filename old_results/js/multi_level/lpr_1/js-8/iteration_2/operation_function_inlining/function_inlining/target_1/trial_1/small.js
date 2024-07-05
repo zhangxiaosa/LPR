@@ -1,0 +1,1 @@
+[].unshift.apply(Object.getPrototypeOf([]), [Object.getPrototypeOf([]).toLocaleString()]);

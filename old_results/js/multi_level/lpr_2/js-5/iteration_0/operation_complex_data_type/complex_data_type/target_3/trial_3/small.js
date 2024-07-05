@@ -1,0 +1,1 @@
+function a() {}\n\nconst b = a;\nconst c = {};\nconst d = Proxy;\nlet f;\n\nconst e = new d(b, c);\ne.prototype = f;\n\nconst { prototype: a } = b;\n\nconst g = a;\n\nreturn g;

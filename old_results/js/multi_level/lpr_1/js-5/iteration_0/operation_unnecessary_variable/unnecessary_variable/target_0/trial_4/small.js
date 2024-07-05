@@ -1,0 +1,13 @@
+function opt() {
+    function a() {}
+    const b = a;
+    const c = {};
+    let eTarget = b;
+    let eHandler = c;
+    let e = new Proxy(eTarget, eHandler);
+    let f;
+    e.prototype = f;
+    a = b.prototype;
+    const g = a;
+    return g;
+}

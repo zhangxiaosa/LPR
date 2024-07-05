@@ -1,0 +1,1 @@
+function opt() {\n\tconst a = [];\n\tconst b_proto = a.__proto__;\n\tconst b = b_proto;\n\tconst c = b_proto.unshift(2689987270);\n\tconst g = c >>> 2689987270;\n\treturn g;\n}

@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = a.__proto__;\n  const c = b.unshift(undefined);\n  const e = ''.toLocaleString();\n  const f = e.padEnd(c);\n  return f;\n}

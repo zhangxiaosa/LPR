@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const a = [];\n        let b = a[0];\n        const c = b.toLocaleString();\n        const d = b = c;\n    } catch {\n        function eContent() {}\n    }\n    return eContent;\n}

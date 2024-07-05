@@ -1,0 +1,1 @@
+return ArrayBuffer.toLocaleString().padStart([].__proto__.unshift(ArrayBuffer));

@@ -1,0 +1,1 @@
+function opt() {\n    const c = [].__proto__.unshift(2689987270);\n    const g = c >>> 2689987270;\n    return g;\n}

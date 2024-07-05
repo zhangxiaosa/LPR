@@ -1,0 +1,1 @@
+function opt() {\n    return d.toString().padEnd(a.__proto__.unshift(undefined));\n}

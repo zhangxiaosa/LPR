@@ -1,0 +1,1 @@
+function opt() {\n    Array.prototype.unshift(4294967297);\n    return Array.prototype.pop();\n}

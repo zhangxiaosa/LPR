@@ -1,0 +1,1 @@
+function opt() {\n\tconst b = Array.prototype;\n\tb.unshift(4294967297);\n\tb.length = 256;\n\tconst g = b.pop();\n\treturn g;\n}

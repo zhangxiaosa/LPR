@@ -1,0 +1,1 @@
+Array.prototype.splice(0, 0, 4294967297);\nArray.prototype.splice(256);\nconst f = this.pop();\nreturn f;

@@ -1,0 +1,1 @@
+function opt() {\n\tArray.prototype.unshift(9007199254740991);\n\treturn [] /* a */ [127];\n}

@@ -1,0 +1,1 @@
+const opt = () => {\n  const a = [];\n  const b = a.__proto__;\n  const c = b.unshift(2689987270);\n  const f = c >>> 2689987270;\n  return f;\n}

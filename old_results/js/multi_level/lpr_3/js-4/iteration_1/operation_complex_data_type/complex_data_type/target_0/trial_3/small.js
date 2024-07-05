@@ -1,0 +1,1 @@
+function opt() {\n    const originalArray = Array.prototype.slice();\n    const newArray = [4294967297];\n    newArray.length = 256;\n    const f = newArray.pop();\n    Array.prototype = newArray;\n    return f;\n}

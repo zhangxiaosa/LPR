@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = Array.prototype;\n    const c = 1;\n\n    function d() {}\n    const e = "function d() {}";\n    const f = "function d() {} ";\n    return f;\n}

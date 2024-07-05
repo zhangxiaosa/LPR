@@ -1,0 +1,3 @@
+function eContent() {}
+
+return eContent;

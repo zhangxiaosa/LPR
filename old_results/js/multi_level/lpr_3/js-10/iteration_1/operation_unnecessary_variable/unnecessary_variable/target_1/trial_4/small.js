@@ -1,0 +1,1 @@
+function opt() {\n    const v3Length = Array.prototype.unshift(3848398693);\n    return 0;\n}

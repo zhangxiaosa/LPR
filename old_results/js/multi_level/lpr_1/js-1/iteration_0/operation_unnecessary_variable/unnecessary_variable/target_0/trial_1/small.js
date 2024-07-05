@@ -1,0 +1,1 @@
+function opt() {\n    const b = [Uint8Array].__proto__;\n    const c = b.unshift([Uint8Array]);\n    const d = [Uint8Array].toLocaleString();\n    const e = d.padStart(c);\n    return e;\n}

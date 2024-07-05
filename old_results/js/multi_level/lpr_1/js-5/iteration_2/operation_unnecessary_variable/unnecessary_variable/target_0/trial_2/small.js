@@ -1,0 +1,1 @@
+function opt() {\n    function a() {}\n    a.prototype = undefined;\n    ({\n        \"prototype\": a\n    } = a);\n    return a;\n}

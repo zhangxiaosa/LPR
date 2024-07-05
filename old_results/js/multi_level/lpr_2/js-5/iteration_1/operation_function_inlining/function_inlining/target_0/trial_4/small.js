@@ -1,0 +1,1 @@
+function opt() {\n    const d = Proxy;\n\n    const e = new d(function a() {}, {});\n\n    const g = function a() {};\n\n    return g;\n}

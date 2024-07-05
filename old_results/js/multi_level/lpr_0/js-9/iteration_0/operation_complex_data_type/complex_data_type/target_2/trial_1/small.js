@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = [];\n    const c = Array.from([]);\n    const d = c.unshift(9007199254740991);\n    const e = Reflect.get(a, 127);\n    return e;\n}

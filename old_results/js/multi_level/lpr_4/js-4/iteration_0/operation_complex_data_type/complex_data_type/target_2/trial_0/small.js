@@ -1,0 +1,1 @@
+function opt() {\n    const a = [];\n    const b = [];\n    const c = 0;\n    const d = [];\n    const e = [];\n    const f = undefined;\n    let g;\n    return g;\n}

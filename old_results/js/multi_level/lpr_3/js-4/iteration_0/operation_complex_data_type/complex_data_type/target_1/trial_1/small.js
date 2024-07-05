@@ -1,0 +1,1 @@
+function opt() {\n    let a = [];\n    let b = a.__proto__;\n    let c = b.unshift(4294967297);\n    b.length = 256;\n    let d = [];\n    let e = d.__proto__;\n    let f = e.pop();\n    let g = f;\n    return g;\n}

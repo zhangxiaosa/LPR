@@ -1,0 +1,1 @@
+function opt() {\n	const a = [];\n	const c = Array.prototype;\n	const e = a[127];\n	return e;\n}

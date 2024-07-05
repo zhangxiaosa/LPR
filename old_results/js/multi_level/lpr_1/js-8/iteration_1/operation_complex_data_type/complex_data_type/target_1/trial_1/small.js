@@ -1,0 +1,1 @@
+function opt() {\n    try {\n        const a = [];\n        const b = a.__proto__;\n        const c = b.toLocaleString();\n        const d = b.unshift(c);\n    } catch {\n        // do nothing or handle the error\n    }\n}\n\nconst eContent = opt;

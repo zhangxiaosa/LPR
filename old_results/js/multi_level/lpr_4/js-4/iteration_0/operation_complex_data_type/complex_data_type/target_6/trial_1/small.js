@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = Object.getPrototypeOf(Array);\n  const c = Array.prototype.unshift.call(b, 4294967297);\n  b.length = 256;\n  const optimizedD = '';\n  const f = Array.prototype.pop.call(b);\n  const g = f;\n  return g;\n}

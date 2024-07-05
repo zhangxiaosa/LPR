@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = a.__proto__;\n  const d = [];\n  for (let i = 0; i < b.unshift(b).length; i++) {\n    const element = b.unshift(b)[i];\n    d.push(element !== null && element !== undefined ? element.toString() : '');\n  }\n  const e = d.join(',').replace(new RegExp(b.unshift(b).length, 'g'), '');\n  return e;\n}

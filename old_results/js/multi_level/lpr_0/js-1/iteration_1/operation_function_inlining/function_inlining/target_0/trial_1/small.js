@@ -1,0 +1,1 @@
+function opt() {\n    Uint8ClampedArray.unshift(Uint8ClampedArray);\n    return Uint8ClampedArray.join();\n}

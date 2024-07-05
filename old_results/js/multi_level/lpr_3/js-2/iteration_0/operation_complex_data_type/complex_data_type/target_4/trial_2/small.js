@@ -1,0 +1,1 @@
+function opt() {\n  const a = [];\n  const b = Array.prototype;\n  const c = b.unshift(b);\n  const d = c.toLocaleString();\n\n  // Decomposed variables\n  const d1 = d.toString();\n\n  const e = d1.replace(c.toString());\n  return e;\n}
