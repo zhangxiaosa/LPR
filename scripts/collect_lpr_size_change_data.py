@@ -6,6 +6,13 @@ import sys
 # Define the transformations
 operations_oldname = ['complex_data_type', 'function_inlining', 'loop_unrolling', 'redundant_data_type',
               'unnecessary_variable']
+operations_name_map = {
+    'complex_data_type': 'Data Type Simplification',
+    'function_inlining': 'Function Inlining',
+    'loop_unrolling': 'Loop Unrolling',
+    'redundant_data_type': 'Data Type Elimination',
+    'unnecessary_variable': 'Variable Elimination'
+}
 operations = ['Data Type Simplification', 'Function Inlining', 'Loop Unrolling', 'Data Type Elimination',
               'Variable Elimination']
 operations_short = ['DTS', 'FI', 'LU', 'DTE', 'VE']
@@ -25,8 +32,8 @@ def process_target_csv(result_path, target):
 
     for operation in operations_oldname:
         if operation in without_perses_df.columns and operation in with_perses_df.columns:
-            size_changes_before[operation] = without_perses_df[operation].tolist()
-            size_changes_after[operation] = with_perses_df[operation].tolist()
+            size_changes_before[operations_name_map[operation]] = without_perses_df[operation].tolist()
+            size_changes_after[operations_name_map[operation]] = with_perses_df[operation].tolist()
 
     return size_changes_before, size_changes_after
 
