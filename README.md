@@ -60,7 +60,7 @@ benchmark suite are in folder `./benchmark_suites`.
 3. `./benchmark_suites/js`: 10 benchmarks in JavaScript (Benchmark-JS).
 
 In each folder, there are several versions, including the original benchmark and results of each reducer.
-For example, in c benchmark suite:
+For example, in C benchmark suite:
 - `./benchmark_suites/c/original`: Original benchmarks
 - `./benchmark_suites/c/perses`: Results of Perses
 - `./benchmark_suites/c/perses_rename`: Results of Perses (variable renamed)
@@ -70,7 +70,8 @@ For example, in c benchmark suite:
 
 ### Previous Results
 
-Some previous results used in the paper are stored in `./old_results`.
+Besides some previous results in `./benchmark_suites`, 
+more detailed outputs of LPR are stored in `./old_results`.
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce and LPR.
 
@@ -150,6 +151,12 @@ python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py
 # Similar to how we run Vulcan alone
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --max-jobs 8
+```
+
+To get summarized information
+
+```bash
+python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
 ```
 
 
