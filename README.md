@@ -104,33 +104,33 @@ more detailed outputs of LPR under various settings are stored in `./precomputed
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce, LPR and LPR+Vulcan.
 
-1. Run Perses.
+1. Run Perses
 
 ```bash
 cd /tmp/LPR/
-# run perses on Benchmark-C
+# run Perses on Benchmark-C (around 10 hours with 1 thread)
 python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
-# "--max_jobs" enables running multiple benchmarks concurrently
+# "--max_jobs" enables running multiple benchmarks concurrently, each benchmark is assigned 1 thread
 # "--benchmark-suite" specifies the benchmark suite to evaluate on
 
 # run on single benchmark: clang-23353
 python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
-Assume the current code version is 1234567 (github --version), then the results will be stored in:
+The results will be stored in a folder with all flags concatenated:
 
-> ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+> ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 2. Run Vulcan
 
 ```bash
-# Similar to how we run Perses:
+# run Vulcan on Benchmark-C (around 40 hours with 1 thread)
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 
@@ -141,13 +141,13 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/orig
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 3. Run C-Reduce
 
 ```bash
-# Similar to how we run Perses:
+# run C-Reduce on Benchmark-C (around 20 hours with 1 thread)
 cd /tmp/LPR/
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 
@@ -158,7 +158,7 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/orig
 To get summarized information
 
 ```bash
-python summarize_creduce.py ./results/1234567/scripts_run_creduce_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_creduce.py ./results/scripts_run_creduce_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 ```
 
 4. Run LPR
@@ -178,6 +178,7 @@ export OPENAI_API_KEY=sk-xxxxxxx
 
 ```bash
 cd /tmp/LPR/
+# run LPR on Benchmark-C (around 40 hours with 1 thread)
 python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
 ./scripts/keep_running.sh "python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
@@ -202,6 +203,7 @@ Then, detach this terminal and run LPR.
 ```bash
 # detach tmux via Ctrl-B + d.
 cd /tmp/LPR/
+# run LPR on Benchmark-C (around 40 hours with 1 thread)
 python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-34b-Instruct-hf --id 0
 
 # run on single benchmark: clang-23353
@@ -211,7 +213,7 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 To get summarized information
 
 ```bash
-python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/summarize_gpt.py ./results/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
 5. Run LPR + Vulcan
@@ -219,6 +221,7 @@ python ./scripts/summarize_gpt.py ./results/1234567/scripts_run_gpt_reduction_py
 ```bash
 # Just run Vulcan on precomputed LPR's results
 cd /tmp/LPR/
+# run LPR+Vulcan on Benchmark-C (around 10 hours with 1 thread)
 python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_0/ --max-jobs 8
 
 # run on single benchmark: clang-23353
@@ -228,7 +231,7 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/1234567/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
 ```
 
 
