@@ -20,14 +20,19 @@ To ease the artifact evaluation, we include the precomputed results.
 
 ### Notes
 
-- All the experiments take long time to finish, so it is recommended to use tools like screen and tmux to manage sessions if the experiments are run on remote server. We also provide flags for multi-processing.
+- All the experiments take long time to finish, so it is recommended to use tools like screen and tmux to 
+manage sessions if the experiments are run on remote server. We also provide flags for multi-processing.
 
-- The evaluation results of LPR may not exactly the same as shown in the paper, because LLMs have internal randomness. Replicating the experiments for multiple times will mitigate such impact. However, the deviation should be trivial, and the results should still support the original claims in the paper.
+- The evaluation results of LPR may not exactly the same as shown in the paper, 
+because LLMs have internal randomness. Replicating the experiments for multiple times will mitigate such impact. 
+However, the deviation should be trivial, and the results should still support the original claims in the paper.
 
-- It is possible for remote calls to LLMs to lose connection and raise exceptions, because the resource for user to invoke LLMs might be limited. Therefore, we add logics and scripts for quick restart from the intermediate results.
+- It is possible for remote calls to LLMs to lose connection and raise exceptions, 
+because the resource for user to invoke LLMs might be limited. 
+Therefore, we add logics and scripts for quick restart from the intermediate results.
 
 ### Folder Structure
-In github repository, the folder structure is as follows:
+In the Github repository, the folder structure is as follows:
 - README.md: The readme file
 - scripts: scripts and programs to run the experiments and analyze the results
 - prompts: prompt files to guide the LLMs
@@ -36,11 +41,12 @@ In github repository, the folder structure is as follows:
   - rust: 20 rust programs
   - js: 10 JavaScript programs
 - tools: tools used in LPR or for evaluation
-  - perses_deploy.jar: Perses tool
-  - vulcan_deploy.jar: Vulcan tool
-  - token_counter_deploy.jar: a token counter
-- precomputed_results: precomputed results for artifact evaluation 
-(it is time-consuming and LLM-required to rerun the results, so we prepare some results)
+  - perses_deploy.jar: Perses
+  - vulcan_deploy.jar: Vulcan
+  - token_counter_deploy.jar: a token counter tool
+- precomputed_results: precomputed results for artifact evaluation.
+Since rerunning the results is time-consuming and requires access to LLMs, 
+we have precomputed some results for convenience.
 
 ### Docker Environment Setup
 
@@ -48,14 +54,14 @@ In github repository, the folder structure is as follows:
 2. Install the docker image.
 
    ```bash
-   docker pull codesubmission278/lpr:latest
+   docker pull m492zhan/lpr:latest
    # This step might takes a while, mainly depending on the network bandwidth. It also takes up much disk space (nearly 80GB)
    ```
 
 3. Start a container.
 
    ```bash
-   docker container run --cap-add SYS_PTRACE --interactive --tty codesubmission278/lpr:latest /bin/bash
+   docker container run --cap-add SYS_PTRACE --interactive --tty m492zhan/lpr:latest /bin/bash
    # You should be at /tmp after the above command finishes
    # Your user name should be `coq` and all the following command are executed in docker
 
@@ -104,24 +110,27 @@ more detailed outputs of LPR under various settings are stored in `./precomputed
 
 ### Reproduce RQ1 & RQ2: the Effectiveness and Efficiency of Perses, Vulcan, C-Reduce, LPR and LPR+Vulcan.
 
+Note that running reduction algorithms is time-consuming and LLM-dependent, 
+we provide precomputed results in `./precomputed_results`for quick evaluation.
+
 1. Run Perses
 
 ```bash
 cd /tmp/LPR/
 # run Perses on Benchmark-C (around 10 hours with 1 thread)
 python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
-# "--max_jobs" enables running multiple benchmarks concurrently, each benchmark is assigned 1 thread
+# "--max_jobs" enables running multiple benchmarks concurrently, with each benchmark assigned a single thread
 # "--benchmark-suite" specifies the benchmark suite to evaluate on
 
 # run on single benchmark: clang-23353
 python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
-The results will be stored in a folder with all flags concatenated:
+The results will be stored in a folder with all flags concatenated, such as:
 
 > ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
 
-To get summarized information
+To get summarized information, run summarize_xxx.py with the result folder, such as
 
 ```bash
 python summarize_perses_or_vulcan.py ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
@@ -163,14 +172,13 @@ python summarize_creduce.py ./results/scripts_run_creduce_py_benchmark_suite_tmp
 
 4. Run LPR
 
-Note that running LPR is time-consuming and LLM-dependent, we provide precomputed results in `./precomputed_results`
-for quick evaluation.
-
-If you want to rerun LPR, there are 2 options.
+If you want to rerun LPR, there are two options.
 
 ##### Option1: Invoke OpenAI API: gpt-3.5-turbo-0613
 
-Before running LPR, we need to add an OPENAI_API_KEY to the environment variable.
+Before running LPR, you need to add an OPENAI_API_KEY to the environment variable.
+The OpenAI API is a paid service. 
+On the gpt-3.5-turbo-0613 model, running an average benchmark costs less than $0.50.
 
 ```bash
 export OPENAI_API_KEY=sk-xxxxxxx
@@ -192,19 +200,22 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 ##### Option2: Deploy CodeLlama: CodeLlama-13b-Instruct-hf
 
 Before running LPR, we need to deploy CodeLlama.
-First, [download](https://huggingface.co/codellama/CodeLlama-7b-Instruct-hf) `CodeLlame-13b-Instruct-hf` to `/tmp/LPR/llms`.
+First, [download](https://huggingface.co/codellama/CodeLlama-7b-Instruct-hf) `CodeLlame-13b-Instruct-hf` 
+(7b, 34b and 70b are also fine) to `/tmp/LPR/llms`.
 
-Then, create a new terminal with tmux, and run the following commands to start the LLM.
+Next, create a new terminal session with tmux and run the following commands to start the LLM in the background.
 ```bash
+tmux
 cd /tmp/LPR/llms
 python -m vllm.entrypoints.openai.api_server --model CodeLlama-13b-Instruct-hf
-```
-Then, detach this terminal and run LPR.
-```bash
 # detach tmux via Ctrl-B + d.
+Ctrl-B + d
+```
+Then, run LPR.
+```bash
 cd /tmp/LPR/
 # run LPR on Benchmark-C (around 40 hours with 1 thread)
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-34b-Instruct-hf --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-13b-Instruct-hf --id 0
 
 # run on single benchmark: clang-23353
 python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --case clang-23353
@@ -213,7 +224,7 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 To get summarized information
 
 ```bash
-python ./scripts/summarize_gpt.py ./results/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/summarize_lpr.py ./results/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
 ```
 
 5. Run LPR + Vulcan
@@ -231,7 +242,7 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
+python ./script/summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
 ```
 
 
@@ -265,4 +276,13 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 
 # run on single benchmark: clang-23353
 python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --case clang-23353
+```
+
+To disable multi-level prompt, use flag "--disable-multi-level", for example:
+
+```bash
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --disable-multi-level --id 0
+
+# run on single benchmark: clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --disable-multi-level --case clang-23353
 ```
