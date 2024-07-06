@@ -287,7 +287,7 @@ def initialize_parser():
     parser.add_argument("--temperature", type=float, required=False, default=1.0, help="Temperature used in LLMs")
     parser.add_argument("--max-jobs", type=int, required=False, default=1,
                         help="The maximum number of concurrent tasks allowed")
-    parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0613", help="LLM version")
+    parser.add_argument("--llm-version", type=str, required=False, default="gpt-3.5-turbo-0125", help="LLM version")
     parser.add_argument("--disable-multi-level", action="store_true", required=False, default=False,
                         help="Disable multi-level prompt")
     parser.add_argument("--id", type=str, required=False, help="A unique identifier used to differentiate each rerun")
