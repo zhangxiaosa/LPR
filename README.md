@@ -267,7 +267,7 @@ After the execution of the above command, pdf files is saved under
 - Figure 5: `size_changes_piechart.pdf`
 - Figure 6: `size_changes_barchart.pdf`
 
-### Other Experiments
+### Other Experiments and Commands
 
 To specify the temperature, use flag "--temperature", for example:
 
@@ -285,4 +285,9 @@ python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_r
 
 # run on single benchmark: clang-23353
 python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --disable-multi-level --case clang-23353
+```
+To count the token number of a program, use `token_counter_deploy.jar`,
+
+```bash
+java -jar /tmp/LPR/tools/token_counter_deploy.jar small.c
 ```
