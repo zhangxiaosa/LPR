@@ -120,7 +120,6 @@ def call_llm_with_multi_level_prompt(client, prompts, transformation, output_fol
                 utils.save_program_file(trial_path, program)
                 utils.copy_file(transformation_script_path, trial_path)
 
-            end_time = time.time()
             utils.save_file(target_folder, "finish", f"{end_time - start_time:.2f}")
 
         elapsed_time = utils.load_file(os.path.join(target_folder, "followup_question_response_time.txt"))
@@ -204,15 +203,13 @@ def call_llm_with_single_level_prompt(client, prompts, transformation, output_fo
         # save response
         utils.save_file(transformation_folder, "question_response.json", completion.model_dump_json(indent=2))
 
-        # save program
+        # save response time
+        utils.save_file(transformation_folder, "question_response_time.txt", f"{end_time - start_time:.2f}")
+
+        # save programs from followup_question_response.json
         for trial in range(trial_number):
             response_text = completion.choices[trial].message.content
-            response_json = utils.extract_json(response_text)
-            if "program" in response_json and isinstance(response_json["program"], str):
-                program = response_json["program"]
-            else:
-                utils.print_and_log(f"invalid result for trial {trial}", level=level)
-                program = ""
+            program = utils.extract_string_from_docstring(response_text)
 
             trial_path = os.path.join(transformation_folder, f"trial_{trial}")
             utils.save_program_file(trial_path, program)
