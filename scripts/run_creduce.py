@@ -11,7 +11,8 @@ def run_benchmark(benchmark, benchmark_suite_folder, code_version, args_string):
     """
     try:
         main_folder = os.path.normpath(
-            os.path.join("/tmp/LPR/results/", code_version, args_string, benchmark)
+            # os.path.join("/tmp/LPR/results/", code_version, args_string, benchmark)
+            os.path.join("/tmp/LPR/results/", args_string, benchmark)
         )
         utils.LOG_FILE_NAME = os.path.join(main_folder, "log.txt")
         if os.path.exists(main_folder):
