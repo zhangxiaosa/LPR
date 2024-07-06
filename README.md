@@ -94,7 +94,7 @@ For example, in C benchmark suite:
 Besides some previous results in `./benchmark_suites`, 
 more detailed outputs of LPR under various settings are stored in `./precomputed_results`.
 - c
-  - multi_level: default settings (temperature=1, multi-level prompt, gpt-3.5-turbo-0613)
+  - multi_level: default settings (temperature=1, multi-level prompt, gpt-3.5-turbo-0125)
   - single_level: single-level prompt
   - t_0: temperature=0
   - t_0.25: temperature=0.25
@@ -128,12 +128,12 @@ python3 scripts/run_perses.py --benchmark-suite /tmp/LPR/benchmark_suites/c/orig
 
 The results will be stored in a folder with all flags concatenated, such as:
 
-> ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+> ./results/scripts_run_perses_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
 
 To get summarized information, run summarize_xxx.py with the result folder, such as
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/scripts_run_perses_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/scripts_run_perses_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
 ```
 
 2. Run Vulcan
@@ -150,7 +150,7 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/orig
 To get summarized information
 
 ```bash
-python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
 ```
 
 3. Run C-Reduce
@@ -158,27 +158,27 @@ python summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_s
 ```bash
 # run C-Reduce on Benchmark-C (around 20 hours with 1 thread)
 cd /tmp/LPR/
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
+python3 scripts/run_creduce.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --max-jobs 8
 
 # run on single benchmark: clang-23353
-python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
+python3 scripts/run_creduce.py --benchmark-suite /tmp/LPR/benchmark_suites/c/original/ --case clang-23353
 ```
 
 To get summarized information
 
 ```bash
-python summarize_creduce.py ./results/scripts_run_creduce_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_original_max_jobs_8/
+python summarize_creduce.py ./results/scripts_run_creduce_py_benchmark_suite_tmp_LPR_benchmark_suites_c_original_max_jobs_8/
 ```
 
 4. Run LPR
 
 If you want to rerun LPR, there are two options.
 
-##### Option1: Invoke OpenAI API: gpt-3.5-turbo-0613
+##### Option1: Invoke OpenAI API: gpt-3.5-turbo-0125
 
 Before running LPR, you need to add an OPENAI_API_KEY to the environment variable.
 The OpenAI API is a paid service. 
-On the gpt-3.5-turbo-0613 model, running an average benchmark costs less than $0.50.
+On the gpt-3.5-turbo-0125 model, running an average benchmark costs less than $0.50.
 
 ```bash
 export OPENAI_API_KEY=sk-xxxxxxx
@@ -187,44 +187,48 @@ export OPENAI_API_KEY=sk-xxxxxxx
 ```bash
 cd /tmp/LPR/
 # run LPR on Benchmark-C (around 40 hours with 1 thread)
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --llm-version gpt-3.5-turbo-0125 --id 0
 # In case the invocation of LLMs timeouts and terminates the whole process, we can wrap the command line with ./scripts/keep_running.sh, which continues to run the given command until it exits with 0.
-./scripts/keep_running.sh "python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --id 0"
+./scripts/keep_running.sh "python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --llm-version gpt-3.5-turbo-0125 --id 0"
 # flag "--id" helps to distinguish the id of runs for data storage. In the next run, if all other flags are identical, use "--id 1" to prevent the dulicated result folder.
 # flag "--llm-version" specify the version OpenAI API or your local LLMs
 
 # run on single benchmark: clang-23353
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --case clang-23353
-```
-
-##### Option2: Deploy CodeLlama: CodeLlama-13b-Instruct-hf
-
-Before running LPR, we need to deploy CodeLlama.
-First, [download](https://huggingface.co/codellama/CodeLlama-7b-Instruct-hf) `CodeLlame-13b-Instruct-hf` 
-(7b, 34b and 70b are also fine) to `/tmp/LPR/llms`.
-
-Next, create a new terminal session with tmux and run the following commands to start the LLM in the background.
-```bash
-tmux
-cd /tmp/LPR/llms
-python -m vllm.entrypoints.openai.api_server --model CodeLlama-13b-Instruct-hf
-# detach tmux via Ctrl-B + d.
-Ctrl-B + d
-```
-Then, run LPR.
-```bash
-cd /tmp/LPR/
-# run LPR on Benchmark-C (around 40 hours with 1 thread)
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version CodeLlama-13b-Instruct-hf --id 0
-
-# run on single benchmark: clang-23353
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --llm-version gpt-3.5-turbo-0613 --case clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --llm-version gpt-3.5-turbo-0125 --case clang-23353
 ```
 
 To get summarized information
 
 ```bash
-python ./scripts/summarize_lpr.py ./results/scripts_run_gpt_reduction_py_benchmark_suite_tmp_gpt_reduction_benchmark_suites_c_perses_results_rename_id_0/
+python ./scripts/summarize_lpr.py results/scripts_run_lpr_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_rename_llm_version_gpt_3_5_turbo_0125_id_0/
+```
+
+##### Option2: Deploy CodeLlama: CodeLlama-13b-Instruct-hf
+
+Before running LPR, we need to deploy CodeLlama.
+First, [download](https://huggingface.co/codellama/CodeLlama-13b-Instruct-hf) `CodeLlame-13b-Instruct-hf` 
+(7b, 34b and 70b are also fine) to `/tmp/llms`.
+
+Next, run the following commands to start the LLM outside the container.
+```bash
+# outside the container
+cd /tmp/llms
+python -m vllm.entrypoints.openai.api_server --model CodeLlama-13b-Instruct-hf
+```
+Then, run LPR in the container.
+```bash
+cd /tmp/LPR/
+# run LPR on Benchmark-C (around 40 hours with 1 thread)
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --llm-version CodeLlama-13b-Instruct-hf --id 0
+
+# run on single benchmark: clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --llm-version gpt-3.5-turbo-0125 --case clang-23353
+```
+
+To get summarized information
+
+```bash
+python ./scripts/summarize_lpr.py results/scripts_run_lpr_py_benchmark_suite_tmp_LPR_benchmark_suites_c_perses_rename_llm_version_gpt_3_5_turbo_0125_id_0/
 ```
 
 5. Run LPR + Vulcan
@@ -242,7 +246,7 @@ python3 scripts/run_vulcan.py --benchmark-suite /tmp/LPR/benchmark_suites/c/lpr_
 To get summarized information
 
 ```bash
-python ./script/summarize_perses_or_vulcan.py ./results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
+python ./script/summarize_perses_or_vulcan.py results/scripts_run_vulcan_py_benchmark_suite_tmp_LPR_benchmark_suites_c_lpr_0_max_jobs_8/
 ```
 
 
@@ -272,19 +276,19 @@ After the execution of the above command, pdf files is saved under
 To specify the temperature, use flag "--temperature", for example:
 
 ```bash
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --temperature 0.5 --id 0
 
 # run on single benchmark: clang-23353
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --temperature 0.5 --case clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --temperature 0.5 --case clang-23353
 ```
 
 To disable multi-level prompt, use flag "--disable-multi-level", for example:
 
 ```bash
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --disable-multi-level --id 0
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --disable-multi-level --id 0
 
 # run on single benchmark: clang-23353
-python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_results_rename --disable-multi-level --case clang-23353
+python scripts/run_lpr.py --benchmark-suite /tmp/LPR/benchmark_suites/c/perses_rename --disable-multi-level --case clang-23353
 ```
 To count the token number of a program, use `token_counter_deploy.jar`,
 
