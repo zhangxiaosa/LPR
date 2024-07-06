@@ -295,3 +295,14 @@ To count the token number of a program, use `token_counter_deploy.jar`,
 ```bash
 java -jar /tmp/LPR/tools/token_counter_deploy.jar small.c
 ```
+
+### Related Work
+**Perses: Syntax-Guided Program Reduction**
+
+**Pushing the limit of 1-minimality of language-agnostic program reduction**
+
+[Project](https://github.com/uw-pluverse/perses)
+
+**Test-case reduction for C compiler bugs**
+
+[Project](https://github.com/csmith-project/creduce)
